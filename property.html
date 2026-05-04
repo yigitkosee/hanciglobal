@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hancı Property · Istanbul Real Estate & Renovation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:#fff;color:#111C26;line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+:root{
+  --teal:#1D9E75;--teal-l:#E1F5EE;--teal-d:#0F6E56;
+  --amber:#BA7517;--amber-l:#FAEEDA;--amber-d:#8A5510;
+  --blue:#185FA5;--blue-l:#E6F1FB;--blue-d:#0C3E72;
+  --coral:#993C1D;--coral-l:#FAECE7;--coral-d:#712B13;
+  --gold:#B8953A;--navy:#0D1E35;
+  --ink:#111C26;--ink2:#2E4055;--muted:#6A8099;
+  --border:#D3E4EF;--bg:#F3F8FB;
+  --ac:var(--amber);--ac-l:var(--amber-l);--ac-d:var(--amber-d);
+}
+
+/* NAV */
+nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 56px;display:flex;align-items:stretch;justify-content:space-between;height:76px;position:sticky;top:0;z-index:200}
+.nav-left{display:flex;align-items:center;gap:48px}
+.logo{display:flex;align-items:center;gap:14px}
+.logo img{height:50px;width:auto;object-fit:contain}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:600;color:var(--navy);letter-spacing:2px}
+.logo-sub{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;align-items:stretch;height:100%}
+.nav-link{font-size:15px;font-weight:600;color:var(--ink2);padding:0 18px;display:flex;align-items:center;border-bottom:2.5px solid transparent;transition:color .15s,border-color .15s}
+.nav-link:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-link.active{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-call{font-size:13px;font-weight:600;color:var(--ink);border:1.5px solid var(--border);background:none;padding:9px 16px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:border-color .15s}
+.btn-call:hover{border-color:var(--ink)}
+.btn-wa{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border:none;padding:10px 22px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .15s}
+.btn-wa:hover{background:#1a3050}
+
+/* HERO */
+.hero{position:relative;min-height:80vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,20,38,0.85) 0%,rgba(10,20,38,0.55) 55%,rgba(10,20,38,0.2) 100%)}
+.hero-content{position:relative;z-index:1;padding:0 56px;max-width:780px}
+.hero-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.6);font-size:13px;font-weight:600;margin-bottom:20px;transition:color .15s}
+.hero-back:hover{color:#fff}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(184,149,58,0.18);border:1px solid rgba(184,149,58,0.4);color:#E8C86A;font-size:12px;font-weight:600;padding:6px 16px;border-radius:20px;margin-bottom:24px;letter-spacing:1px;text-transform:uppercase}
+.hero-h1{font-family:"Cormorant Garamond",serif;font-size:68px;line-height:1.05;font-weight:500;color:#fff;letter-spacing:-2px}
+.hero-h1 em{font-style:italic;color:#E8C86A}
+.hero-p{font-size:17px;line-height:1.8;color:rgba(255,255,255,.8);margin-top:20px;max-width:560px}
+.hero-btns{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.hero-btn-gold{font-size:14px;font-weight:700;background:var(--gold);color:#fff;border:none;padding:14px 30px;border-radius:8px;cursor:pointer;transition:background .15s}
+.hero-btn-gold:hover{background:#9A7A28}
+.hero-btn-ghost{font-size:14px;font-weight:600;background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:14px 30px;border-radius:8px;cursor:pointer;transition:background .15s}
+.hero-btn-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* SECTION HELPERS */
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.sec-h2{font-family:"Cormorant Garamond",serif;font-size:48px;font-weight:500;color:var(--ink);letter-spacing:-1px;line-height:1.1}
+.sec-h2 em{font-style:italic}
+.sec-p{font-size:16px;color:var(--ink2);line-height:1.85;margin-top:18px}
+
+/* SERVICES */
+.services{padding:96px 56px;background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px}
+.svc-card{background:#fff;border-radius:22px;overflow:hidden;border:1.5px solid var(--border);display:grid;grid-template-columns:1fr 1fr;transition:border-color .2s,transform .2s,box-shadow .2s}
+.svc-card:hover{border-color:var(--amber);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.08)}
+.svc-card-img{overflow:hidden;min-height:280px}
+.svc-card-img img{height:100%;transition:transform .4s}
+.svc-card:hover .svc-card-img img{transform:scale(1.06)}
+.svc-card-body{padding:40px 32px;display:flex;flex-direction:column;justify-content:center}
+.svc-chip{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:4px 10px;border-radius:5px;margin-bottom:16px;display:inline-block;background:var(--amber-l);color:var(--amber-d)}
+.svc-title{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-.4px}
+.svc-desc{font-size:14px;line-height:1.75;color:var(--muted);font-weight:400}
+.svc-link{font-size:13px;font-weight:700;color:var(--amber);margin-top:20px;display:inline-flex;align-items:center;gap:6px}
+
+/* CONSULTANCY PROCESS */
+.process{padding:96px 56px;background:#fff}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;position:relative}
+.steps::before{content:"";position:absolute;top:28px;left:calc(12.5% + 12px);right:calc(12.5% + 12px);height:2px;background:var(--border);z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:56px;height:56px;background:var(--amber);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin:0 auto 18px;box-shadow:0 4px 16px rgba(186,117,23,.3)}
+.step-title{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.65;font-weight:400}
+
+/* RENOVATION PROCESS */
+.reno-process{padding:96px 56px;background:var(--bg)}
+.reno-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:56px}
+.reno-step{background:#fff;border-radius:18px;border:1.5px solid var(--border);padding:28px 20px;text-align:center;transition:border-color .2s}
+.reno-step:hover{border-color:var(--amber)}
+.reno-step-icon{width:52px;height:52px;background:var(--amber-l);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.reno-step-num{font-size:12px;font-weight:800;color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.reno-step-title{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.reno-step-desc{font-size:12px;color:var(--muted);line-height:1.6;font-weight:400}
+
+/* ACTIVE PROJECT */
+.project{padding:96px 56px;background:#fff}
+.project-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px}
+.project-badge{background:var(--amber);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:.5px}
+.project-info{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.project-photos{display:flex;flex-direction:column;gap:16px}
+.photo-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.photo-tab{font-size:12px;font-weight:700;padding:7px 16px;border-radius:8px;border:1.5px solid var(--border);color:var(--muted);cursor:pointer;transition:all .15s}
+.photo-tab.active{background:var(--amber);color:#fff;border-color:var(--amber)}
+.project-main-img{border-radius:16px;overflow:hidden;height:340px;background:var(--bg);border:1.5px solid var(--border)}
+.project-main-img img{height:100%}
+.project-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.project-thumb{border-radius:10px;overflow:hidden;height:90px;border:1.5px solid var(--border);cursor:pointer;transition:border-color .15s}
+.project-thumb:hover{border-color:var(--amber)}
+.project-thumb img{height:100%}
+.project-details{padding-top:8px}
+.project-status{display:inline-flex;align-items:center;gap:6px;background:var(--amber-l);color:var(--amber-d);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:20px}
+.status-dot{width:7px;height:7px;background:var(--amber);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.project-name{font-family:"Cormorant Garamond",serif;font-size:36px;font-weight:500;color:var(--ink);letter-spacing:-.8px;margin-bottom:12px;line-height:1.15}
+.project-loc{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:6px}
+.project-desc{font-size:15px;line-height:1.85;color:var(--ink2);font-weight:400}
+.project-specs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.spec{background:var(--bg);border-radius:12px;padding:16px 18px;border:1px solid var(--border)}
+.spec-label{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.spec-val{font-size:15px;font-weight:800;color:var(--ink)}
+.project-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.btn-amber{font-size:13px;font-weight:700;background:var(--amber);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:7px}
+.btn-amber:hover{background:var(--amber-d)}
+.btn-outline-amber{font-size:13px;font-weight:700;background:#fff;color:var(--amber);border:1.5px solid var(--amber);padding:12px 24px;border-radius:8px;cursor:pointer;transition:background .15s}
+.btn-outline-amber:hover{background:var(--amber-l)}
+
+/* COMING SOON */
+.coming-soon{padding:96px 56px;background:var(--bg)}
+.cs-inner{background:#fff;border-radius:24px;padding:72px;border:1.5px solid var(--border);text-align:center;max-width:760px;margin:0 auto}
+.cs-icon{font-size:56px;margin-bottom:24px}
+.cs-title{font-family:"Cormorant Garamond",serif;font-size:40px;font-weight:500;color:var(--ink);letter-spacing:-1px;margin-bottom:16px}
+.cs-desc{font-size:16px;color:var(--muted);line-height:1.8;max-width:520px;margin:0 auto 32px}
+.cs-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.cs-tag{font-size:12px;font-weight:700;padding:6px 14px;border-radius:7px;border:1.5px solid var(--border);color:var(--ink2)}
+
+/* FEATURES */
+.features{padding:96px 56px;background:#fff}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.feat-card{background:var(--bg);border-radius:18px;border:1.5px solid var(--border);padding:32px 26px}
+.feat-icon{width:48px;height:48px;border-radius:14px;background:var(--amber-l);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.feat-title{font-size:17px;font-weight:800;color:var(--ink);margin-bottom:10px}
+.feat-desc{font-size:14px;line-height:1.7;color:var(--muted);font-weight:400}
+
+/* CTA BAND */
+.cta-band{padding:96px 56px;background:var(--navy);text-align:center}
+.cta-band h2{font-family:"Cormorant Garamond",serif;font-size:48px;font-weight:500;color:#fff;letter-spacing:-1px;margin-bottom:16px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 40px;line-height:1.8}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-white{font-size:14px;font-weight:700;background:#fff;color:var(--navy);border:none;padding:14px 30px;border-radius:8px;cursor:pointer;transition:opacity .15s}
+.cta-white:hover{opacity:.9}
+.cta-ghost-w{font-size:14px;font-weight:700;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:14px 30px;border-radius:8px;cursor:pointer;transition:background .15s}
+.cta-ghost-w:hover{background:rgba(255,255,255,.1)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(255,255,255,.06)}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.footer-logo img{height:46px;width:auto;object-fit:contain}
+.footer-logo-name{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:600;color:#E8E0CC;letter-spacing:2px}
+.footer-addr{font-size:13px;color:#3A5068;line-height:1.75}
+.footer-col-title{font-size:11px;font-weight:800;color:#3A5068;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.footer-col-links{display:flex;flex-direction:column;gap:10px}
+.footer-col-links a{font-size:13px;color:#2A3A48;font-weight:500;transition:color .15s}
+.footer-col-links a:hover{color:#E8C86A}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px}
+.footer-copy{font-size:12px;color:#1E2A34}
+.footer-social{display:flex;gap:16px}
+.footer-social a{font-size:12px;color:#1E2A34;font-weight:600;transition:color .15s}
+.footer-social a:hover{color:#E8C86A}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:300}
+.hamburger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:28px;font-weight:700;color:var(--ink);padding:12px 32px;border-radius:12px;transition:background .15s,color .15s}
+.mobile-nav a:hover{background:var(--bg);color:var(--gold)}
+.mobile-nav-contact{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.mobile-nav-contact a{font-size:14px;font-weight:700;padding:12px 24px;border-radius:10px;display:flex;align-items:center;gap:8px}
+.mnc-call{background:var(--bg);color:var(--ink);border:1.5px solid var(--border)}
+.mnc-wa{background:var(--navy) !important;color:#fff !important;-webkit-text-fill-color:#fff !important}
+.mnc-wa,.mnc-wa *{color:#fff !important;-webkit-text-fill-color:#fff !important;fill:#fff !important}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 20px;height:64px}
+  .nav-links,.nav-right{display:none}
+  .hamburger{display:flex}
+  .logo img{height:40px}
+  .logo-name{font-size:17px}
+  .logo-sub{font-size:9px}
+  .hero{min-height:80vh}
+  .hero-content{padding:0 24px}
+  .hero-h1{font-size:42px;letter-spacing:-1.5px}
+  .hero-p{font-size:15px;margin-top:16px}
+  .hero-btns{flex-direction:column;gap:10px;margin-top:28px}
+  .hero-btn-gold,.hero-btn-ghost{width:100%;justify-content:center;padding:14px 20px}
+  .services{padding:56px 20px}
+  .svc-grid{grid-template-columns:1fr;gap:20px;margin-top:32px}
+  .svc-card{grid-template-columns:1fr;display:flex;flex-direction:column}
+  .svc-card-img{min-height:220px;height:220px}
+  .svc-card-body{padding:24px 20px}
+  .process{padding:56px 20px}
+  .steps{grid-template-columns:repeat(2,1fr);margin-top:32px}
+  .steps::before{display:none}
+  .reno-process{padding:56px 20px}
+  .reno-steps{grid-template-columns:repeat(2,1fr);margin-top:32px}
+  .project{padding:56px 20px}
+  .project-header{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:32px}
+  .project-info{grid-template-columns:1fr;gap:32px}
+  .project-main-img{height:260px}
+  .coming-soon{padding:56px 20px}
+  .cs-inner{padding:40px 24px}
+  .cs-title{font-size:30px}
+  .features{padding:56px 20px}
+  .feat-grid{grid-template-columns:1fr;gap:16px;margin-top:32px}
+  .cta-band{padding:56px 20px}
+  .cta-band h2{font-size:36px}
+  .cta-btns{flex-direction:column;align-items:center}
+  .cta-white,.cta-ghost-w{width:100%;text-align:center}
+  footer{padding:40px 20px 24px}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .sec-h2{font-size:36px}
+}
+@media(max-width:480px){
+  .hero-h1{font-size:34px}
+  .logo-name{font-size:15px;letter-spacing:1px}
+  .logo-sub{font-size:8px}
+  .reno-steps{grid-template-columns:1fr}
+  .project-specs{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="logo">
+      <img src="logo.jpg" alt="Hancı Global">
+      <div class="logo-text">
+        <span class="logo-name">HANCI GLOBAL</span>
+        <span class="logo-sub">Istanbul</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="stay.html" class="nav-link">Stay</a>
+      <a href="property.html" class="nav-link active">Property</a>
+      <a href="travel.html" class="nav-link">Travel</a>
+      <a href="visa.html" class="nav-link">Visa</a>
+      <a href="index.html#about" class="nav-link">About</a>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+905063335154"><button class="btn-call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</button></a>
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27m%20interested%20in%20Hanc%C4%B1%20Property%20services." target="_blank"><button class="btn-wa"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp</button></a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button onclick="closeMobileNav()" style="position:absolute;top:20px;right:20px;background:none;border:none;cursor:pointer;padding:8px">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111C26" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="stay.html" onclick="closeMobileNav()">Stay</a>
+  <a href="property.html" onclick="closeMobileNav()">Property</a>
+  <a href="travel.html" onclick="closeMobileNav()">Travel</a>
+  <a href="visa.html" onclick="closeMobileNav()">Visa</a>
+  <a href="index.html#about" onclick="closeMobileNav()">About</a>
+  <div class="mobile-nav-contact">
+    <a href="tel:+905063335154" class="mnc-call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27m%20interested%20in%20Hanc%C4%B1%20Property." target="_blank" class="mnc-wa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="property.jpg" alt="Istanbul property">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <a href="index.html" class="hero-back">← Back to Hancı Global</a>
+    <div class="hero-eyebrow">Hancı Property · Istanbul</div>
+    <h1 class="hero-h1">Invest &amp; build<br>in <em>Istanbul</em></h1>
+    <p class="hero-p">From finding the right property to managing full renovations across the city — Hancı Property is your end-to-end partner for real estate and construction project management in Istanbul.</p>
+    <div class="hero-btns">
+      <a href="#services"><button class="hero-btn-gold">Our services</button></a>
+      <a href="https://wa.me/905063335154?text=Hi%2C%20I%27m%20interested%20in%20Hanc%C4%B1%20Property%20services." target="_blank"><button class="hero-btn-ghost">💬 Talk to our team</button></a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="sec-eyebrow" style="color:var(--amber)">What we offer</p>
+  <h2 class="sec-h2">Real estate &amp; <em>renovation</em></h2>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=90" alt="Real estate consultancy"></div>
+      <div class="svc-card-body">
+        <span class="svc-chip">Consultancy</span>
+        <div class="svc-title">Real Estate Consultancy</div>
+        <p class="svc-desc">We help you find, evaluate and acquire residential or commercial properties across all Istanbul neighbourhoods. From first viewing to signed contract — we guide every step.</p>
+        <a href="https://wa.me/905063335154?text=Hi%2C%20I%27m%20interested%20in%20real%20estate%20consultancy." target="_blank" class="svc-link">Get advice →</a>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=90" alt="Renovation Istanbul"></div>
+      <div class="svc-card-body">
+        <span class="svc-chip">Renovation</span>
+        <div class="svc-title">Renovation &amp; Refurbishment</div>
+        <p class="svc-desc">Full renovation and fit-out services from design to completion. We manage the entire process — permits, contractors, timelines, and budget — so you do not have to.</p>
+        <a href="https://wa.me/905063335154?text=Hi%2C%20I%27m%20interested%20in%20renovation%20services." target="_blank" class="svc-link">Get a quote →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTANCY PROCESS -->
+<section class="process" id="process">
+  <p class="sec-eyebrow" style="color:var(--amber)">Real estate consultancy</p>
+  <h2 class="sec-h2">How we find your <em>ideal property</em></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Initial consultation</div>
+      <p class="step-desc">We understand your goals — budget, location preferences, intended use and investment horizon.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Search &amp; shortlist</div>
+      <p class="step-desc">We identify suitable properties across Istanbul and present you with a curated shortlist.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Viewings &amp; negotiation</div>
+      <p class="step-desc">We accompany you on viewings, evaluate each property honestly, and negotiate the best price.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Contract &amp; handover</div>
+      <p class="step-desc">We guide you through the legal process and stay with you until the keys are in your hand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RENOVATION PROCESS -->
+<section class="reno-process">
+  <p class="sec-eyebrow" style="color:var(--amber)">Renovation &amp; refurbishment</p>
+  <h2 class="sec-h2">How we manage your <em>renovation</em></h2>
+  <div class="reno-steps">
+    <div class="reno-step">
+      <div class="reno-step-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <div class="reno-step-num">Step 01</div>
+      <div class="reno-step-title">Site survey</div>
+      <p class="reno-step-desc">We visit the property, assess its condition and scope of work needed.</p>
+    </div>
+    <div class="reno-step">
+      <div class="reno-step-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+      </div>
+      <div class="reno-step-num">Step 02</div>
+      <div class="reno-step-title">Design &amp; quote</div>
+      <p class="reno-step-desc">We prepare a detailed scope of work, design proposal and transparent cost breakdown.</p>
+    </div>
+    <div class="reno-step">
+      <div class="reno-step-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+      </div>
+      <div class="reno-step-num">Step 03</div>
+      <div class="reno-step-title">Permits &amp; planning</div>
+      <p class="reno-step-desc">We handle all necessary permits and coordinate contractors, materials and timelines.</p>
+    </div>
+    <div class="reno-step">
+      <div class="reno-step-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="reno-step-num">Step 04</div>
+      <div class="reno-step-title">Construction</div>
+      <p class="reno-step-desc">Our trusted crew carries out the work. We supervise daily and keep you updated throughout.</p>
+    </div>
+    <div class="reno-step">
+      <div class="reno-step-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="reno-step-num">Step 05</div>
+      <div class="reno-step-title">Handover</div>
+      <p class="reno-step-desc">Final inspection, snagging and handover. We do not leave until everything is perfect.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVE PROJECT -->
+<section class="project" id="project">
+  <div class="project-header">
+    <div>
+      <p class="sec-eyebrow" style="color:var(--amber)">Active project</p>
+      <h2 class="sec-h2">Currently on site</h2>
+    </div>
+    <span class="project-badge">🔨 In progress</span>
+  </div>
+  <div class="project-info">
+    <div class="project-photos">
+      <div class="photo-tabs">
+        <button class="photo-tab active" onclick="switchPhase('before')">Before</button>
+        <button class="photo-tab" onclick="switchPhase('during')">During</button>
+        <button class="photo-tab" onclick="switchPhase('after')">After</button>
+      </div>
+      <div class="project-main-img">
+        <img id="mainProjectImg" src="project-before-1.jpg" alt="Project photo">
+      </div>
+      <div class="project-thumbs" id="projectThumbs">
+        <div class="project-thumb" onclick="setProjectImg('project-before-1.jpg',this)"><img src="project-before-1.jpg" alt="Before 1"></div>
+        <div class="project-thumb" onclick="setProjectImg('project-before-2.jpg',this)"><img src="project-before-2.jpg" alt="Before 2"></div>
+        <div class="project-thumb" onclick="setProjectImg('project-before-3.jpg',this)"><img src="project-before-3.jpg" alt="Before 3"></div>
+      </div>
+    </div>
+    <div class="project-details">
+      <div class="project-status"><div class="status-dot"></div> Currently on site</div>
+      <div class="project-name">Full Renovation —<br>Beyoğlu Apartment</div>
+      <div class="project-loc">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Beyoğlu, Istanbul
+      </div>
+      <p class="project-desc">A complete gut renovation of a historic Beyoğlu apartment — structural repairs, new electrical and plumbing, full interior redesign. The project involves preserving original architectural details while bringing the space to modern standards.</p>
+      <div class="project-specs">
+        <div class="spec"><div class="spec-label">Type</div><div class="spec-val">Full renovation</div></div>
+        <div class="spec"><div class="spec-label">Location</div><div class="spec-val">Beyoğlu</div></div>
+        <div class="spec"><div class="spec-label">Status</div><div class="spec-val">In progress</div></div>
+        <div class="spec"><div class="spec-label">Scope</div><div class="spec-val">Structural + interior</div></div>
+      </div>
+      <div class="project-cta">
+        <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20discuss%20a%20renovation%20project." target="_blank"><button class="btn-amber"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Discuss a project</button></a>
+        <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20get%20a%20renovation%20quote." target="_blank"><button class="btn-outline-amber">Get a quote</button></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section class="coming-soon">
+  <div class="cs-inner">
+    <div class="cs-icon">🏗️</div>
+    <div class="cs-title">Listings &amp; Portfolio — Coming Soon</div>
+    <p class="cs-desc">We are preparing our online listings for sale and rental properties, as well as our completed renovation portfolio and client references. In the meantime, contact us directly — we always have active inventory.</p>
+    <div class="cs-tags">
+      <span class="cs-tag">For sale listings</span>
+      <span class="cs-tag">Rental properties</span>
+      <span class="cs-tag">Renovation portfolio</span>
+      <span class="cs-tag">Client references</span>
+    </div>
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20see%20your%20current%20property%20listings." target="_blank"><button class="btn-amber">💬 Ask about current listings</button></a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <p class="sec-eyebrow" style="color:var(--amber)">Why Hancı Property</p>
+  <h2 class="sec-h2">What makes us <em>different</em></h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div class="feat-title">City-wide coverage</div>
+      <p class="feat-desc">Beşiktaş, Şişli, Kadıköy, Üsküdar, Fatih and beyond. No neighbourhood in Istanbul is out of our reach.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="feat-title">Investment advisory</div>
+      <p class="feat-desc">Looking for rental yield or capital appreciation? We advise on the best neighbourhoods and property types for your goals.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+      <div class="feat-title">Own crew</div>
+      <p class="feat-desc">Our renovation team is our own — not subcontracted. This means better quality control, accountability and speed.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div class="feat-title">Transparent pricing</div>
+      <p class="feat-desc">No hidden costs. We provide detailed quotes upfront and keep you informed of any changes throughout the project.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="feat-title">On-time delivery</div>
+      <p class="feat-desc">We set realistic timelines and stick to them. You will always know where your project stands.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="feat-title">End-to-end support</div>
+      <p class="feat-desc">From the first viewing or site visit to handing over the keys, we are with you every step of the way.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Ready to invest in Istanbul?</h2>
+  <p>Contact us to discuss your real estate or renovation goals. We work across all Istanbul neighbourhoods.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27m%20interested%20in%20Hanc%C4%B1%20Property%20services." target="_blank"><button class="cta-white">💬 WhatsApp us</button></a>
+    <a href="tel:+905063335154"><button class="cta-ghost-w">📞 Call us</button></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><img src="logo.jpg" alt="Hancı Global"><span class="footer-logo-name">HANCI GLOBAL</span></div>
+      <div class="footer-addr">Müeyyetzade Mah. Necatibey Cad.<br>Sait Demirbağ İşhanı No:5/45<br>Beyoğlu, İstanbul</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-col-links">
+        <a href="stay.html">Hancı Stay</a>
+        <a href="property.html">Hancı Property</a>
+        <a href="travel.html">Hancı Travel</a>
+        <a href="visa.html">Hancı Visa</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-col-links">
+        <a href="tel:+905063335154">+90 506 333 51 54</a>
+        <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
+        <a href="mailto:info@hanciglobal.com">info@hanciglobal.com</a>
+        <a href="https://instagram.com/hanciglobal" target="_blank">@hanciglobal</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-col-links">
+        <a href="index.html#about">About us</a>
+        <a href="index.html#contact">Get in touch</a>
+        <a href="https://maps.app.goo.gl/oQ7cBEJbRQNwEXku8" target="_blank">Find us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/hanciglobal" target="_blank">Instagram</a>
+      <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Photo phase switcher
+const phases = {
+  before: ["project-before-1.jpg","project-before-2.jpg","project-before-3.jpg"],
+  during: ["project-during-1.jpg","project-during-2.jpg","project-during-3.jpg"],
+  after:  ["project-after-1.jpg","project-after-2.jpg","project-after-3.jpg"]
+};
+function switchPhase(phase){
+  document.querySelectorAll(".photo-tab").forEach(t=>t.classList.remove("active"));
+  event.target.classList.add("active");
+  const imgs = phases[phase];
+  document.getElementById("mainProjectImg").src = imgs[0];
+  const thumbs = document.getElementById("projectThumbs").querySelectorAll(".project-thumb img");
+  thumbs.forEach((img,i)=>{ if(imgs[i]) img.src=imgs[i]; });
+}
+function setProjectImg(src,el){
+  document.getElementById("mainProjectImg").src = src;
+}
+// Mobile nav
+function toggleMobileNav(){
+  document.getElementById("mobileNav").classList.toggle("open");
+  document.getElementById("hamburger").classList.toggle("open");
+  document.body.style.overflow=document.getElementById("mobileNav").classList.contains("open")?"hidden":"";
+}
+function closeMobileNav(){
+  document.getElementById("mobileNav").classList.remove("open");
+  document.getElementById("hamburger").classList.remove("open");
+  document.body.style.overflow="";
+}
+</script>
+</body>
+</html>
