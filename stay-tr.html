@@ -210,7 +210,23 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 
 </style>
 </head>
-<body>
+
+  <script>
+// Aktif dili URL'den tespit et ve nav linklerini güncelle
+(function(){
+  const path = window.location.pathname;
+  const lang = path.includes('-tr.') ? '-tr' : path.includes('-ru.') ? '-ru' : '';
+  if(!lang) return; // İngilizce ise değişiklik yok
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if(href && href.endsWith('.html') && !href.includes('-tr.') && !href.includes('-ru.') && !href.includes('airbnb') && !href.includes('wa.me') && !href.includes('maps')) {
+      a.setAttribute('href', href.replace('.html', lang + '.html'));
+    }
+  });
+})();
+</script>
+  
+  <body>
 
 <nav>
   <div class="nav-left">
