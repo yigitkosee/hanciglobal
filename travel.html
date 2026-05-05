@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hancı Travel · Istanbul VIP Transfers & Boat Tours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:#fff;color:#111C26;line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+:root{
+  --teal:#1D9E75;--teal-l:#E1F5EE;--teal-d:#0F6E56;
+  --amber:#BA7517;--amber-l:#FAEEDA;--amber-d:#8A5510;
+  --blue:#185FA5;--blue-l:#E6F1FB;--blue-d:#0C3E72;
+  --coral:#993C1D;--coral-l:#FAECE7;--coral-d:#712B13;
+  --gold:#B8953A;--navy:#0D1E35;
+  --ink:#111C26;--ink2:#2E4055;--muted:#6A8099;
+  --border:#D3E4EF;--bg:#F3F8FB;
+  --ac:var(--blue);--ac-l:var(--blue-l);--ac-d:var(--blue-d);
+}
+
+/* NAV */
+nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 56px;display:flex;align-items:stretch;justify-content:space-between;height:76px;position:sticky;top:0;z-index:200}
+.nav-left{display:flex;align-items:center;gap:48px}
+.logo{display:flex;align-items:center;gap:14px}
+.logo img{height:50px;width:auto;object-fit:contain}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:600;color:var(--navy);letter-spacing:2px}
+.logo-sub{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;align-items:stretch;height:100%}
+.nav-link{font-size:15px;font-weight:600;color:var(--ink2);padding:0 18px;display:flex;align-items:center;border-bottom:2.5px solid transparent;transition:color .15s,border-color .15s}
+.nav-link:hover{color:var(--blue);border-bottom-color:var(--blue)}
+.nav-link.active{color:var(--blue);border-bottom-color:var(--blue)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-call{font-size:13px;font-weight:600;color:var(--ink);border:1.5px solid var(--border);background:none;padding:9px 16px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:border-color .15s}
+.btn-call:hover{border-color:var(--ink)}
+.btn-wa{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border:none;padding:10px 22px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .15s}
+.btn-wa:hover{background:#1a3050}
+
+/* HERO */
+.hero{position:relative;min-height:85vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,20,38,0.88) 0%,rgba(10,20,38,0.6) 55%,rgba(10,20,38,0.2) 100%)}
+.hero-content{position:relative;z-index:1;padding:0 56px;max-width:800px}
+.hero-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.6);font-size:13px;font-weight:600;margin-bottom:20px;transition:color .15s}
+.hero-back:hover{color:#fff}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(184,149,58,0.18);border:1px solid rgba(184,149,58,0.4);color:#E8C86A;font-size:12px;font-weight:600;padding:6px 16px;border-radius:20px;margin-bottom:24px;letter-spacing:1px;text-transform:uppercase}
+.hero-dot{width:6px;height:6px;background:#E8C86A;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-h1{font-family:"Cormorant Garamond",serif;font-size:68px;line-height:1.05;font-weight:500;color:#fff;letter-spacing:-2px}
+.hero-h1 em{font-style:italic;color:#E8C86A}
+.hero-p{font-size:17px;line-height:1.8;color:rgba(255,255,255,.8);margin-top:20px;max-width:560px}
+.hero-btns{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.hero-btn-gold{font-size:14px;font-weight:700;background:var(--gold);color:#fff;border:none;padding:14px 30px;border-radius:8px;cursor:pointer;transition:background .15s}
+.hero-btn-gold:hover{background:#9A7A28}
+.hero-btn-ghost{font-size:14px;font-weight:600;background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:14px 30px;border-radius:8px;cursor:pointer;transition:background .15s}
+.hero-btn-ghost:hover{background:rgba(255,255,255,.18)}
+.hero-trust{display:flex;gap:20px;margin-top:32px;flex-wrap:wrap}
+.trust-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);font-size:12px;font-weight:600;padding:7px 14px;border-radius:8px}
+
+/* SERVICE TABS */
+.service-tabs{background:#fff;border-bottom:1px solid var(--border);padding:0 56px;display:flex;overflow-x:auto}
+.stab{font-size:15px;font-weight:700;color:var(--ink2);padding:22px 28px;border-bottom:3px solid transparent;cursor:pointer;transition:color .15s,border-color .15s;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.stab:hover,.stab.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* SECTION HELPERS */
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.sec-h2{font-family:"Cormorant Garamond",serif;font-size:48px;font-weight:500;color:var(--ink);letter-spacing:-1px;line-height:1.1}
+.sec-h2 em{font-style:italic}
+.sec-p{font-size:16px;color:var(--ink2);line-height:1.85;margin-top:18px}
+
+/* TRANSFER SECTION */
+.transfer{padding:96px 56px;background:var(--bg)}
+.transfer-hero{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:72px}
+.transfer-img{border-radius:20px;overflow:hidden;height:420px;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.transfer-img img{height:100%}
+.transfer-badge{background:var(--navy);color:#E8C86A;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;display:inline-block;margin-bottom:18px;letter-spacing:.5px}
+.tursab-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-l);color:var(--blue-d);font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;margin-top:16px;margin-right:8px}
+.transfer-btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn-blue{font-size:13px;font-weight:700;background:var(--blue);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:7px}
+.btn-blue:hover{background:var(--blue-d)}
+.btn-outline-blue{font-size:13px;font-weight:700;background:#fff;color:var(--blue);border:1.5px solid var(--blue);padding:12px 24px;border-radius:8px;cursor:pointer;transition:background .15s}
+.btn-outline-blue:hover{background:var(--blue-l)}
+
+/* VEHICLE CARDS */
+.vehicle-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:56px}
+.vehicle-card{background:#fff;border-radius:18px;border:1.5px solid var(--border);overflow:hidden;transition:border-color .2s,transform .2s}
+.vehicle-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.vehicle-card-img{height:200px;overflow:hidden;background:var(--bg)}
+.vehicle-card-img img{height:100%}
+.vehicle-card-body{padding:24px}
+.vehicle-name{font-size:18px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.vehicle-cap{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:10px}
+.vehicle-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* INCLUDES GRID */
+.includes-title{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.includes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.include-card{background:#fff;border-radius:14px;border:1.5px solid var(--border);padding:20px 18px}
+.include-icon{width:40px;height:40px;border-radius:10px;background:var(--blue-l);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.include-title{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:4px}
+.include-sub{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.include-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ROUTES */
+.routes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.route-card{background:#fff;border-radius:14px;border:1.5px solid var(--border);padding:20px}
+.route-from{font-size:15px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.route-arrow{font-size:12px;color:var(--muted);margin-bottom:4px}
+.route-to{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.route-desc{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* HOURLY / DAILY */
+.hourly{padding:72px 56px;background:#fff}
+.hourly-inner{background:var(--navy);border-radius:22px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hourly-left h2{font-family:"Cormorant Garamond",serif;font-size:40px;font-weight:500;color:#fff;letter-spacing:-.8px;line-height:1.15;margin-bottom:16px}
+.hourly-left h2 em{font-style:italic;color:#E8C86A}
+.hourly-left p{font-size:15px;color:rgba(255,255,255,.7);line-height:1.8}
+.hourly-btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn-gold{font-size:13px;font-weight:700;background:var(--gold);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:7px}
+.btn-gold:hover{background:#9A7A28}
+.btn-ghost-w{font-size:13px;font-weight:700;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:12px 24px;border-radius:8px;cursor:pointer;transition:background .15s}
+.btn-ghost-w:hover{background:rgba(255,255,255,.1)}
+.hourly-feats{display:flex;flex-direction:column;gap:14px}
+.hourly-feat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:14px}
+.hourly-feat-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hourly-feat-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
+.hourly-feat-desc{font-size:12px;color:rgba(255,255,255,.55)}
+
+/* BOAT SECTION */
+.boat{padding:96px 56px;background:var(--bg)}
+.boat-hero{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:72px}
+.boat-img{border-radius:20px;overflow:hidden;height:420px;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.boat-img img{height:100%}
+.boat-options{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:56px}
+.boat-card{background:#fff;border-radius:18px;border:1.5px solid var(--border);overflow:hidden;transition:border-color .2s,transform .2s}
+.boat-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.boat-card-img{height:220px;overflow:hidden}
+.boat-card-img img{height:100%;transition:transform .3s}
+.boat-card:hover .boat-card-img img{transform:scale(1.05)}
+.boat-card-body{padding:26px}
+.boat-chip{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:4px 10px;border-radius:5px;background:var(--blue-l);color:var(--blue-d);margin-bottom:12px;display:inline-block}
+.boat-title{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-.3px}
+.boat-desc{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:18px}
+.boat-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-airbnb{font-size:12px;font-weight:700;padding:10px 16px;border-radius:8px;background:#FF5A5F;color:#fff;border:none;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-airbnb:hover{background:#e04a4f}
+.btn-wa-sm{font-size:12px;font-weight:700;padding:10px 16px;border-radius:8px;background:var(--navy);color:#fff;border:none;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-wa-sm:hover{background:#1a3050}
+
+/* COMING SOON */
+.coming-soon-strip{padding:56px;background:#fff;border-radius:22px;border:1.5px dashed var(--border);text-align:center;max-width:700px;margin:0 auto}
+
+/* HOW IT WORKS */
+.how{padding:96px 56px;background:#fff}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;position:relative}
+.steps::before{content:"";position:absolute;top:28px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);height:2px;background:var(--border);z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:56px;height:56px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin:0 auto 18px;box-shadow:0 4px 16px rgba(24,95,165,.3)}
+.step-title{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* CTA BAND */
+.cta-band{padding:96px 56px;background:var(--navy);text-align:center}
+.cta-band h2{font-family:"Cormorant Garamond",serif;font-size:48px;font-weight:500;color:#fff;letter-spacing:-1px;margin-bottom:16px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 40px;line-height:1.8}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-white{font-size:14px;font-weight:700;background:#fff;color:var(--navy);border:none;padding:14px 30px;border-radius:8px;cursor:pointer}
+.cta-white:hover{opacity:.9}
+.cta-ghost-w{font-size:14px;font-weight:700;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:14px 30px;border-radius:8px;cursor:pointer}
+.cta-ghost-w:hover{background:rgba(255,255,255,.1)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(255,255,255,.06)}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.footer-logo img{height:46px;width:auto;object-fit:contain}
+.footer-logo-name{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:600;color:#E8E0CC;letter-spacing:2px}
+.footer-addr{font-size:13px;color:#3A5068;line-height:1.75}
+.footer-col-title{font-size:11px;font-weight:800;color:#3A5068;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.footer-col-links{display:flex;flex-direction:column;gap:10px}
+.footer-col-links a{font-size:13px;color:#2A3A48;font-weight:500;transition:color .15s}
+.footer-col-links a:hover{color:#E8C86A}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px}
+.footer-copy{font-size:12px;color:#1E2A34}
+.footer-social{display:flex;gap:16px}
+.footer-social a{font-size:12px;color:#1E2A34;font-weight:600;transition:color .15s}
+.footer-social a:hover{color:#E8C86A}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:300}
+.hamburger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:28px;font-weight:700;color:var(--ink);padding:12px 32px;border-radius:12px;transition:background .15s,color .15s}
+.mobile-nav a:hover{background:var(--bg);color:var(--gold)}
+.mobile-nav-contact{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.mobile-nav-contact a{font-size:14px;font-weight:700;padding:12px 24px;border-radius:10px;display:flex;align-items:center;gap:8px}
+.mnc-call{background:var(--bg);color:var(--ink);border:1.5px solid var(--border)}
+.mnc-wa{background:var(--navy) !important;color:#fff !important;-webkit-text-fill-color:#fff !important}
+.mnc-wa,.mnc-wa *{color:#fff !important;-webkit-text-fill-color:#fff !important;fill:#fff !important}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 20px;height:64px}
+  .nav-links,.nav-right{display:none}
+  .hamburger{display:flex}
+  .logo img{height:40px}
+  .logo-name{font-size:17px}
+  .logo-sub{font-size:9px}
+  .hero{min-height:85vh}
+  .hero-content{padding:0 24px}
+  .hero-h1{font-size:42px;letter-spacing:-1.5px}
+  .hero-p{font-size:15px;margin-top:16px}
+  .hero-btns{flex-direction:column;gap:10px;margin-top:28px}
+  .hero-btn-gold,.hero-btn-ghost{width:100%;justify-content:center;padding:14px 20px}
+  .hero-trust{gap:10px}
+  .service-tabs{padding:0 16px}
+  .transfer{padding:56px 20px}
+  .transfer-hero{grid-template-columns:1fr;gap:32px;margin-bottom:40px}
+  .transfer-img{height:260px}
+  .vehicle-grid{grid-template-columns:1fr;gap:16px}
+  .includes-grid{grid-template-columns:1fr;gap:12px}
+  .routes-grid{grid-template-columns:1fr;gap:12px;margin-top:28px}
+  .hourly{padding:56px 20px}
+  .hourly-inner{grid-template-columns:1fr;gap:32px;padding:32px 24px}
+  .boat{padding:56px 20px}
+  .boat-hero{grid-template-columns:1fr;gap:32px;margin-bottom:40px}
+  .boat-img{height:260px}
+  .boat-options{grid-template-columns:1fr;gap:16px}
+  .how{padding:56px 20px}
+  .steps{grid-template-columns:repeat(2,1fr);margin-top:32px}
+  .steps::before{display:none}
+  .cta-band{padding:56px 20px}
+  .cta-band h2{font-size:36px}
+  .cta-btns{flex-direction:column;align-items:center}
+  .cta-white,.cta-ghost-w{width:100%;text-align:center}
+  footer{padding:40px 20px 24px}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .sec-h2{font-size:36px}
+}
+@media(max-width:480px){
+  .hero-h1{font-size:34px}
+  .logo-name{font-size:15px;letter-spacing:1px}
+  .logo-sub{font-size:8px}
+  .hero-trust{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="logo">
+      <img src="logo.jpg" alt="Hancı Global">
+      <div class="logo-text">
+        <span class="logo-name">HANCI GLOBAL</span>
+        <span class="logo-sub">Istanbul</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="stay.html" class="nav-link">Stay</a>
+      <a href="property.html" class="nav-link">Property</a>
+      <a href="travel.html" class="nav-link active">Travel</a>
+      <a href="visa.html" class="nav-link">Visa</a>
+      <a href="index.html#about" class="nav-link">About</a>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+905063335154"><button class="btn-call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</button></a>
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20book%20a%20travel%20service%20with%20Hanc%C4%B1%20Global." target="_blank"><button class="btn-wa"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp</button></a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button onclick="closeMobileNav()" style="position:absolute;top:20px;right:20px;background:none;border:none;cursor:pointer;padding:8px">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111C26" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="stay.html" onclick="closeMobileNav()">Stay</a>
+  <a href="property.html" onclick="closeMobileNav()">Property</a>
+  <a href="travel.html" onclick="closeMobileNav()">Travel</a>
+  <a href="visa.html" onclick="closeMobileNav()">Visa</a>
+  <a href="index.html#about" onclick="closeMobileNav()">About</a>
+  <div class="mobile-nav-contact">
+    <a href="tel:+905063335154" class="mnc-call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20book%20a%20travel%20service." target="_blank" class="mnc-wa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="istanbul.jpg" alt="Istanbul Bosphorus">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <a href="index.html" class="hero-back">← Back to Hancı Global</a>
+    <div class="hero-eyebrow"><div class="hero-dot"></div>Hancı Travel · Istanbul</div>
+    <h1 class="hero-h1">Istanbul, your way —<br><em>in comfort</em></h1>
+    <p class="hero-p">VIP airport transfers, Bosphorus boat tours and chauffeured vehicle hire. TURSAB licensed. Fixed prices, no surprises.</p>
+    <div class="hero-btns">
+      <a href="#transfer"><button class="hero-btn-gold">Airport transfer</button></a>
+      <a href="#boat"><button class="hero-btn-ghost">🛥 Boat tours</button></a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-badge">✓ TURSAB No: 13243</span>
+      <span class="trust-badge">✓ Fixed price — no meter</span>
+      <span class="trust-badge">✓ 24/7 available</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE TABS -->
+<div class="service-tabs">
+  <a href="#transfer" class="stab active">✈️ Airport Transfer</a>
+  <a href="#hourly" class="stab">🚗 Hourly / Daily Hire</a>
+  <a href="#boat" class="stab">🛥 Boat Tours</a>
+  <a href="#how" class="stab">📋 How it works</a>
+</div>
+
+<!-- TRANSFER -->
+<section class="transfer" id="transfer">
+  <div class="transfer-hero">
+    <div>
+      <div class="transfer-badge">Airport Transfer</div>
+      <p class="sec-eyebrow" style="color:var(--blue)">IST · SAW · Door to door</p>
+      <h2 class="sec-h2">Stress-free arrivals<br>&amp; <em>departures</em></h2>
+      <p class="sec-p">We track your flight in real time and meet you at arrivals with a name sign. Available 24/7 for both Istanbul airports — Istanbul Airport (IST) and Sabiha Gökçen (SAW). Fixed price agreed before the ride. No meter, no surprises.</p>
+      <div>
+        <span class="tursab-badge">✓ TURSAB Licensed Agency · No: 13243</span>
+        <span class="tursab-badge">✓ 60 min free waiting</span>
+        <span class="tursab-badge">✓ Flight tracking included</span>
+      </div>
+      <div class="transfer-btns">
+        <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20book%20an%20airport%20transfer." target="_blank"><button class="btn-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>💬 Book a transfer</button></a>
+        <a href="tel:+905063335154"><button class="btn-outline-blue">📞 Call us</button></a>
+      </div>
+    </div>
+    <div class="transfer-img">
+      <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&q=90" alt="VIP transfer Istanbul">
+    </div>
+  </div>
+
+  <!-- VEHICLES -->
+  <p class="sec-eyebrow" style="color:var(--blue);margin-bottom:20px">Your vehicle</p>
+  <div class="vehicle-grid">
+    <div class="vehicle-card">
+      <div class="vehicle-card-img">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&q=85" alt="Mercedes Vito">
+      </div>
+      <div class="vehicle-card-body">
+        <div class="vehicle-name">Mercedes-Benz Vito</div>
+        <div class="vehicle-cap">Up to 7 passengers · Premium VIP</div>
+        <p class="vehicle-desc">Our standard transfer vehicle. Spacious, air conditioned and fully equipped for a comfortable journey — whether from the airport or across the city.</p>
+      </div>
+    </div>
+    <div class="vehicle-card">
+      <div class="vehicle-card-img">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=85" alt="Mercedes Sprinter">
+      </div>
+      <div class="vehicle-card-body">
+        <div class="vehicle-name">Mercedes-Benz Sprinter</div>
+        <div class="vehicle-cap">8+ passengers · Group transfers</div>
+        <p class="vehicle-desc">For larger groups we arrange a Mercedes Sprinter. Same fixed price policy, same professional service — no matter the group size.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVERY RIDE INCLUDES -->
+  <p class="includes-title">Every ride includes</p>
+  <div class="includes-grid">
+    <div class="include-card">
+      <div class="include-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <div class="include-title">Flight tracking</div>
+      <div class="include-sub">Real-time monitoring</div>
+      <p class="include-desc">We monitor your flight live. Your driver waits even if you are delayed — at no extra charge.</p>
+    </div>
+    <div class="include-card">
+      <div class="include-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="include-title">Free waiting — 60 min</div>
+      <div class="include-sub">60 min free</div>
+      <p class="include-desc">Up to 60 minutes of free waiting at the airport after your landing. No rush, no extra cost.</p>
+    </div>
+    <div class="include-card">
+      <div class="include-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="include-title">Fixed price</div>
+      <div class="include-sub">Transparent pricing</div>
+      <p class="include-desc">Price is agreed before the ride. No meter, no hidden fees, no surprises at the end of the journey.</p>
+    </div>
+    <div class="include-card">
+      <div class="include-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="include-title">24/7 service</div>
+      <div class="include-sub">Always available</div>
+      <p class="include-desc">Available any hour, any day. Early morning or late night — we are always there when you need us.</p>
+    </div>
+  </div>
+
+  <!-- POPULAR ROUTES -->
+  <p class="sec-eyebrow" style="color:var(--blue);margin-top:56px;margin-bottom:8px">Popular routes</p>
+  <div class="routes-grid">
+    <div class="route-card">
+      <div class="route-from">IST</div>
+      <div class="route-arrow">Istanbul Airport →</div>
+      <div class="route-to">Taksim / Beyoğlu</div>
+      <p class="route-desc">Arrivals &amp; Departures · Terminal pickup</p>
+    </div>
+    <div class="route-card">
+      <div class="route-from">SAW</div>
+      <div class="route-arrow">Sabiha Gökçen →</div>
+      <div class="route-to">Any district</div>
+      <p class="route-desc">Arrivals &amp; Departures · Terminal pickup</p>
+    </div>
+    <div class="route-card">
+      <div class="route-from">Hotel</div>
+      <div class="route-arrow">Drop-off →</div>
+      <div class="route-to">Any location</div>
+      <p class="route-desc">Door-to-door service · Any Istanbul address</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOURLY / DAILY HIRE -->
+<section class="hourly" id="hourly">
+  <div class="hourly-inner">
+    <div class="hourly-left">
+      <h2>Chauffeured vehicle<br>hire — <em>by the hour<br>or full day</em></h2>
+      <p>Need a driver for a shopping trip, business meetings, sightseeing or a full day around Istanbul? We arrange a chauffeured Mercedes Vito or Sprinter for as many hours as you need.</p>
+      <div class="hourly-btns">
+        <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20arrange%20hourly%20or%20daily%20chauffeured%20vehicle%20hire." target="_blank"><button class="btn-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>💬 Get a quote</button></a>
+        <a href="tel:+905063335154"><button class="btn-ghost-w">📞 Call us</button></a>
+      </div>
+    </div>
+    <div class="hourly-feats">
+      <div class="hourly-feat">
+        <div class="hourly-feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8C86A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="hourly-feat-title">Hourly hire</div><div class="hourly-feat-desc">From 2 hours — perfect for shopping, meetings or a half-day city tour.</div></div>
+      </div>
+      <div class="hourly-feat">
+        <div class="hourly-feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8C86A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div><div class="hourly-feat-title">Full day hire</div><div class="hourly-feat-desc">A dedicated chauffeured vehicle for the whole day. Go anywhere, anytime.</div></div>
+      </div>
+      <div class="hourly-feat">
+        <div class="hourly-feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8C86A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div><div class="hourly-feat-title">Up to 7+ passengers</div><div class="hourly-feat-desc">Vito for up to 7 — Sprinter for larger groups. We scale to your needs.</div></div>
+      </div>
+      <div class="hourly-feat">
+        <div class="hourly-feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8C86A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div><div class="hourly-feat-title">Fixed price agreed upfront</div><div class="hourly-feat-desc">We agree the rate before we start. No surprises, no meter running.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOAT TOURS -->
+<section class="boat" id="boat">
+  <div class="boat-hero">
+    <div>
+      <div class="transfer-badge">Bosphorus Boat Tours</div>
+      <p class="sec-eyebrow" style="color:var(--blue)">Istanbul from the water</p>
+      <h2 class="sec-h2">The Bosphorus,<br><em>your way</em></h2>
+      <p class="sec-p">There is no better way to see Istanbul than from the water. We work with a trusted local team to offer Bosphorus boat tours — from golden-hour sunset cruises to custom private experiences. Book via Airbnb or contact us directly for an exclusive discount.</p>
+      <div style="margin-top:20px">
+        <span class="tursab-badge">✓ Trusted local partners</span>
+        <span class="tursab-badge">✓ Private &amp; group options</span>
+      </div>
+      <div class="transfer-btns">
+        <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Bosphorus%20boat%20tour%20and%20get%20a%20discount." target="_blank"><button class="btn-blue">💬 Get exclusive discount</button></a>
+      </div>
+    </div>
+    <div class="boat-img">
+      <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=90" alt="Bosphorus boat tour Istanbul">
+    </div>
+  </div>
+
+  <!-- BOAT OPTIONS -->
+  <div class="boat-options">
+    <div class="boat-card">
+      <div class="boat-card-img">
+        <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=700&q=85" alt="Sunset cruise Istanbul">
+      </div>
+      <div class="boat-card-body">
+        <span class="boat-chip">Sunset</span>
+        <div class="boat-title">Sunset Bosphorus Cruise</div>
+        <p class="boat-desc">A magical golden-hour cruise on the Bosphorus — the most memorable way to end a day in Istanbul. Watch the city light up as the sun sets over two continents.</p>
+        <div class="boat-actions">
+          <a href="https://www.airbnb.co.uk" target="_blank"><button class="btn-airbnb">🏠 View on Airbnb</button></a>
+          <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Sunset%20Bosphorus%20Cruise%20and%20get%20a%20discount." target="_blank"><button class="btn-wa-sm">💬 Get discount</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="boat-card">
+      <div class="boat-card-img">
+        <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?w=700&q=85" alt="Custom boat tour Istanbul">
+      </div>
+      <div class="boat-card-body">
+        <span class="boat-chip">Custom</span>
+        <div class="boat-title">Custom Private Tour</div>
+        <p class="boat-desc">Have something specific in mind? A private group, a special occasion, or a personalised itinerary? Tell us what you need and we will arrange it for you.</p>
+        <div class="boat-actions">
+          <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20arrange%20a%20custom%20private%20Bosphorus%20boat%20tour." target="_blank"><button class="btn-wa-sm">💬 Plan your tour</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMING SOON -->
+  <div class="coming-soon-strip" style="margin-top:0">
+    <div style="font-size:36px;margin-bottom:12px">🧖</div>
+    <div style="font-size:18px;font-weight:800;color:var(--ink2);margin-bottom:8px">Hamam Experience — Coming Soon</div>
+    <p style="font-size:14px;color:var(--muted);line-height:1.65;max-width:480px;margin:0 auto 20px">An authentic Istanbul hammam experience is coming to Hancı Travel. Stay tuned — or contact us to be the first to know.</p>
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20know%20when%20the%20Hamam%20experience%20launches." target="_blank"><button class="btn-blue">💬 Notify me</button></a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <p class="sec-eyebrow" style="color:var(--blue)">Simple process</p>
+  <h2 class="sec-h2">How it <em>works</em></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Contact us</div>
+      <p class="step-desc">WhatsApp or call us with your dates, group size, pickup location and what you need.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">We confirm &amp; quote</div>
+      <p class="step-desc">We send you a fixed price quote and confirm availability within the hour.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Easy payment</div>
+      <p class="step-desc">Pay securely before your service. Simple, transparent, no hidden costs.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Enjoy Istanbul</div>
+      <p class="step-desc">Your driver or guide meets you on time, with a name sign. Sit back and enjoy the city.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Ready to explore Istanbul?</h2>
+  <p>Contact us on WhatsApp for availability and pricing. Fast response — in English or Türkçe.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20book%20a%20travel%20service%20with%20Hanc%C4%B1%20Global." target="_blank"><button class="cta-white">💬 WhatsApp us now</button></a>
+    <a href="tel:+905063335154"><button class="cta-ghost-w">📞 Call us</button></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><img src="logo.jpg" alt="Hancı Global"><span class="footer-logo-name">HANCI GLOBAL</span></div>
+      <div class="footer-addr">Müeyyetzade Mah. Necatibey Cad.<br>Sait Demirbağ İşhanı No:5/45<br>Beyoğlu, İstanbul</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-col-links">
+        <a href="stay.html">Hancı Stay</a>
+        <a href="property.html">Hancı Property</a>
+        <a href="travel.html">Hancı Travel</a>
+        <a href="visa.html">Hancı Visa</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-col-links">
+        <a href="tel:+905063335154">+90 506 333 51 54</a>
+        <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
+        <a href="mailto:info@hanciglobal.com">info@hanciglobal.com</a>
+        <a href="https://instagram.com/hanciglobal" target="_blank">@hanciglobal</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-col-links">
+        <a href="index.html#about">About us</a>
+        <a href="index.html#contact">Get in touch</a>
+        <a href="https://maps.app.goo.gl/oQ7cBEJbRQNwEXku8" target="_blank">Find us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/hanciglobal" target="_blank">Instagram</a>
+      <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMobileNav(){
+  document.getElementById("mobileNav").classList.toggle("open");
+  document.getElementById("hamburger").classList.toggle("open");
+  document.body.style.overflow=document.getElementById("mobileNav").classList.contains("open")?"hidden":"";
+}
+function closeMobileNav(){
+  document.getElementById("mobileNav").classList.remove("open");
+  document.getElementById("hamburger").classList.remove("open");
+  document.body.style.overflow="";
+}
+</script>
+</body>
+</html>
