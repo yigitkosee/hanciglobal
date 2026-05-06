@@ -278,6 +278,24 @@ footer{background:var(--navy);padding:56px 56px 32px}
   }
 }
 </script>
+
+
+  <script>
+(function(){
+  // Sadece ana sayfada çalışsın
+  if(window.location.pathname !== '/' && 
+     window.location.pathname !== '/index.html') return;
+  
+  const lang = navigator.language || navigator.userLanguage || '';
+  
+  if(lang.startsWith('tr')){
+    window.location.replace('index-tr.html');
+  } else if(lang.startsWith('ru')){
+    window.location.replace('index-ru.html');
+  }
+  // İngilizce zaten açık, bir şey yapma
+})();
+</script>
 </head>
 <body>
 
