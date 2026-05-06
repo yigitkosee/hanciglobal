@@ -282,9 +282,11 @@ footer{background:var(--navy);padding:56px 56px 32px}
 
   <script>
 (function(){
-  // Sadece ana sayfada çalışsın
   if(window.location.pathname !== '/' && 
      window.location.pathname !== '/index.html') return;
+  
+  // Kullanıcı manuel dil seçtiyse yönlendirme yapma
+  if(sessionStorage.getItem('langSelected')) return;
   
   const lang = navigator.language || navigator.userLanguage || '';
   
@@ -293,7 +295,6 @@ footer{background:var(--navy);padding:56px 56px 32px}
   } else if(lang.startsWith('ru')){
     window.location.replace('index-ru.html');
   }
-  // İngilizce zaten açık, bir şey yapma
 })();
 </script>
 </head>
@@ -319,9 +320,9 @@ footer{background:var(--navy);padding:56px 56px 32px}
   </div>
   <div class="nav-right">
     <div class="lang-switcher">
-      <button class="lang-btn active" onclick="window.location='index.html'" title="English"> ENG </button>
-      <button class="lang-btn" onclick="window.location='index-tr.html'" title="Türkçe"> TR </button>
-      <button class="lang-btn" onclick="window.location='index-ru.html'" title="Русский"> RU </button>
+      <button class="lang-btn active" onclick="sessionStorage.setItem('langSelected','1');window.location='index.html'" title="English"> ENG </button>
+      <button class="lang-btn" onclick="sessionStorage.setItem('langSelected','1');window.location='index-tr.html'" title="Türkçe"> TR </button>
+      <button class="lang-btn" onclick="sessionStorage.setItem('langSelected','1');window.location='index-ru.html'" title="Русский"> RU </button>
     </div>
     <div class="lang-divider"></div>
     <a href="tel:+905063335154">
