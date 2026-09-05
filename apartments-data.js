@@ -19,14 +19,14 @@ const CHECK_ICON = 'M20 6L9 17l-5-5';
 
 /* categories + which items belong to each (order = display order) */
 const AMENITY_CATEGORIES = [
-  { key: "common",   items: ["wifi","smarttv","ac_heating","seating","coffeetable","charging","selfcheckin","blackoutcurtains"] },
+  { key: "common",   items: ["wifi","smarttv","ac_heating","portable fan","seating","coffeetable","charging","selfcheckin","blackoutcurtains"] },
   { key: "bedrooms", items: ["freshlinens","pillows","mattressprotector","bedsidelamp","hangers","closet"] },
   { key: "bathrooms",items: ["bathtowels","handtowels","toiletpaper","soap","shampoo","hairdryer","nonslipmat","firstaid"] },
-  { key: "kitchen",  items: ["cutlery","cookware","cookingutensils","knifeset","microwave","coffeemaker","fridge","dishsoap","bins","saltpepper"] },
+  { key: "kitchen",  items: ["dishwasher","stove","oven","cutlery","cookware","cookingutensils","knifeset","microwave","coffeemaker","fridge","dishsoap","bins","saltpepper"] },
   { key: "dining",   items: ["platesglassware","diningtable","kettle"] },
-  { key: "laundry",  items: ["washerdryer","detergent","iron"] },
+  { key: "laundry",  items: ["washing machine","detergent","iron"] },
   { key: "safety",   items: ["smartlock","smokealarm","fireextinguisher","emergencycontact"] },
-  { key: "extras",   items: ["umbrella","water","toiletriesbasket"] }
+  { key: "extras",   items: ["luggage drop-off","cot","highchair"] }
 ];
 
 /* the full standard set — used by every apartment below unless overridden */
@@ -40,8 +40,10 @@ const AMENITY_LABELS = {
       common:"Common space", bedrooms:"Bedrooms", bathrooms:"Bathrooms", kitchen:"Kitchen",
       dining:"Dining room", laundry:"Laundry", safety:"Safety & entry", extras:"Guest extras"
     },
+    categoryNotes: { extras: "Available upon request" },
     items: {
       wifi:"High-speed wifi", smarttv:"Smart TV with Netflix", ac_heating:"Air conditioning & heating",
+      "portable fan":"Portable fan",
       seating:"Comfortable seating", coffeetable:"Coffee table & coasters", charging:"Multi-device charging station",
       selfcheckin:"Self check-in instructions", blackoutcurtains:"Blackout curtains",
       freshlinens:"Fresh bed linens & duvet", pillows:"Pillows & pillow protectors", mattressprotector:"Mattress protector",
@@ -49,15 +51,16 @@ const AMENITY_LABELS = {
       bathtowels:"Bath towels", handtowels:"Hand towels & washcloths", toiletpaper:"Toilet paper (4+ rolls)",
       soap:"Hand soap & lotion", shampoo:"Shampoo & conditioner", hairdryer:"Hair dryer",
       nonslipmat:"Non-slip bath mat", firstaid:"First aid kit",
+      dishwasher:"Dishwasher", stove:"Stove / hob", oven:"Oven",
       cutlery:"Full cutlery set", cookware:"Kettle, pots, pans & baking tray", cookingutensils:"Cooking utensils",
       knifeset:"Knife set & chopping boards", microwave:"Microwave, toaster, oven", coffeemaker:"Coffee maker / French press",
       fridge:"Fridge & freezer space", dishsoap:"Dish soap & sponge", bins:"Bin liners & rubbish bins",
       saltpepper:"Salt, pepper & cooking oil",
       platesglassware:"Plates, bowls & glassware", diningtable:"Dining table & chairs", kettle:"Tea, coffee & sugar starter kit",
-      washerdryer:"Washer & dryer", detergent:"Laundry detergent", iron:"Iron & ironing board",
+      "washing machine":"Washing machine", detergent:"Laundry detergent", iron:"Iron & ironing board",
       smartlock:"Smart lock / lockbox", smokealarm:"Smoke & CO alarms", fireextinguisher:"Fire extinguisher",
       emergencycontact:"Emergency contact card",
-      umbrella:"Umbrella", water:"Bottled or filtered water", toiletriesbasket:"Emergency toiletries basket"
+      "luggage drop-off":"Luggage drop-off", cot:"Baby cot", highchair:"High chair"
     }
   },
   tr: {
@@ -65,8 +68,10 @@ const AMENITY_LABELS = {
       common:"Ortak alan", bedrooms:"Yatak odaları", bathrooms:"Banyolar", kitchen:"Mutfak",
       dining:"Yemek alanı", laundry:"Çamaşır", safety:"Güvenlik ve giriş", extras:"Misafir ekstraları"
     },
+    categoryNotes: { extras: "Talep üzerine sağlanır" },
     items: {
       wifi:"Yüksek hızlı wifi", smarttv:"Netflix'li Smart TV", ac_heating:"Klima ve ısıtma",
+      "portable fan":"Taşınabilir vantilatör",
       seating:"Konforlu oturma alanı", coffeetable:"Sehpa ve bardak altlıkları", charging:"Çoklu cihaz şarj istasyonu",
       selfcheckin:"Self check-in talimatları", blackoutcurtains:"Karartma perdeleri",
       freshlinens:"Temiz nevresim takımı", pillows:"Yastık ve yastık koruyucuları", mattressprotector:"Yatak koruyucu",
@@ -74,15 +79,16 @@ const AMENITY_LABELS = {
       bathtowels:"Banyo havluları", handtowels:"El havluları ve peçeteler", toiletpaper:"Tuvalet kağıdı (4+ rulo)",
       soap:"El sabunu ve losyon", shampoo:"Şampuan ve saç kremi", hairdryer:"Saç kurutma makinesi",
       nonslipmat:"Kaymaz banyo paspası", firstaid:"İlk yardım çantası",
+      dishwasher:"Bulaşık makinesi", stove:"Ocak", oven:"Fırın",
       cutlery:"Tam çatal-bıçak takımı", cookware:"Su ısıtıcısı, tencere, tava ve fırın tepsisi", cookingutensils:"Mutfak gereçleri",
       knifeset:"Bıçak seti ve kesme tahtaları", microwave:"Mikrodalga, tost makinesi, fırın", coffeemaker:"Kahve makinesi / French press",
       fridge:"Buzdolabı ve dondurucu alanı", dishsoap:"Bulaşık deterjanı ve sünger", bins:"Çöp poşeti ve çöp kutuları",
       saltpepper:"Tuz, karabiber ve yemeklik yağ",
       platesglassware:"Tabak, kase ve bardaklar", diningtable:"Yemek masası ve sandalyeler", kettle:"Çay, kahve ve şeker başlangıç seti",
-      washerdryer:"Çamaşır makinesi / kurutma", detergent:"Çamaşır deterjanı", iron:"Ütü ve ütü masası",
+      "washing machine":"Çamaşır makinesi", detergent:"Çamaşır deterjanı", iron:"Ütü ve ütü masası",
       smartlock:"Akıllı kilit / kilit kutusu", smokealarm:"Duman ve karbonmonoksit alarmı", fireextinguisher:"Yangın söndürücü",
       emergencycontact:"Acil durum iletişim kartı",
-      umbrella:"Şemsiye", water:"Şişe veya filtrelenmiş su", toiletriesbasket:"Acil durum kişisel bakım seti"
+      "luggage drop-off":"Bagaj bırakma", cot:"Bebek yatağı", highchair:"Mama sandalyesi"
     }
   },
   ru: {
@@ -90,8 +96,10 @@ const AMENITY_LABELS = {
       common:"Общее пространство", bedrooms:"Спальни", bathrooms:"Ванные комнаты", kitchen:"Кухня",
       dining:"Столовая", laundry:"Прачечная", safety:"Безопасность и вход", extras:"Дополнительно для гостей"
     },
+    categoryNotes: { extras: "Предоставляется по запросу" },
     items: {
       wifi:"Высокоскоростной wifi", smarttv:"Смарт-ТВ с Netflix", ac_heating:"Кондиционер и отопление",
+      "portable fan":"Переносной вентилятор",
       seating:"Удобные зоны отдыха", coffeetable:"Журнальный столик и подставки", charging:"Станция для зарядки нескольких устройств",
       selfcheckin:"Инструкции для самостоятельного заезда", blackoutcurtains:"Плотные шторы",
       freshlinens:"Свежее постельное бельё и одеяло", pillows:"Подушки и наволочки", mattressprotector:"Наматрасник",
@@ -99,15 +107,16 @@ const AMENITY_LABELS = {
       bathtowels:"Банные полотенца", handtowels:"Полотенца для рук и салфетки", toiletpaper:"Туалетная бумага (4+ рулона)",
       soap:"Мыло для рук и лосьон", shampoo:"Шампунь и кондиционер", hairdryer:"Фен",
       nonslipmat:"Нескользящий коврик для ванной", firstaid:"Аптечка первой помощи",
+      dishwasher:"Посудомоечная машина", stove:"Плита", oven:"Духовка",
       cutlery:"Полный набор столовых приборов", cookware:"Чайник, кастрюли, сковороды и противень", cookingutensils:"Кухонные принадлежности",
       knifeset:"Набор ножей и разделочные доски", microwave:"Микроволновка, тостер, духовка", coffeemaker:"Кофеварка / френч-пресс",
       fridge:"Холодильник и морозильная камера", dishsoap:"Средство для мытья посуды и губка", bins:"Пакеты для мусора и мусорные вёдра",
       saltpepper:"Соль, перец и растительное масло",
       platesglassware:"Тарелки, миски и стаканы", diningtable:"Обеденный стол и стулья", kettle:"Стартовый набор чая, кофе и сахара",
-      washerdryer:"Стиральная машина / сушка", detergent:"Стиральный порошок", iron:"Утюг и гладильная доска",
+      "washing machine":"Стиральная машина", detergent:"Стиральный порошок", iron:"Утюг и гладильная доска",
       smartlock:"Умный замок / сейф для ключей", smokealarm:"Датчики дыма и угарного газа", fireextinguisher:"Огнетушитель",
       emergencycontact:"Карточка с контактами на случай ЧС",
-      umbrella:"Зонт", water:"Бутилированная или фильтрованная вода", toiletriesbasket:"Набор туалетных принадлежностей на экстренный случай"
+      "luggage drop-off":"Хранение багажа", cot:"Детская кроватка", highchair:"Стульчик для кормления"
     }
   }
 };
@@ -117,6 +126,7 @@ function getAmenityLabels(lang) {
   const en = AMENITY_LABELS.en;
   return {
     categories: { ...en.categories, ...(l ? l.categories : {}) },
+    categoryNotes: { ...en.categoryNotes, ...(l ? l.categoryNotes : {}) },
     items: { ...en.items, ...(l ? l.items : {}) }
   };
 }
