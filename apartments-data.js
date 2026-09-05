@@ -140,7 +140,7 @@ const APARTMENTS = [
     bedrooms: 2, beds: 3, baths: 1, guests: 5,
     priceFrom: 80, currency: "€",
     images: ["stay1-1.jpg.webp","stay1-2.jpg.webp","stay1-3.jpg.webp","stay1-4.jpg.webp","stay1-5.jpg.webp","stay1-6.jpg.webp","stay1-7.jpg.webp","stay1-8.jpg.webp"],
-    amenities: amenitiesWithout("safety").filter(k => k !== "firstaid" && k !== "microwave"),
+    amenities: STANDARD_AMENITIES,
     translations: {
       en: {
         location: "Taksim · Galata",
