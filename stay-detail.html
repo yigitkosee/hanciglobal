@@ -477,6 +477,15 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 <script src="apartments-data.js?v=2"></script>
 <script>
 /* ---------- read URL params ---------- */
+
+function addSwipe(el, onSwipeLeft, onSwipeRight){
+  let startX = 0;
+  el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { diff > 0 ? onSwipeLeft() : onSwipeRight(); }
+  }, {passive:true});
+}  
 const params = new URLSearchParams(window.location.search);
 const aptId = params.get('id');
 const lang = params.get('lang') || 'en';
