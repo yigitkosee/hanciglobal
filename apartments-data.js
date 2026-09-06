@@ -357,7 +357,7 @@ const APARTMENTS = [
     bedrooms: 2, beds: 3, baths: 1, guests: 5,
     priceFrom: 80, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
-    mapQuery: "Galata Tower, Istanbul, Turkey", // replace with the exact address for a precise map pin
+    mapQuery: "Bereketzade, Büyük Hendek Cd. No:1, 34421 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
     reviewFormUrl: "https://forms.gle/PTC9PhAuCbswFZUh9", // same form for all 5, or one per apartment
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
@@ -391,7 +391,7 @@ const APARTMENTS = [
     bedrooms: 2, beds: 3, baths: 1.5, guests: 8,
     priceFrom: 80, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
-    mapQuery: "Galata Tower, Istanbul, Turkey", // replace with the exact address for a precise map pin
+    mapQuery: "Bereketzade, Galata Kulesi Sk. 6A, 34421 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
     reviewFormUrl: "https://forms.gle/PTC9PhAuCbswFZUh9", // same form for all 5, or one per apartment
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
@@ -423,7 +423,7 @@ const APARTMENTS = [
     bedrooms: 4, beds: 5, baths: 2, guests: 10,
     priceFrom: 150, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
-    mapQuery: "Istiklal Caddesi, Beyoglu, Istanbul, Turkey", // replace with the exact address for a precise map pin
+    mapQuery: "Firuzağa, Cezayir Sk. No:5 D:3, 34425 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
     reviewFormUrl: "https://forms.gle/PTC9PhAuCbswFZUh9", // same form for all 5, or one per apartment
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
@@ -456,7 +456,7 @@ const APARTMENTS = [
     bedrooms: 2, beds: 2, baths: 1, guests: 4,
     priceFrom: 60, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
-    mapQuery: "Galata, Istanbul, Turkey", // replace with the exact address for a precise map pin
+    mapQuery: "Evliya Çelebi, Bedrettin Sk. No:2, 34430 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
     reviewFormUrl: "https://forms.gle/PTC9PhAuCbswFZUh9", // same form for all 5, or one per apartment
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
@@ -488,7 +488,7 @@ const APARTMENTS = [
     bedrooms: 2, beds: 3, baths: 1, guests: 5,
     priceFrom: 65, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
-    mapQuery: "Taksim Square, Istanbul, Turkey", // replace with the exact address for a precise map pin
+    mapQuery: "Firuzağa, Çukur Cuma Cd. No:32, 34425 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
     reviewFormUrl: "https://forms.gle/PTC9PhAuCbswFZUh9", // same form for all 5, or one per apartment
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
