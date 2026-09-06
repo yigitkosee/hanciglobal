@@ -720,6 +720,7 @@ function dgoto(i){
   document.getElementById('dslides').style.transform = 'translateX(-' + dIdx + '00%)';
   document.querySelectorAll('#ddots .ddot').forEach((d,j)=>d.classList.toggle('active', j===dIdx));
   updateDCount();
+  addSwipe(document.getElementById('dgallery'), () => dslide(1), () => dslide(-1));
 }
 function dslide(dir){ dgoto(dIdx+dir); }
 updateDCount();
