@@ -416,6 +416,19 @@ if (lang !== 'en') {
     a.href = a.getAttribute('href') + '?lang=' + lang;
   });
 }
+
+const NAV_LABELS = {
+  en: { stay:"Stay", property:"Property", renovation:"Renovation", travel:"Travel", visa:"Visa", about:"About" },
+  tr: { stay:"Konaklama", property:"Emlak", renovation:"Tadilat", travel:"Seyahat", visa:"Vize", about:"Hakkımızda" },
+  ru: { stay:"Апартаменты", property:"Недвижимость", renovation:"Ремонт", travel:"Путешествия", visa:"Виза", about:"О нас" }
+};
+const navLabels = NAV_LABELS[lang] || NAV_LABELS.en;
+document.querySelectorAll('nav a[href^="stay.html"], .mobile-nav a[href^="stay.html"]').forEach(a => a.textContent = navLabels.stay);
+document.querySelectorAll('nav a[href^="property.html"], .mobile-nav a[href^="property.html"]').forEach(a => a.textContent = navLabels.property);
+document.querySelectorAll('nav a[href^="renovation.html"], .mobile-nav a[href^="renovation.html"]').forEach(a => a.textContent = navLabels.renovation);
+document.querySelectorAll('nav a[href^="travel.html"], .mobile-nav a[href^="travel.html"]').forEach(a => a.textContent = navLabels.travel);
+document.querySelectorAll('nav a[href^="visa.html"], .mobile-nav a[href^="visa.html"]').forEach(a => a.textContent = navLabels.visa);
+document.querySelectorAll('nav a[href^="index.html#about"], .mobile-nav a[href^="index.html#about"]').forEach(a => a.textContent = navLabels.about);  
 const pp = getPropertyPage(lang);
 const specLabels = getSpecLabels(lang);
 document.getElementById('htmlRoot').lang = lang;
