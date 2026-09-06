@@ -397,6 +397,12 @@ if (lang !== 'en') {
   document.querySelectorAll('a[href="stay.html"], a[href="property.html"], a[href="renovation.html"], a[href="travel.html"], a[href="visa.html"]').forEach(a => {
     a.href = a.getAttribute('href') + '?lang=' + lang;
   });
+  document.querySelectorAll('a[href="index.html"]').forEach(a => {
+    a.href = 'index.html?lang=' + lang;
+  });
+  document.querySelectorAll('a[href="index.html#about"]').forEach(a => {
+    a.href = 'index.html?lang=' + lang + '#about';
+  });
 }
 const NAV_LABELS = {
   en: { stay:"Stay", property:"Property", renovation:"Renovation", travel:"Travel", visa:"Visa", about:"About" },
