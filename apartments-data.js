@@ -358,7 +358,7 @@ const APARTMENTS = [
     priceFrom: 80, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
     mapQuery: "Galata Tower, Istanbul, Turkey", // replace with the exact address for a precise map pin
-    reviewFormUrl: "https://forms.gle/REPLACE_WITH_YOUR_GOOGLE_FORM", // same form for all 5, or one per apartment
+    reviewFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfrrj_xRveQnG_xrJiX9aG2QcWqCZQwOkf8u0N70oxVyAjX5g/viewform", // same form for all 5, or one per apartment
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
     images: ["stay1-1.jpg.webp","stay1-2.jpg.webp","stay1-3.jpg.webp","stay1-4.jpg.webp","stay1-5.jpg.webp","stay1-6.jpg.webp","stay1-7.jpg.webp","stay1-8.jpg.webp"],
