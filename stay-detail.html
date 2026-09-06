@@ -726,6 +726,13 @@ const gridImgs = apt.images.slice(0, 5);
 document.getElementById('photoGrid').innerHTML =
   `<div class="pg-main" onclick="openLightbox(0)"><img src="${gridImgs[0]}" alt="${t.name}"></div>` +
   gridImgs.slice(1).map((img, i) => `<div class="pg-thumb" onclick="openLightbox(${i+1})"><img src="${img}" alt="${t.name}"></div>`).join('');
+let mainPhotoIdx = 0;
+function updateMainPhoto(newIdx){
+  mainPhotoIdx = (newIdx + apt.images.length) % apt.images.length;
+  document.querySelector('.pg-main img').src = apt.images[mainPhotoIdx];
+  document.querySelector('.pg-main').setAttribute('onclick', `openLightbox(${mainPhotoIdx})`);
+}
+addSwipe(document.querySelector('.pg-main'), () => updateMainPhoto(mainPhotoIdx + 1), () => updateMainPhoto(mainPhotoIdx - 1));
 if (apt.images.length <= 1) document.getElementById('showAllPhotosBtn').style.display = 'none';
 
 /* ---------- gallery slider (inside lightbox) ---------- */
