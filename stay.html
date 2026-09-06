@@ -391,7 +391,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 <script src="apartments-data.js?v=2"></script>
 <script>
 /* ---------- read URL params ---------- */
-const params = new URLSearchParams(window.location.search);
+
 function addSwipe(el, onSwipeLeft, onSwipeRight){
   let startX = 0;
   el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
@@ -400,6 +400,9 @@ function addSwipe(el, onSwipeLeft, onSwipeRight){
     if (Math.abs(diff) > 40) { diff > 0 ? onSwipeLeft() : onSwipeRight(); }
   }, {passive:true});
 }
+  
+const params = new URLSearchParams(window.location.search);
+
 const lang = params.get('lang') || 'en';
 if (lang !== 'en') {
   document.querySelectorAll('a[href="stay.html"], a[href="property.html"], a[href="renovation.html"], a[href="travel.html"], a[href="visa.html"]').forEach(a => {
