@@ -415,7 +415,8 @@ document.querySelectorAll('nav a[href^="property.html"], .mobile-nav a[href^="pr
 document.querySelectorAll('nav a[href^="renovation.html"], .mobile-nav a[href^="renovation.html"]').forEach(a => a.textContent = navLabels.renovation);
 document.querySelectorAll('nav a[href^="travel.html"], .mobile-nav a[href^="travel.html"]').forEach(a => a.textContent = navLabels.travel);
 document.querySelectorAll('nav a[href^="visa.html"], .mobile-nav a[href^="visa.html"]').forEach(a => a.textContent = navLabels.visa);
-document.querySelectorAll('nav a[href^="index.html#about"], .mobile-nav a[href^="index.html#about"]').forEach(a => a.textContent = navLabels.about);  
+document.querySelectorAll('nav a[href^="index.html?lang="], nav a[href="index.html#about"], .mobile-nav a[href^="index.html?lang="], .mobile-nav a[href="index.html#about"]').forEach(a => a.textContent = navLabels.about);
+  
 const ui = getUIStrings(lang);
 const sp = getStayPage(lang);
 const MAPS_LINK = "https://maps.app.goo.gl/F9nEcxCjw2MGbBVd6"; // placeholder — same for all 5 apartments until each is replaced with its real Google Maps link
