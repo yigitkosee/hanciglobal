@@ -571,6 +571,7 @@ function initSlider(id){
     dots.appendChild(d);
   }
   document.getElementById("count-"+id).textContent="1 / "+n;
+  addSwipe(document.getElementById(id), () => slide(id, 1), () => slide(id, -1));
 }
 function goTo(id,i){
   const el=document.getElementById("slides-"+id);
