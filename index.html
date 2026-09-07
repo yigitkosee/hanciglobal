@@ -532,7 +532,7 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
         <p class="listing-desc">${t.shortDesc}</p>
         <div class="listing-bottom-row">
           <div>
-            <div class="listing-price">${sp.fromWord}${apt.currency}${apt.priceFrom}<span>${sp.perNight}</span></div>
+            <div class="listing-price" id="lp-${apt.id}">${sp.fromWord}${apt.currency}${apt.priceFrom}<span>${sp.perNight}</span></div>
             ${ratingHtml}
           </div>
           <a href="stay-detail.html?id=${apt.id}&lang=${lang}" onclick="event.stopPropagation()"><button class="btn-index-book">${sp.bookDirect}</button></a>
@@ -601,6 +601,24 @@ function goTo(id,i){
 function slide(id,dir){goTo(id,sliders[id]+dir);}
 APARTMENTS.forEach((_, i) => initSlider('is'+(i+1)));
 
+/* ---------- live pricing (PriceLabs via Apps Script) ---------- */
+const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst2NAVDhIlvQmLQ7wtsDv3hM73DleDzlmZtQm6FzfEHhoAx6WGGz_w/exec";
+
+fetch(LIVE_DATA_URL)
+  .then(r => r.json())
+  .then(liveData => {
+    APARTMENTS.forEach(apt => {
+      const live = liveData[apt.id];
+      if (!live || !live.priceFrom) return;
+      const el = document.getElementById('lp-' + apt.id);
+      if (!el) return;
+      const curr = live.currency === "EUR" ? "€" : (live.currency || apt.currency);
+      el.innerHTML = sp.fromWord + curr + live.priceFrom + '<span>' + sp.perNight + '</span>';
+    });
+  })
+  .catch(err => console.error('[LiveData] could not load PriceLabs data, showing static fallback:', err));
+
+  
 /* ---------- other services strip (reuses OTHER_SERVICES from apartments-data.js) ---------- */
 const ost = getOtherServicesText(lang);
 document.getElementById('otherServicesTitle').textContent = ip.otherServicesTitle;
