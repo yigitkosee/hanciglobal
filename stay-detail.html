@@ -567,7 +567,7 @@ document.getElementById('bookingPrice').innerHTML = apt.currency + apt.priceFrom
 
 const waMsg = encodeURIComponent(`Hi, I'm interested in ${t.name}. Please share availability and pricing.`);
 const waUrl = `https://wa.me/${apt.waNumber}?text=${waMsg}`;
-document.getElementById('waLink').href = waUrl;
+
 document.getElementById('airbnbLink').href = apt.airbnbUrl;
 document.getElementById('navWaBtn').href = waUrl;
 document.getElementById('mobileWaBtn').href = waUrl;
@@ -826,7 +826,7 @@ function updateSelectionSummary(){
     ? `Hi, I'm interested in ${t.name} from ${selStart} to ${selEnd} (${nights} nights). Please confirm availability and pricing.`
     : `Hi, I'm interested in ${t.name} from ${selStart} to ${selEnd} (${nights} nights). Total: ${apt.currency}${total}. Please confirm.`;
   document.getElementById('selectionBookLink').href = `https://wa.me/${apt.waNumber}?text=${encodeURIComponent(msg)}`;
-  document.getElementById('waLink').href = `https://wa.me/${apt.waNumber}?text=${encodeURIComponent(msg)}`;
+  
 
   box.style.display = 'flex';
 }
