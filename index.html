@@ -247,6 +247,10 @@ footer{background:var(--navy);padding:56px 56px 32px}
   .stat-num{font-size:34px}
   .sec-h2{font-size:30px}
 }
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDewHZcNDnda5kuQdAuq6V2bE2cGFE_TYU&libraries=places&callback=initGooglePlaces&loading=async" async defer></script>
+
+
 </style>
 </head>
 <body>
@@ -566,6 +570,32 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
     </div>`;
 }).join('');
 
+/* ---------- Google puanlarını sitedeki yorumlarla birleştir ---------- */
+window.initGooglePlaces = function(){
+  if (!window.google || !google.maps || !google.maps.places) return;
+  APARTMENTS.forEach(apt => {
+    if (!apt.placeId) return;
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    service.getDetails(
+      { placeId: apt.placeId, fields: ['rating','user_ratings_total'], language: lang },
+      function(place, status){
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !place || !place.rating) return;
+
+        const enReviews = (apt.translations.en.reviews) || [];
+        const siteCount = enReviews.length;
+        const siteAvg = siteCount ? (enReviews.reduce((s,r)=>s+(r.stars||5),0) / siteCount) : 0;
+        const googleCount = place.user_ratings_total;
+        const totalCount = siteCount + googleCount;
+        const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
+
+        const el = document.querySelector(`#lp-${apt.id}`)?.parentElement?.querySelector('.index-rating');
+        if (el) el.innerHTML = `<span class="index-star">★</span>${combinedAvg.toFixed(2)} <span class="index-rating-count">(${totalCount})</span>`;
+      }
+    );
+  });
+};
+if (window.google && google.maps && google.maps.places) { window.initGooglePlaces(); }
+  
 /* ---------- sliders ---------- */
 
 function addSwipe(el, onSwipeLeft, onSwipeRight){
