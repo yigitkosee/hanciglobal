@@ -453,7 +453,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'en';
-
+const sp = getStayPage(lang);
 /* ---------- fix cross-page nav/footer links so they keep the current language ---------- */
 if (lang !== 'en') {
   document.querySelectorAll('a[href="stay.html"], a[href="property.html"], a[href="renovation.html"], a[href="travel.html"], a[href="visa.html"]').forEach(a => {
