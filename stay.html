@@ -418,6 +418,7 @@ function addSwipe(el, onSwipeLeft, onSwipeRight){
 const params = new URLSearchParams(window.location.search);
 
 const lang = params.get('lang') || 'en';
+const sp = getStayPage(lang);
 if (lang !== 'en') {
   document.querySelectorAll('a[href="stay.html"], a[href="property.html"], a[href="renovation.html"], a[href="travel.html"], a[href="visa.html"]').forEach(a => {
     a.href = a.getAttribute('href') + '?lang=' + lang;
@@ -503,7 +504,7 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
           <span>🛏 ${apt.bedrooms} ${sp.bedroomsWord}</span>
           <span>👥 ${sp.guestsUpTo} ${apt.guests} ${sp.guestsWord}</span>
         </div>
-        <div class="listing-price">${sp.fromWord}${apt.currency}${apt.priceFrom}<span>${sp.perNight}</span></div>
+        <div class="listing-price" id="lp-${apt.id}">${sp.fromWord}${apt.currency}${apt.priceFrom}<span>${sp.perNight}</span></div>
         <div class="listing-actions">
           <a href="${apt.airbnbUrl}" target="_blank" onclick="event.stopPropagation()"><button class="btn-airbnb">${sp.viewAirbnb}</button></a>
           <a href="stay-detail.html?id=${apt.id}&lang=${lang}" onclick="event.stopPropagation()"><button class="btn-wa-sm">${sp.bookDirect}</button></a>
@@ -598,6 +599,22 @@ function goTo(id,i){
 function slide(id,dir){goTo(id,sliders[id]+dir);}
 APARTMENTS.forEach((_, i) => initSlider('s'+(i+1)));
 
+/* ---------- live pricing (PriceLabs via Apps Script) ---------- */
+const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst2NAVDhIlvQmLQ7wtsDv3hM73DleDzlmZtQm6FzfEHhoAx6WGGz_w/exec";
+
+fetch(LIVE_DATA_URL)
+  .then(r => r.json())
+  .then(liveData => {
+    APARTMENTS.forEach(apt => {
+      const live = liveData[apt.id];
+      if (!live || !live.priceFrom) return;
+      const el = document.getElementById('lp-' + apt.id);
+      if (!el) return;
+      const curr = live.currency === "EUR" ? "€" : (live.currency || apt.currency);
+      el.innerHTML = sp.fromWord + curr + live.priceFrom + '<span>' + sp.perNight + '</span>';
+    });
+  })
+  .catch(err => console.error('[LiveData] could not load PriceLabs data, showing static fallback:', err));  
 /* ---------- mobile nav ---------- */
 function toggleMobileNav(){
   document.getElementById("mobileNav").classList.toggle("open");
