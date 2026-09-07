@@ -723,8 +723,15 @@ window.initGooglePlaces = function(){
       }
 
       if (place.rating && place.user_ratings_total){
+        const siteCount = enReviews.length;
+        const siteAvg = computedAvg || 0;
+        const googleCount = place.user_ratings_total;
+        const googleAvg = place.rating;
+        const totalCount = siteCount + googleCount;
+        const combinedAvg = ((siteAvg * siteCount) + (googleAvg * googleCount)) / totalCount;
+
         document.getElementById('ratingRow').style.display = 'flex';
-        document.getElementById('ratingRow').innerHTML = `<span class="stars">★</span> ${place.rating.toFixed(2)} · <a href="#reviewsSection">${place.user_ratings_total} ${ui.reviewsWord}</a>`;
+        document.getElementById('ratingRow').innerHTML = `<span class="stars">★</span> ${combinedAvg.toFixed(2)} · <a href="#reviewsSection">${totalCount} ${ui.reviewsWord}</a>`;
       }
     }
   );
