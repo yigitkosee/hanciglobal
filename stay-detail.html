@@ -210,6 +210,8 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .btn-airbnb-lg:hover{background:#e04a4f}
 .btn-wa-lg{font-size:14px;font-weight:700;padding:14px 20px;border-radius:10px;background:var(--navy);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-wa-lg:hover{background:#1a3050}
+.btn-directions-lg{font-size:14px;font-weight:700;padding:14px 20px;border-radius:10px;background:#fff;color:var(--ink);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-directions-lg:hover{background:var(--bg)}
 .booking-note{font-size:12px;color:var(--muted);margin-top:16px;text-align:center;line-height:1.6}
 
 /* CTA BAND */
@@ -414,6 +416,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
       <div class="booking-btns">
         <a id="airbnbLink" target="_blank"><button class="btn-airbnb-lg">🏠 View on Airbnb</button></a>
         <a onclick="scrollToAvailability()"><button class="btn-wa-lg">💬 Book direct — best rate</button></a>
+        <a id="directionsLink" target="_blank"><button class="btn-directions-lg" id="directionsBtnText"></button></a>
       </div>
       <div class="booking-note">Booking direct means no platform fees — same apartment, better price.</div>
     </div>
@@ -593,6 +596,8 @@ const waMsg = encodeURIComponent(`Hi, I'm interested in ${t.name}. Please share 
 const waUrl = `https://wa.me/${apt.waNumber}?text=${waMsg}`;
 
 document.getElementById('airbnbLink').href = apt.airbnbUrl;
+document.getElementById('directionsLink').href = apt.directionsUrl;
+document.getElementById('directionsBtnText').textContent = sp.getDirections;  
 document.getElementById('navWaBtn').href = waUrl;
 document.getElementById('mobileWaBtn').href = waUrl;
 
