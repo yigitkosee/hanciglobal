@@ -810,10 +810,29 @@ function scrollToAvailability(){
   document.getElementById('availabilitySection').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
+function hasBlockedBetween(start, end){
+  let d = new Date(start);
+  const endDate = new Date(end);
+  while (d < endDate) {
+    if (BLOCKED_SET.has(d.toISOString().slice(0,10))) return true;
+    d.setDate(d.getDate() + 1);
+  }
+  return false;
+}
+
 function selectDay(iso){
-  if (!selStart || (selStart && selEnd)) { selStart = iso; selEnd = null; }
-  else if (iso > selStart) { selEnd = iso; }
-  else { selStart = iso; selEnd = null; }
+  if (!selStart || (selStart && selEnd)) {
+    selStart = iso; selEnd = null;
+  } else if (iso > selStart) {
+    if (hasBlockedBetween(selStart, iso)) {
+      /* aralarında dolu gün var — üzerinden atlayamaz, buradan yeni bir seçim başlat */
+      selStart = iso; selEnd = null;
+    } else {
+      selEnd = iso;
+    }
+  } else {
+    selStart = iso; selEnd = null;
+  }
   renderAvailability();
   updateDateFieldDisplay();
   updateSelectionSummary();
