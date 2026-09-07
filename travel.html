@@ -505,7 +505,29 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'en';
-
+/* ---------- hreflang tags (SEO: bu sayfanın TR/RU versiyonlarının da olduğunu Google'a söylüyor) ---------- */
+(function(){
+  const path = window.location.pathname.split('/').pop();
+  const idParam = params.get('id'); // sadece stay-detail.html'de dolu olur, diğerlerinde otomatik boş kalır
+  const base = `https://hanciglobal.com/${path}`;
+  const variants = {
+    en: base + (idParam ? `?id=${idParam}` : ''),
+    tr: base + (idParam ? `?id=${idParam}&lang=tr` : '?lang=tr'),
+    ru: base + (idParam ? `?id=${idParam}&lang=ru` : '?lang=ru')
+  };
+  Object.entries(variants).forEach(([hreflang, href]) => {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = hreflang;
+    link.href = href;
+    document.head.appendChild(link);
+  });
+  const xdefault = document.createElement('link');
+  xdefault.rel = 'alternate';
+  xdefault.hreflang = 'x-default';
+  xdefault.href = variants.en;
+  document.head.appendChild(xdefault);
+})();
 /* ---------- fix cross-page nav/footer links so they keep the current language ---------- */
 if (lang !== 'en') {
   document.querySelectorAll('a[href="stay.html"], a[href="property.html"], a[href="renovation.html"], a[href="travel.html"], a[href="visa.html"]').forEach(a => {
