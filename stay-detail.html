@@ -159,6 +159,9 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .other-prop-desc{font-size:12px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
 .other-prop-price{font-size:12px;font-weight:800;color:var(--ink)}
 .other-prop-price span{font-size:11px;font-weight:500;color:var(--muted)}
+.op-rating{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.op-star{color:#F5A623}
+.op-rating-count{font-size:11px;font-weight:600;color:var(--muted)}
 .maps-title{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:20px}
 .maps-embed{width:100%;height:320px;border:0;border-radius:16px}
 
@@ -701,13 +704,14 @@ document.getElementById('writeReviewBtn').href = apt.reviewFormUrl || '#';
 /* ---------- live Google reviews (only for apartments with a real placeId) ----------
    Falls back to the static sample reviews above if there's no placeId, the API
    hasn't loaded yet, or the request fails — the section never ends up empty. */
-window.initGooglePlaces = function(){
-  if (!apt.placeId || !window.google || !google.maps || !google.maps.places) return;
-  const service = new google.maps.places.PlacesService(document.createElement('div'));
-  service.getDetails(
-    { placeId: apt.placeId, fields: ['reviews','rating','user_ratings_total'], language: lang },
-    function(place, status){
-      if (status !== google.maps.places.PlacesServiceStatus.OK || !place) return;
+window.initGooglePlaces = async function(){
+  if (!window.google || !google.maps || !google.maps.places || !google.maps.places.Place) return;
+
+  /* mevcut evin kendi yorumları + puanı */
+  if (apt.placeId) {
+    try {
+      const place = new google.maps.places.Place({ id: apt.placeId, requestedLanguage: lang });
+      await place.fetchFields({ fields: ['reviews', 'rating', 'userRatingCount'] });
 
       if (place.reviews && place.reviews.length){
         document.getElementById('reviewsSection').style.display = 'block';
@@ -715,29 +719,49 @@ window.initGooglePlaces = function(){
           <div class="dreview-card">
             <div class="dreview-stars">${'★'.repeat(Math.round(r.rating || 5))}</div>
             <p class="dreview-text">"${r.text}"</p>
-            <div class="dreview-name">${r.author_name}</div>
+            <div class="dreview-name">${r.authorAttribution ? r.authorAttribution.displayName : ''}</div>
           </div>
         `).join('') + `<div class="google-attribution"><img src="https://developers.google.com/static/maps/documentation/images/google_on_white.png" alt="Google" height="14"> ${lang==='tr' ? 'Google yorumları' : lang==='ru' ? 'Отзывы Google' : 'Reviews from Google'}</div>`;
-        /* append after the site's own reviews — never overwrite them */
         document.getElementById('detailReviews').insertAdjacentHTML('beforeend', googleReviewsHtml);
       }
 
-      if (place.rating && place.user_ratings_total){
+      if (place.rating && place.userRatingCount){
         const siteCount = enReviews.length;
         const siteAvg = computedAvg || 0;
-        const googleCount = place.user_ratings_total;
-        const googleAvg = place.rating;
+        const googleCount = place.userRatingCount;
         const totalCount = siteCount + googleCount;
-        const combinedAvg = ((siteAvg * siteCount) + (googleAvg * googleCount)) / totalCount;
-
+        const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
         document.getElementById('ratingRow').style.display = 'flex';
         document.getElementById('ratingRow').innerHTML = `<span class="stars">★</span> ${combinedAvg.toFixed(2)} · <a href="#reviewsSection">${totalCount} ${ui.reviewsWord}</a>`;
       }
+    } catch (err) {
+      console.error('[GooglePlaces] failed for current apt:', err);
     }
-  );
+  }
+
+  /* alttaki "diğer evler" kartlarının puanları — hepsi paralel */
+  await Promise.all(APARTMENTS.filter(a => a.id !== apt.id).map(async (other) => {
+    if (!other.placeId) return;
+    try {
+      const place = new google.maps.places.Place({ id: other.placeId, requestedLanguage: lang });
+      await place.fetchFields({ fields: ['rating', 'userRatingCount'] });
+      if (!place.rating || !place.userRatingCount) return;
+
+      const otherEnReviews = (other.translations.en.reviews) || [];
+      const siteCount = otherEnReviews.length;
+      const siteAvg = siteCount ? (otherEnReviews.reduce((s,r)=>s+(r.stars||5),0) / siteCount) : 0;
+      const googleCount = place.userRatingCount;
+      const totalCount = siteCount + googleCount;
+      const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
+
+      const el = document.getElementById('op-rating-' + other.id);
+      if (el) el.innerHTML = `<span class="op-star">★</span>${combinedAvg.toFixed(2)} <span class="op-rating-count">(${totalCount})</span>`;
+    } catch (err) {
+      console.error('[GooglePlaces] failed for', other.id, err);
+    }
+  }));
 };
-/* in case the Google script already finished loading before this ran */
-if (window.google && google.maps && google.maps.places) { window.initGooglePlaces(); }
+if (window.google && google.maps && google.maps.places && google.maps.places.Place) { window.initGooglePlaces(); }
 
 /* ---------- Availability section title + legend ---------- */
 document.getElementById('availabilityTitle').textContent = ui.availabilityTitle;
@@ -753,18 +777,23 @@ document.getElementById('mapsEmbed').src = `https://www.google.com/maps?q=${enco
 document.getElementById('otherPropsTitle').textContent = ui.otherPropsTitle;
 document.getElementById('otherPropsGrid').innerHTML = APARTMENTS.filter(a => a.id !== apt.id).map(other => {
   const ot = getApartmentText(other, lang);
+  const otherEnReviews = (other.translations.en.reviews) || [];
+  const otherComputedAvg = otherEnReviews.length ? (otherEnReviews.reduce((s,r)=>s+(r.stars||5),0) / otherEnReviews.length) : null;
+  const otherDisplayRating = other.rating || otherComputedAvg;
+  const otherDisplayCount = other.reviewCount || otherEnReviews.length;
+  const otherRatingHtml = otherDisplayRating ? `<div class="op-rating" id="op-rating-${other.id}"><span class="op-star">★</span>${otherDisplayRating.toFixed(2)} <span class="op-rating-count">(${otherDisplayCount})</span></div>` : `<div class="op-rating" id="op-rating-${other.id}"></div>`;
   return `
     <div class="other-prop-card" onclick="window.location='stay-detail.html?id=${other.id}&lang=${lang}'">
       <div class="other-prop-img"><img src="${other.images[0]}" alt="${ot.name}"></div>
       <div class="other-prop-body">
         <div class="other-prop-loc">📍 ${ot.location}</div>
         <div class="other-prop-name">${ot.name}</div>
+        ${otherRatingHtml}
         <p class="other-prop-desc">${ot.shortDesc}</p>
         <div class="other-prop-price" id="op-price-${other.id}">${sp.fromWord}${other.currency}${other.priceFrom}<span>${sp.perNight}</span></div>
       </div>
     </div>`;
 }).join('');
-
 /* ---------- calendar: 3-month navigable window, interactive, shows real per-night prices ---------- */
 const BLOCKED_SET = new Set(apt.blockedDates || []);
 let PRICE_MAP = {}; // filled in once live PriceLabs data arrives (see below)
