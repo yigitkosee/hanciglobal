@@ -771,5 +771,26 @@ function closeMobileNav(){
   document.body.style.overflow="";
 }
 </script>
+
+<script>
+document.addEventListener('click', function(e) {
+  const waLink = e.target.closest('a[href*="wa.me"]');
+  if (waLink) {
+    gtag('event', 'wa_click', {
+      event_category: 'engagement',
+      event_label: window.location.pathname
+    });
+  }
+
+  const callLink = e.target.closest('a[href^="tel:"]');
+  if (callLink) {
+    gtag('event', 'call_click', {
+      event_category: 'engagement',
+      event_label: window.location.pathname
+    });
+  }
+});
+</script>
+  
 </body>
 </html>
