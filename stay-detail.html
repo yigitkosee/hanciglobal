@@ -802,7 +802,11 @@ let selStart = null, selEnd = null;
 let monthOffset = 0;
 const MAX_MONTH_OFFSET = 3; // PriceLabs data covers ~6 months; keeps the window inside real data
 
-function isoDate(y,m,d){ return new Date(y,m,d).toISOString().slice(0,10); }
+function isoDate(y,m,d){
+  const mm = String(m+1).padStart(2,'0');
+  const dd = String(d).padStart(2,'0');
+  return `${y}-${mm}-${dd}`;
+}
 
 function buildMonthGrid(year, month){
   const firstDay = new Date(year, month, 1);
@@ -894,7 +898,7 @@ function updateSelectionSummary(){
   const end = new Date(selEnd);
   const nights = Math.round((end - d) / 86400000);
   for (let i=0; i<nights; i++){
-    const iso = d.toISOString().slice(0,10);
+    const iso = isoDate(d.getFullYear(), d.getMonth(), d.getDate());
     if (PRICE_MAP[iso]) total += PRICE_MAP[iso];
     else missingPrice = true;
     d.setDate(d.getDate()+1);
