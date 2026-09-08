@@ -116,8 +116,7 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .btn-directions{font-size:12px;font-weight:700;padding:10px 16px;border-radius:8px;background:none;color:var(--ink);border:1.5px solid var(--border);cursor:pointer;transition:border-color .15s;display:inline-flex;align-items:center;gap:6px}
 .btn-directions:hover{border-color:var(--ink)}
 .listing-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.stay-rating{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:800;color:var(--ink)}
-.stay-star{color:#F5A623}
+.stay-rating{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:800;color:var(--ink);margin-bottom:10px}.stay-star{color:#F5A623}
 .stay-rating-count{font-size:12px;font-weight:600;color:var(--muted)}
 
 /* FEATURES */
@@ -533,15 +532,13 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
       <div class="listing-body">
         <div class="listing-loc">📍 ${t.location}</div>
         <div class="listing-name">${t.name}</div>
+        ${ratingHtml}
         <p class="listing-desc">${t.shortDesc}</p>
         <div class="listing-meta">
           <span>🛏 ${apt.bedrooms} ${sp.bedroomsWord}</span>
           <span>👥 ${sp.guestsUpTo} ${apt.guests} ${sp.guestsWord}</span>
         </div>
-        <div class="listing-price-row">
-          <div class="listing-price" id="lp-${apt.id}">${sp.fromWord}${apt.currency}${apt.priceFrom}<span>${sp.perNight}</span></div>
-          ${ratingHtml}
-        </div>
+        <div class="listing-price" id="lp-${apt.id}">${sp.fromWord}${apt.currency}${apt.priceFrom}<span>${sp.perNight}</span></div>
         <div class="listing-actions">
           <a href="${apt.airbnbUrl}" target="_blank" onclick="event.stopPropagation()"><button class="btn-airbnb">${sp.viewAirbnb}</button></a>
           <a href="stay-detail.html?id=${apt.id}&lang=${lang}" onclick="event.stopPropagation()"><button class="btn-wa-sm">${sp.bookDirect}</button></a>
