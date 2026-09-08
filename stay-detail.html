@@ -411,7 +411,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 
     <div class="booking-card">
       <div class="booking-price" id="bookingPrice"></div>
-      <div class="booking-sub">Price varies by season and length of stay</div>
+      <div class="booking-sub" id="bookingSub"></div>
       <div class="date-select-field" id="dateSelectField" onclick="scrollToAvailability()">
         <span class="dsf-text" id="dsfText"></span>
         <span>📅</span>
@@ -421,7 +421,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
         <a onclick="scrollToAvailability()"><button class="btn-wa-lg">💬 Book direct — best rate</button></a>
         <a id="directionsLink" target="_blank"><button class="btn-directions-lg" id="directionsBtnText"></button></a>
       </div>
-      <div class="booking-note">Booking direct means no platform fees — same apartment, better price.</div>
+      <div class="booking-note" id="bookingNote"></div>
     </div>
   </div>
 </div>
@@ -593,8 +593,11 @@ document.getElementById('canonicalLink').setAttribute('href', 'https://hanciglob
 document.getElementById('crumbName').textContent = t.name;
 document.getElementById('detailLoc').textContent = '📍 ' + t.location;
 document.getElementById('detailName').textContent = t.name;
-document.getElementById('bookingPrice').innerHTML = apt.currency + apt.priceFrom + ' <span>/ night</span>';
+document.getElementById('bookingPrice').innerHTML = apt.currency + apt.priceFrom + ' <span>' + ui.perNightSuffix + '</span>';
+document.getElementById('bookingSub').textContent = ui.bookingSub;
+document.getElementById('bookingNote').textContent = ui.bookingNote;
 
+  
 const waMsg = encodeURIComponent(`Hi, I'm interested in ${t.name}. Please share availability and pricing.`);
 const waUrl = `https://wa.me/${apt.waNumber}?text=${waMsg}`;
 
@@ -1016,7 +1019,7 @@ fetch(LIVE_DATA_URL)
       if (live.priceFrom) {
         apt.priceFrom = live.priceFrom;
         if (live.currency) apt.currency = live.currency === "EUR" ? "€" : live.currency;
-        document.getElementById('bookingPrice').innerHTML = apt.currency + apt.priceFrom + ' <span>/ night</span>';
+        document.getElementById('bookingPrice').innerHTML = apt.currency + apt.priceFrom + ' <span>' + ui.perNightSuffix + '</span>';
       }
       if (live.blockedDates) {
         apt.blockedDates = live.blockedDates;
