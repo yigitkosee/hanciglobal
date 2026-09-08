@@ -554,29 +554,27 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
 /* ---------- Google puanlarını sitedeki yorumlarla birleştir ---------- */
 window.initGooglePlaces = async function(){
   if (!window.google || !google.maps || !google.maps.places || !google.maps.places.Place) return;
-  for (const apt of APARTMENTS) {
-    if (!apt.placeId) continue;
+  await Promise.all(APARTMENTS.map(async (apt) => {
+    if (!apt.placeId) return;
     try {
       const place = new google.maps.places.Place({ id: apt.placeId, requestedLanguage: lang });
       await place.fetchFields({ fields: ['rating', 'userRatingCount'] });
-      if (!place.rating || !place.userRatingCount) continue;
-
+      if (!place.rating || !place.userRatingCount) return;
       const enReviews = (apt.translations.en.reviews) || [];
       const siteCount = enReviews.length;
       const siteAvg = siteCount ? (enReviews.reduce((s,r)=>s+(r.stars||5),0) / siteCount) : 0;
       const googleCount = place.userRatingCount;
       const totalCount = siteCount + googleCount;
       const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
-
       const el = document.getElementById('rt-' + apt.id);
       if (el) el.innerHTML = `<span class="stay-star">★</span>${combinedAvg.toFixed(2)} <span class="stay-rating-count">(${totalCount})</span>`;
     } catch (err) {
       console.error('[GooglePlaces] failed for', apt.id, err);
     }
-  }
+  }));
 };
 if (window.google && google.maps && google.maps.places && google.maps.places.Place) { window.initGooglePlaces(); }
-
+  
 /* ---------- features ---------- */
 document.getElementById('featuresEyebrow').textContent = sp.featuresEyebrow;
 document.getElementById('featuresH2').innerHTML = `${sp.featuresH2a} <em>${sp.featuresH2em}</em>`;
