@@ -126,6 +126,7 @@ const STAY_PAGE = {
       {title:"Local know-how", desc:"We know every restaurant, café and hidden gem in Beyoğlu. Ask us anything about the city."}
     ],
     reviewsEyebrow: "What our guests say", reviewsH2a: "Guest", reviewsH2em: "reviews",
+    reviewsShowAll: "Show all reviews",
     ctaH2: "Ready to book your stay?", ctaP: "Contact us on WhatsApp for availability and the best direct rate. We reply fast — in English, Turkish and Russian.",
     ctaBtn1: "💬 WhatsApp us now", ctaBtn2: "📞 Call us",
     footerServices: "Services", footerContact: "Contact", footerCompany: "Company"
@@ -150,6 +151,7 @@ const STAY_PAGE = {
       {title:"Yerel bilgi", desc:"Beyoğlu'ndaki her restoran, kafe ve gizli mekânı biliyoruz. Şehir hakkında her şeyi bize sorun."}
     ],
     reviewsEyebrow: "Misafirlerimiz ne diyor", reviewsH2a: "Misafir", reviewsH2em: "yorumları",
+    reviewsShowAll: "Tüm yorumları göster",
     ctaH2: "Konaklamanızı rezerve etmeye hazır mısınız?", ctaP: "Müsaitlik ve en iyi direkt fiyat için WhatsApp'tan ulaşın. Hızlı yanıt veriyoruz — İngilizce, Türkçe veya Rusça.",
     ctaBtn1: "💬 Şimdi WhatsApp'tan yazın", ctaBtn2: "📞 Bizi arayın",
     footerServices: "Hizmetler", footerContact: "İletişim", footerCompany: "Şirket"
@@ -174,6 +176,7 @@ const STAY_PAGE = {
       {title:"Местные знания", desc:"Мы знаем каждый ресторан, кафе и скрытую жемчужину в Бейоглу. Спрашивайте нас всё о городе."}
     ],
     reviewsEyebrow: "Что говорят наши гости", reviewsH2a: "Отзывы", reviewsH2em: "гостей",
+    reviewsShowAll: "Показать все отзывы",
     ctaH2: "Готовы забронировать проживание?", ctaP: "Напишите в WhatsApp для уточнения наличия и лучшей цены. Отвечаем быстро — на русском, английском и турецком.",
     ctaBtn1: "💬 Написать в WhatsApp", ctaBtn2: "📞 Позвонить",
     footerServices: "Услуги", footerContact: "Контакты", footerCompany: "Компания"
