@@ -360,6 +360,7 @@ const APARTMENTS = [
     airbnbUrl: "https://www.airbnb.co.uk/rooms/1234624841258038203",
     directionsUrl: "https://share.google/ShQbOu6Lr0ACbdRop",
     waNumber: "905063335154",
+    placeId: "ChIJJcHiMAe5yhQRRQVjidxnBRw", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 3, baths: 1, guests: 5,
     priceFrom: 80, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
@@ -426,6 +427,7 @@ const APARTMENTS = [
     airbnbUrl: "https://www.airbnb.co.uk/rooms/1386135456988178273",
     directionsUrl: "https://share.google/HXSmsLdZp071Jdnr0",
     waNumber: "905063335154",
+    placeId: "ChIJo-5zlTS5yhQRteRGCI5FeZk", // real Google Business Profile — pulls live Google reviews
     bedrooms: 4, beds: 5, baths: 2, guests: 10,
     priceFrom: 150, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
@@ -491,6 +493,7 @@ const APARTMENTS = [
     airbnbUrl: "https://www.airbnb.co.uk/rooms/1088463429757145807",
     directionsUrl: "https://share.google/O6xyzQoehfhspFjjx",
     waNumber: "905063335154",
+    placeId: "ChIJeW0Vrre3yhQRxmJ9Zcm2i50", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 3, baths: 1, guests: 5,
     priceFrom: 65, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
