@@ -137,6 +137,10 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .review-avatar{width:40px;height:40px;border-radius:50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--teal-d);border:2px solid #9FE1CB;flex-shrink:0}
 .review-name{font-size:14px;font-weight:800;color:var(--ink)}
 .review-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.review-google-badge{display:inline-block;margin-left:8px;font-size:10px;font-weight:800;color:var(--blue);background:var(--blue-l);padding:2px 8px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle}
+.reviews-more-wrap{text-align:center;margin-top:44px}
+.reviews-more-btn{font-size:14px;font-weight:700;background:#fff;color:var(--ink);border:1.5px solid var(--border);padding:14px 32px;border-radius:9px;cursor:pointer;transition:border-color .15s}
+.reviews-more-btn:hover{border-color:var(--gold)}  
 
 /* OTHER SERVICES (compact cross-promo row — same component as index.html's service strip) */
 .other-services{padding:0 56px 96px;background:var(--bg)}
@@ -322,8 +326,11 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   <p class="sec-eyebrow" style="color:var(--teal)" id="reviewsEyebrow"></p>
   <h2 class="sec-h2" id="reviewsH2"></h2>
   <div class="reviews-grid" id="reviewsGrid"></div>
+  <div class="reviews-more-wrap">
+    <button class="reviews-more-btn" id="reviewsMoreBtn" style="display:none" onclick="reviewsExpanded=true;renderReviews();"></button>
+  </div>
 </section>
-
+  
 <!-- OTHER SERVICES -->
 <section class="other-services">
   <div class="other-services-title" id="otherServicesTitle"></div>
@@ -555,22 +562,41 @@ window.initGooglePlaces = async function(){
     if (!apt.placeId) return;
     try {
       const place = new google.maps.places.Place({ id: apt.placeId, requestedLanguage: lang });
-      await place.fetchFields({ fields: ['rating', 'userRatingCount'] });
-      if (!place.rating || !place.userRatingCount) return;
-      const enReviews = (apt.translations.en.reviews) || [];
-      const siteCount = enReviews.length;
-      const siteAvg = siteCount ? (enReviews.reduce((s,r)=>s+(r.stars||5),0) / siteCount) : 0;
-      const googleCount = place.userRatingCount;
-      const totalCount = siteCount + googleCount;
-      const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
-      const el = document.getElementById('rt-' + apt.id);
-      if (el) el.innerHTML = `<span class="stay-star">★</span>${combinedAvg.toFixed(2)} <span class="stay-rating-count">(${totalCount})</span>`;
+      await place.fetchFields({ fields: ['rating', 'userRatingCount', 'reviews'] });
+      const t = getApartmentText(apt, lang);
+
+      if (place.rating && place.userRatingCount) {
+        const enReviews = (apt.translations.en.reviews) || [];
+        const siteCount = enReviews.length;
+        const siteAvg = siteCount ? (enReviews.reduce((s,r)=>s+(r.stars||5),0) / siteCount) : 0;
+        const googleCount = place.userRatingCount;
+        const totalCount = siteCount + googleCount;
+        const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
+        const el = document.getElementById('rt-' + apt.id);
+        if (el) el.innerHTML = `<span class="stay-star">★</span>${combinedAvg.toFixed(2)} <span class="stay-rating-count">(${totalCount})</span>`;
+      }
+
+      if (place.reviews && place.reviews.length) {
+        place.reviews.forEach(gr => {
+          const text = (gr.text || (gr.originalText && gr.originalText.text) || '').trim();
+          if (!text) return;
+          allReviewsCombined.push({
+            name: (gr.authorAttribution && gr.authorAttribution.displayName) || 'Google user',
+            text: text,
+            stars: gr.rating || 5,
+            aptName: t.name,
+            source: 'google'
+          });
+        });
+      }
     } catch (err) {
       console.error('[GooglePlaces] failed for', apt.id, err);
     }
   }));
+  renderReviews();
 };
 if (window.google && google.maps && google.maps.places && google.maps.places.Place) { window.initGooglePlaces(); }
+
   
 /* ---------- features ---------- */
 document.getElementById('featuresEyebrow').textContent = sp.featuresEyebrow;
@@ -583,24 +609,42 @@ document.getElementById('featGrid').innerHTML = sp.features.map((f, i) => `
   </div>
 `).join('');
 
-/* ---------- reviews (pulled from the same apartments-data.js reviews used on stay-detail) ---------- */
+/* ---------- reviews (site reviews + live Google reviews, consolidated with show-more) ---------- */
 document.getElementById('reviewsEyebrow').textContent = sp.reviewsEyebrow;
 document.getElementById('reviewsH2').innerHTML = `${sp.reviewsH2a} <em>${sp.reviewsH2em}</em>`;
-const allReviews = APARTMENTS.flatMap(apt => {
-  const t = getApartmentText(apt, lang);
-  return (t.reviews || []).map(r => ({...r, aptName: t.name}));
-});
-document.getElementById('reviewsGrid').innerHTML = allReviews.map(r => `
-  <div class="review-card">
-    <div class="review-stars">${'★'.repeat(r.stars||5)}</div>
-    <p class="review-text">"${r.text}"</p>
-    <div class="review-author">
-      <div class="review-avatar">${r.name.charAt(0)}</div>
-      <div><div class="review-name">${r.name}</div><div class="review-meta">${r.aptName}</div></div>
-    </div>
-  </div>
-`).join('');
 
+const REVIEWS_INITIAL_COUNT = 5;
+let allReviewsCombined = APARTMENTS.flatMap(apt => {
+  const t = getApartmentText(apt, lang);
+  return (t.reviews || []).map(r => ({...r, aptName: t.name, source: 'site'}));
+});
+let reviewsExpanded = false;
+
+function renderReviewCard(r){
+  const badge = r.source === 'google' ? `<span class="review-google-badge">Google</span>` : '';
+  return `
+    <div class="review-card">
+      <div class="review-stars">${'★'.repeat(Math.round(r.stars||5))}${badge}</div>
+      <p class="review-text">"${r.text}"</p>
+      <div class="review-author">
+        <div class="review-avatar">${r.name.charAt(0)}</div>
+        <div><div class="review-name">${r.name}</div><div class="review-meta">${r.aptName}</div></div>
+      </div>
+    </div>`;
+}
+
+function renderReviews(){
+  const visible = reviewsExpanded ? allReviewsCombined : allReviewsCombined.slice(0, REVIEWS_INITIAL_COUNT);
+  document.getElementById('reviewsGrid').innerHTML = visible.map(renderReviewCard).join('');
+  const moreBtn = document.getElementById('reviewsMoreBtn');
+  if (moreBtn){
+    moreBtn.textContent = sp.reviewsShowAll || 'Show all reviews';
+    moreBtn.style.display = (!reviewsExpanded && allReviewsCombined.length > REVIEWS_INITIAL_COUNT) ? 'inline-flex' : 'none';
+  }
+}
+renderReviews();
+
+  
 /* ---------- other services (compact cross-promo row, same component as index.html) ---------- */
 const ost = getOtherServicesText(lang);
 document.getElementById('otherServicesTitle').textContent = ost.sectionTitle;
