@@ -544,7 +544,7 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
   const computedAvg = enReviews.length ? (enReviews.reduce((s,r)=>s+(r.stars||5),0) / enReviews.length) : null;
   const displayRating = apt.rating || computedAvg;
   const displayReviewCount = apt.reviewCount || enReviews.length;
-  const ratingHtml = displayRating ? `<div class="index-rating"><span class="index-star">★</span>${displayRating.toFixed(2)} <span class="index-rating-count">(${displayReviewCount})</span></div>` : '';
+  const ratingHtml = displayRating ? `<div class="index-rating" id="rt-${apt.id}"><span class="index-star">★</span>${displayRating.toFixed(2)} <span class="index-rating-count">(${displayReviewCount})</span></div>` : '';
   return `
     <div class="listing-card" onclick="window.location='stay-detail.html?id=${apt.id}&lang=${lang}'">
       <div class="slider" id="${sliderId}">
@@ -587,8 +587,7 @@ window.initGooglePlaces = async function(){
       const totalCount = siteCount + googleCount;
       const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
       const el = document.getElementById('rt-' + apt.id);
-      if (el) el.innerHTML = `<span class="stay-star">★</span>${combinedAvg.toFixed(2)} <span class="stay-rating-count">(${totalCount})</span>`;
-    } catch (err) {
+      if (el) el.innerHTML = `<span class="index-star">★</span>${combinedAvg.toFixed(2)} <span class="index-rating-count">(${totalCount})</span>`;    } catch (err) {
       console.error('[GooglePlaces] failed for', apt.id, err);
     }
   }));
