@@ -234,13 +234,13 @@ function getOtherServicesText(lang) { return OTHER_SERVICES_TEXT[lang] || OTHER_
 
 /* categories + which items belong to each (order = display order) */
 const AMENITY_CATEGORIES = [
-  { key: "common",   items: ["wifi","smarttv","ac_heating","portable fan","seating","coffeetable","charging","selfcheckin","blackoutcurtains"] },
+  { key: "common",   items: ["wifi","smarttv","ac_heating","portable fan","seating","coffeetable","selfcheckin","blackoutcurtains"] },
   { key: "bedrooms", items: ["freshlinens","pillows","mattressprotector","bedsidelamp","hangers","closet"] },
-  { key: "bathrooms",items: ["bathtowels","handtowels","toiletpaper","soap","shampoo","hairdryer","nonslipmat","firstaid"] },
+  { key: "bathrooms",items: ["bathtowels","handtowels","toiletpaper","soap","shampoo","hairdryer","firstaid"] },
   { key: "kitchen",  items: ["dishwasher","stove","oven","cutlery","cookware","cookingutensils","knifeset","microwave","coffeemaker","fridge","dishsoap","bins","saltpepper"] },
-  { key: "dining",   items: ["platesglassware","diningtable","kettle"] },
+  { key: "dining",   items: ["platesglassware","diningtable"] },
   { key: "laundry",  items: ["washing machine","detergent","iron"] },
-  { key: "safety",   items: ["smartlock","smokealarm","fireextinguisher","emergencycontact"] },
+  { key: "safety",   items: ["smartlock","smokealarm","fireextinguisher"] },
   { key: "extras",   items: ["luggage drop-off","cot","highchair"] }
 ];
 
@@ -254,6 +254,12 @@ function amenitiesWithout(...categoryKeys) {
   const excluded = new Set(
     AMENITY_CATEGORIES.filter(c => categoryKeys.includes(c.key)).flatMap(c => c.items)
   );
+  return STANDARD_AMENITIES.filter(k => !excluded.has(k));
+}
+
+/* tek tek kalem çıkarma — bir evde olmayan birkaç şeyi belirtmek için */
+function standardExcept(...itemKeys) {
+  const excluded = new Set(itemKeys);
   return STANDARD_AMENITIES.filter(k => !excluded.has(k));
 }
 
@@ -273,12 +279,12 @@ const AMENITY_LABELS = {
       selfcheckin:"Self check-in instructions", blackoutcurtains:"Blackout curtains",
       freshlinens:"Fresh bed linens & duvet", pillows:"Pillows & pillow protectors", mattressprotector:"Mattress protector",
       bedsidelamp:"Bedside lamps", hangers:"Clothes hangers", closet:"Closet / dresser storage",
-      bathtowels:"Bath towels", handtowels:"Hand towels & washcloths", toiletpaper:"Toilet paper (4+ rolls)",
-      soap:"Hand soap & lotion", shampoo:"Shampoo & conditioner", hairdryer:"Hair dryer",
+      bathtowels:"Bath towels", handtowels:"Hand & Body Towels", toiletpaper:"Toilet paper (4+ rolls)",
+      soap:"Hand soap", shampoo:"Shampoo & Shower Gel", hairdryer:"Hair dryer",
       nonslipmat:"Non-slip bath mat", firstaid:"First aid kit",
-      dishwasher:"Dishwasher", stove:"Stove / hob", oven:"Oven",
+      dishwasher:"Dishwasher", stove:"Stove / hob", oven:"Oven / Microwave",
       cutlery:"Full cutlery set", cookware:"Kettle, pots, pans & baking tray", cookingutensils:"Cooking utensils",
-      knifeset:"Knife set & chopping boards", microwave:"Microwave, toaster, oven", coffeemaker:"Coffee maker / French press",
+      knifeset:"Knife set & chopping boards", microwave:"Toaster", coffeemaker:"Coffee maker / French press",
       fridge:"Fridge & freezer space", dishsoap:"Dish soap & sponge", bins:"Bin liners & rubbish bins",
       saltpepper:"Salt, pepper & cooking oil",
       platesglassware:"Plates, bowls & glassware", diningtable:"Dining table & chairs", kettle:"Tea, coffee & sugar starter kit",
@@ -301,12 +307,12 @@ const AMENITY_LABELS = {
       selfcheckin:"Self check-in talimatları", blackoutcurtains:"Karartma perdeleri",
       freshlinens:"Temiz nevresim takımı", pillows:"Yastık ve yastık koruyucuları", mattressprotector:"Yatak koruyucu",
       bedsidelamp:"Başucu lambaları", hangers:"Askılar", closet:"Gardırop / dolap",
-      bathtowels:"Banyo havluları", handtowels:"El havluları ve peçeteler", toiletpaper:"Tuvalet kağıdı (4+ rulo)",
-      soap:"El sabunu ve losyon", shampoo:"Şampuan ve saç kremi", hairdryer:"Saç kurutma makinesi",
+      bathtowels:"Banyo havluları", handtowels:"El ve Vücut Havluları", toiletpaper:"Tuvalet kağıdı (4+ rulo)",
+      soap:"El sabunu", shampoo:"Şampuan ve Duş Jeli", hairdryer:"Saç kurutma makinesi",
       nonslipmat:"Kaymaz banyo paspası", firstaid:"İlk yardım çantası",
-      dishwasher:"Bulaşık makinesi", stove:"Ocak", oven:"Fırın",
+      dishwasher:"Bulaşık makinesi", stove:"Ocak", oven:"Fırın / Mikrodalga",
       cutlery:"Tam çatal-bıçak takımı", cookware:"Su ısıtıcısı, tencere, tava ve fırın tepsisi", cookingutensils:"Mutfak gereçleri",
-      knifeset:"Bıçak seti ve kesme tahtaları", microwave:"Mikrodalga, tost makinesi, fırın", coffeemaker:"Kahve makinesi / French press",
+      knifeset:"Bıçak seti ve kesme tahtaları", microwave:"Tost makinesi", coffeemaker:"Kahve makinesi / French press",
       fridge:"Buzdolabı ve dondurucu alanı", dishsoap:"Bulaşık deterjanı ve sünger", bins:"Çöp poşeti ve çöp kutuları",
       saltpepper:"Tuz, karabiber ve yemeklik yağ",
       platesglassware:"Tabak, kase ve bardaklar", diningtable:"Yemek masası ve sandalyeler", kettle:"Çay, kahve ve şeker başlangıç seti",
@@ -329,12 +335,12 @@ const AMENITY_LABELS = {
       selfcheckin:"Инструкции для самостоятельного заезда", blackoutcurtains:"Плотные шторы",
       freshlinens:"Свежее постельное бельё и одеяло", pillows:"Подушки и наволочки", mattressprotector:"Наматрасник",
       bedsidelamp:"Прикроватные лампы", hangers:"Плечики для одежды", closet:"Шкаф / место для хранения",
-      bathtowels:"Банные полотенца", handtowels:"Полотенца для рук и салфетки", toiletpaper:"Туалетная бумага (4+ рулона)",
-      soap:"Мыло для рук и лосьон", shampoo:"Шампунь и кондиционер", hairdryer:"Фен",
+      bathtowels:"Банные полотенца", handtowels:"Полотенца для рук и тела", toiletpaper:"Туалетная бумага (4+ рулона)",
+      soap:"Мыло для рук", shampoo:"Шампунь и гель для душа", hairdryer:"Фен",
       nonslipmat:"Нескользящий коврик для ванной", firstaid:"Аптечка первой помощи",
-      dishwasher:"Посудомоечная машина", stove:"Плита", oven:"Духовка",
+      dishwasher:"Посудомоечная машина", stove:"Плита", oven:"Духовка / Микроволновка",
       cutlery:"Полный набор столовых приборов", cookware:"Чайник, кастрюли, сковороды и противень", cookingutensils:"Кухонные принадлежности",
-      knifeset:"Набор ножей и разделочные доски", microwave:"Микроволновка, тостер, духовка", coffeemaker:"Кофеварка / френч-пресс",
+      knifeset:"Набор ножей и разделочные доски", microwave:"Тостер", coffeemaker:"Кофеварка / френч-пресс",
       fridge:"Холодильник и морозильная камера", dishsoap:"Средство для мытья посуды и губка", bins:"Пакеты для мусора и мусорные вёдра",
       saltpepper:"Соль, перец и растительное масло",
       platesglassware:"Тарелки, миски и стаканы", diningtable:"Обеденный стол и стулья", kettle:"Стартовый набор чая, кофе и сахара",
@@ -372,7 +378,7 @@ const APARTMENTS = [
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
     images: ["stay1-1.jpg.webp","stay1-2.jpg.webp","stay1-3.jpg.webp","stay1-4.jpg.webp","stay1-5.jpg.webp","stay1-6.jpg.webp","stay1-7.jpg.webp","stay1-8.jpg.webp"],
-    amenities: STANDARD_AMENITIES,
+    amenities: standardExcept("microwave","smokealarm","fireextinguisher"),
     translations: {
       en: {
         location: "Taksim · Galata",
@@ -406,7 +412,7 @@ const APARTMENTS = [
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
     images: ["stay2-1.webp","stay2-2.webp","stay2-3.webp","stay2-4.webp","stay2-5.webp","stay2-6.webp","stay2-7.webp","stay2-8.webp"],
-    amenities: STANDARD_AMENITIES,
+    amenities: standardExcept("portable fan","firstaid","dishwasher","microwave","smokealarm","fireextinguisher"),
     translations: {
       en: {
         location: "Taksim · Galata",
@@ -439,7 +445,7 @@ const APARTMENTS = [
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
     images: ["stay3-1.webp","stay3-2.webp","stay3-3.webp","stay3-4.webp","stay3-5.webp","stay3-6.webp","stay3-7.webp","stay3-8.webp","stay3-9.webp","stay3-10.webp"],
-    amenities: STANDARD_AMENITIES,
+    amenities: standardExcept("microwave"),
     translations: {
       en: {
         location: "Beyoğlu · Taksim",
@@ -472,7 +478,7 @@ const APARTMENTS = [
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
     images: ["stay4-1.webp","stay4-2.webp","stay4-3.webp","stay4-4.webp","stay4-5.webp","stay4-6.webp","stay4-7.webp"],
-    amenities: STANDARD_AMENITIES,
+    amenities: standardExcept("portable fan","dishwasher"),
     translations: {
       en: {
         location: "Taksim · Galata",
@@ -505,7 +511,7 @@ const APARTMENTS = [
     checkinTime: "3:00 PM", checkoutTime: "11:00 AM",
     blockedDates: [], // ISO "YYYY-MM-DD" nights that are booked — will be auto-filled once Google Calendar sync is connected
     images: ["stay5-1.webp","stay5-2.webp","stay5-3.webp","stay5-4.webp","stay5-5.webp","stay5-6.webp"],
-    amenities: STANDARD_AMENITIES,
+    amenities: standardExcept("firstaid","smokealarm","fireextinguisher"),
     translations: {
       en: {
         location: "Beyoğlu · Taksim",
