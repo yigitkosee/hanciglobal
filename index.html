@@ -779,7 +779,7 @@ document.addEventListener('click', function(e) {
   if (waLink) {
     gtag('event', 'wa_click', {
       event_category: 'engagement',
-      event_label: window.location.pathname
+      event_label: window.location.pathname + window.location.search
     });
   }
 
@@ -787,7 +787,7 @@ document.addEventListener('click', function(e) {
   if (callLink) {
     gtag('event', 'call_click', {
       event_category: 'engagement',
-      event_label: window.location.pathname
+      event_label: window.location.pathname + window.location.search
     });
   }
 });
