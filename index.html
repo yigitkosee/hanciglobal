@@ -464,6 +464,7 @@ const lang = params.get('lang') || 'en';
 /* ---------- hreflang tags (SEO: bu sayfanın TR/RU versiyonlarının da olduğunu Google'a söylüyor) ---------- */
 (function(){
   const path = window.location.pathname.split('/').pop();
+  if (path === 'index.html') path = '';
   const idParam = params.get('id');
   const base = `https://hanciglobal.com/${path}`;
   const variants = {
@@ -747,7 +748,7 @@ document.getElementById('footerContact').textContent = ip.footerContact;
 document.getElementById('footerCompany').textContent = ip.footerCompany;
 
 /* ---------- meta ---------- */
-document.getElementById('canonicalLink').href = 'https://hanciglobal.com/index.html?lang=' + lang;
+document.getElementById('canonicalLink').href = 'https://hanciglobal.com/?lang=' + lang;
 
 /* ---------- form submit ---------- */
 function sendWA(){
