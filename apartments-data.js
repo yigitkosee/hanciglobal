@@ -401,7 +401,7 @@ const APARTMENTS = [
   {
     id: "magical-sea-view",
     airbnbUrl: "https://www.airbnb.co.uk/rooms/755682121457369800",
-    directionsUrl: "https://share.google/QwvbAYQiGJjWehh40",
+    directionsUrl: "https://share.google/053wdlTvP7lcqAg2L",
     waNumber: "905063335154",
     placeId: "ChIJBWpYHSS5yhQRsPkVPLe8Tsc", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 3, baths: 1.5, guests: 8,
