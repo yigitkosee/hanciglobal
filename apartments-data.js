@@ -403,7 +403,7 @@ const APARTMENTS = [
     airbnbUrl: "https://www.airbnb.co.uk/rooms/755682121457369800",
     directionsUrl: "https://share.google/QwvbAYQiGJjWehh40",
     waNumber: "905063335154",
-    placeId: "ChIJkweelkW3yhQRtJTLyV6fa3Y", // real Google Business Profile — pulls live Google reviews
+    placeId: "ChIJBWpYHSS5yhQRsPkVPLe8Tsc", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 3, baths: 1.5, guests: 8,
     priceFrom: 80, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
