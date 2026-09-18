@@ -367,7 +367,7 @@ const APARTMENTS = [
   {
     id: "galata-tower",
     airbnbUrl: "https://www.airbnb.co.uk/rooms/1234624841258038203",
-    directionsUrl: "https://share.google/ShQbOu6Lr0ACbdRop",
+    directionsUrl: "https://maps.app.goo.gl/XKS1oDmeWqDZxfi47",
     waNumber: "905063335154",
     placeId: "ChIJJcHiMAe5yhQRRQVjidxnBRw", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 3, baths: 1, guests: 5,
@@ -401,7 +401,7 @@ const APARTMENTS = [
   {
     id: "magical-sea-view",
     airbnbUrl: "https://www.airbnb.co.uk/rooms/755682121457369800",
-    directionsUrl: "https://share.google/053wdlTvP7lcqAg2L",
+    directionsUrl: "https://maps.app.goo.gl/nW7ouETecjW4CiKh9",
     waNumber: "905063335154",
     placeId: "ChIJBWpYHSS5yhQRsPkVPLe8Tsc", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 3, baths: 1.5, guests: 8,
@@ -434,7 +434,7 @@ const APARTMENTS = [
   {
     id: "heritage-street",
     airbnbUrl: "https://www.airbnb.co.uk/rooms/1386135456988178273",
-    directionsUrl: "https://share.google/HXSmsLdZp071Jdnr0",
+    directionsUrl: "https://maps.app.goo.gl/M2HiMtFyV1pjm4wK7",
     waNumber: "905063335154",
     placeId: "ChIJo-5zlTS5yhQRteRGCI5FeZk", // real Google Business Profile — pulls live Google reviews
     bedrooms: 4, beds: 5, baths: 2, guests: 10,
@@ -467,7 +467,7 @@ const APARTMENTS = [
   {
     id: "golden-horn-hidden-heaven",
     airbnbUrl: "https://www.airbnb.co.uk/rooms/1349242709634643218",
-    directionsUrl: "https://share.google/XKNHdBdSQaFBPv8vV",
+    directionsUrl: "https://maps.app.goo.gl/So39V1y36HcxUQEz7",
     waNumber: "905063335154",
     placeId: "ChIJ3RiwVtO5yhQRRaVjIifPWnc", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 2, baths: 1, guests: 4,
@@ -500,7 +500,7 @@ const APARTMENTS = [
   {
     id: "hidden-oasis",
     airbnbUrl: "https://www.airbnb.co.uk/rooms/1088463429757145807",
-    directionsUrl: "https://share.google/O6xyzQoehfhspFjjx",
+    directionsUrl: "https://maps.app.goo.gl/w6KHozbpJtxX7jwM8",
     waNumber: "905063335154",
     placeId: "ChIJeW0Vrre3yhQRxmJ9Zcm2i50", // real Google Business Profile — pulls live Google reviews
     bedrooms: 2, beds: 3, baths: 1, guests: 5,
