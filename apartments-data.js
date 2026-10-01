@@ -653,6 +653,41 @@ function getDirectDiscountText(lang) {
   const pct = Math.round(DIRECT_DISCOUNT * 100);
   return { badge: t.badge.replace('{pct}', pct), save: t.save };
 }
+/* ---------- Sık sorulan sorular (daire detay sayfası) ----------
+   {checkin} / {checkout} dairenin kendi saatleriyle değiştirilir.
+   link: "travel" → Hancı Travel sayfası, "dates" → sayfadaki takvime kaydırır. */
+const STAY_FAQ = {
+  en: { title: "Frequently asked questions", items: [
+    { q: "Is there parking at the apartment?", a: "None of our apartments has its own parking, but there are affordable and secure car parks nearby. Just ask us and we will send you their details." },
+    { q: "Can I check in early or check out late?", a: "Check-in is from {checkin} and check-out is until {checkout}. If there is no guest staying right before or after you, we do our best to extend your times — just let us know in advance." },
+    { q: "Can I leave my luggage before check-in or after check-out?", a: "Yes. In every case we help you keep your luggage for longer, so you can explore the city without carrying your bags." },
+    { q: "Do you arrange airport transfers?", a: "Yes. We arrange private airport transfers from both Istanbul airports for a fee, through Hancı Travel.", link: "travel", linkText: "See transfer options →" },
+    { q: "How do I book directly?", a: "Choose your dates in the calendar on this page and send them to us on WhatsApp. We confirm availability and the price — booking direct costs 10% less than on Airbnb.", link: "dates", linkText: "Check dates →" }
+  ]},
+  tr: { title: "Sık sorulan sorular", items: [
+    { q: "Dairede otopark var mı?", a: "Dairelerimizin hiçbirinin kendi otoparkı yok, ancak çevrede uygun fiyatlı ve güvenli otoparklar bulunuyor. Bize sormanız yeterli, bilgilerini paylaşırız." },
+    { q: "Erken giriş ya da geç çıkış yapabilir miyim?", a: "Giriş saati {checkin}, çıkış saati {checkout}. Sizden hemen önce ya da hemen sonra misafirimiz yoksa süreyi elimizden geldiğince uzatmaya çalışıyoruz — önceden haber vermeniz yeterli." },
+    { q: "Girişten önce ya da çıkıştan sonra bavullarımı bırakabilir miyim?", a: "Evet. Her durumda bavullarınızı daha uzun süre tutmanıza yardımcı oluyoruz; böylece şehri bavul taşımadan gezebilirsiniz." },
+    { q: "Havalimanı transferi ayarlıyor musunuz?", a: "Evet. Hancı Travel üzerinden, ücreti karşılığında her iki İstanbul havalimanından özel transfer ayarlıyoruz.", link: "travel", linkText: "Transfer seçeneklerini görün →" },
+    { q: "Doğrudan nasıl rezervasyon yaparım?", a: "Bu sayfadaki takvimden tarihlerinizi seçip WhatsApp'tan bize gönderin. Müsaitliği ve fiyatı onaylıyoruz — doğrudan rezervasyon Airbnb'den %10 daha uygun.", link: "dates", linkText: "Tarihleri kontrol et →" }
+  ]},
+  ru: { title: "Часто задаваемые вопросы", items: [
+    { q: "Есть ли парковка?", a: "Ни в одной из наших квартир нет собственной парковки, но рядом есть недорогие и охраняемые парковки. Просто спросите нас — мы пришлём их данные." },
+    { q: "Можно ли заехать раньше или выехать позже?", a: "Заезд с {checkin}, выезд до {checkout}. Если прямо перед вами или после вас нет гостей, мы постараемся продлить время — просто сообщите нам заранее." },
+    { q: "Можно ли оставить багаж до заезда или после выезда?", a: "Да. В любом случае мы поможем вам оставить багаж подольше, чтобы вы могли гулять по городу без чемоданов." },
+    { q: "Вы организуете трансфер из аэропорта?", a: "Да. Через Hancı Travel мы организуем платный частный трансфер из обоих аэропортов Стамбула.", link: "travel", linkText: "Варианты трансфера →" },
+    { q: "Как забронировать напрямую?", a: "Выберите даты в календаре на этой странице и отправьте их нам в WhatsApp. Мы подтвердим наличие и цену — прямое бронирование на 10% дешевле, чем на Airbnb.", link: "dates", linkText: "Проверить даты →" }
+  ]},
+  ar: { title: "الأسئلة الشائعة", items: [
+    { q: "هل يوجد موقف سيارات؟", a: "لا يوجد موقف سيارات خاص بأيٍّ من شققنا، لكن توجد مواقف آمنة وبأسعار مناسبة في الجوار. اسألنا وسنرسل لك تفاصيلها." },
+    { q: "هل يمكنني تسجيل الوصول مبكراً أو المغادرة متأخراً؟", a: "تسجيل الوصول من الساعة {checkin} والمغادرة حتى الساعة {checkout}. إذا لم يكن هناك ضيف قبلك أو بعدك مباشرةً، نبذل قصارى جهدنا لتمديد الوقت — فقط أخبرنا مسبقاً." },
+    { q: "هل يمكنني ترك أمتعتي قبل تسجيل الوصول أو بعد المغادرة؟", a: "نعم. في جميع الأحوال نساعدك على الاحتفاظ بأمتعتك لفترة أطول، لتتجوّل في المدينة دون حمل حقائبك." },
+    { q: "هل توفّرون النقل من المطار؟", a: "نعم. نوفّر عبر Hancı Travel نقلاً خاصاً مدفوعاً من كلا مطارَي إسطنبول.", link: "travel", linkText: "← خيارات النقل" },
+    { q: "كيف أحجز مباشرةً؟", a: "اختر تواريخك من التقويم في هذه الصفحة وأرسلها إلينا عبر واتساب. نؤكّد التوفّر والسعر — الحجز المباشر أرخص بنسبة 10% من Airbnb.", link: "dates", linkText: "← تحقّق من التواريخ" }
+  ]}
+};
+function getStayFaq(lang) { return STAY_FAQ[lang] || STAY_FAQ.en; }
+
 /* "<s>€111</s> From €100 / night  [−10% vs Airbnb]" — ilan kartları ve rezervasyon kutusu için */
 function directPriceHtml(lang, curr, price, prefix, suffix) {
   return `<s class="airbnb-strike">${curr}${airbnbPriceOf(price)}</s> ${prefix || ''}${curr}${price}<span>${suffix || ''}</span>` +

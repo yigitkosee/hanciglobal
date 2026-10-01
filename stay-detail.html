@@ -176,6 +176,14 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .op-star{color:#F5A623}
 .op-rating-count{font-size:11px;font-weight:600;color:var(--muted)}
 .maps-title{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:20px}
+.faq-list{display:flex;flex-direction:column;gap:10px;max-width:820px}
+.faq-item{border:1.5px solid var(--border);border-radius:14px;background:var(--bg);overflow:hidden}
+.faq-item summary{cursor:pointer;list-style:none;padding:18px 22px;font-size:15px;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:22px;font-weight:400;color:var(--muted);flex-shrink:0;transition:transform .2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 22px 18px;font-size:14px;line-height:1.75;color:var(--ink2)}
+.faq-item a{display:inline-block;margin:-6px 22px 18px;font-size:14px;font-weight:700;color:var(--teal-d)}
 .maps-embed{width:100%;height:320px;border:0;border-radius:16px}
 
 /* DETAIL BODY */
@@ -478,6 +486,12 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   <a class="maps-guide-link" href="guides/istanbul-airport-to-galata-taksim.html" data-guide="istanbul-airport-to-galata-taksim" data-i18n>✈️ How to get here from the airports →</a>
 </section>
 
+<!-- FAQ -->
+<section class="maps-section faq-section">
+  <div class="maps-title" id="faqTitle"></div>
+  <div class="faq-list" id="faqList"></div>
+</section>
+
 <!-- OTHER PROPERTIES (cross-sell) -->
 <section class="other-props-section">
   <div class="other-props-title" id="otherPropsTitle"></div>
@@ -539,7 +553,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="apartments-data.js?v=8"></script>
+<script src="apartments-data.js?v=9"></script>
 <script>
 /* ---------- read URL params ---------- */
 
@@ -845,6 +859,49 @@ document.getElementById('dsfText').textContent = ui.selectDates;
 /* ---------- Map embed ---------- */
 document.getElementById('mapsTitle').textContent = ui.locationTitle;
 document.getElementById('mapsEmbed').src = `https://www.google.com/maps?q=${encodeURIComponent(apt.mapQuery || t.location)}&output=embed`;
+
+/* ---------- FAQ (metinler apartments-data.js → STAY_FAQ) ---------- */
+const faq = getStayFaq(lang);
+/* "3:00 PM" → "15:00" (İngilizce dışındaki dillerde 24 saat biçimi daha doğal) */
+function toH24(s){ const m = String(s).match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i); if (!m) return s; let h = +m[1]; if (/pm/i.test(m[3] || '') && h < 12) h += 12; if (/am/i.test(m[3] || '') && h === 12) h = 0; return String(h).padStart(2, '0') + ':' + m[2]; }
+const faqTime = s => lang === 'en' ? s : toH24(s);
+const faqText = s => s.replace('{checkin}', faqTime(apt.checkinTime)).replace('{checkout}', faqTime(apt.checkoutTime));
+document.getElementById('faqTitle').textContent = faq.title;
+document.getElementById('faqList').innerHTML = faq.items.map(it => {
+  const link = it.link === 'travel' ? `<a href="travel.html${lang === 'en' ? '' : '?lang=' + lang}">${it.linkText}</a>`
+             : it.link === 'dates' ? `<a href="#availabilitySection" onclick="event.preventDefault();scrollToAvailability()">${it.linkText}</a>` : '';
+  return `<details class="faq-item"><summary>${it.q}</summary><p>${faqText(it.a)}</p>${link}</details>`;
+}).join('');
+
+/* ---------- Google için yapılandırılmış veri: bu daire (konaklama işletmesi) + SSS ----------
+   Puan/yorum bilgisi bilerek eklenmiyor: Google, işletmenin kendi sitesindeki puanları yıldız olarak göstermiyor. */
+(function(){
+  const addr = apt.mapQuery || '';
+  const postal = (addr.match(/\b(\d{5})\b/) || [])[1];
+  const pageUrl = 'https://hanciglobal.com/stay-detail.html?id=' + apt.id + (lang !== 'en' ? '&lang=' + lang : '');
+  const data = [
+    {
+      '@context': 'https://schema.org', '@type': 'LodgingBusiness',
+      name: t.name, description: t.shortDesc, url: pageUrl, inLanguage: lang,
+      image: apt.images.slice(0, 5).map(i => 'https://hanciglobal.com/' + i),
+      telephone: '+90 506 333 51 54', email: 'info@hanciglobal.com', priceRange: '€€',
+      address: { '@type': 'PostalAddress', streetAddress: postal ? addr.split(postal)[0].replace(/,\s*$/, '').trim() : addr,
+                 postalCode: postal, addressLocality: 'Beyoğlu', addressRegion: 'İstanbul', addressCountry: 'TR' },
+      hasMap: apt.directionsUrl, checkinTime: toH24(apt.checkinTime), checkoutTime: toH24(apt.checkoutTime),
+      numberOfRooms: apt.bedrooms, petsAllowed: false, smokingAllowed: false,
+      sameAs: [apt.airbnbUrl].filter(Boolean),
+      parentOrganization: { '@type': 'Organization', name: 'Hancı Global', url: 'https://hanciglobal.com/' }
+    },
+    {
+      '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: lang,
+      mainEntity: faq.items.map(it => ({ '@type': 'Question', name: it.q, acceptedAnswer: { '@type': 'Answer', text: faqText(it.a) } }))
+    }
+  ];
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify(data);
+  document.head.appendChild(s);
+})();
 
 /* ---------- other properties (cross-sell — every apartment except the current one) ---------- */
 document.getElementById('otherPropsTitle').textContent = ui.otherPropsTitle;
