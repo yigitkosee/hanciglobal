@@ -11,7 +11,19 @@
 </script>
 <meta charset="UTF-8">
 <meta name="description" id="metaDesc" content="VIP airport transfers, Bosphorus boat tours and chauffeured vehicle hire in Istanbul. TURSAB licensed. Fixed prices, 24/7 service.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hancı Global">
+<meta property="og:title" content="Hancı Travel · Istanbul VIP Transfers &amp; Boat Tours">
+<meta property="og:description" content="VIP airport transfers, Bosphorus boat tours and chauffeured vehicle hire in Istanbul. TURSAB licensed. Fixed prices, 24/7 service.">
+<meta property="og:url" content="https://hanciglobal.com/travel.html">
+<meta property="og:image" content="https://hanciglobal.com/og-travel.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" id="canonicalLink" href="https://hanciglobal.com/travel.html">
 <title id="pageTitle">Hancı Travel · Istanbul VIP Transfers & Boat Tours</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -362,7 +374,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
       </div>
     </div>
     <div class="transfer-img">
-      <img src="transferana.jpg" alt="VIP transfer Istanbul">
+      <img loading="lazy" src="transferana.jpg" alt="VIP transfer Istanbul">
     </div>
   </div>
 
@@ -402,7 +414,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
       <div style="margin-top:20px" id="boatBadges"></div>
     </div>
     <div class="boat-img">
-      <img src="yachting.jpg" alt="Bosphorus boat tour Istanbul">
+      <img loading="lazy" src="yachting.jpg" alt="Bosphorus boat tour Istanbul">
     </div>
   </div>
 
@@ -492,7 +504,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Hancı Global · Istanbul</span>
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul<br>Assetto Gayrimenkul Yatırım A.Ş. · Ergazi Mah. 1803 Cad. 16 No: 13 A İç Kapı No: 12, Yenimahalle / Ankara</span>
     <div class="footer-social">
       <a href="https://instagram.com/hanciglobal" target="_blank">Instagram</a>
       <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
@@ -505,6 +517,16 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'en';
+document.documentElement.lang = lang;
+/* ---------- sayfa başlığı ve açıklaması (dile göre) ---------- */
+const PAGE_META = {
+  tr: { title: "Hancı Travel · İstanbul VIP Transfer ve Tekne Turları", desc: "İstanbul'da VIP havalimanı transferi, Boğaz tekne turları ve şoförlü araç kiralama. TÜRSAB belgeli. Sabit fiyat, 7/24 hizmet." },
+  ru: { title: "Hancı Travel · VIP-трансферы и прогулки по Босфору", desc: "VIP-трансферы из аэропорта, прогулки на яхте по Босфору и аренда автомобиля с водителем в Стамбуле. Лицензия TURSAB. Фиксированные цены, 24/7." }
+};
+if (PAGE_META[lang]) {
+  document.title = PAGE_META[lang].title;
+  document.getElementById('metaDesc').setAttribute('content', PAGE_META[lang].desc);
+}
 /* ---------- hreflang tags (SEO: bu sayfanın TR/RU versiyonlarının da olduğunu Google'a söylüyor) ---------- */
 (function(){
   const path = window.location.pathname.split('/').pop();
@@ -603,7 +625,7 @@ document.getElementById('vehicleGrid').innerHTML = VEHICLES.map(v => {
   const t = tp.vehicles[v.key];
   return `
     <div class="vehicle-card">
-      <div class="vehicle-card-img"><img src="${v.img}" alt="${v.name}"></div>
+      <div class="vehicle-card-img"><img loading="lazy" src="${v.img}" alt="${v.name}"></div>
       <div class="vehicle-card-body">
         <div class="vehicle-name">${v.name}</div>
         <div class="vehicle-cap">${t.cap}</div>
@@ -670,7 +692,7 @@ document.getElementById('boatOptions').innerHTML = BOAT_TOURS.map(tour => {
   const msg = encodeURIComponent(tour.waMsg);
   return `
     <div class="boat-card">
-      <div class="boat-card-img"><img src="${tour.img}" alt="${t.title}"></div>
+      <div class="boat-card-img"><img loading="lazy" src="${tour.img}" alt="${t.title}"></div>
       <div class="boat-card-body">
         <span class="boat-chip">${t.chip}</span>
         <div class="boat-title">${t.title}</div>
@@ -722,7 +744,7 @@ document.getElementById('footerContact').textContent = tp.footerContact;
 document.getElementById('footerCompany').textContent = tp.footerCompany;
 
 /* ---------- meta ---------- */
-document.getElementById('canonicalLink').href = 'https://hanciglobal.com/travel.html?lang=' + lang;
+document.getElementById('canonicalLink').href = 'https://hanciglobal.com/travel.html' + (lang !== 'en' ? '?lang=' + lang : '');
 
 /* ---------- copy code / mobile nav ---------- */
 function copyCode(){

@@ -10,8 +10,20 @@
 </script>
 <meta charset="UTF-8">
 <meta name="description" id="metaDesc" content="Hancı Global — Istanbul short-term rentals, real estate, renovation, travel and visa consultancy. One trilingual team, five services.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="canonical" id="canonicalLink" href="https://hanciglobal.com/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hancı Global">
+<meta property="og:title" content="Hancı Global · Istanbul">
+<meta property="og:description" content="Hancı Global — Istanbul short-term rentals, real estate, renovation, travel and visa consultancy. One trilingual team, five services.">
+<meta property="og:url" content="https://hanciglobal.com/">
+<meta property="og:image" content="https://hanciglobal.com/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" id="canonicalLink" href="https://hanciglobal.com/">
 <title id="pageTitle">Hancı Global · Istanbul</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -128,15 +140,8 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .intro-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
 .itag{font-size:12px;font-weight:700;padding:7px 14px;border-radius:7px;border:1.5px solid var(--border);color:var(--ink2);background:#fff}
 
-/* STATS */
-.stats{padding:72px 56px;background:var(--navy);display:grid;grid-template-columns:repeat(4,1fr)}
-.stat-item{padding:0 32px;border-right:1px solid rgba(255,255,255,.12);text-align:center}
-.stat-item:last-child{border-right:none}
-.stat-num{font-family:"Cormorant Garamond",serif;font-size:56px;font-weight:500;color:#E8C86A;letter-spacing:-2px;line-height:1}
-.stat-label{font-size:12px;color:rgba(255,255,255,.5);font-weight:600;margin-top:10px;letter-spacing:.5px}
-
-/* LOCATIONS */
-.locations{padding:100px 56px;background:var(--bg)}
+/* LOCATIONS (üstteki "other-services" ile aynı zemin rengi, üst boşluk oradan geliyor) */
+.locations{padding:0 56px 100px;background:var(--bg)}
 .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
 .loc-card{background:#fff;border-radius:20px;overflow:hidden;border:1.5px solid var(--border);transition:border-color .2s,transform .2s}
 .loc-card:hover{border-color:var(--gold);transform:translateY(-3px)}
@@ -228,13 +233,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
   .intro{grid-template-columns:1fr;gap:32px;padding:56px 24px}
   .intro-img{height:280px}
   .sec-header{flex-direction:column;gap:16px;align-items:flex-start;margin-bottom:32px}
-  .stats{grid-template-columns:repeat(2,1fr);padding:48px 24px;gap:0}
-  .stat-item{padding:24px 16px;border-right:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
-  .stat-item:nth-child(2){border-right:none}
-  .stat-item:nth-child(3){border-bottom:none}
-  .stat-item:nth-child(4){border-right:none;border-bottom:none}
-  .stat-num{font-size:40px}
-  .locations{padding:56px 24px}
+  .locations{padding:0 24px 56px}
   .loc-grid{grid-template-columns:1fr;gap:16px;margin-top:32px}
   .contact{grid-template-columns:1fr;gap:40px;padding:56px 24px}
   
@@ -246,7 +245,6 @@ footer{background:var(--navy);padding:56px 56px 32px}
 @media (max-width: 480px) {
   .hero-h1{font-size:36px;letter-spacing:-1px}
   .hero-eyebrow{font-size:11px;padding:5px 12px}
-  .stat-num{font-size:34px}
   .sec-h2{font-size:30px}
 }
 
@@ -329,7 +327,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
 <!-- ABOUT -->
 <section class="intro" id="about">
   <div class="intro-img">
-    <img src="kiz.jpg" alt="Istanbul streets">
+    <img loading="lazy" src="kiz.jpg" alt="Istanbul streets">
   </div>
   <div>
     <div class="intro-badge" id="aboutBadge"></div>
@@ -346,9 +344,6 @@ footer{background:var(--navy);padding:56px 56px 32px}
   <div class="other-services-title" id="otherServicesTitle"></div>
   <div class="other-services-inner" id="otherServicesGrid"></div>
 </section>
-
-<!-- STATS -->
-<div class="stats" id="statsGrid"></div>
 
 <!-- LOCATIONS -->
 <section class="locations">
@@ -377,18 +372,18 @@ footer{background:var(--navy);padding:56px 56px 32px}
       <div class="ch-icon" style="background:#FAEEDA">✉️</div>
       <div><div class="ch-label" id="chEmailLabel"></div><div class="ch-val">info@hanciglobal.com</div></div>
     </a>
-        <a href="https://maps.app.goo.gl/oQ7cBEJbRQNwEXku8" target="_blank" class="ch">
+    <a href="https://maps.app.goo.gl/oQ7cBEJbRQNwEXku8" target="_blank" class="ch">
       <div class="ch-icon" style="background:#E1F5EE">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       </div>
       <div><div class="ch-label" id="chAddressLabel"></div><div class="ch-val" style="font-size:13px;line-height:1.5">Müeyyetzade Mah. Necatibey Cad.<br>Sait Demirbağ İşhanı No:5/45, Beyoğlu</div></div>
     </a>
-    <a href="#" class="ch" style="cursor:default">
+    <div class="ch" style="cursor:default">
       <div class="ch-icon" style="background:#F3F8FB">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E4055" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D1E35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></svg>
       </div>
-      <div><div class="ch-label">Şirket Unvanı</div><div class="ch-val" style="font-size:13px;line-height:1.5">Assetto Gayrimenkul Yatırım A.Ş.<br>Ergazi Mah. 1803 Cad. No:16/13A İç Kapı No:12<br>Yenimahalle/Ankara</div></div>
-    </a>
+      <div><div class="ch-label" id="chLegalLabel"></div><div class="ch-val" style="font-size:13px;line-height:1.5">Assetto Gayrimenkul Yatırım A.Ş.<br><span style="font-weight:500">Ergazi Mah. 1803 Cad. 16 No: 13 A İç Kapı No: 12<br>Yenimahalle / Ankara</span></div></div>
+    </div>
     <a href="https://instagram.com/hanciglobal" target="_blank" class="ch">
       <div class="ch-icon" style="background:#FAECE7">📷</div>
       <div><div class="ch-label" id="chInstagramLabel"></div><div class="ch-val">@hanciglobal</div></div>
@@ -452,8 +447,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Hancı Global · Istanbul</span>
-    <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px">Assetto Gayrimenkul Yatırım A.Ş. — Ergazi Mah. 1803 Cad. No:16/13A İç Kapı No:12, Yenimahalle/Ankara</div>
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul<br>Assetto Gayrimenkul Yatırım A.Ş. · Ergazi Mah. 1803 Cad. 16 No: 13 A İç Kapı No: 12, Yenimahalle / Ankara</span>
     <div class="footer-social">
       <a href="https://instagram.com/hanciglobal" target="_blank">Instagram</a>
       <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
@@ -467,6 +461,16 @@ footer{background:var(--navy);padding:56px 56px 32px}
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'en';
+document.documentElement.lang = lang;
+/* ---------- sayfa başlığı ve açıklaması (dile göre) ---------- */
+const PAGE_META = {
+  tr: { title: "Hancı Global · İstanbul", desc: "Hancı Global — İstanbul'da kısa dönem kiralık daireler, gayrimenkul, tadilat, seyahat ve vize danışmanlığı. Üç dilli tek ekip, beş hizmet." },
+  ru: { title: "Hancı Global · Стамбул", desc: "Hancı Global — краткосрочная аренда, недвижимость, ремонт, туризм и визовый консалтинг в Стамбуле. Одна трёхъязычная команда, пять направлений." }
+};
+if (PAGE_META[lang]) {
+  document.title = PAGE_META[lang].title;
+  document.getElementById('metaDesc').setAttribute('content', PAGE_META[lang].desc);
+}
 
 /* ---------- hreflang tags (SEO: bu sayfanın TR/RU versiyonlarının da olduğunu Google'a söylüyor) ---------- */
 (function(){
@@ -559,7 +563,7 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
     <div class="listing-card" onclick="window.location='stay-detail.html?id=${apt.id}&lang=${lang}'">
       <div class="slider" id="${sliderId}">
         <div class="slides" id="slides-${sliderId}">
-          ${apt.images.map(img => `<div class="slide"><img src="${img}" alt="${t.name}"></div>`).join('')}
+          ${apt.images.map(img => `<div class="slide"><img loading="lazy" src="${img}" alt="${t.name}"></div>`).join('')}
         </div>
         <button class="slider-btn slider-prev" onclick="event.stopPropagation();slide('${sliderId}',-1)">&#8249;</button>
         <button class="slider-btn slider-next" onclick="event.stopPropagation();slide('${sliderId}',1)">&#8250;</button>
@@ -707,11 +711,6 @@ document.getElementById('aboutP1').textContent = ip.aboutP1;
 document.getElementById('aboutP2').textContent = ip.aboutP2;
 document.getElementById('aboutTags').innerHTML = ip.aboutTags.map(t => `<span class="itag">${t}</span>`).join('');
 
-/* ---------- stats ---------- */
-document.getElementById('statsGrid').innerHTML = ip.stats.map(s => `
-  <div class="stat-item"><div class="stat-num">${s.num}</div><div class="stat-label">${s.label}</div></div>
-`).join('');
-
 /* ---------- locations ---------- */
 document.getElementById('locationsEyebrow').textContent = ip.locationsEyebrow;
 document.getElementById('locationsH2').innerHTML = `${ip.locationsH2a} <em>${ip.locationsH2em}</em>`;
@@ -719,7 +718,7 @@ const LOC_IMAGES = ["https://images.unsplash.com/photo-1527838832700-5059252407f
 const LOC_COLORS = ["var(--teal)","var(--amber)","var(--coral)"];
 document.getElementById('locGrid').innerHTML = ip.locations.map((loc, i) => `
   <div class="loc-card">
-    <div class="loc-card-img"><img src="${LOC_IMAGES[i]}" alt="${loc.name}"></div>
+    <div class="loc-card-img"><img loading="lazy" src="${LOC_IMAGES[i]}" alt="${loc.name}"></div>
     <div class="loc-card-body">
       <div class="loc-stripe" style="background:${LOC_COLORS[i]}"></div>
       <div class="loc-name">${loc.name}</div>
@@ -737,6 +736,7 @@ document.getElementById('chWhatsappLabel').textContent = ip.chWhatsapp;
 document.getElementById('chPhoneLabel').textContent = ip.chPhone;
 document.getElementById('chEmailLabel').textContent = ip.chEmail;
 document.getElementById('chAddressLabel').textContent = ip.chAddress;
+document.getElementById('chLegalLabel').textContent = ip.chLegal;
 document.getElementById('chInstagramLabel').textContent = ip.chInstagram;
 
 document.getElementById('formNameLabel').textContent = ip.formName;
@@ -755,7 +755,7 @@ document.getElementById('footerContact').textContent = ip.footerContact;
 document.getElementById('footerCompany').textContent = ip.footerCompany;
 
 /* ---------- meta ---------- */
-document.getElementById('canonicalLink').href = 'https://hanciglobal.com/?lang=' + lang;
+document.getElementById('canonicalLink').href = 'https://hanciglobal.com/' + (lang !== 'en' ? '?lang=' + lang : '');
 
 /* ---------- form submit ---------- */
 function sendWA(){

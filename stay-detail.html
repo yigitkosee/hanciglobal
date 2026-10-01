@@ -11,7 +11,19 @@
 </script>
 <meta charset="UTF-8">
 <meta name="description" id="metaDesc" content="Luxury short-term rentals in Taksim, Galata and Beyoğlu — professionally managed apartments from Hancı Global.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hancı Global">
+<meta property="og:title" content="Hancı Stay · Istanbul Luxury Short-Term Rentals">
+<meta property="og:description" content="Luxury short-term rentals in Taksim, Galata and Beyoğlu — professionally managed apartments from Hancı Global.">
+<meta property="og:url" content="https://hanciglobal.com/stay.html">
+<meta property="og:image" content="https://hanciglobal.com/og-stay.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" id="canonicalLink" href="https://hanciglobal.com/stay-detail.html">
 <title id="pageTitle">Hancı Stay · Istanbul Luxury Short-Term Rentals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -506,7 +518,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Hancı Global · Istanbul</span>
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul<br>Assetto Gayrimenkul Yatırım A.Ş. · Ergazi Mah. 1803 Cad. 16 No: 13 A İç Kapı No: 12, Yenimahalle / Ankara</span>
     <div class="footer-social">
       <a href="https://instagram.com/hanciglobal" target="_blank">Instagram</a>
       <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
@@ -551,6 +563,7 @@ function addSwipe(el, onSwipeLeft, onSwipeRight){
 const params = new URLSearchParams(window.location.search);
 const aptId = params.get('id');
 const lang = params.get('lang') || 'en';
+document.documentElement.lang = lang;
 
 /* ---------- hreflang tags (SEO: bu sayfanın TR/RU versiyonlarının da olduğunu Google'a söylüyor) ---------- */
 (function(){
@@ -592,7 +605,7 @@ const ui = getUIStrings(lang);
 const sp = getStayPage(lang);
 document.getElementById('pageTitle').textContent = t.name + ' · Hancı Stay · Istanbul';
 document.getElementById('metaDesc').setAttribute('content', t.shortDesc);
-document.getElementById('canonicalLink').setAttribute('href', 'https://hanciglobal.com/stay-detail.html?id=' + apt.id);
+document.getElementById('canonicalLink').setAttribute('href', 'https://hanciglobal.com/stay-detail.html?id=' + apt.id + (lang !== 'en' ? '&lang=' + lang : ''));
 document.getElementById('crumbName').textContent = t.name;
 document.getElementById('detailLoc').textContent = '📍 ' + t.location;
 document.getElementById('detailName').textContent = t.name;
@@ -790,7 +803,7 @@ document.getElementById('otherPropsGrid').innerHTML = APARTMENTS.filter(a => a.i
   const otherRatingHtml = otherDisplayRating ? `<div class="op-rating" id="op-rating-${other.id}"><span class="op-star">★</span>${otherDisplayRating.toFixed(2)} <span class="op-rating-count">(${otherDisplayCount})</span></div>` : `<div class="op-rating" id="op-rating-${other.id}"></div>`;
   return `
     <div class="other-prop-card" onclick="window.location='stay-detail.html?id=${other.id}&lang=${lang}'">
-      <div class="other-prop-img"><img src="${other.images[0]}" alt="${ot.name}"></div>
+      <div class="other-prop-img"><img loading="lazy" src="${other.images[0]}" alt="${ot.name}"></div>
       <div class="other-prop-body">
         <div class="other-prop-loc">📍 ${ot.location}</div>
         <div class="other-prop-name">${ot.name}</div>
@@ -936,7 +949,7 @@ document.getElementById('photoGrid').innerHTML =
        <div style="flex:0 0 50%;height:100%;overflow:hidden"><img id="pgImgB" src="" alt="${t.name}" style="width:100%;height:100%;object-fit:cover;display:block"></div>
      </div>
    </div>` +
-  gridImgs.slice(1).map((img, i) => `<div class="pg-thumb" onclick="openLightbox(${i+1})"><img src="${img}" alt="${t.name}"></div>`).join('');
+  gridImgs.slice(1).map((img, i) => `<div class="pg-thumb" onclick="openLightbox(${i+1})"><img loading="lazy" src="${img}" alt="${t.name}"></div>`).join('');
 let mainPhotoIdx = 0;
 let sliding = false;
 
@@ -982,7 +995,7 @@ addSwipe(document.getElementById('pgMainEl'), () => updateMainPhoto(mainPhotoIdx
 /* ---------- gallery slider (inside lightbox) ---------- */
 let dIdx = 0;
 document.getElementById('dslides').innerHTML = apt.images.map(img =>
-  `<div class="dslide"><img src="${img}" alt="${t.name}"></div>`
+  `<div class="dslide"><img loading="lazy" src="${img}" alt="${t.name}"></div>`
 ).join('');
 document.getElementById('ddots').innerHTML = apt.images.map((_, i) =>
   `<div class="ddot${i===0?' active':''}" onclick="dgoto(${i})"></div>`

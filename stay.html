@@ -11,7 +11,19 @@
 </script>
 <meta charset="UTF-8">
 <meta name="description" id="metaDesc" content="Luxury short-term rentals in Taksim, Galata and Beyoğlu. Professionally managed apartments — book on Airbnb or directly with Hancı Global for the best rate.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hancı Global">
+<meta property="og:title" content="Hancı Stay · Istanbul Luxury Short-Term Rentals">
+<meta property="og:description" content="Luxury short-term rentals in Taksim, Galata and Beyoğlu. Professionally managed apartments — book on Airbnb or directly with Hancı Global for the best rate.">
+<meta property="og:url" content="https://hanciglobal.com/stay.html">
+<meta property="og:image" content="https://hanciglobal.com/og-stay.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" id="canonicalLink" href="https://hanciglobal.com/stay.html">
 <title id="pageTitle">Hancı Stay · Istanbul Luxury Short-Term Rentals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -383,7 +395,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Hancı Global · Istanbul</span>
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul<br>Assetto Gayrimenkul Yatırım A.Ş. · Ergazi Mah. 1803 Cad. 16 No: 13 A İç Kapı No: 12, Yenimahalle / Ankara</span>
     <div class="footer-social">
       <a href="https://instagram.com/hanciglobal" target="_blank">Instagram</a>
       <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
@@ -428,6 +440,17 @@ function addSwipe(el, onSwipeLeft, onSwipeRight){
   
 const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'en';
+document.documentElement.lang = lang;
+/* ---------- sayfa başlığı ve açıklaması (dile göre) ---------- */
+const PAGE_META = {
+  tr: { title: "Hancı Stay · İstanbul'da Lüks Kısa Dönem Kiralık Daireler", desc: "Taksim, Galata ve Beyoğlu'nda lüks kısa dönem kiralık daireler. Profesyonelce yönetilen evler — Airbnb'den ya da en iyi fiyat için doğrudan Hancı Global'den rezervasyon yapın." },
+  ru: { title: "Hancı Stay · Посуточная аренда апартаментов в Стамбуле", desc: "Элитные апартаменты посуточно в Таксиме, Галате и Бейоглу. Профессиональное управление — бронируйте на Airbnb или напрямую у Hancı Global по лучшей цене." }
+};
+if (PAGE_META[lang]) {
+  document.title = PAGE_META[lang].title;
+  document.getElementById('metaDesc').setAttribute('content', PAGE_META[lang].desc);
+}
+document.getElementById('canonicalLink').href = 'https://hanciglobal.com/stay.html' + (lang !== 'en' ? '?lang=' + lang : '');
 
 /* ---------- hreflang tags (SEO: bu sayfanın TR/RU versiyonlarının da olduğunu Google'a söylüyor) ---------- */
 (function(){
@@ -529,7 +552,7 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
     <div class="listing-card" onclick="window.location='stay-detail.html?id=${apt.id}&lang=${lang}'">
       <div class="slider" id="${sliderId}">
         <div class="slides" id="slides-${sliderId}">
-          ${apt.images.map(img => `<div class="slide"><img src="${img}" alt="${t.name}"></div>`).join('')}
+          ${apt.images.map(img => `<div class="slide"><img loading="lazy" src="${img}" alt="${t.name}"></div>`).join('')}
         </div>
         <button class="slider-btn slider-prev" onclick="event.stopPropagation();slide('${sliderId}',-1)">&#8249;</button>
         <button class="slider-btn slider-next" onclick="event.stopPropagation();slide('${sliderId}',1)">&#8250;</button>

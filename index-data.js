@@ -26,13 +26,6 @@ const INDEX_PAGE = {
     aboutP2:"Whether you are a traveller looking for the perfect apartment, an investor seeking the right property, or someone navigating a visa application — our trilingual team handles the details so you do not have to.",
     aboutTags:["TURSAB licensed","Taksim & Beyoğlu","All Istanbul","English · Turkish · Russian"],
 
-    stats:[
-      { num:"5", label:"Service lines" },
-      { num:"3", label:"Booking platforms" },
-      { num:"EN+TR+RU", label:"Trilingual team" },
-      { num:"IST", label:"Istanbul-based" }
-    ],
-
     locationsEyebrow:"Where we operate", locationsH2a:"Rooted in", locationsH2em:"Istanbul",
     locations:[
       { name:"Taksim & Beyoğlu", sub:"Stay · Travel", desc:"The cultural heart of Istanbul. All our short-term rentals and travel services are centred here, steps from İstiklal." },
@@ -42,7 +35,7 @@ const INDEX_PAGE = {
 
     contactEyebrow:"Contact", contactH2a:"Let's talk", contactH2em:"about Istanbul",
     contactP:"Reach out on WhatsApp for the fastest response — we reply in English, Turkish and Russian.",
-    chWhatsapp:"WhatsApp", chPhone:"Phone", chEmail:"Email", chAddress:"Address", chInstagram:"Instagram",
+    chWhatsapp:"WhatsApp", chPhone:"Phone", chEmail:"Email", chAddress:"Istanbul Office", chLegal:"Registered Company & Head Office", chInstagram:"Instagram",
     formName:"Name", formEmail:"Email", formService:"Service", formMessage:"Message",
     formNamePh:"Your name", formEmailPh:"your@email.com", formMessagePh:"Tell us what you need...",
     formOptions:["Hancı Stay — short-term rental","Hancı Property — real estate & renovation","Hancı Renovation — full renovation & refurbishment","Hancı Travel — transfers & tours","Hancı Visa — consultancy"],
@@ -68,13 +61,6 @@ const INDEX_PAGE = {
     aboutP2:"İster mükemmel daireyi arayan bir gezgin, ister doğru mülkü arayan bir yatırımcı, ister vize başvurusuyla uğraşan biri olun — üç dilli ekibimiz detaylarla ilgilenir, siz uğraşmazsınız.",
     aboutTags:["TURSAB belgeli","Taksim & Beyoğlu","Tüm İstanbul","İngilizce · Türkçe · Rusça"],
 
-    stats:[
-      { num:"5", label:"Hizmet Alanı" },
-      { num:"3", label:"Rezervasyon Platformu" },
-      { num:"EN+TR+RU", label:"Üç Dilli Ekip" },
-      { num:"IST", label:"İstanbul Merkezli" }
-    ],
-
     locationsEyebrow:"Nerede faaliyet gösteriyoruz", locationsH2a:"İstanbul'a", locationsH2em:"bağlıyız",
     locations:[
       { name:"Taksim & Beyoğlu", sub:"Konaklama · Seyahat", desc:"İstanbul'un kültürel kalbi. Tüm kısa dönem kiralıklarımız ve seyahat hizmetlerimiz burada, İstiklal'e birkaç adım mesafede." },
@@ -84,7 +70,7 @@ const INDEX_PAGE = {
 
     contactEyebrow:"İletişim", contactH2a:"İstanbul'u", contactH2em:"konuşalım",
     contactP:"En hızlı yanıt için WhatsApp'tan ulaşın — İngilizce, Türkçe ve Rusça yanıt veriyoruz.",
-    chWhatsapp:"WhatsApp", chPhone:"Telefon", chEmail:"E-posta", chAddress:"Adres", chInstagram:"Instagram",
+    chWhatsapp:"WhatsApp", chPhone:"Telefon", chEmail:"E-posta", chAddress:"İstanbul Ofisi", chLegal:"Şirket Unvanı ve Merkez Adresi", chInstagram:"Instagram",
     formName:"İsim", formEmail:"E-posta", formService:"Hizmet", formMessage:"Mesaj",
     formNamePh:"Adınız", formEmailPh:"eposta@adresiniz.com", formMessagePh:"Ne ihtiyacınız olduğunu yazın...",
     formOptions:["Hancı Stay — kısa dönem kiralık","Hancı Property — gayrimenkul","Hancı Renovation — komple tadilat","Hancı Travel — transfer & turlar","Hancı Visa — danışmanlık"],
@@ -110,13 +96,6 @@ const INDEX_PAGE = {
     aboutP2:"Будь вы путешественник в поисках идеальной квартиры, инвестор в поисках подходящей недвижимости или человек, оформляющий визу — наша трёхъязычная команда берёт детали на себя.",
     aboutTags:["Лицензия TURSAB","Таксим и Бейоглу","Весь Стамбул","Английский · Турецкий · Русский"],
 
-    stats:[
-      { num:"5", label:"Направления" },
-      { num:"3", label:"Платформы бронирования" },
-      { num:"EN+TR+RU", label:"Трёхъязычная команда" },
-      { num:"IST", label:"Базируемся в Стамбуле" }
-    ],
-
     locationsEyebrow:"Где мы работаем", locationsH2a:"Наши корни — в", locationsH2em:"Стамбуле",
     locations:[
       { name:"Таксим и Бейоглу", sub:"Апартаменты · Путешествия", desc:"Культурное сердце Стамбула. Вся наша краткосрочная аренда и туристические услуги сосредоточены здесь, в нескольких шагах от Истикляль." },
@@ -126,7 +105,7 @@ const INDEX_PAGE = {
 
     contactEyebrow:"Контакты", contactH2a:"Поговорим", contactH2em:"о Стамбуле",
     contactP:"Напишите в WhatsApp для самого быстрого ответа — отвечаем на английском, турецком и русском.",
-    chWhatsapp:"WhatsApp", chPhone:"Телефон", chEmail:"Email", chAddress:"Адрес", chInstagram:"Instagram",
+    chWhatsapp:"WhatsApp", chPhone:"Телефон", chEmail:"Email", chAddress:"Офис в Стамбуле", chLegal:"Юридическое лицо и головной офис", chInstagram:"Instagram",
     formName:"Имя", formEmail:"Email", formService:"Услуга", formMessage:"Сообщение",
     formNamePh:"Ваше имя", formEmailPh:"ваш@email.com", formMessagePh:"Напишите, что вам нужно...",
     formOptions:["Hancı Stay — краткосрочная аренда","Hancı Property — недвижимость","Hancı Renovation — полный ремонт","Hancı Travel — трансферы и туры","Hancı Visa — визовый консалтинг"],

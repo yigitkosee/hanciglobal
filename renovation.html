@@ -9,10 +9,22 @@
   gtag('config', 'G-BC31K6R3EQ');
 </script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="pageTitle">Hancı Renovation · Istanbul Renovation & Refurbishment</title>
 <link rel="canonical" id="canonicalLink" href="https://hanciglobal.com/renovation.html">
 <meta name="description" id="metaDesc" content="Full renovation and refurbishment services across Istanbul. Hancı Renovation manages your entire project — permits, contractors, timelines and budget.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hancı Global">
+<meta property="og:title" content="Hancı Renovation · Istanbul Renovation &amp; Refurbishment">
+<meta property="og:description" content="Full renovation and refurbishment services across Istanbul. Hancı Renovation manages your entire project — permits, contractors, timelines and budget.">
+<meta property="og:url" content="https://hanciglobal.com/renovation.html">
+<meta property="og:image" content="https://hanciglobal.com/og-renovation.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
@@ -397,7 +409,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Hancı Global · Istanbul</span>
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul<br>Assetto Gayrimenkul Yatırım A.Ş. · Ergazi Mah. 1803 Cad. 16 No: 13 A İç Kapı No: 12, Yenimahalle / Ankara</span>
     <div class="footer-social">
       <a href="https://instagram.com/hanciglobal" target="_blank">Instagram</a>
       <a href="https://wa.me/905063335154" target="_blank">WhatsApp</a>
@@ -410,6 +422,16 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'en';
+document.documentElement.lang = lang;
+/* ---------- sayfa başlığı ve açıklaması (dile göre) ---------- */
+const PAGE_META = {
+  tr: { title: "Hancı Renovation · İstanbul'da Tadilat ve Yenileme", desc: "İstanbul genelinde komple tadilat ve yenileme hizmetleri. Hancı Renovation projenizin tamamını yönetir — izinler, ustalar, takvim ve bütçe." },
+  ru: { title: "Hancı Renovation · Ремонт и отделка в Стамбуле", desc: "Полный ремонт и отделка по всему Стамбулу. Hancı Renovation ведёт весь проект — разрешения, подрядчики, сроки и бюджет." }
+};
+if (PAGE_META[lang]) {
+  document.title = PAGE_META[lang].title;
+  document.getElementById('metaDesc').setAttribute('content', PAGE_META[lang].desc);
+}
 
 /* ---------- hreflang tags (SEO: bu sayfanın TR/RU versiyonlarının da olduğunu Google'a söylüyor) ---------- */
 (function(){
@@ -534,10 +556,10 @@ const projectsHTML = PORTFOLIO_PROJECTS.map((project, i) => {
         <div class="portfolio-side">
           <div class="portfolio-side-label before-label">${rp.beforeLabel}</div>
           <div class="portfolio-img-main" id="${beforeMainId}">
-            <img src="${project.images.before[0]}" alt="Before renovation" onclick="setImg('${project.images.before[0]}','${beforeMainId}')" style="cursor:pointer">
+            <img loading="lazy" src="${project.images.before[0]}" alt="Before renovation" onclick="setImg('${project.images.before[0]}','${beforeMainId}')" style="cursor:pointer">
           </div>
           <div class="portfolio-thumbs">
-            ${project.images.before.slice(1).map(img => `<div class="portfolio-thumb" onclick="setImg('${img}','${beforeMainId}')"><img src="${img}" alt=""></div>`).join('')}
+            ${project.images.before.slice(1).map(img => `<div class="portfolio-thumb" onclick="setImg('${img}','${beforeMainId}')"><img loading="lazy" src="${img}" alt=""></div>`).join('')}
           </div>
         </div>
         <div class="portfolio-arrow">
@@ -546,10 +568,10 @@ const projectsHTML = PORTFOLIO_PROJECTS.map((project, i) => {
         <div class="portfolio-side">
           <div class="portfolio-side-label after-label">${rp.afterLabel}</div>
           <div class="portfolio-img-main" id="${afterMainId}">
-            <img src="${project.images.after[0]}" alt="After renovation" onclick="setImg('${project.images.after[0]}','${afterMainId}')" style="cursor:pointer">
+            <img loading="lazy" src="${project.images.after[0]}" alt="After renovation" onclick="setImg('${project.images.after[0]}','${afterMainId}')" style="cursor:pointer">
           </div>
           <div class="portfolio-thumbs">
-            ${project.images.after.slice(1).map(img => `<div class="portfolio-thumb" onclick="setImg('${img}','${afterMainId}')"><img src="${img}" alt=""></div>`).join('')}
+            ${project.images.after.slice(1).map(img => `<div class="portfolio-thumb" onclick="setImg('${img}','${afterMainId}')"><img loading="lazy" src="${img}" alt=""></div>`).join('')}
           </div>
         </div>
       </div>
@@ -567,7 +589,7 @@ const projectsHTML = PORTFOLIO_PROJECTS.map((project, i) => {
         <div class="during-strip">
           <div class="during-label">${rp.duringLabel}</div>
           <div class="during-photos">
-            ${project.images.during.map(img => `<div class="during-photo"><img src="${img}" alt="During"></div>`).join('')}
+            ${project.images.during.map(img => `<div class="during-photo"><img loading="lazy" src="${img}" alt="During"></div>`).join('')}
           </div>
         </div>
       </div>
@@ -621,7 +643,7 @@ document.getElementById('footerContact').textContent = rp.footerContact;
 document.getElementById('footerCompany').textContent = rp.footerCompany;
 
 /* ---------- canonical ---------- */
-document.getElementById('canonicalLink').href = 'https://hanciglobal.com/renovation.html?lang=' + lang;
+document.getElementById('canonicalLink').href = 'https://hanciglobal.com/renovation.html' + (lang !== 'en' ? '?lang=' + lang : '');
 
 /* ---------- mobile nav ---------- */
 function toggleMobileNav(){
