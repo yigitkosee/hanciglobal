@@ -9,8 +9,8 @@ const VEHICLES = [
 
 const BOAT_TOURS = [
   { key:"sunset", img:"sunset2.jpg", waMsg:"Hi, I'd like to arrange a Sunset cruise tour on the Bosphorus.", showAirbnb:true },
-  { key:"private", img:"https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=700&q=85", waMsg:"Hi, I'd like to arrange a private yacht charter on the Bosphorus.", showAirbnb:false },
-  { key:"swim", img:"https://images.unsplash.com/photo-1530053969600-caed2596d242?w=700&q=85", waMsg:"Hi, I'd like to know more about the Bosphorus swimming tour.", showAirbnb:false }
+  { key:"private", img:"travel-1.jpg", waMsg:"Hi, I'd like to arrange a private yacht charter on the Bosphorus.", showAirbnb:false },
+  { key:"swim", img:"travel-2.jpg", waMsg:"Hi, I'd like to know more about the Bosphorus swimming tour.", showAirbnb:false }
 ];
 
 const TRAVEL_PAGE = {
@@ -250,6 +250,85 @@ const TRAVEL_PAGE = {
     footerServices:"Услуги", footerContact:"Контакты", footerCompany:"Компания",
 
     popup:{ title:"Не забудьте скидку!", desc:"Скопируйте код до бронирования. Введите при оплате на Bosphorus Yachts и получите <strong style='color:#111C26'>скидку 5%</strong>.", copy:"Копировать", copied:"Скопировано! ✓", go:"Перейти на Bosphorus Yachts →", back:"← Назад" }
+  },
+  ar: {
+    backHome:"→ العودة إلى Hancı Global", heroEyebrow:"Hancı Travel · إسطنبول",
+    heroH1a:"إسطنبول على طريقتك —", heroH1em:"براحة تامة",
+    heroP:"خدمات نقل VIP من المطار، وجولات بالقوارب في البوسفور، وتأجير سيارات مع سائق. وكالة مرخّصة من TÜRSAB. أسعار ثابتة بلا مفاجآت.",
+    heroBtn1:"النقل من المطار", heroBtn2:"🛥 جولات القوارب",
+    trustBadges:["✓ ترخيص TÜRSAB رقم 13243","✓ سعر ثابت — بلا عدّاد","✓ متاح على مدار الساعة"],
+    tabs:["✈️ النقل من المطار","🚗 تأجير بالساعة / باليوم","🛥 جولات القوارب","📋 كيف نعمل"],
+
+    transferBadge:"النقل من المطار", transferEyebrow:"IST · SAW · من الباب إلى الباب",
+    transferH2a:"وصول ومغادرة", transferH2b:"", transferH2em:"بلا عناء",
+    transferP:"نتابع رحلتك الجوية لحظة بلحظة ونستقبلك في صالة الوصول بلافتة تحمل اسمك. الخدمة متاحة على مدار الساعة لكلا مطارَي إسطنبول — مطار إسطنبول (IST) ومطار صبيحة كوكجن (SAW). سعر ثابت يُتّفق عليه قبل الرحلة. بلا عدّاد ولا مفاجآت.",
+    transferBadges:["✓ وكالة مرخّصة من TÜRSAB · رقم 13243","✓ 60 دقيقة انتظار مجاناً","✓ متابعة الرحلة مشمولة"],
+    transferBtn1:"💬 احجز النقل", transferBtn2:"📞 اتصل بنا",
+
+    vehiclesEyebrow:"سيارتك",
+    vehicles:{
+      vito:{ cap:"حتى 7 ركّاب · VIP مميّز", desc:"سيارتنا المعتادة للنقل. واسعة ومكيّفة ومجهّزة بالكامل لرحلة مريحة — من المطار أو داخل المدينة." },
+      sprinter:{ cap:"8 ركّاب أو أكثر · نقل المجموعات", desc:"للمجموعات الكبيرة نوفّر Mercedes Sprinter. سياسة السعر الثابت نفسها والخدمة الاحترافية نفسها — مهما كان حجم المجموعة." }
+    },
+
+    includesTitle:"كل رحلة تشمل",
+    includes:[
+      { title:"متابعة الرحلة الجوية", sub:"مراقبة لحظية", desc:"نتابع رحلتك مباشرةً. ينتظرك السائق حتى لو تأخّرت — دون أي رسوم إضافية." },
+      { title:"انتظار مجاني — 60 دقيقة", sub:"60 دقيقة مجاناً", desc:"حتى 60 دقيقة انتظار مجاني في المطار بعد هبوطك. بلا استعجال وبلا تكلفة إضافية." },
+      { title:"سعر ثابت", sub:"أسعار واضحة", desc:"يُتّفق على السعر قبل الرحلة. بلا عدّاد ولا رسوم خفية ولا مفاجآت في نهاية الرحلة." },
+      { title:"خدمة على مدار الساعة", sub:"متاحون دائماً", desc:"متاحون في أي ساعة وأي يوم. في الصباح الباكر أو في وقت متأخر من الليل — نحن هنا عندما تحتاجنا." }
+    ],
+
+    routesEyebrow:"المسارات الأكثر طلباً",
+    routes:[
+      { from:"IST", arrow:"مطار إسطنبول ←", to:"تقسيم / بي أوغلو", desc:"الوصول والمغادرة · الاستقبال في المبنى" },
+      { from:"SAW", arrow:"صبيحة كوكجن ←", to:"أي حي", desc:"الوصول والمغادرة · الاستقبال في المبنى" },
+      { from:"الفندق", arrow:"التوصيل ←", to:"أي موقع", desc:"خدمة من الباب إلى الباب · أي عنوان في إسطنبول" }
+    ],
+
+    hourlyH2a:"تأجير سيارة", hourlyH2b:"مع سائق —", hourlyH2em:"بالساعة أو ليوم كامل",
+    hourlyP:"تحتاج سائقاً للتسوّق أو لاجتماعات العمل أو لجولة سياحية أو ليوم كامل في إسطنبول؟ نوفّر لك Mercedes Vito أو Sprinter مع سائق للمدة التي تحتاجها.",
+    hourlyBtn1:"💬 اطلب عرض سعر", hourlyBtn2:"📞 اتصل بنا",
+    hourlyFeats:[
+      { title:"تأجير بالساعة", desc:"ابتداءً من ساعتين — مثالي للتسوّق أو الاجتماعات أو جولة في المدينة لنصف يوم." },
+      { title:"تأجير ليوم كامل", desc:"سيارة مع سائق مخصّصة لك طوال اليوم. إلى أي مكان وفي أي وقت." },
+      { title:"لأكثر من 7 ركّاب", desc:"Vito حتى 7 أشخاص — وSprinter للمجموعات الأكبر. نتكيّف مع احتياجاتك." },
+      { title:"سعر ثابت يُتّفق عليه مسبقاً", desc:"نتّفق على السعر قبل البدء. بلا مفاجآت وبلا عدّاد." }
+    ],
+
+    boatBadge:"جولات القوارب في البوسفور", boatEyebrow:"إسطنبول من الماء",
+    boatH2a:"البوسفور", boatH2em:"على طريقتك",
+    boatP:"لا توجد طريقة أفضل لرؤية إسطنبول من الماء. نتعاون مع Bosphorus Yachts — من أكثر منظّمي الجولات موثوقيةً في إسطنبول — لنقدّم لضيوفنا تجارب البوسفور بخصم خاص.",
+    boatBadges:["✓ شريكنا: Bosphorus Yachts","✓ خصم حصري 5%","✓ خيارات خاصة وجماعية"],
+    boatTours:{
+      sunset:{ chip:"الأكثر طلباً", title:"رحلة الغروب", desc:"الساعة الذهبية على البوسفور — أجمل طريقة لختام يومك في إسطنبول. شاهد أضواء المدينة وهي تتلألأ مع غروب الشمس فوق قارّتين. المشروبات متوفّرة على متن القارب.", meta:"⏱ نحو ساعتين &nbsp;·&nbsp; 👥 جماعية وخاصة" },
+      private:{ chip:"مميّز", title:"يخت خاص", desc:"يختك الخاص على البوسفور. مثالي للمناسبات الخاصة والعائلات وفعاليات الشركات. مسار ومدة وضيافة قابلة للتخصيص بالكامل.", meta:"⏱ مرن &nbsp;·&nbsp; 👥 خاص فقط" },
+      swim:{ chip:"تجربة فريدة", title:"جولة السباحة", desc:"اسبح بين أوروبا وآسيا في مضيق البوسفور. تجربة إسطنبولية فريدة حقاً — جولة في المضيق مع التوقّف للسباحة في أماكن مختارة.", meta:"⏱ يوم كامل &nbsp;·&nbsp; 👥 جماعية" }
+    },
+    airbnbReviewsBtn:"🏠 تقييمات Airbnb", bookBtn:"← احجز", askUsBtn:"💬 اسألنا",
+
+    discountLabel:"خصم حصري", discountTitle:"خصم 5% على جميع جولات Bosphorus Yachts",
+    discountP:"احجز مباشرةً عبر Bosphorus Yachts وأدخل الرمز أدناه عند الدفع لتحصل على خصم Hancı Global الحصري.",
+    discountHint:"أدخله عند الدفع على bosphorusyachts.com",
+    discountBtn1:"← احجز الآن", discountBtn2:"💬 اسألنا أولاً",
+
+    hamamTitle:"تجربة الحمّام التركي — قريباً",
+    hamamP:"تجربة حمّام تركي أصيلة قادمة قريباً إلى Hancı Travel. ترقّبوا — أو تواصلوا معنا لتكونوا أول من يعلم.",
+    hamamBtn:"💬 أبلغني",
+
+    howEyebrow:"خطوات بسيطة", howH2a:"كيف", howH2em:"نعمل",
+    steps:[
+      { title:"تواصل معنا", desc:"راسلنا عبر واتساب أو اتصل بنا مع التواريخ وعدد الأشخاص ومكان الاستقبال وما تحتاجه." },
+      { title:"نؤكّد ونرسل السعر", desc:"نرسل لك عرض سعر ثابتاً ونؤكّد التوفّر خلال ساعة." },
+      { title:"دفع سهل", desc:"ادفع بأمان قبل الخدمة. بسيط وواضح وبلا تكاليف خفية." },
+      { title:"استمتع بإسطنبول", desc:"يستقبلك السائق أو المرشد في الموعد بلافتة تحمل اسمك. استرخِ واستمتع بالمدينة." }
+    ],
+
+    ctaH2:"هل أنت مستعد لاستكشاف إسطنبول؟", ctaP:"تواصل معنا عبر واتساب لمعرفة التوفّر والأسعار. ردّ سريع — بالإنجليزية أو التركية.",
+    ctaBtn1:"💬 راسلنا على واتساب", ctaBtn2:"📞 اتصل بنا",
+    footerServices:"الخدمات", footerContact:"التواصل", footerCompany:"الشركة",
+
+    popup:{ title:"لا تنسَ الخصم!", desc:"انسخ رمزك الحصري قبل الحجز، وأدخله عند الدفع على Bosphorus Yachts لتحصل على <strong style='color:#111C26'>خصم 5%</strong>.", copy:"نسخ", copied:"تم النسخ! ✓", go:"← المتابعة إلى Bosphorus Yachts", back:"→ رجوع" }
   }
 };
 function getTravelPage(lang) { return TRAVEL_PAGE[lang] || TRAVEL_PAGE.en; }

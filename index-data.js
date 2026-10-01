@@ -112,6 +112,41 @@ const INDEX_PAGE = {
     formSubmit:"💬 Отправить в WhatsApp", formAlertName:"Пожалуйста, введите ваше имя.",
 
     footerServices:"Услуги", footerContact:"Контакты", footerCompany:"Компания"
+  },
+  ar: {
+    heroEyebrow:"إسطنبول · منذ 2020",
+    heroH1a:"إسطنبول أجمل", heroH1b:"عندما يكون معك", heroH1em:"الشريك المناسب",
+    heroP:"من الإقامات القصيرة المختارة بعناية في تقسيم وبي أوغلو إلى العقارات وخدمات السفر — Hancı Global تجعل إسطنبول أسهل لك.",
+    heroBtn1:"اكتشف خدماتنا", heroBtn2:"💬 تواصل معنا",
+
+    stayEyebrow:"خدمتنا الرئيسية", stayH2a:"ابدأ مع", stayH2em:"Hancı Stay",
+    stayP:"شقق فاخرة مختارة بعناية في تقسيم وبي أوغلو — بإدارة احترافية وجاهزة لاستقبالك.",
+    stayViewAll:"← عرض جميع الشقق",
+
+    otherServicesTitle:"المزيد من Hancı Global",
+
+    aboutBadge:"منذ 2020 · إسطنبول", aboutEyebrow:"عن Hancı Global",
+    aboutH2a:"مجموعة واحدة", aboutH2em:"مبنيّة حول إسطنبول",
+    aboutP1:"Hancı Global مجموعة استشارية مقرّها إسطنبول، تعمل في مجالات العقارات والضيافة والسفر. نؤمن بأن أفضل ما في إسطنبول يجب أن يكون في متناول الجميع، لا معقّداً.",
+    aboutP2:"سواء كنت مسافراً تبحث عن الشقة المثالية أو مستثمراً يبحث عن العقار المناسب — يتولّى فريقنا متعدّد اللغات كل التفاصيل نيابةً عنك.",
+    aboutTags:["مرخّصة من TÜRSAB","تقسيم وبي أوغلو","كل إسطنبول","الإنجليزية · التركية · الروسية"],
+
+    locationsEyebrow:"أين نعمل", locationsH2a:"جذورنا في", locationsH2em:"إسطنبول",
+    locations:[
+      { name:"تقسيم وبي أوغلو", sub:"الإقامة · السفر", desc:"القلب الثقافي لإسطنبول. جميع شققنا للإيجار القصير وخدمات السفر تتركّز هنا، على بُعد خطوات من شارع الاستقلال." },
+      { name:"كل إسطنبول", sub:"العقارات · التجديد", desc:"يغطّي فريق العقارات والتجديد لدينا كل الأحياء — من بشكتاش إلى كاديكوي وما بعدهما." },
+      { name:"في كل مكان", sub:"التأشيرات · الاستشارات", desc:"استشارات التأشيرات وخدمات عن بُعد لعملائنا في أنحاء تركيا وخارجها." }
+    ],
+
+    contactEyebrow:"تواصل معنا", contactH2a:"لنتحدّث", contactH2em:"عن إسطنبول",
+    contactP:"راسلنا عبر واتساب للحصول على أسرع ردّ — نردّ بالإنجليزية والتركية والروسية.",
+    chWhatsapp:"واتساب", chPhone:"الهاتف", chEmail:"البريد الإلكتروني", chAddress:"مكتب إسطنبول", chLegal:"الشركة المسجّلة والمقرّ الرئيسي", chInstagram:"إنستغرام",
+    formName:"الاسم", formEmail:"البريد الإلكتروني", formService:"الخدمة", formMessage:"الرسالة",
+    formNamePh:"اسمك", formEmailPh:"your@email.com", formMessagePh:"أخبرنا بما تحتاجه...",
+    formOptions:["Hancı Stay — إيجار قصير الأجل","Hancı Property — العقارات","Hancı Renovation — التجديد الشامل","Hancı Travel — النقل والجولات","Hancı Visa — استشارات التأشيرات"],
+    formSubmit:"💬 أرسل عبر واتساب", formAlertName:"يرجى إدخال اسمك.",
+
+    footerServices:"الخدمات", footerContact:"التواصل", footerCompany:"الشركة"
   }
 };
 function getIndexPage(lang) { return INDEX_PAGE[lang] || INDEX_PAGE.en; }

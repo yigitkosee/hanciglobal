@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlRoot">
+<html lang="en" id="htmlRoot" data-ar="1">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC31K6R3EQ"></script>
 <script>
@@ -21,6 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="tr_TR">
 <meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="ar_AR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" id="canonicalLink" href="https://hanciglobal.com/">
@@ -237,7 +238,14 @@ footer{background:var(--navy);padding:56px 56px 32px}
   .sec-header{flex-direction:column;gap:16px;align-items:flex-start;margin-bottom:32px}
   .locations{padding:0 24px 56px}
   .loc-grid{grid-template-columns:1fr;gap:16px;margin-top:32px}
-  .contact{grid-template-columns:1fr;gap:40px;padding:56px 24px}
+  /* minmax(0,1fr): uzun metinler/select sütunu ekrandan geniş olmaya zorlamasın */
+  .contact{grid-template-columns:minmax(0,1fr);gap:40px;padding:56px 20px}
+  .contact>div{min-width:0}
+  .ch{padding:16px}
+  .ch-val{overflow-wrap:anywhere}
+  .cform-row{grid-template-columns:1fr}
+  .cinput,.cselect,.ctextarea{width:100%;min-width:0;font-size:16px}
+  .submit-btn{align-self:stretch;text-align:center}
   
   footer{padding:40px 24px 24px}
   .footer-top{grid-template-columns:1fr;gap:28px}
@@ -299,7 +307,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1600&q=90" alt="Istanbul Galata">
+    <img src="hero-home.jpg" srcset="hero-home-800.jpg 800w, hero-home.jpg 1920w" sizes="100vw" fetchpriority="high" alt="Istanbul Galata">
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-content">
@@ -445,6 +453,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
         <a href="index.html#about">About us</a>
         <a href="index.html#contact">Get in touch</a>
         <a href="https://maps.app.goo.gl/oQ7cBEJbRQNwEXku8" target="_blank">Find us</a>
+        <a href="guides/index.html" data-guide="index">Istanbul Guide</a>
       </div>
     </div>
   </div>
@@ -457,8 +466,8 @@ footer{background:var(--navy);padding:56px 56px 32px}
   </div>
 </footer>
 
-<script src="apartments-data.js?v=7"></script>
-<script src="index-data.js?v=2"></script>
+<script src="apartments-data.js?v=8"></script>
+<script src="index-data.js?v=3"></script>
 <script>
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
@@ -467,7 +476,8 @@ document.documentElement.lang = lang;
 /* ---------- sayfa başlığı ve açıklaması (dile göre) ---------- */
 const PAGE_META = {
   tr: { title: "Hancı Global · İstanbul", desc: "Hancı Global — İstanbul'da kısa dönem kiralık daireler, gayrimenkul, tadilat, seyahat ve vize danışmanlığı. Üç dilli tek ekip, beş hizmet." },
-  ru: { title: "Hancı Global · Стамбул", desc: "Hancı Global — краткосрочная аренда, недвижимость, ремонт, туризм и визовый консалтинг в Стамбуле. Одна трёхъязычная команда, пять направлений." }
+  ru: { title: "Hancı Global · Стамбул", desc: "Hancı Global — краткосрочная аренда, недвижимость, ремонт, туризм и визовый консалтинг в Стамбуле. Одна трёхъязычная команда, пять направлений." },
+  ar: { title: "Hancı Global · إسطنبول", desc: "Hancı Global — إيجار قصير الأجل في إسطنبول، وعقارات وخدمات سفر ونقل من المطار. فريق واحد متعدّد اللغات في قلب بي أوغلو." }
 };
 if (PAGE_META[lang]) {
   document.title = PAGE_META[lang].title;
@@ -483,7 +493,8 @@ if (PAGE_META[lang]) {
   const variants = {
     en: base + (idParam ? `?id=${idParam}` : ''),
     tr: base + (idParam ? `?id=${idParam}&lang=tr` : '?lang=tr'),
-    ru: base + (idParam ? `?id=${idParam}&lang=ru` : '?lang=ru')
+    ru: base + (idParam ? `?id=${idParam}&lang=ru` : '?lang=ru'),
+    ar: base + (idParam ? `?id=${idParam}&lang=ar` : '?lang=ar')
   };
   Object.entries(variants).forEach(([hreflang, href]) => {
     const link = document.createElement('link');
@@ -514,7 +525,8 @@ if (lang !== 'en') {
 const NAV_LABELS = {
   en: { stay:"Stay", about:"About" },
   tr: { stay:"Konaklama", about:"Hakkımızda" },
-  ru: { stay:"Апартаменты", about:"О нас" }
+  ru: { stay:"Апартаменты", about:"О нас" },
+  ar: { stay:"الإقامة", about:"من نحن" }
 };
 const navLabels = NAV_LABELS[lang] || NAV_LABELS.en;
 document.querySelectorAll('nav a[href^="stay.html"], .mobile-nav a[href^="stay.html"]').forEach(a => a.textContent = navLabels.stay);
@@ -524,7 +536,7 @@ const ip = getIndexPage(lang);
 document.getElementById('htmlRoot').lang = lang;
 
 /* ---------- lang switcher ---------- */
-const LANGS = [['en','EN'],['tr','TR'],['ru','RU']];
+const LANGS = [['en','EN'],['tr','TR'],['ru','RU'],['ar','AR']];
 const langSwitcherHTML = LANGS.map(([code,label]) =>
   `<button class="lang-btn${code===lang?' active':''}" onclick="window.location='index.html?lang=${code}'">${label}</button>`
 ).join('');
@@ -716,7 +728,7 @@ document.getElementById('aboutTags').innerHTML = ip.aboutTags.map(t => `<span cl
 /* ---------- locations ---------- */
 document.getElementById('locationsEyebrow').textContent = ip.locationsEyebrow;
 document.getElementById('locationsH2').innerHTML = `${ip.locationsH2a} <em>${ip.locationsH2em}</em>`;
-const LOC_IMAGES = ["https://images.unsplash.com/photo-1527838832700-5059252407fa?w=600&q=80","istanbul.jpg","dunya.jpg"];
+const LOC_IMAGES = ["loc-taksim.jpg","istanbul.jpg","dunya.jpg"];
 const LOC_COLORS = ["var(--teal)","var(--amber)","var(--coral)"];
 document.getElementById('locGrid').innerHTML = ip.locations.map((loc, i) => `
   <div class="loc-card">
@@ -817,6 +829,6 @@ document.addEventListener('click', function(e) {
   if (nav && nav.href) document.getElementById('waFloat').href = nav.href;
 })();
 </script>
-<script src=site-i18n.js?v=1></script>
+<script src=site-i18n.js?v=2></script>
 </body>
 </html>

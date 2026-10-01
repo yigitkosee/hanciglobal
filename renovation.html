@@ -303,7 +303,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=90" alt="Renovation Istanbul">
+    <img src="hero-renovation.jpg" srcset="hero-renovation-800.jpg 800w, hero-renovation.jpg 1920w" sizes="100vw" fetchpriority="high" alt="Renovation Istanbul">
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-content">
@@ -322,7 +322,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
 <!-- INTRO -->
 <section class="services-intro">
   <div class="intro-img">
-    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=90" alt="Renovation project Istanbul">
+    <img src="renovation-intro.jpg" alt="Renovation project Istanbul">
   </div>
   <div>
     <div class="intro-badge" id="introBadge"></div>
@@ -405,6 +405,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
         <a href="index.html#about">About us</a>
         <a href="index.html#contact">Get in touch</a>
         <a href="https://maps.app.goo.gl/oQ7cBEJbRQNwEXku8" target="_blank">Find us</a>
+        <a href="guides/index.html" data-guide="index">Istanbul Guide</a>
       </div>
     </div>
   </div>
@@ -692,6 +693,6 @@ document.addEventListener('click', function(e) {
   if (nav && nav.href) document.getElementById('waFloat').href = nav.href;
 })();
 </script>
-<script src=site-i18n.js?v=1></script>
+<script src=site-i18n.js?v=2></script>
 </body>
 </html>
