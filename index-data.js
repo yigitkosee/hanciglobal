@@ -24,7 +24,7 @@ const INDEX_PAGE = {
     aboutH2a:"One group, built", aboutH2em:"around Istanbul",
     aboutP1:"Hancı Global is an Istanbul-based consulting group at the intersection of real estate, hospitality, travel, and migration services. We believe the best version of Istanbul should be accessible — not complicated.",
     aboutP2:"Whether you are a traveller looking for the perfect apartment, an investor seeking the right property, or someone navigating a visa application — our trilingual team handles the details so you do not have to.",
-    aboutTags:["TURSAB licensed","Taksim & Beyoğlu","All Istanbul","English · Turkish · Russian"],
+    aboutTags:["Taksim & Beyoğlu","All Istanbul","English · Turkish · Russian"],
 
     locationsEyebrow:"Where we operate", locationsH2a:"Rooted in", locationsH2em:"Istanbul",
     locations:[
@@ -59,7 +59,7 @@ const INDEX_PAGE = {
     aboutH2a:"İstanbul için kurulmuş", aboutH2em:"bir grup",
     aboutP1:"Hancı Global, gayrimenkul, konaklama, seyahat ve göç hizmetlerinin kesişiminde faaliyet gösteren İstanbul merkezli bir danışmanlık grubudur. İstanbul'un en iyi halinin karmaşık değil, erişilebilir olması gerektiğine inanıyoruz.",
     aboutP2:"İster mükemmel daireyi arayan bir gezgin, ister doğru mülkü arayan bir yatırımcı, ister vize başvurusuyla uğraşan biri olun — üç dilli ekibimiz detaylarla ilgilenir, siz uğraşmazsınız.",
-    aboutTags:["TURSAB belgeli","Taksim & Beyoğlu","Tüm İstanbul","İngilizce · Türkçe · Rusça"],
+    aboutTags:["Taksim & Beyoğlu","Tüm İstanbul","İngilizce · Türkçe · Rusça"],
 
     locationsEyebrow:"Nerede faaliyet gösteriyoruz", locationsH2a:"İstanbul'a", locationsH2em:"bağlıyız",
     locations:[
@@ -94,7 +94,7 @@ const INDEX_PAGE = {
     aboutH2a:"Одна компания,", aboutH2em:"созданная для Стамбула",
     aboutP1:"Hancı Global — стамбульская консалтинговая группа на стыке недвижимости, гостеприимства, туризма и миграционных услуг. Мы верим, что лучшая версия Стамбула должна быть доступной, а не сложной.",
     aboutP2:"Будь вы путешественник в поисках идеальной квартиры, инвестор в поисках подходящей недвижимости или человек, оформляющий визу — наша трёхъязычная команда берёт детали на себя.",
-    aboutTags:["Лицензия TURSAB","Таксим и Бейоглу","Весь Стамбул","Английский · Турецкий · Русский"],
+    aboutTags:["Таксим и Бейоглу","Весь Стамбул","Английский · Турецкий · Русский"],
 
     locationsEyebrow:"Где мы работаем", locationsH2a:"Наши корни — в", locationsH2em:"Стамбуле",
     locations:[
@@ -129,7 +129,7 @@ const INDEX_PAGE = {
     aboutH2a:"مجموعة واحدة", aboutH2em:"مبنيّة حول إسطنبول",
     aboutP1:"Hancı Global مجموعة استشارية مقرّها إسطنبول، تعمل في مجالات العقارات والضيافة والسفر. نؤمن بأن أفضل ما في إسطنبول يجب أن يكون في متناول الجميع، لا معقّداً.",
     aboutP2:"سواء كنت مسافراً تبحث عن الشقة المثالية أو مستثمراً يبحث عن العقار المناسب — يتولّى فريقنا متعدّد اللغات كل التفاصيل نيابةً عنك.",
-    aboutTags:["مرخّصة من TÜRSAB","تقسيم وبي أوغلو","كل إسطنبول","الإنجليزية · التركية · الروسية"],
+    aboutTags:["تقسيم وبي أوغلو","كل إسطنبول","الإنجليزية · التركية · الروسية"],
 
     locationsEyebrow:"أين نعمل", locationsH2a:"جذورنا في", locationsH2em:"إسطنبول",
     locations:[

@@ -17,15 +17,15 @@ const TRAVEL_PAGE = {
   en: {
     backHome:"← Back to Hancı Global", heroEyebrow:"Hancı Travel · Istanbul",
     heroH1a:"Istanbul, your way —", heroH1em:"in comfort",
-    heroP:"VIP airport transfers, Bosphorus boat tours and chauffeured vehicle hire. TURSAB licensed. Fixed prices, no surprises.",
+    heroP:"VIP airport transfers, Bosphorus boat tours and chauffeured vehicle hire. Fixed prices, no surprises.",
     heroBtn1:"Airport transfer", heroBtn2:"🛥 Boat tours",
-    trustBadges:["✓ TURSAB No: 13243","✓ Fixed price — no meter","✓ 24/7 available"],
+    trustBadges:["✓ Fixed price — no meter","✓ 24/7 available"],
     tabs:["✈️ Airport Transfer","🚗 Hourly / Daily Hire","🛥 Boat Tours","📋 How it works"],
 
     transferBadge:"Airport Transfer", transferEyebrow:"IST · SAW · Door to door",
     transferH2a:"Stress-free arrivals", transferH2b:"&", transferH2em:"departures",
     transferP:"We track your flight in real time and meet you at arrivals with a name sign. Available 24/7 for both Istanbul airports — Istanbul Airport (IST) and Sabiha Gökçen (SAW). Fixed price agreed before the ride. No meter, no surprises.",
-    transferBadges:["✓ TURSAB Licensed Agency · No: 13243","✓ 60 min free waiting","✓ Flight tracking included"],
+    transferBadges:["✓ 60 min free waiting","✓ Flight tracking included"],
     transferBtn1:"💬 Book a transfer", transferBtn2:"📞 Call us",
 
     vehiclesEyebrow:"Your vehicle",
@@ -96,15 +96,15 @@ const TRAVEL_PAGE = {
   tr: {
     backHome:"← Hancı Global'e dön", heroEyebrow:"Hancı Travel · İstanbul",
     heroH1a:"İstanbul, sizin yolunuzla —", heroH1em:"konforla",
-    heroP:"VIP havalimanı transferleri, Boğaz tekne turları ve şoförlü araç kiralama. TURSAB Lisanslı. Sabit fiyatlar, sürpriz yok.",
+    heroP:"VIP havalimanı transferleri, Boğaz tekne turları ve şoförlü araç kiralama. Sabit fiyatlar, sürpriz yok.",
     heroBtn1:"Havalimanı transferi", heroBtn2:"🛥 Tekne turları",
-    trustBadges:["✓ TURSAB No: 13243","✓ Sabit fiyat — sayaç yok","✓ 7/24 hizmet"],
+    trustBadges:["✓ Sabit fiyat — sayaç yok","✓ 7/24 hizmet"],
     tabs:["✈️ Havalimanı Transferi","🚗 Saatlik / Günlük Kiralama","🛥 Tekne Turları","📋 Nasıl çalışır"],
 
     transferBadge:"Havalimanı Transferi", transferEyebrow:"IST · SAW · Kapıdan kapıya",
     transferH2a:"Stressiz varış", transferH2b:"&", transferH2em:"kalkışlar",
     transferP:"Uçuşunuzu gerçek zamanlı takip eder, varış salonunda isim tabelasıyla karşılarız. Her iki İstanbul havalimanı için 7/24 hizmet — İstanbul Havalimanı (IST) ve Sabiha Gökçen (SAW). Yolculuk öncesi sabit fiyat, sürpriz yok.",
-    transferBadges:["✓ TURSAB Lisanslı Acente · No: 13243","✓ 60 dk ücretsiz bekleme","✓ Uçuş takibi dahil"],
+    transferBadges:["✓ 60 dk ücretsiz bekleme","✓ Uçuş takibi dahil"],
     transferBtn1:"💬 Transfer rezervasyonu", transferBtn2:"📞 Bizi arayın",
 
     vehiclesEyebrow:"Araçlarımız",
@@ -175,15 +175,15 @@ const TRAVEL_PAGE = {
   ru: {
     backHome:"← Вернуться на Hancı Global", heroEyebrow:"Hancı Travel · Стамбул",
     heroH1a:"Стамбул, как вы хотите —", heroH1em:"с комфортом",
-    heroP:"VIP трансферы из аэропорта, прогулки по Босфору и аренда автомобиля с водителем. Лицензия TURSAB. Фиксированные цены, без сюрпризов.",
+    heroP:"VIP трансферы из аэропорта, прогулки по Босфору и аренда автомобиля с водителем. Фиксированные цены, без сюрпризов.",
     heroBtn1:"Трансфер из аэропорта", heroBtn2:"🛥 Прогулки на яхте",
-    trustBadges:["✓ TURSAB № 13243","✓ Фиксированная цена — без счётчика","✓ Доступны 24/7"],
+    trustBadges:["✓ Фиксированная цена — без счётчика","✓ Доступны 24/7"],
     tabs:["✈️ Трансфер из аэропорта","🚗 Почасовая / дневная аренда","🛥 Прогулки на яхте","📋 Как это работает"],
 
     transferBadge:"Трансфер из аэропорта", transferEyebrow:"IST · SAW · От двери до двери",
     transferH2a:"Прибытие и отъезд", transferH2b:"", transferH2em:"без стресса",
     transferP:"Отслеживаем ваш рейс в реальном времени и встречаем вас на прилёте с табличкой с именем. Доступны 24/7 для обоих аэропортов Стамбула — Istanbul Airport (IST) и Sabiha Gökçen (SAW). Фиксированная цена согласовывается заранее. Без счётчика, без сюрпризов.",
-    transferBadges:["✓ Лицензированное агентство TURSAB · № 13243","✓ 60 минут бесплатного ожидания","✓ Отслеживание рейса включено"],
+    transferBadges:["✓ 60 минут бесплатного ожидания","✓ Отслеживание рейса включено"],
     transferBtn1:"💬 Заказать трансфер", transferBtn2:"📞 Позвонить",
 
     vehiclesEyebrow:"Ваш автомобиль",
@@ -254,15 +254,15 @@ const TRAVEL_PAGE = {
   ar: {
     backHome:"→ العودة إلى Hancı Global", heroEyebrow:"Hancı Travel · إسطنبول",
     heroH1a:"إسطنبول على طريقتك —", heroH1em:"براحة تامة",
-    heroP:"خدمات نقل VIP من المطار، وجولات بالقوارب في البوسفور، وتأجير سيارات مع سائق. وكالة مرخّصة من TÜRSAB. أسعار ثابتة بلا مفاجآت.",
+    heroP:"خدمات نقل VIP من المطار، وجولات بالقوارب في البوسفور، وتأجير سيارات مع سائق. أسعار ثابتة بلا مفاجآت.",
     heroBtn1:"النقل من المطار", heroBtn2:"🛥 جولات القوارب",
-    trustBadges:["✓ ترخيص TÜRSAB رقم 13243","✓ سعر ثابت — بلا عدّاد","✓ متاح على مدار الساعة"],
+    trustBadges:["✓ سعر ثابت — بلا عدّاد","✓ متاح على مدار الساعة"],
     tabs:["✈️ النقل من المطار","🚗 تأجير بالساعة / باليوم","🛥 جولات القوارب","📋 كيف نعمل"],
 
     transferBadge:"النقل من المطار", transferEyebrow:"IST · SAW · من الباب إلى الباب",
     transferH2a:"وصول ومغادرة", transferH2b:"", transferH2em:"بلا عناء",
     transferP:"نتابع رحلتك الجوية لحظة بلحظة ونستقبلك في صالة الوصول بلافتة تحمل اسمك. الخدمة متاحة على مدار الساعة لكلا مطارَي إسطنبول — مطار إسطنبول (IST) ومطار صبيحة كوكجن (SAW). سعر ثابت يُتّفق عليه قبل الرحلة. بلا عدّاد ولا مفاجآت.",
-    transferBadges:["✓ وكالة مرخّصة من TÜRSAB · رقم 13243","✓ 60 دقيقة انتظار مجاناً","✓ متابعة الرحلة مشمولة"],
+    transferBadges:["✓ 60 دقيقة انتظار مجاناً","✓ متابعة الرحلة مشمولة"],
     transferBtn1:"💬 احجز النقل", transferBtn2:"📞 اتصل بنا",
 
     vehiclesEyebrow:"سيارتك",
