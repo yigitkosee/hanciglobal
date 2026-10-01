@@ -20,6 +20,17 @@
   }
   if (lang !== 'tr' && lang !== 'ru' && lang !== 'ar') return;
 
+  /* site içi linkler seçili dili korusun: "index.html#about" → "index.html?lang=ar#about"
+     (sayfaların kendi kodu bazı linkleri atlıyordu, örn. alt sayfalardaki "Hakkımızda") */
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var m = a.getAttribute('href').match(/^(index|stay|stay-detail|travel|property|renovation|visa)\.html(\?[^#]*)?(#.*)?$/);
+    if (!m) return;
+    var q = new URLSearchParams((m[2] || '').slice(1));
+    if (q.has('lang')) return;
+    q.set('lang', lang);
+    a.setAttribute('href', m[1] + '.html?' + q.toString() + (m[3] || ''));
+  });
+
   /* rehber linkleri (data-guide="slug") seçili dilin rehber sayfasına gitsin: guides/slug-tr.html */
   document.querySelectorAll('a[data-guide]').forEach(function (a) {
     a.href = 'guides/' + a.getAttribute('data-guide') + '-' + lang + '.html';
@@ -88,11 +99,14 @@
     /* Arapça harfler birbirine bağlanır: harf aralığı ve eğik yazı bozar */
     'html[dir=rtl] *{letter-spacing:0!important}' +
     'html[dir=rtl] em,html[dir=rtl] i{font-style:normal}' +
-    /* kaydırmalı galeriler translateX ile çalışıyor; yönleri soldan sağa kalmalı */
-    'html[dir=rtl] .slides,html[dir=rtl] .dslides,html[dir=rtl] #pgTrack{direction:ltr}' +
-    /* telefon, e-posta ve Latin adresler soldan sağa okunmalı */
-    'html[dir=rtl] a[href^="tel:"],html[dir=rtl] a[href^="mailto:"]{direction:ltr;unicode-bidi:isolate}' +
+    /* kaydırmalı galeriler translateX ile çalışıyor; hem şerit hem kapsayıcısı soldan sağa kalmalı,
+       yoksa sağdan sola sayfada şerit sağa yaslanır ve boş ikinci kare (alt yazısı) görünür */
+    'html[dir=rtl] .slider,html[dir=rtl] .slides,html[dir=rtl] #dgallery,html[dir=rtl] .dslides,html[dir=rtl] #pgMainEl,html[dir=rtl] #pgTrack{direction:ltr}' +
+    /* telefon, e-posta ve Latin adresler soldan sağa okunmalı ama yine sağa yaslı durmalı */
+    'html[dir=rtl] a[href^="tel:"],html[dir=rtl] a[href^="mailto:"],html[dir=rtl] footer a[href*="instagram.com"]{direction:ltr;unicode-bidi:isolate}' +
     'html[dir=rtl] .ch-val,html[dir=rtl] .footer-addr,html[dir=rtl] .footer-copy{unicode-bidi:plaintext}' +
+    'html[dir=rtl] .footer-top,html[dir=rtl] .footer-top *,html[dir=rtl] .footer-copy,html[dir=rtl] .ch-val{text-align:right}' +
+    '@media (max-width:900px){html[dir=rtl] .footer-copy{text-align:center}}' +
     /* hero karartması metnin olduğu tarafa (sağa) dönsün */
     'html[dir=rtl] .hero-overlay{transform:scaleX(-1)}' +
     /* sabit WhatsApp butonu sola */

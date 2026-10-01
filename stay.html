@@ -588,6 +588,9 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
 /* ---------- Google puanlarını sitedeki yorumlarla birleştir ---------- */
 window.initGooglePlaces = async function(){
   if (!window.google || !google.maps || !google.maps.places || !google.maps.places.Place) return;
+  /* hem Maps callback'i hem sayfa sonundaki kontrol çağırabilir — yorumlar iki kez eklenmesin */
+  if (window.initGooglePlaces.done) return;
+  window.initGooglePlaces.done = true;
   await Promise.all(APARTMENTS.map(async (apt) => {
     if (!apt.placeId) return;
     try {
@@ -608,11 +611,10 @@ window.initGooglePlaces = async function(){
 
       if (place.reviews && place.reviews.length) {
         place.reviews.forEach(gr => {
-          const text = (gr.text || (gr.originalText && gr.originalText.text) || '').trim();
-          if (!text) return;
+          /* yazı yazmadan sadece yıldız veren yorumlarda text null gelir — onlar da gösterilir */
           allReviewsCombined.push({
             name: (gr.authorAttribution && gr.authorAttribution.displayName) || 'Google user',
-            text: text,
+            text: googleReviewText(gr),
             stars: gr.rating || 5,
             aptName: t.name,
             source: 'google'
@@ -660,7 +662,7 @@ function renderReviewCard(r){
   return `
     <div class="review-card">
       <div class="review-stars">${'★'.repeat(Math.round(r.stars||5))}${badge}</div>
-      <p class="review-text">"${escHtml(r.text)}"</p>
+      ${r.text ? `<p class="review-text">"${escHtml(r.text)}"</p>` : ''}
       <div class="review-author">
         <div class="review-avatar">${escHtml(r.name.charAt(0))}</div>
         <div><div class="review-name">${escHtml(r.name)}</div><div class="review-meta">${escHtml(r.aptName)}</div></div>
@@ -668,8 +670,16 @@ function renderReviewCard(r){
     </div>`;
 }
 
+/* Google yorum metni: çevrilmiş metin, yoksa orijinali; hiç yazı yoksa '' (sadece yıldız) */
+function googleReviewText(gr){
+  const pick = v => typeof v === 'string' ? v : (v && typeof v.text === 'string' ? v.text : '');
+  return (pick(gr.text) || pick(gr.originalText)).trim();
+}
+
 function renderReviews(){
-  const visible = reviewsExpanded ? allReviewsCombined : allReviewsCombined.slice(0, REVIEWS_INITIAL_COUNT);
+  /* yazılı yorumlar önce, sadece yıldız verilenler sonra (sıralama kendi içinde korunur) */
+  const ordered = allReviewsCombined.slice().sort((a, b) => (b.text ? 1 : 0) - (a.text ? 1 : 0));
+  const visible = reviewsExpanded ? ordered : ordered.slice(0, REVIEWS_INITIAL_COUNT);
   document.getElementById('reviewsGrid').innerHTML = visible.map(renderReviewCard).join('');
   const moreBtn = document.getElementById('reviewsMoreBtn');
   if (moreBtn){
@@ -799,6 +809,6 @@ document.addEventListener('click', function(e) {
   if (nav && nav.href) document.getElementById('waFloat').href = nav.href;
 })();
 </script>
-<script src=site-i18n.js?v=2></script>
+<script src=site-i18n.js?v=3></script>
 </body>
 </html>
