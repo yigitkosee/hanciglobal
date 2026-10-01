@@ -115,7 +115,8 @@ const STAY_PAGE = {
     platformsLabel: "Book on", platformsAirbnb: "🏠 Airbnb", platformsDirect: "💬 Direct booking (best rate)",
     listingsEyebrow: "Our properties", listingsH2a: "Find your", listingsH2em: "Istanbul home",
     bedroomsWord: "bedrooms", guestsUpTo: "Up to", guestsWord: "guests", fromWord: "From ", perNight: " / night",
-    viewAirbnb: "🏠 View on Airbnb", bookDirect: "📅 Book now", getDirections: "📍 Get directions",
+    viewAirbnb: "🏠 View on Airbnb", bookDirect: "📅 Book now", checkDates: "📅 Check dates", getDirections: "📍 Get directions",
+    bookDirectBest: "💬 Book direct — best rate", amenitiesTitle: "What this place offers",
     featuresEyebrow: "Why Hancı Stay", featuresH2a: "What makes us", featuresH2em: "different",
     features: [
       {title:"Prime locations", desc:"All properties are in Taksim, Galata & Beyoğlu — Istanbul's most vibrant neighbourhoods, within walking distance of everything."},
@@ -140,7 +141,8 @@ const STAY_PAGE = {
     platformsLabel: "Rezervasyon için", platformsAirbnb: "🏠 Airbnb", platformsDirect: "💬 Direkt rezervasyon (en iyi fiyat)",
     listingsEyebrow: "Mülklerimiz", listingsH2a: "", listingsH2em: "İstanbul evinizi bulun",
     bedroomsWord: "yatak odası", guestsUpTo: "", guestsWord: "kişiye kadar", fromWord: "", perNight: "'dan başlayan fiyatlarla",
-    viewAirbnb: "🏠 Airbnb'de gör", bookDirect: "📅 Rezervasyon Yap", getDirections: "📍 Yol tarifi al",
+    viewAirbnb: "🏠 Airbnb'de gör", bookDirect: "📅 Rezervasyon Yap", checkDates: "📅 Tarihleri kontrol et", getDirections: "📍 Yol tarifi al",
+    bookDirectBest: "💬 Direkt rezervasyon — en iyi fiyat", amenitiesTitle: "Bu evde neler var",
     featuresEyebrow: "Neden Hancı Stay?", featuresH2a: "Bizi", featuresH2em: "farklı kılan nedir",
     features: [
       {title:"Merkezi konumlar", desc:"Tüm mülkler Taksim, Galata & Beyoğlu'nda — İstanbul'un en canlı semtlerinde, her yere yürüme mesafesinde."},
@@ -165,7 +167,8 @@ const STAY_PAGE = {
     platformsLabel: "Забронировать на", platformsAirbnb: "🏠 Airbnb", platformsDirect: "💬 Прямое бронирование (лучшая цена)",
     listingsEyebrow: "Наши объекты", listingsH2a: "Найдите свой", listingsH2em: "дом в Стамбуле",
     bedroomsWord: "спален", guestsUpTo: "До", guestsWord: "гостей", fromWord: "От ", perNight: " / ночь",
-    viewAirbnb: "🏠 Смотреть на Airbnb", bookDirect: "📅 Забронировать", getDirections: "📍 Как добраться",
+    viewAirbnb: "🏠 Смотреть на Airbnb", bookDirect: "📅 Забронировать", checkDates: "📅 Проверить даты", getDirections: "📍 Как добраться",
+    bookDirectBest: "💬 Прямое бронирование — лучшая цена", amenitiesTitle: "Что есть в квартире",
     featuresEyebrow: "Почему Hancı Stay", featuresH2a: "Что делает нас", featuresH2em: "особенными",
     features: [
       {title:"Премиальные локации", desc:"Все объекты в Таксиме, Галате и Бейоглу — самых оживлённых районах Стамбула, в пешей доступности от всего."},
@@ -541,4 +544,26 @@ function getApartmentText(apt, lang) {
   const merged = { ...en, ...l };
   if (!l.longDesc) merged.longDesc = l.shortDesc || en.longDesc;
   return merged;
+}
+
+/* ---------- Doğrudan rezervasyon avantajı ----------
+   Sitedeki fiyatlar (PriceLabs) Airbnb fiyatından %10 indirimli geliyor.
+   Airbnb fiyatı buradan geri hesaplanır: Airbnb = site fiyatı / (1 - indirim).
+   İndirim oranı değişirse sadece DIRECT_DISCOUNT'u güncellemek yeterli. */
+const DIRECT_DISCOUNT = 0.10;
+const DIRECT_DISCOUNT_TEXT = {
+  en: { badge: "−{pct}% vs Airbnb", save: "You save {amount} compared to Airbnb" },
+  tr: { badge: "Airbnb'den %{pct} ucuz", save: "Airbnb'ye göre {amount} tasarruf" },
+  ru: { badge: "−{pct}% к Airbnb", save: "Экономия {amount} по сравнению с Airbnb" }
+};
+function airbnbPriceOf(price) { return Math.round(price / (1 - DIRECT_DISCOUNT)); }
+function getDirectDiscountText(lang) {
+  const t = DIRECT_DISCOUNT_TEXT[lang] || DIRECT_DISCOUNT_TEXT.en;
+  const pct = Math.round(DIRECT_DISCOUNT * 100);
+  return { badge: t.badge.replace('{pct}', pct), save: t.save };
+}
+/* "<s>€111</s> From €100 / night  [−10% vs Airbnb]" — ilan kartları ve rezervasyon kutusu için */
+function directPriceHtml(lang, curr, price, prefix, suffix) {
+  return `<s class="airbnb-strike">${curr}${airbnbPriceOf(price)}</s> ${prefix || ''}${curr}${price}<span>${suffix || ''}</span>` +
+         `<em class="direct-badge">${getDirectDiscountText(lang).badge}</em>`;
 }

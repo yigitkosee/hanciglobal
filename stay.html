@@ -120,6 +120,8 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .listing-meta span{font-size:13px;font-weight:600;color:var(--ink2);display:flex;align-items:center;gap:5px}
 .listing-price{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:20px}
 .listing-price span{font-size:13px;font-weight:500;color:var(--muted)}
+.airbnb-strike{font-size:.85em;font-weight:500;color:var(--muted);margin-right:2px}
+.direct-badge{display:inline-block;font-style:normal;font-size:10px;font-weight:800;color:var(--teal-d);background:var(--teal-l);padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;letter-spacing:.3px;white-space:nowrap}
 .listing-actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn-airbnb{font-size:12px;font-weight:700;padding:10px 16px;border-radius:8px;background:#FF5A5F;color:#fff;border:none;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:6px}
 .btn-airbnb:hover{background:#e04a4f}
@@ -403,7 +405,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="apartments-data.js?v=5"></script>
+<script src="apartments-data.js?v=7"></script>
 <script>
 /* ---------- read URL params ---------- */
 
@@ -568,10 +570,10 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
           <span>🛏 ${apt.bedrooms} ${sp.bedroomsWord}</span>
           <span>👥 ${sp.guestsUpTo} ${apt.guests} ${sp.guestsWord}</span>
         </div>
-        <div class="listing-price" id="lp-${apt.id}">${sp.fromWord}${apt.currency}${apt.priceFrom}<span>${sp.perNight}</span></div>
+        <div class="listing-price" id="lp-${apt.id}">${directPriceHtml(lang, apt.currency, apt.priceFrom, sp.fromWord, sp.perNight)}</div>
         <div class="listing-actions">
           <a href="${apt.airbnbUrl}" target="_blank" onclick="event.stopPropagation()"><button class="btn-airbnb">${sp.viewAirbnb}</button></a>
-          <a href="stay-detail.html?id=${apt.id}&lang=${lang}" onclick="event.stopPropagation()"><button class="btn-wa-sm">${sp.bookDirect}</button></a>
+          <a href="stay-detail.html?id=${apt.id}&lang=${lang}#dates" onclick="event.stopPropagation()"><button class="btn-wa-sm">${sp.checkDates}</button></a>
           <a href="${apt.directionsUrl}" target="_blank" onclick="event.stopPropagation()"><button class="btn-directions">${sp.getDirections}</button></a>
         </div>
       </div>
@@ -643,15 +645,20 @@ let allReviewsCombined = APARTMENTS.flatMap(apt => {
 });
 let reviewsExpanded = false;
 
+/* yorum metinleri dışarıdan (Google) geldiği için HTML olarak değil, düz metin olarak basılır */
+function escHtml(s){
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 function renderReviewCard(r){
   const badge = r.source === 'google' ? `<span class="review-google-badge">Google</span>` : '';
   return `
     <div class="review-card">
       <div class="review-stars">${'★'.repeat(Math.round(r.stars||5))}${badge}</div>
-      <p class="review-text">"${r.text}"</p>
+      <p class="review-text">"${escHtml(r.text)}"</p>
       <div class="review-author">
-        <div class="review-avatar">${r.name.charAt(0)}</div>
-        <div><div class="review-name">${r.name}</div><div class="review-meta">${r.aptName}</div></div>
+        <div class="review-avatar">${escHtml(r.name.charAt(0))}</div>
+        <div><div class="review-name">${escHtml(r.name)}</div><div class="review-meta">${escHtml(r.aptName)}</div></div>
       </div>
     </div>`;
 }
@@ -736,7 +743,7 @@ fetch(LIVE_DATA_URL)
       const el = document.getElementById('lp-' + apt.id);
       if (!el) return;
       const curr = live.currency === "EUR" ? "€" : (live.currency || apt.currency);
-      el.innerHTML = sp.fromWord + curr + live.priceFrom + '<span>' + sp.perNight + '</span>';
+      el.innerHTML = directPriceHtml(lang, curr, live.priceFrom, sp.fromWord, sp.perNight);
     });
   })
   .catch(err => console.error('[LiveData] could not load PriceLabs data, showing static fallback:', err));  
@@ -773,5 +780,20 @@ document.addEventListener('click', function(e) {
 });
 </script>
   
+
+<!-- SABİT WHATSAPP BUTONU (sağ alt köşe) — linki üstteki WhatsApp butonundan alır, böylece mesaj sayfaya uygun olur -->
+<style>
+.wa-float{position:fixed;right:24px;bottom:24px;z-index:240;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.22);transition:transform .15s}
+.wa-float:hover{transform:scale(1.07)}
+@media (max-width:900px){.wa-float{right:16px;bottom:16px;width:54px;height:54px}}
+</style>
+<a class="wa-float" id="waFloat" href="https://wa.me/905063335154" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+<script>
+(function(){
+  var nav = document.getElementById('navWaBtn');
+  if (nav && nav.href) document.getElementById('waFloat').href = nav.href;
+})();
+</script>
+<script src=site-i18n.js?v=1></script>
 </body>
 </html>
