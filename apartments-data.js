@@ -448,7 +448,7 @@ const APARTMENTS = [
     directionsUrl: "https://maps.app.goo.gl/XKS1oDmeWqDZxfi47",
     waNumber: "905063335154",
     placeId: "ChIJJcHiMAe5yhQRRQVjidxnBRw", // real Google Business Profile — pulls live Google reviews
-    bedrooms: 2, beds: 3, baths: 1, guests: 5,
+    bedrooms: 2, beds: 3, baths: 2, guests: 5,
     priceFrom: 80, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
     mapQuery: "Bereketzade, Büyük Hendek Cd. No:1, 34421 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
@@ -521,7 +521,7 @@ const APARTMENTS = [
     directionsUrl: "https://maps.app.goo.gl/M2HiMtFyV1pjm4wK7",
     waNumber: "905063335154",
     placeId: "ChIJo-5zlTS5yhQRteRGCI5FeZk", // real Google Business Profile — pulls live Google reviews
-    bedrooms: 4, beds: 5, baths: 2, guests: 10,
+    bedrooms: 4, beds: 5, baths: 1.5, guests: 10,
     priceFrom: 150, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
     mapQuery: "Firuzağa, Cezayir Sk. No:5 D:3, 34425 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
@@ -535,7 +535,7 @@ const APARTMENTS = [
         location: "Beyoğlu · Taksim",
         name: "The Heaven on Heritage Street",
         shortDesc: "Spacious and inviting apartment on one of Istanbul's most famous streets. Steps from vibrant cafes, boutique shops, cultural hotspots and iconic landmarks in a beautifully preserved historic building.",
-        longDesc: "Four bedrooms and two bathrooms make this the largest of our apartments — ideal for bigger groups or families travelling together. It sits on one of Istanbul's most famous streets, steps from cafes, boutique shops and cultural landmarks, inside a beautifully preserved historic building.",
+        longDesc: "Four bedrooms and one and a half bathrooms make this the largest of our apartments — ideal for bigger groups or families travelling together. It sits on one of Istanbul's most famous streets, steps from cafes, boutique shops and cultural landmarks, inside a beautifully preserved historic building.",
         reviews: [
           {name:"Josh", text:"Really nice and convenient place. The location was perfect — close to all the nightlife and tourist areas but the street was a lot more relaxed. Would highly recommend!", stars:5},
           {name:"Arigun", text:"The hosts are very friendly and kind. Don't be afraid to ask for help — they are genuinely nice people who have your comfort in mind.", stars:5}
@@ -547,7 +547,7 @@ const APARTMENTS = [
         shortDesc: "Просторные апартаменты на одной из самых известных улиц Стамбула. Кафе, бутики, культурные места — всё рядом в прекрасно сохранившемся историческом здании." },
       ar: { location: "بي أوغلو · تقسيم", name: "الجنّة في الشارع التاريخي",
         shortDesc: "شقة واسعة ومرحِّبة في أحد أشهر شوارع إسطنبول، على بُعد خطوات من المقاهي النابضة بالحياة والمتاجر الصغيرة والمعالم الثقافية، في مبنى تاريخي محفوظ بعناية.",
-        longDesc: "بأربع غرف نوم وحمّامين، هذه أكبر شققنا — مثالية للمجموعات الكبيرة والعائلات المسافرة معاً. تقع في أحد أشهر شوارع إسطنبول، على بُعد خطوات من المقاهي والمتاجر والمعالم الثقافية، داخل مبنى تاريخي محفوظ بعناية." }
+        longDesc: "بأربع غرف نوم وحمّام ونصف، هذه أكبر شققنا — مثالية للمجموعات الكبيرة والعائلات المسافرة معاً. تقع في أحد أشهر شوارع إسطنبول، على بُعد خطوات من المقاهي والمتاجر والمعالم الثقافية، داخل مبنى تاريخي محفوظ بعناية." }
     }
   },
 
@@ -557,7 +557,7 @@ const APARTMENTS = [
     directionsUrl: "https://maps.app.goo.gl/So39V1y36HcxUQEz7",
     waNumber: "905063335154",
     placeId: "ChIJ3RiwVtO5yhQRRaVjIifPWnc", // real Google Business Profile — pulls live Google reviews
-    bedrooms: 2, beds: 2, baths: 1, guests: 4,
+    bedrooms: 2, beds: 3, baths: 1, guests: 4,
     priceFrom: 60, currency: "€",
     rating: null, reviewCount: null, // fill with real Airbnb numbers e.g. rating: 4.92, reviewCount: 38 — leave null to hide the stars row
     mapQuery: "Evliya Çelebi, Bedrettin Sk. No:2, 34430 Beyoğlu/İstanbul", // replace with the exact address for a precise map pin
