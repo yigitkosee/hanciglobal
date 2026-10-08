@@ -418,7 +418,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="renovation-data.js?v=1"></script>
+<script src="renovation-data.js?v=2"></script>
 <script>
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
@@ -551,16 +551,32 @@ document.getElementById('portfolioH2').innerHTML = `${rp.portfolioH2a} <em>${rp.
 const projectsHTML = PORTFOLIO_PROJECTS.map((project, i) => {
   const t = getProjectText(project, lang);
   const beforeMainId = `before-p${i+1}`, afterMainId = `after-p${i+1}`;
+  // paired: aynı sıradaki önce/sonra görseli aynı açı → tıklayınca iki taraf birlikte değişir
+  const pick = (side, idx) => project.paired
+    ? `setPair(${i},${idx})`
+    : `setImg('${project.images[side][idx]}','${side === 'before' ? beforeMainId : afterMainId}')`;
+  const done = project.status === 'completed';
+  const statusHTML = done
+    ? `<div class="portfolio-status">✓ ${rp.statusCompleted || 'Completed'}</div>`
+    : `<div class="portfolio-status"><div class="status-dot"></div> ${rp.statusInProgress}</div>`;
+  const during = (project.images.during || []);
+  const duringHTML = during.length ? `
+        <div class="during-strip">
+          <div class="during-label">${rp.duringLabel}</div>
+          <div class="during-photos">
+            ${during.map(img => `<div class="during-photo"><img loading="lazy" src="${img}" alt="During"></div>`).join('')}
+          </div>
+        </div>` : '';
   return `
     <div class="portfolio-card">
       <div class="portfolio-images">
         <div class="portfolio-side">
           <div class="portfolio-side-label before-label">${rp.beforeLabel}</div>
           <div class="portfolio-img-main" id="${beforeMainId}">
-            <img loading="lazy" src="${project.images.before[0]}" alt="Before renovation" onclick="setImg('${project.images.before[0]}','${beforeMainId}')" style="cursor:pointer">
+            <img loading="lazy" src="${project.images.before[0]}" alt="Before renovation" onclick="${pick('before',0)}" style="cursor:pointer">
           </div>
           <div class="portfolio-thumbs">
-            ${project.images.before.slice(1).map(img => `<div class="portfolio-thumb" onclick="setImg('${img}','${beforeMainId}')"><img loading="lazy" src="${img}" alt=""></div>`).join('')}
+            ${project.images.before.slice(1).map((img, k) => `<div class="portfolio-thumb" onclick="${pick('before',k+1)}"><img loading="lazy" src="${img}" alt=""></div>`).join('')}
           </div>
         </div>
         <div class="portfolio-arrow">
@@ -569,16 +585,16 @@ const projectsHTML = PORTFOLIO_PROJECTS.map((project, i) => {
         <div class="portfolio-side">
           <div class="portfolio-side-label after-label">${rp.afterLabel}</div>
           <div class="portfolio-img-main" id="${afterMainId}">
-            <img loading="lazy" src="${project.images.after[0]}" alt="After renovation" onclick="setImg('${project.images.after[0]}','${afterMainId}')" style="cursor:pointer">
+            <img loading="lazy" src="${project.images.after[0]}" alt="After renovation" onclick="${pick('after',0)}" style="cursor:pointer">
           </div>
           <div class="portfolio-thumbs">
-            ${project.images.after.slice(1).map(img => `<div class="portfolio-thumb" onclick="setImg('${img}','${afterMainId}')"><img loading="lazy" src="${img}" alt=""></div>`).join('')}
+            ${project.images.after.slice(1).map((img, k) => `<div class="portfolio-thumb" onclick="${pick('after',k+1)}"><img loading="lazy" src="${img}" alt=""></div>`).join('')}
           </div>
         </div>
       </div>
       <div class="portfolio-info">
         <div class="portfolio-meta">
-          <div class="portfolio-status"><div class="status-dot"></div> ${rp.statusInProgress}</div>
+          ${statusHTML}
           <div class="portfolio-specs-row">
             <span>📍 ${t.location}</span>
             <span>🔨 ${t.typeLabel}</span>
@@ -586,13 +602,7 @@ const projectsHTML = PORTFOLIO_PROJECTS.map((project, i) => {
           </div>
         </div>
         <div class="portfolio-name">${t.name}</div>
-        <p class="portfolio-desc">${t.desc}</p>
-        <div class="during-strip">
-          <div class="during-label">${rp.duringLabel}</div>
-          <div class="during-photos">
-            ${project.images.during.map(img => `<div class="during-photo"><img loading="lazy" src="${img}" alt="During"></div>`).join('')}
-          </div>
-        </div>
+        <p class="portfolio-desc">${t.desc}</p>${duringHTML}
       </div>
     </div>`;
 }).join('');
@@ -611,6 +621,11 @@ document.getElementById('portfolioGrid').innerHTML = projectsHTML + placeholderH
 
 function setImg(src, mainId){
   document.getElementById(mainId).querySelector("img").src = src;
+}
+function setPair(p, idx){
+  const imgs = PORTFOLIO_PROJECTS[p].images;
+  setImg(imgs.before[idx], `before-p${p+1}`);
+  setImg(imgs.after[idx], `after-p${p+1}`);
 }
 
 /* ---------- features ---------- */

@@ -8,6 +8,29 @@
 
 const PORTFOLIO_PROJECTS = [
   {
+    // Bedrettin Sk. dairesi (sitede "Golden Horn Hidden Heaven"). Önce: profesyonel fotoğraflar, sonra: tasarım görselleri.
+    // paired: true → before[i] ile after[i] aynı açı; bir küçük resme tıklayınca iki taraf birlikte değişir.
+    id: "galata-golden-horn-reno",
+    status: "completed",
+    paired: true,
+    images: {
+      before: ["reno-galata-before1.jpg","reno-galata-before2.jpg","reno-galata-before3.jpg","reno-galata-before4.jpg","reno-galata-before5.jpg","reno-galata-before6.jpg","reno-galata-before7.jpg"],
+      after:  ["reno-galata-after1.jpg","reno-galata-after2.jpg","reno-galata-after3.jpg","reno-galata-after4.jpg","reno-galata-after5.jpg","reno-galata-after6.jpg","reno-galata-after7.jpg"],
+      during: []
+    },
+    translations: {
+      en: { location:"Galata · Golden Horn", typeLabel:"Interior renovation", category:"Residential",
+        name:"Interior Renovation — Golden Horn View Apartment",
+        desc:"A top-floor apartment in a historic Galata building, overlooking the Golden Horn. Every room had its own colour scheme, so we tied the whole home together with one calm palette: warm off-white walls, a midnight blue accent and the original wooden floors sanded and refinished in a warm honey tone. The original Ottoman cement tiles in the hall and kitchen were kept. The scope covered new walnut interior doors, hidden LED cornice lighting with built-in curtain pockets, pendant lights, a travertine bathroom, refreshed kitchen fronts with matte black handles, a built-in window bench facing the view and all-new furniture." },
+      tr: { location:"Galata · Haliç", typeLabel:"İç mekân yenileme", category:"Konut",
+        name:"İç Mekân Yenileme — Haliç Manzaralı Daire",
+        desc:"Galata'da tarihi bir binanın Haliç'e bakan çatı katı dairesi. Her oda ayrı bir renk dünyasındaydı; evi tek ve sakin bir paletle bütünleştirdik: sıcak kırık beyaz duvarlar, gece mavisi vurgu ve zımparalanıp bal tonunda yenilenen orijinal ahşap zeminler. Hol ve mutfaktaki orijinal Osmanlı çinileri korundu. Kapsam: ceviz kaplama yeni iç kapılar, perde cepli gizli LED kartonpiyer aydınlatma, sarkıt armatürler, traverten banyo, mat siyah kulplu yenilenmiş mutfak kapakları, manzaraya bakan sedir ve tamamen yeni mobilyalar." },
+      ru: { location:"Галата · Золотой Рог", typeLabel:"Ремонт интерьера", category:"Жилой объект",
+        name:"Ремонт интерьера — квартира с видом на Золотой Рог",
+        desc:"Мансардная квартира в историческом здании Галаты с видом на Золотой Рог. Каждая комната была выдержана в своей цветовой гамме, поэтому мы объединили дом одной спокойной палитрой: тёплые молочно-белые стены, акцент цвета полуночной синевы и оригинальный деревянный пол, отшлифованный и покрытый в тёплом медовом тоне. Оригинальная османская плитка в холле и на кухне сохранена. Объём работ: новые межкомнатные двери в ореховом шпоне, скрытая LED-подсветка карниза с нишами для штор, подвесные светильники, ванная в травертине, обновлённые фасады кухни с матовыми чёрными ручками, встроенная скамья у окна с видом и полностью новая мебель." }
+    }
+  },
+  {
     id: "beyoglu-full-reno",
     status: "in_progress",
     images: {
@@ -68,7 +91,7 @@ const RENOVATION_PAGE = {
     ],
     portfolioEyebrow: "Our work", portfolioH2a: "Renovation", portfolioH2em: "portfolio",
     beforeLabel: "Before", afterLabel: "After", duringLabel: "During construction",
-    statusInProgress: "In progress",
+    statusInProgress: "In progress", statusCompleted: "Completed",
     placeholderTitle: "Next project coming soon", placeholderDesc: "Our portfolio is growing. Have a renovation project? Let's talk.", placeholderBtn: "💬 Discuss a project",
     featuresEyebrow: "Why Hancı Renovation", featuresH2a: "What makes us", featuresH2em: "different",
     features: [
@@ -116,7 +139,7 @@ const RENOVATION_PAGE = {
     ],
     portfolioEyebrow: "Çalışmalarımız", portfolioH2a: "Tadilat", portfolioH2em: "portföyü",
     beforeLabel: "Önce", afterLabel: "Sonra", duringLabel: "İnşaat sürecinde",
-    statusInProgress: "Devam ediyor",
+    statusInProgress: "Devam ediyor", statusCompleted: "Tamamlandı",
     placeholderTitle: "Yakında yeni proje", placeholderDesc: "Portföyümüz büyüyor. Aklınızda bir tadilat projesi mi var? Konuşalım.", placeholderBtn: "💬 Proje konuşalım",
     featuresEyebrow: "Neden Hancı Renovation?", featuresH2a: "Bizi", featuresH2em: "farklı kılan nedir",
     features: [
@@ -164,7 +187,7 @@ const RENOVATION_PAGE = {
     ],
     portfolioEyebrow: "Наши работы", portfolioH2a: "Портфолио", portfolioH2em: "ремонтов",
     beforeLabel: "До", afterLabel: "После", duringLabel: "В процессе строительства",
-    statusInProgress: "В процессе",
+    statusInProgress: "В процессе", statusCompleted: "Завершён",
     placeholderTitle: "Следующий проект скоро", placeholderDesc: "Наше портфолио растёт. Есть проект ремонта? Давайте обсудим.", placeholderBtn: "💬 Обсудить проект",
     featuresEyebrow: "Почему Hancı Renovation", featuresH2a: "Что делает нас", featuresH2em: "особенными",
     features: [
