@@ -694,11 +694,29 @@ function directPriceHtml(lang, curr, price, prefix, suffix) {
          `<em class="direct-badge">${getDirectDiscountText(lang).badge}</em>`;
 }
 
+/* Canlı veri (PriceLabs + takvimler, Apps Script üzerinden).
+   - Her deneme en fazla 12 sn bekler (Apps Script bazen soğuk başlangıçta takılıyor).
+   - 4 deneme, aralarda 1 / 2 / 3 sn bekleme.
+   - Son başarılı yanıt tarayıcıda saklanır; tüm denemeler başarısız olursa
+     statik veri yerine en fazla 3 günlük bu kayıt kullanılır. */
+const LIVE_DATA_CACHE_KEY = 'hanci-live-data';
+const LIVE_DATA_CACHE_MAX_AGE = 3 * 24 * 60 * 60 * 1000;
+
+function readCachedLiveData() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(LIVE_DATA_CACHE_KEY) || 'null');
+    if (cached && cached.data && Date.now() - cached.savedAt < LIVE_DATA_CACHE_MAX_AGE) return cached.data;
+  } catch (e) {}
+  return null;
+}
+
 async function fetchLiveData(url) {
   let lastError;
-  for (let attempt = 0; attempt < 3; attempt++) {
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timer = controller && setTimeout(() => controller.abort(), 12000);
     try {
-      const response = await fetch(url, { cache: 'no-store' });
+      const response = await fetch(url, { cache: 'no-store', signal: controller ? controller.signal : undefined });
       if (!response.ok) throw new Error(`Live data request failed (${response.status})`);
 
       const contentType = response.headers.get('content-type') || '';
@@ -711,11 +729,20 @@ async function fetchLiveData(url) {
         Object.values(liveData).some(item => item && typeof item === 'object' &&
           ('priceFrom' in item || 'prices' in item || 'blockedDates' in item));
       if (!hasApartmentData) throw new Error('Live data response contains no apartment data');
+      try { localStorage.setItem(LIVE_DATA_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), data: liveData })); } catch (e) {}
       return liveData;
     } catch (err) {
       lastError = err;
-      if (attempt < 2) await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+      console.warn(`[LiveData] attempt ${attempt + 1} failed:`, err);
+      if (attempt < 3) await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+    } finally {
+      if (timer) clearTimeout(timer);
     }
+  }
+  const cached = readCachedLiveData();
+  if (cached) {
+    console.warn('[LiveData] using last saved live data');
+    return cached;
   }
   throw lastError;
 }
