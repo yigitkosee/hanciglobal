@@ -495,7 +495,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
   </div>
 </footer>
 
-<script src="apartments-data.js?v=11"></script>
+<script src="apartments-data.js?v=12"></script>
 <script src="index-data.js?v=5"></script>
 <script>
 /* ---------- read URL params ---------- */
@@ -714,8 +714,7 @@ APARTMENTS.forEach((_, i) => initSlider('is'+(i+1)));
 /* ---------- live pricing (PriceLabs via Apps Script) ---------- */
 const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst2NAVDhIlvQmLQ7wtsDv3hM73DleDzlmZtQm6FzfEHhoAx6WGGz_w/exec";
 
-fetch(LIVE_DATA_URL)
-  .then(r => r.json())
+fetchLiveData(LIVE_DATA_URL)
   .then(liveData => {
     APARTMENTS.forEach(apt => {
       const live = liveData[apt.id];

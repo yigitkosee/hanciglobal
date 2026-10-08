@@ -553,7 +553,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="apartments-data.js?v=11"></script>
+<script src="apartments-data.js?v=12"></script>
 <script>
 /* ---------- read URL params ---------- */
 
@@ -1148,8 +1148,7 @@ function closeLightbox(){
    the page never breaks or shows a blank state. */
 const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst2NAVDhIlvQmLQ7wtsDv3hM73DleDzlmZtQm6FzfEHhoAx6WGGz_w/exec";
 
-fetch(LIVE_DATA_URL)
-  .then(r => r.json())
+fetchLiveData(LIVE_DATA_URL)
   .then(liveData => {
     /* current apartment */
     const live = liveData[apt.id];
