@@ -32,11 +32,11 @@ const PORTFOLIO_PROJECTS = [
   },
   {
     id: "beyoglu-full-reno",
-    status: "in_progress",
+    status: "completed",
     images: {
       before: ["before1.jpg","before2.jpg","before3.jpg","before4.jpg"],
       after:  ["after1.jpg","after2.jpg","after3.jpg","after4.jpg"],
-      during: ["during1.jpeg","during2.jpeg","during3.jpeg","during4.jpeg"]
+      during: []
     },
     translations: {
       en: { location:"Beyoğlu", typeLabel:"Full renovation", category:"Residential",
