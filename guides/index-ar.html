@@ -106,6 +106,115 @@ footer{background:var(--navy);color:rgba(255,255,255,.65);padding:44px 56px 28px
 .footer-links a:hover{color:#E8C86A}
 .footer-legal{padding-top:20px;color:rgba(255,255,255,.45);font-size:12px;line-height:1.8}
 .wa-float{position:fixed;right:24px;bottom:24px;z-index:240;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.22)}
+/* ---------- mekân kartları ---------- */
+main.wide{max-width:1180px}
+main.wide .intro{max-width:820px}
+.hero .stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero .stats span{font-size:13px;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);padding:6px 14px;border-radius:999px}
+.filters{position:sticky;top:72px;z-index:150;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);margin:28px -24px 0;padding:12px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink2);background:var(--bg);border:1.5px solid var(--border);border-radius:999px;padding:8px 16px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.chip b{font-weight:700;color:var(--muted);margin-inline-start:6px}
+.chip:hover{border-color:var(--navy)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.on b{color:rgba(255,255,255,.6)}
+.vsec{scroll-margin-top:140px}
+.vsec[hidden]{display:none}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+.vcard{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;scroll-margin-top:150px}
+.vcard:hover{transform:translateY(-4px);box-shadow:0 22px 44px -22px rgba(13,30,53,.4)}
+.vcard:target{box-shadow:0 0 0 3px var(--gold)}
+.vmedia{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,var(--c1),var(--c2));direction:ltr;touch-action:pan-y}
+.vmedia.hasph{cursor:zoom-in}
+.vmedia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s,transform .7s}
+.vcard:hover .vmedia img{transform:scale(1.04)}
+.vmedia img.fade{opacity:0}
+.vph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:rgba(255,255,255,.92);text-align:center;padding:0 20px}
+.vph span{font-size:42px}
+.vph em{font-family:"Cormorant Garamond","Amiri",serif;font-style:normal;font-size:24px;line-height:1.15}
+.vmedia::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);pointer-events:none;z-index:1}
+.varea,.vpick{position:absolute;top:12px;z-index:2;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.varea{left:12px;background:rgba(255,255,255,.94);color:var(--ink)}
+.vpick{right:12px;background:var(--gold);color:#fff;font-weight:800}
+.vnav{position:absolute;top:50%;z-index:3;width:36px;height:36px;margin-top:-18px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--ink);font-size:22px;line-height:1;cursor:pointer;opacity:0;transition:opacity .2s;display:flex;align-items:center;justify-content:center;padding-bottom:3px}
+.vprev{left:10px}.vnext{right:10px}
+.vcard:hover .vnav,.vnav:focus-visible{opacity:1}
+@media (hover:none){.vnav{opacity:.85}}
+.vdots{position:absolute;bottom:32px;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.vdots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);transition:background .2s,transform .2s}
+.vdots i.on{background:#fff;transform:scale(1.25)}
+.vcredit{position:absolute;left:12px;right:12px;bottom:9px;z-index:3;font-size:11px;color:rgba(255,255,255,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:auto}
+.vcredit a{text-decoration:underline}
+.vbody{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.vbody h3{font-family:"Cormorant Garamond","Amiri",serif;font-size:25px;font-weight:600;line-height:1.15;margin-bottom:9px}
+.vbody h3 a:hover{color:var(--teal-d)}
+.vtags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.vtags span{font-size:11.5px;font-weight:700;color:var(--teal-d);background:var(--teal-l);padding:3px 10px;border-radius:999px}
+.vbody p{font-size:14.5px;color:var(--ink2);flex:1}
+.vact{display:flex;gap:8px;margin-top:16px}
+.vact a{flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);transition:border-color .2s,color .2s}
+.vact a:hover{border-color:var(--teal);color:var(--teal-d)}
+.vact a.wa{background:var(--navy);border-color:var(--navy);color:#fff}
+.vact a.wa:hover{background:var(--teal-d);border-color:var(--teal-d);color:#fff}
+.photos-note{font-size:12px;color:var(--muted);margin-top:28px}
+.picks{display:grid;grid-auto-flow:column;grid-auto-columns:300px;gap:18px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;margin-top:20px}
+.picks .vcard{scroll-snap-align:start}
+.picks .vcard:hover{transform:none}
+/* liste + harita */
+main.withmap{max-width:1480px}
+.vlayout{display:grid;grid-template-columns:minmax(0,1fr) 43%;gap:28px;align-items:start}
+.vlayout .vgrid{grid-template-columns:repeat(2,1fr)}
+.vlayout .filters{margin:28px 0 0;padding:12px 0;border-bottom:1px solid var(--border)}
+.vmap{position:sticky;top:88px;height:calc(100vh - 104px);margin-top:28px;border-radius:22px;overflow:hidden;border:1px solid var(--border);background:#E9EEF1}
+#gmap{width:100%;height:100%}
+.vmap-close,.map-toggle{display:none}
+.vcard.hl{box-shadow:0 0 0 2px var(--teal)}
+.vcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,100%{box-shadow:0 0 0 0 rgba(184,149,58,0)}25%{box-shadow:0 0 0 4px rgba(184,149,58,.9)}}
+.vlayout .vbody{cursor:pointer}
+.vact button.onmap{flex:none;font:inherit;font-size:13px;font-weight:700;padding:9px 12px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--ink);cursor:pointer}
+.vact button.onmap:hover{border-color:var(--teal);color:var(--teal-d)}
+.vlayout .vact{flex-wrap:wrap}
+.pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;z-index:1}
+.pin i{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--pc);border:2.5px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.3);transition:transform .2s,background .2s;font-style:normal}
+.pin i span{transform:rotate(45deg);font-size:15px;line-height:1}
+.pin b{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;color:var(--ink);font:700 13px "Plus Jakarta Sans","IBM Plex Sans Arabic",sans-serif;padding:6px 12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.22);display:none}
+.pin:hover,.pin.hl{z-index:5}
+.pin:hover i,.pin.hl i{transform:rotate(-45deg) scale(1.18)}
+.pin:hover b,.pin.hl b,.pin.on b{display:block}
+.pin.on{z-index:6}
+.pin.on i{background:var(--navy);transform:rotate(-45deg) scale(1.3)}
+.pin.off{display:none}
+@media (max-width:1100px){
+  main.withmap{max-width:1180px}
+  .vlayout{display:block}
+  .vlayout .filters{position:sticky;top:72px}
+  .vmap{display:none;position:fixed;top:62px;left:0;right:0;bottom:0;height:auto;margin:0;border-radius:0;border:0;z-index:300}
+  .vmap.open{display:block}
+  .vmap-close{display:flex;position:absolute;top:14px;right:14px;z-index:2;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:var(--ink);font-size:26px;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer;padding-bottom:3px}
+  .map-toggle{display:flex;position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:260;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:800;color:#fff;background:var(--navy);border:0;border-radius:999px;padding:13px 24px;box-shadow:0 8px 24px rgba(13,30,53,.35);cursor:pointer}
+  body.mapopen .map-toggle,body.mapopen .wa-float{display:none}
+  .pin b{pointer-events:auto}
+}
+@media (max-width:900px){.vlayout .filters{top:62px}.vlayout .vgrid{grid-template-columns:1fr}}
+/* tam ekran fotoğraf */
+.lb{position:fixed;inset:0;z-index:500;background:rgba(6,12,22,.95);display:none;align-items:center;justify-content:center;direction:ltr;touch-action:pan-y}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:78vh;border-radius:12px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:0;width:50px;height:50px;border-radius:50%;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding-bottom:4px}
+.lb button:hover{background:rgba(255,255,255,.26)}
+.lbx{top:18px;right:18px}.lbp{left:18px;top:50%;margin-top:-25px}.lbn{right:18px;top:50%;margin-top:-25px}
+.lbname{position:absolute;top:26px;left:80px;right:80px;text-align:center;color:#fff;font-family:"Cormorant Garamond","Amiri",serif;font-size:26px}
+.lbcap{position:absolute;bottom:20px;left:16px;right:16px;text-align:center;color:rgba(255,255,255,.85);font-size:13px}
+.lbcap a{text-decoration:underline}
+@media (min-width:901px) and (max-width:1120px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){
+  .vgrid{grid-template-columns:1fr}
+  .filters{top:62px;margin:24px -16px 0;padding:10px 16px}
+  .picks{grid-auto-columns:80%}
+  .lbp,.lbn{top:auto;bottom:60px;margin-top:0}
+  .lbname{font-size:20px;left:70px;right:70px}
+}
 /* Arapça: sağdan sola */
 html[dir=rtl] *{letter-spacing:0!important}
 html[dir=rtl] .tips li{margin:6px 20px 6px 0}
@@ -152,6 +261,173 @@ html[dir=rtl] .footer-links.ltr{align-items:flex-end}
 <main>
 <p class="intro">نحن نعيش ونعمل في غلطة وبي أوغلو، وهذه هي النصائح التي نقدّمها لضيوفنا. كل مكان في هذه الأدلة نرتاده بأنفسنا.</p>
 <div class="hub-grid"><a class="guide-card" href="istanbul-airport-to-galata-taksim-ar.html"><img loading="lazy" src="../transferana.jpg" alt="كيف تصل من مطارات إسطنبول إلى غلطة وتقسيم"><div><h3>✈️ كيف تصل من مطارات إسطنبول إلى غلطة وتقسيم</h3><p>التاكسي وحافلات Havaist/Havabus والمترو من مطار إسطنبول (IST) ومطار صبيحة كوكجن (SAW) إلى غلطة وتقسيم وبي أوغلو — مع المدة والأسعار والخطوة الأخيرة إلى شققنا.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="where-to-eat-drink-galata-ar.html"><img loading="lazy" src="../sunset2.jpg" alt="أين تأكل وتشرب في غلطة وبي أوغلو: اختياراتنا المحلية"><div><h3>🍽️ أين تأكل وتشرب في غلطة وبي أوغلو: اختياراتنا المحلية</h3><p>المطاعم والمقاهي والحانات ومحلات الحلويات في غلطة وكاراكوي وجيهانغير وبي أوغلو التي نوصي بها ضيوفنا.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="things-to-do-galata-beyoglu-ar.html"><img loading="lazy" src="../istanbul.jpg" alt="ماذا تفعل في غلطة وبي أوغلو: دليل محلي"><div><h3>🗼 ماذا تفعل في غلطة وبي أوغلو: دليل محلي</h3><p>برج غلطة ودرج كاموندو ومتحف بيرا وإسطنبول مودرن وتشوكورجوما وغيرها — بالإضافة إلى رحلات سهلة إلى المدينة القديمة — من فريق يعيش في غلطة.</p><span>← اقرأ الدليل</span></div></a></div>
+<h2>أماكننا المفضّلة</h2><p class="sec-intro">الأماكن التي نرشّح ضيوفنا لزيارتها أولاً.</p>
+<div class="picks"><article class="vcard" id="v-fasuli-kurufasulye" data-name="Fasuli Kurufasulye" data-area="Karaköy" data-ll="41.02616,28.98153" data-icon="🍽️" data-color="#C8763C" data-sec="">
+  <div class="vmedia" style="--c1:#7A3B1D;--c2:#C8763C" role="button" tabindex="0" aria-label="Fasuli Kurufasulye">
+    <div class="vph"><span>🍽️</span><em>Fasuli Kurufasulye</em></div>
+    <span class="varea">📍 Karaköy</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr"></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="where-to-eat-drink-galata-ar.html#v-fasuli-kurufasulye">Fasuli Kurufasulye</a></h3>
+    <div class="vtags"><span>كلاسيكي محلي</span></div>
+    <p>مشهور بطبق الكورو فاصوليا (يخنة الفاصوليا البيضاء التركية). جرّب طبق الشيف، ولا تفوّت القاورما (لحم مطهو ببطء).</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Fasuli%20Karak%C3%B6y%2C%20%C4%B0stanbul" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABFasuli%20Kurufasulye%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-mikla" data-name="Mikla" data-area="Asmalımescit" data-ll="41.03111,28.9741" data-icon="🍽️" data-color="#C8763C" data-sec="">
+  <div class="vmedia" style="--c1:#7A3B1D;--c2:#C8763C" role="button" tabindex="0" aria-label="Mikla">
+    <div class="vph"><span>🍽️</span><em>Mikla</em></div>
+    <span class="varea">📍 Asmalımescit</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr"></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="where-to-eat-drink-galata-ar.html#v-mikla">Mikla</a></h3>
+    <div class="vtags"><span>مطعم راقٍ</span><span>إطلالة</span></div>
+    <p>مطعم راقٍ بإطلالة لا مثيل لها على البوسفور. مطبخ أناضولي عصري.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Mikla%2C%20%C4%B0stanbul&query_place_id=ChIJReR3RuC5yhQR_t7o9KL5qYQ" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABMikla%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-karakoy-lokantasi" data-name="Karaköy Lokantası" data-area="Karaköy" data-ll="41.02474,28.98002" data-icon="🍽️" data-color="#C8763C" data-sec="">
+  <div class="vmedia" style="--c1:#7A3B1D;--c2:#C8763C" role="button" tabindex="0" aria-label="Karaköy Lokantası">
+    <div class="vph"><span>🍽️</span><em>Karaköy Lokantası</em></div>
+    <span class="varea">📍 Karaköy</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr"></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="where-to-eat-drink-galata-ar.html#v-karakoy-lokantasi">Karaköy Lokantası</a></h3>
+    <div class="vtags"><span>كلاسيكي محلي</span><span>مزة</span></div>
+    <p>عنوان أيقوني للغداء أو العشاء — أنيق وتقليدي في آن واحد.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Karak%C3%B6y%20Lokantas%C4%B1%2C%20%C4%B0stanbul&query_place_id=ChIJr6PRGd25yhQR2VYidbg9zyQ" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABKarak%C3%B6y%20Lokantas%C4%B1%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-asmali-cavit" data-name="Asmalı Cavit" data-area="Asmalımescit" data-ll="41.03017,28.97471" data-icon="🍽️" data-color="#C8763C" data-sec="">
+  <div class="vmedia" style="--c1:#7A3B1D;--c2:#C8763C" role="button" tabindex="0" aria-label="Asmalı Cavit">
+    <div class="vph"><span>🍽️</span><em>Asmalı Cavit</em></div>
+    <span class="varea">📍 Asmalımescit</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr"></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="where-to-eat-drink-galata-ar.html#v-asmali-cavit">Asmalı Cavit</a></h3>
+    <div class="vtags"><span>مزة</span><span>كلاسيكي محلي</span></div>
+    <p>تجربة «مَيْهانه» تركية أصيلة. جرّب العرق التركي (راكي) مع المزة.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Asmal%C4%B1%20Cavit%2C%20%C4%B0stanbul&query_place_id=ChIJ7yKreY65yhQRzHPvzue7Na0" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABAsmal%C4%B1%20Cavit%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-mandabatmaz" data-name="Mandabatmaz" data-area="Asmalımescit" data-ll="41.03276,28.97628" data-icon="☕" data-color="#8C5A3C" data-sec="">
+  <div class="vmedia" style="--c1:#3B2618;--c2:#8C5A3C" role="button" tabindex="0" aria-label="Mandabatmaz">
+    <div class="vph"><span>☕</span><em>Mandabatmaz</em></div>
+    <span class="varea">📍 Asmalımescit</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr"></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="where-to-eat-drink-galata-ar.html#v-mandabatmaz">Mandabatmaz</a></h3>
+    <div class="vtags"><span>قهوة تركية</span></div>
+    <p>أكثف قهوة تركية وأغناها رغوةً في المدينة.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Mandabatmaz%2C%20%C4%B0stanbul&query_place_id=ChIJey_CUGS3yhQR8We58TT5ifM" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABMandabatmaz%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-nardis-jazz-club" data-name="Nardis Jazz Club" data-area="Galata" data-ll="41.02485,28.9734" data-icon="🍸" data-color="#5B3F8C" data-sec="">
+  <div class="vmedia" style="--c1:#1E1638;--c2:#5B3F8C" role="button" tabindex="0" aria-label="Nardis Jazz Club">
+    <div class="vph"><span>🍸</span><em>Nardis Jazz Club</em></div>
+    <span class="varea">📍 Galata</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr"></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="where-to-eat-drink-galata-ar.html#v-nardis-jazz-club">Nardis Jazz Club</a></h3>
+    <div class="vtags"><span>جاز حيّ</span></div>
+    <p>مكان رائع للاستماع إلى موسيقى الجاز الحيّة.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Nardis%20Jazz%20Club%2C%20%C4%B0stanbul&query_place_id=ChIJ4TqEhjnIyhQRX1pj6zIO50k" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABNardis%20Jazz%20Club%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-karakoy-gulluoglu" data-name="Karaköy Güllüoğlu" data-area="Karaköy" data-ll="41.02489,28.98096" data-icon="🍰" data-color="#D27A8F" data-sec="">
+  <div class="vmedia" style="--c1:#7A2F45;--c2:#D27A8F" role="button" tabindex="0" aria-label="Karaköy Güllüoğlu">
+    <div class="vph"><span>🍰</span><em>Karaköy Güllüoğlu</em></div>
+    <span class="varea">📍 Karaköy</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr"></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="where-to-eat-drink-galata-ar.html#v-karakoy-gulluoglu">Karaköy Güllüoğlu</a></h3>
+    <div class="vtags"><span>بقلاوة</span></div>
+    <p>أشهر محل للبقلاوة في إسطنبول.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Karak%C3%B6y%20G%C3%BCll%C3%BCo%C4%9Flu%2C%20%C4%B0stanbul&query_place_id=ChIJ9XlKFOi5yhQR2Bo2XTkPPvA" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABKarak%C3%B6y%20G%C3%BCll%C3%BCo%C4%9Flu%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-galata-tower" data-name="Galata Tower" data-area="Galata" data-ll="41.02564,28.97421" data-icon="🗼" data-color="#1D9E75" data-sec="" data-photos="[{&quot;src&quot;:&quot;img/galata-tower.jpg&quot;,&quot;credit&quot;:&quot;📷 Melih1969 · &lt;a href=\&quot;https://creativecommons.org/licenses/by-sa/4.0\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener license\&quot;&gt;CC BY-SA 4.0&lt;/a&gt; · &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:New_moon_on_galata_tower.jpg\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener\&quot;&gt;Wikimedia&lt;/a&gt;&quot;}]">
+  <div class="vmedia hasph" style="--c1:#0D1E35;--c2:#1D9E75" role="button" tabindex="0" aria-label="Galata Tower">
+    <img loading="lazy" src="img/galata-tower.jpg" alt="Galata Tower" width="900" height="600">
+    <span class="varea">📍 Galata</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr">📷 Melih1969 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener license">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:New_moon_on_galata_tower.jpg" target="_blank" rel="noopener">Wikimedia</a></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="things-to-do-galata-beyoglu-ar.html#v-galata-tower">Galata Tower</a></h3>
+    <div class="vtags"><span>إطلالة</span><span>تاريخ</span></div>
+    <p>بناه الجنويون عام 1348 — ومن قمّته أجمل إطلالة على إسطنبول.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Galata%20Kulesi%2C%20%C4%B0stanbul&query_place_id=ChIJQ3x3p-e5yhQRCzOLzD3Pdkw" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABGalata%20Tower%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-pera-museum" data-name="Pera Museum" data-area="Tepebaşı" data-ll="41.0318,28.9752" data-icon="🖼️" data-color="#B8953A" data-sec="" data-photos="[{&quot;src&quot;:&quot;img/pera-museum.jpg&quot;,&quot;credit&quot;:&quot;📷 Tatiana Matlina · &lt;a href=\&quot;https://creativecommons.org/licenses/by-sa/3.0\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener license\&quot;&gt;CC BY-SA 3.0&lt;/a&gt; · &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Istanbul_Beyoglu_Pera_museum.jpg\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener\&quot;&gt;Wikimedia&lt;/a&gt;&quot;}]">
+  <div class="vmedia hasph" style="--c1:#2A1B3D;--c2:#B8953A" role="button" tabindex="0" aria-label="Pera Museum">
+    <img loading="lazy" src="img/pera-museum.jpg" alt="Pera Museum" width="900" height="600">
+    <span class="varea">📍 Tepebaşı</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr">📷 Tatiana Matlina · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener license">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Istanbul_Beyoglu_Pera_museum.jpg" target="_blank" rel="noopener">Wikimedia</a></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="things-to-do-galata-beyoglu-ar.html#v-pera-museum">Pera Museum</a></h3>
+    <div class="vtags"><span>فن</span></div>
+    <p>مجموعة دائمة لا تُفوَّت — منها لوحة «مروّض السلاحف» لعثمان حمدي بك — ومعارض متجدّدة.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=Pera%20M%C3%BCzesi%2C%20%C4%B0stanbul&query_place_id=ChIJLTINFuC5yhQRyRbXfXliR9k" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABPera%20Museum%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-istanbul-modern" data-name="Istanbul Modern" data-area="Karaköy" data-ll="41.02591,28.98281" data-icon="🖼️" data-color="#B8953A" data-sec="" data-photos="[{&quot;src&quot;:&quot;img/istanbul-modern.jpg&quot;,&quot;credit&quot;:&quot;📷 Maurice Flesier · &lt;a href=\&quot;https://creativecommons.org/licenses/by-sa/4.0\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener license\&quot;&gt;CC BY-SA 4.0&lt;/a&gt; · &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Exterior_of_Istanbul_Modern.jpg\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener\&quot;&gt;Wikimedia&lt;/a&gt;&quot;}]">
+  <div class="vmedia hasph" style="--c1:#2A1B3D;--c2:#B8953A" role="button" tabindex="0" aria-label="Istanbul Modern">
+    <img loading="lazy" src="img/istanbul-modern.jpg" alt="Istanbul Modern" width="900" height="600">
+    <span class="varea">📍 Karaköy</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr">📷 Maurice Flesier · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener license">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Exterior_of_Istanbul_Modern.jpg" target="_blank" rel="noopener">Wikimedia</a></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="things-to-do-galata-beyoglu-ar.html#v-istanbul-modern">Istanbul Modern</a></h3>
+    <div class="vtags"><span>فن</span><span>إطلالة</span></div>
+    <p>الفن التركي المعاصر في مبنى جديد لافت على الواجهة البحرية في كاراكوي.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=%C4%B0stanbul%20Modern%2C%20%C4%B0stanbul&query_place_id=ChIJw8JuD9m5yhQRnegQbG9Irjs" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABIstanbul%20Modern%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article>
+<article class="vcard" id="v-kilic-ali-pasa-hamami" data-name="Kılıç Ali Paşa Hamamı" data-area="Tophane" data-ll="41.0262,28.98058" data-icon="🖼️" data-color="#B8953A" data-sec="" data-photos="[{&quot;src&quot;:&quot;img/kilic-ali-pasa.jpg&quot;,&quot;credit&quot;:&quot;📷 Metuboy · &lt;a href=\&quot;https://creativecommons.org/licenses/by-sa/4.0\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener license\&quot;&gt;CC BY-SA 4.0&lt;/a&gt; · &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:K%C4%B1l%C4%B1%C3%A7_Ali_Pasha_Hamam.jpg\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener\&quot;&gt;Wikimedia&lt;/a&gt;&quot;}]">
+  <div class="vmedia hasph" style="--c1:#2A1B3D;--c2:#B8953A" role="button" tabindex="0" aria-label="Kılıç Ali Paşa Hamamı">
+    <img loading="lazy" src="img/kilic-ali-pasa.jpg" alt="Kılıç Ali Paşa Hamamı" width="900" height="600">
+    <span class="varea">📍 Tophane</span><span class="vpick">★ اختيارنا</span>
+    
+    <div class="vdots"></div>
+    <div class="vcredit ltr">📷 Metuboy · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener license">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:K%C4%B1l%C4%B1%C3%A7_Ali_Pasha_Hamam.jpg" target="_blank" rel="noopener">Wikimedia</a></div>
+  </div>
+  <div class="vbody">
+    <h3><a href="things-to-do-galata-beyoglu-ar.html#v-kilic-ali-pasa-hamami">Kılıç Ali Paşa Hamamı</a></h3>
+    <div class="vtags"><span>حمّام تركي</span><span>تاريخ</span></div>
+    <p>خيارنا لتجربة حمّام تركي حقيقية. بناه المعمار سنان عام 1580 ورُمّم بعناية، ويقدّم طقس حمّام هادئاً وعالي الجودة على بُعد دقائق من كاراكوي. احجز مسبقاً.</p>
+    <div class="vact"><a href="https://www.google.com/maps/search/?api=1&query=K%C4%B1l%C4%B1%C3%A7%20Ali%20Pa%C5%9Fa%20Hamam%C4%B1%2C%20%C4%B0stanbul" target="_blank" rel="noopener">📍 الاتجاهات</a><a class="wa" href="https://wa.me/905063335154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%82%D8%B1%D8%A3%20%D8%AF%D9%84%D9%8A%D9%84%D9%83%D9%85%20%D8%B9%D9%86%20%D8%A5%D8%B3%D8%B7%D9%86%D8%A8%D9%88%D9%84.%20%D9%87%D9%84%20%D9%8A%D9%85%D9%83%D9%86%D9%83%D9%85%20%D8%A5%D8%AE%D8%A8%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%C2%ABK%C4%B1l%C4%B1%C3%A7%20Ali%20Pa%C5%9Fa%20Hamam%C4%B1%C2%BB%D8%9F" target="_blank" rel="noopener">💬 اسألنا</a></div>
+  </div>
+</article></div>
+<p class="photos-note">مصادر الصور مذكورة على كل صورة.</p>
 <div class="box box-navy">
   <div><h2>أقِم في قلب غلطة</h2><p>شققنا في غلطة وتقسيم وبي أوغلو على بُعد خطوات من كل ما في هذا الدليل. احجز مباشرةً وادفع أقل بنسبة 10% مقارنةً بـ Airbnb.</p></div>
   <div class="box-btns">
@@ -160,6 +436,144 @@ html[dir=rtl] .footer-links.ltr{align-items:flex-end}
   </div>
 </div>
 </main>
+<div class="lb" id="lb" aria-hidden="true"><div class="lbname" id="lbName"></div><img id="lbImg" alt=""><button class="lbx" type="button" aria-label="إغلاق">×</button><button class="lbp" type="button" aria-label="الصورة السابقة">‹</button><button class="lbn" type="button" aria-label="الصورة التالية">›</button><div class="lbcap ltr" id="lbCap"></div></div>
+<script>
+(function(){
+  var KEY='AIzaSyDewHZcNDnda5kuQdAuq6V2bE2cGFE_TYU', LANG='ar', CUR='all';
+  var cards=[].slice.call(document.querySelectorAll('.vcard'));
+  /* kategori filtresi */
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.classList.toggle('on',x===c)});
+    var cat=c.getAttribute('data-cat'); CUR=cat; if(window.__hgFilter) window.__hgFilter(cat);
+    [].forEach.call(document.querySelectorAll('.vsec'),function(s){s.hidden=cat!=='all'&&s.getAttribute('data-cat')!==cat});
+    var f=document.querySelector('.filters'); if(f&&f.getBoundingClientRect().top<=80) window.scrollTo({top:f.offsetTop-70,behavior:'smooth'});
+  })});
+  if(!cards.length) return;
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  /* Google Maps JS: ilk ihtiyaçta bir kez yüklenir */
+  var gmP=null;
+  function gm(){
+    if(gmP) return gmP;
+    gmP=new Promise(function(res,rej){
+      window.__hgInit=function(){res(google.maps)};
+      var s=document.createElement('script');
+      s.src='https://maps.googleapis.com/maps/api/js?key='+KEY+'&loading=async&callback=__hgInit&language='+LANG;
+      s.async=true; s.onerror=rej; document.head.appendChild(s);
+      setTimeout(function(){rej(new Error('timeout'))},12000);
+    });
+    return gmP;
+  }
+  var S=new Map();
+  function st(card){
+    var s=S.get(card); if(s) return s;
+    var raw=card.getAttribute('data-photos'); var items=[];
+    try{ items=raw?JSON.parse(raw):[]; }catch(e){}
+    s={items:items,idx:0}; S.set(card,s); return s;
+  }
+  function load(card){ return Promise.resolve(st(card)); }
+  function srcOf(it){ return it.src; }
+  function dots(card){
+    var s=st(card), d=card.querySelector('.vdots'); if(s.items.length<2){d.innerHTML='';return;}
+    d.innerHTML=s.items.map(function(_,i){return '<i'+(i===s.idx?' class="on"':'')+'></i>'}).join('');
+  }
+  function show(card,i){
+    var s=st(card); if(!s.items.length) return;
+    s.idx=(i+s.items.length)%s.items.length;
+    var it=s.items[s.idx], m=card.querySelector('.vmedia'), img=m.querySelector('img');
+    if(!img){ img=document.createElement('img'); img.alt=card.getAttribute('data-name'); var ph=m.querySelector('.vph'); m.insertBefore(img,ph?ph.nextSibling:m.firstChild); }
+    img.classList.add('fade');
+    img.onload=function(){img.classList.remove('fade'); var ph=m.querySelector('.vph'); if(ph) ph.remove();};
+    img.src=srcOf(it,false);
+    card.querySelector('.vcredit').innerHTML=it.credit;
+    dots(card);
+  }
+  function step(card,d){ load(card).then(function(s){ if(s.items.length) show(card,s.idx+d); }); }
+  cards.forEach(function(c){
+    var m=c.querySelector('.vmedia'); dots(c);
+    if(!st(c).items.length) return;
+    var pv=c.querySelector('.vprev'), nx=c.querySelector('.vnext');
+    if(pv) pv.addEventListener('click',function(e){e.stopPropagation();step(c,-1)});
+    if(nx) nx.addEventListener('click',function(e){e.stopPropagation();step(c,1)});
+    m.addEventListener('click',function(e){ if(e.target.closest('a,button')) return; open(c); });
+    m.addEventListener('keydown',function(e){ if(e.key==='Enter') open(c); if(e.key==='ArrowRight') step(c,1); if(e.key==='ArrowLeft') step(c,-1); });
+    var x0=null; m.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+    m.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)>40){ step(c,dx<0?1:-1); } });
+  });
+  /* tam ekran */
+  var lb=document.getElementById('lb'), li=document.getElementById('lbImg'), cap=document.getElementById('lbCap'), nm=document.getElementById('lbName'), cur=null;
+  function lbShow(){ var s=st(cur), it=s.items[s.idx]; if(!it) return; li.src=srcOf(it,true); cap.innerHTML=it.credit; nm.textContent=cur.getAttribute('data-name'); }
+  function open(c){ cur=c; load(c).then(function(s){ if(!s.items.length) return; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; lbShow(); }); }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; li.removeAttribute('src'); }
+  function lbStep(d){ var s=st(cur); show(cur,s.idx+d); lbShow(); }
+  lb.querySelector('.lbx').addEventListener('click',close);
+  lb.querySelector('.lbp').addEventListener('click',function(){lbStep(-1)});
+  lb.querySelector('.lbn').addEventListener('click',function(){lbStep(1)});
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); if(e.key==='ArrowRight') lbStep(1); if(e.key==='ArrowLeft') lbStep(-1); });
+  var lx=null; lb.addEventListener('touchstart',function(e){lx=e.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(e){ if(lx===null) return; var dx=e.changedTouches[0].clientX-lx; lx=null; if(Math.abs(dx)>40) lbStep(dx<0?1:-1); });
+
+  /* ---------- harita: kart ↔ pin ---------- */
+  var mapEl=document.getElementById('gmap'); if(!mapEl) return;
+  var aside=document.getElementById('vmap'), pins=[], map=null, mapP=null;
+  function mob(){ return window.matchMedia('(max-width:1100px)').matches; }
+  var STYLES=[{featureType:'poi.business',stylers:[{visibility:'off'}]},{featureType:'poi',elementType:'labels.icon',stylers:[{visibility:'off'}]},
+    {featureType:'poi.park',elementType:'geometry',stylers:[{color:'#dcead8'}]},{featureType:'water',elementType:'geometry',stylers:[{color:'#bcd8e6'}]},
+    {featureType:'road',elementType:'geometry',stylers:[{lightness:25}]},{featureType:'transit',elementType:'labels.icon',stylers:[{saturation:-70}]}];
+  function initMap(){
+    if(mapP) return mapP;
+    mapP=gm().then(function(){ return google.maps.importLibrary('maps'); }).then(function(M){
+      map=new M.Map(mapEl,{center:{lat:41.0285,lng:28.9765},zoom:15,gestureHandling:'greedy',clickableIcons:false,mapTypeControl:false,streetViewControl:false,fullscreenControl:false,styles:STYLES});
+      function Layer(){ this.setMap(map); }
+      Layer.prototype=new google.maps.OverlayView();
+      Layer.prototype.onAdd=function(){ var pane=this.getPanes().overlayMouseTarget; pins.forEach(function(p){ pane.appendChild(p.el); }); };
+      Layer.prototype.draw=function(){ var pr=this.getProjection(); pins.forEach(function(p){ var pt=pr.fromLatLngToDivPixel(p.ll); p.el.style.left=pt.x+'px'; p.el.style.top=pt.y+'px'; }); };
+      Layer.prototype.onRemove=function(){};
+      cards.forEach(function(c){
+        var ll=c.getAttribute('data-ll'); if(!ll) return; var a=ll.split(',');
+        var el=document.createElement('div'); el.className='pin'; el.style.setProperty('--pc',c.getAttribute('data-color'));
+        el.innerHTML='<i><span>'+c.getAttribute('data-icon')+'</span></i><b>'+esc(c.getAttribute('data-name'))+'</b>';
+        google.maps.OverlayView.preventMapHitsAndGesturesFrom(el);
+        var p={el:el,card:c,ll:new google.maps.LatLng(+a[0],+a[1]),lat:+a[0],lng:+a[1],sec:c.getAttribute('data-sec')};
+        if(CUR!=='all'&&p.sec!==CUR) el.classList.add('off');
+        el.addEventListener('click',function(e){ e.stopPropagation();
+          if(mob()){ if(el.classList.contains('on')&&e.target.closest('b')){ closeMap(); goCard(c); return; } activate(p,false); return; }
+          activate(p,false); goCard(c); });
+        el.addEventListener('mouseenter',function(){ c.classList.add('hl'); });
+        el.addEventListener('mouseleave',function(){ c.classList.remove('hl'); });
+        pins.push(p); c.__pin=p;
+      });
+      new Layer(); fit();
+      map.addListener('click',function(){ pins.forEach(function(p){ p.el.classList.remove('on'); }); });
+    }).catch(function(){ aside.style.display='none'; });
+    return mapP;
+  }
+  /* görünür pinlere sığdır; şehir merkezinden uzak olanları (Sarıyer vb.) başlangıç görünümüne katma */
+  function fit(){
+    if(!map) return; var b=new google.maps.LatLngBounds(), n=0, all=new google.maps.LatLngBounds(), m=0;
+    pins.forEach(function(p){ if(p.el.classList.contains('off')) return; all.extend(p.ll); m++;
+      if(Math.abs(p.lat-41.029)<0.03&&Math.abs(p.lng-28.976)<0.035){ b.extend(p.ll); n++; } });
+    if(n>1) map.fitBounds(b,48); else if(m) map.fitBounds(all,48);
+  }
+  function activate(p,pan){ pins.forEach(function(q){ q.el.classList.toggle('on',q===p); }); if(pan){ map.panTo(p.ll); if(map.getZoom()<16) map.setZoom(16); } }
+  function goCard(c){ c.scrollIntoView({behavior:'smooth',block:'center'}); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); }
+  function openMap(){ aside.classList.add('open'); document.body.classList.add('mapopen'); document.body.style.overflow='hidden'; return initMap(); }
+  function closeMap(){ aside.classList.remove('open'); document.body.classList.remove('mapopen'); document.body.style.overflow=''; }
+  function focusCard(c){ (mob()?openMap():initMap()).then(function(){ if(c.__pin){ if(c.__pin.el.classList.contains('off')) c.__pin.el.classList.remove('off'); activate(c.__pin,true); } }); }
+  document.querySelector('.map-toggle').addEventListener('click',function(){ openMap().then(fit); });
+  aside.querySelector('.vmap-close').addEventListener('click',closeMap);
+  cards.forEach(function(c){
+    var b=c.querySelector('.onmap'); if(b) b.addEventListener('click',function(e){ e.stopPropagation(); focusCard(c); });
+    c.querySelector('.vbody').addEventListener('click',function(e){ if(e.target.closest('a,button')) return; focusCard(c); });
+    c.addEventListener('mouseenter',function(){ if(c.__pin) c.__pin.el.classList.add('hl'); });
+    c.addEventListener('mouseleave',function(){ if(c.__pin) c.__pin.el.classList.remove('hl'); });
+  });
+  window.__hgFilter=function(cat){ pins.forEach(function(p){ p.el.classList.toggle('off',cat!=='all'&&p.sec!==cat); }); fit(); };
+  /* masaüstünde harita sayfa açılınca, mobilde "Harita" düğmesine basınca yüklenir */
+  if(!mob()){ if('requestIdleCallback' in window) requestIdleCallback(function(){ initMap(); },{timeout:1500}); else setTimeout(initMap,600); }
+})();
+</script>
 <footer>
   <div class="footer-top">
     <div><div class="footer-logo">HANCI GLOBAL</div><div class="ltr">Müeyyetzade Mah. Necatibey Cad.<br>Sait Demirbağ İşhanı No:5/45, Beyoğlu, İstanbul</div></div>

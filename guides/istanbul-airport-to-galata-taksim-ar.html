@@ -106,6 +106,115 @@ footer{background:var(--navy);color:rgba(255,255,255,.65);padding:44px 56px 28px
 .footer-links a:hover{color:#E8C86A}
 .footer-legal{padding-top:20px;color:rgba(255,255,255,.45);font-size:12px;line-height:1.8}
 .wa-float{position:fixed;right:24px;bottom:24px;z-index:240;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.22)}
+/* ---------- mekân kartları ---------- */
+main.wide{max-width:1180px}
+main.wide .intro{max-width:820px}
+.hero .stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero .stats span{font-size:13px;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);padding:6px 14px;border-radius:999px}
+.filters{position:sticky;top:72px;z-index:150;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);margin:28px -24px 0;padding:12px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink2);background:var(--bg);border:1.5px solid var(--border);border-radius:999px;padding:8px 16px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.chip b{font-weight:700;color:var(--muted);margin-inline-start:6px}
+.chip:hover{border-color:var(--navy)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.on b{color:rgba(255,255,255,.6)}
+.vsec{scroll-margin-top:140px}
+.vsec[hidden]{display:none}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+.vcard{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;scroll-margin-top:150px}
+.vcard:hover{transform:translateY(-4px);box-shadow:0 22px 44px -22px rgba(13,30,53,.4)}
+.vcard:target{box-shadow:0 0 0 3px var(--gold)}
+.vmedia{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,var(--c1),var(--c2));direction:ltr;touch-action:pan-y}
+.vmedia.hasph{cursor:zoom-in}
+.vmedia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s,transform .7s}
+.vcard:hover .vmedia img{transform:scale(1.04)}
+.vmedia img.fade{opacity:0}
+.vph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:rgba(255,255,255,.92);text-align:center;padding:0 20px}
+.vph span{font-size:42px}
+.vph em{font-family:"Cormorant Garamond","Amiri",serif;font-style:normal;font-size:24px;line-height:1.15}
+.vmedia::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);pointer-events:none;z-index:1}
+.varea,.vpick{position:absolute;top:12px;z-index:2;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.varea{left:12px;background:rgba(255,255,255,.94);color:var(--ink)}
+.vpick{right:12px;background:var(--gold);color:#fff;font-weight:800}
+.vnav{position:absolute;top:50%;z-index:3;width:36px;height:36px;margin-top:-18px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--ink);font-size:22px;line-height:1;cursor:pointer;opacity:0;transition:opacity .2s;display:flex;align-items:center;justify-content:center;padding-bottom:3px}
+.vprev{left:10px}.vnext{right:10px}
+.vcard:hover .vnav,.vnav:focus-visible{opacity:1}
+@media (hover:none){.vnav{opacity:.85}}
+.vdots{position:absolute;bottom:32px;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.vdots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);transition:background .2s,transform .2s}
+.vdots i.on{background:#fff;transform:scale(1.25)}
+.vcredit{position:absolute;left:12px;right:12px;bottom:9px;z-index:3;font-size:11px;color:rgba(255,255,255,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:auto}
+.vcredit a{text-decoration:underline}
+.vbody{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.vbody h3{font-family:"Cormorant Garamond","Amiri",serif;font-size:25px;font-weight:600;line-height:1.15;margin-bottom:9px}
+.vbody h3 a:hover{color:var(--teal-d)}
+.vtags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.vtags span{font-size:11.5px;font-weight:700;color:var(--teal-d);background:var(--teal-l);padding:3px 10px;border-radius:999px}
+.vbody p{font-size:14.5px;color:var(--ink2);flex:1}
+.vact{display:flex;gap:8px;margin-top:16px}
+.vact a{flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);transition:border-color .2s,color .2s}
+.vact a:hover{border-color:var(--teal);color:var(--teal-d)}
+.vact a.wa{background:var(--navy);border-color:var(--navy);color:#fff}
+.vact a.wa:hover{background:var(--teal-d);border-color:var(--teal-d);color:#fff}
+.photos-note{font-size:12px;color:var(--muted);margin-top:28px}
+.picks{display:grid;grid-auto-flow:column;grid-auto-columns:300px;gap:18px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;margin-top:20px}
+.picks .vcard{scroll-snap-align:start}
+.picks .vcard:hover{transform:none}
+/* liste + harita */
+main.withmap{max-width:1480px}
+.vlayout{display:grid;grid-template-columns:minmax(0,1fr) 43%;gap:28px;align-items:start}
+.vlayout .vgrid{grid-template-columns:repeat(2,1fr)}
+.vlayout .filters{margin:28px 0 0;padding:12px 0;border-bottom:1px solid var(--border)}
+.vmap{position:sticky;top:88px;height:calc(100vh - 104px);margin-top:28px;border-radius:22px;overflow:hidden;border:1px solid var(--border);background:#E9EEF1}
+#gmap{width:100%;height:100%}
+.vmap-close,.map-toggle{display:none}
+.vcard.hl{box-shadow:0 0 0 2px var(--teal)}
+.vcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,100%{box-shadow:0 0 0 0 rgba(184,149,58,0)}25%{box-shadow:0 0 0 4px rgba(184,149,58,.9)}}
+.vlayout .vbody{cursor:pointer}
+.vact button.onmap{flex:none;font:inherit;font-size:13px;font-weight:700;padding:9px 12px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--ink);cursor:pointer}
+.vact button.onmap:hover{border-color:var(--teal);color:var(--teal-d)}
+.vlayout .vact{flex-wrap:wrap}
+.pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;z-index:1}
+.pin i{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--pc);border:2.5px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.3);transition:transform .2s,background .2s;font-style:normal}
+.pin i span{transform:rotate(45deg);font-size:15px;line-height:1}
+.pin b{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;color:var(--ink);font:700 13px "Plus Jakarta Sans","IBM Plex Sans Arabic",sans-serif;padding:6px 12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.22);display:none}
+.pin:hover,.pin.hl{z-index:5}
+.pin:hover i,.pin.hl i{transform:rotate(-45deg) scale(1.18)}
+.pin:hover b,.pin.hl b,.pin.on b{display:block}
+.pin.on{z-index:6}
+.pin.on i{background:var(--navy);transform:rotate(-45deg) scale(1.3)}
+.pin.off{display:none}
+@media (max-width:1100px){
+  main.withmap{max-width:1180px}
+  .vlayout{display:block}
+  .vlayout .filters{position:sticky;top:72px}
+  .vmap{display:none;position:fixed;top:62px;left:0;right:0;bottom:0;height:auto;margin:0;border-radius:0;border:0;z-index:300}
+  .vmap.open{display:block}
+  .vmap-close{display:flex;position:absolute;top:14px;right:14px;z-index:2;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:var(--ink);font-size:26px;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer;padding-bottom:3px}
+  .map-toggle{display:flex;position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:260;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:800;color:#fff;background:var(--navy);border:0;border-radius:999px;padding:13px 24px;box-shadow:0 8px 24px rgba(13,30,53,.35);cursor:pointer}
+  body.mapopen .map-toggle,body.mapopen .wa-float{display:none}
+  .pin b{pointer-events:auto}
+}
+@media (max-width:900px){.vlayout .filters{top:62px}.vlayout .vgrid{grid-template-columns:1fr}}
+/* tam ekran fotoğraf */
+.lb{position:fixed;inset:0;z-index:500;background:rgba(6,12,22,.95);display:none;align-items:center;justify-content:center;direction:ltr;touch-action:pan-y}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:78vh;border-radius:12px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:0;width:50px;height:50px;border-radius:50%;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding-bottom:4px}
+.lb button:hover{background:rgba(255,255,255,.26)}
+.lbx{top:18px;right:18px}.lbp{left:18px;top:50%;margin-top:-25px}.lbn{right:18px;top:50%;margin-top:-25px}
+.lbname{position:absolute;top:26px;left:80px;right:80px;text-align:center;color:#fff;font-family:"Cormorant Garamond","Amiri",serif;font-size:26px}
+.lbcap{position:absolute;bottom:20px;left:16px;right:16px;text-align:center;color:rgba(255,255,255,.85);font-size:13px}
+.lbcap a{text-decoration:underline}
+@media (min-width:901px) and (max-width:1120px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){
+  .vgrid{grid-template-columns:1fr}
+  .filters{top:62px;margin:24px -16px 0;padding:10px 16px}
+  .picks{grid-auto-columns:80%}
+  .lbp,.lbn{top:auto;bottom:60px;margin-top:0}
+  .lbname{font-size:20px;left:70px;right:70px}
+}
 /* Arapça: sağdan sola */
 html[dir=rtl] *{letter-spacing:0!important}
 html[dir=rtl] .tips li{margin:6px 20px 6px 0}
@@ -165,6 +274,7 @@ html[dir=rtl] .footer-links.ltr{align-items:flex-end}
 </div>
 <h2>أدلة أخرى عن إسطنبول</h2><div class="related"><a class="guide-card" href="where-to-eat-drink-galata-ar.html"><img loading="lazy" src="../sunset2.jpg" alt="أين تأكل وتشرب في غلطة وبي أوغلو: اختياراتنا المحلية"><div><h3>🍽️ أين تأكل وتشرب في غلطة وبي أوغلو: اختياراتنا المحلية</h3><p>المطاعم والمقاهي والحانات ومحلات الحلويات في غلطة وكاراكوي وجيهانغير وبي أوغلو التي نوصي بها ضيوفنا.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="things-to-do-galata-beyoglu-ar.html"><img loading="lazy" src="../istanbul.jpg" alt="ماذا تفعل في غلطة وبي أوغلو: دليل محلي"><div><h3>🗼 ماذا تفعل في غلطة وبي أوغلو: دليل محلي</h3><p>برج غلطة ودرج كاموندو ومتحف بيرا وإسطنبول مودرن وتشوكورجوما وغيرها — بالإضافة إلى رحلات سهلة إلى المدينة القديمة — من فريق يعيش في غلطة.</p><span>← اقرأ الدليل</span></div></a></div>
 </main>
+
 <footer>
   <div class="footer-top">
     <div><div class="footer-logo">HANCI GLOBAL</div><div class="ltr">Müeyyetzade Mah. Necatibey Cad.<br>Sait Demirbağ İşhanı No:5/45, Beyoğlu, İstanbul</div></div>
