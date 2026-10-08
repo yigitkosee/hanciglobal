@@ -693,3 +693,29 @@ function directPriceHtml(lang, curr, price, prefix, suffix) {
   return `<s class="airbnb-strike">${curr}${airbnbPriceOf(price)}</s> ${prefix || ''}${curr}${price}<span>${suffix || ''}</span>` +
          `<em class="direct-badge">${getDirectDiscountText(lang).badge}</em>`;
 }
+
+async function fetchLiveData(url) {
+  let lastError;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Live data request failed (${response.status})`);
+
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.toLowerCase().includes('application/json')) {
+        throw new Error(`Expected JSON from live data endpoint, received ${contentType || 'unknown content type'}`);
+      }
+
+      const liveData = await response.json();
+      const hasApartmentData = liveData && typeof liveData === 'object' && !Array.isArray(liveData) &&
+        Object.values(liveData).some(item => item && typeof item === 'object' &&
+          ('priceFrom' in item || 'prices' in item || 'blockedDates' in item));
+      if (!hasApartmentData) throw new Error('Live data response contains no apartment data');
+      return liveData;
+    } catch (err) {
+      lastError = err;
+      if (attempt < 2) await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+    }
+  }
+  throw lastError;
+}
