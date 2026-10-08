@@ -289,7 +289,6 @@ footer{background:var(--navy);padding:56px 56px 32px}
 
 
 </style>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDewHZcNDnda5kuQdAuq6V2bE2cGFE_TYU&libraries=places&callback=initGooglePlaces&loading=async" async defer></script>
 
 
 </head>
@@ -495,7 +494,7 @@ footer{background:var(--navy);padding:56px 56px 32px}
   </div>
 </footer>
 
-<script src="apartments-data.js?v=13"></script>
+<script src="apartments-data.js?v=14"></script>
 <script src="index-data.js?v=5"></script>
 <script>
 /* ---------- read URL params ---------- */
@@ -628,28 +627,14 @@ document.getElementById('listingsGrid').innerHTML = APARTMENTS.map((apt, i) => {
     </div>`;
 }).join('');
 
-/* ---------- Google puanlarını sitedeki yorumlarla birleştir ---------- */
-window.initGooglePlaces = async function(){
-  if (!window.google || !google.maps || !google.maps.places || !google.maps.places.Place) return;
-  await Promise.all(APARTMENTS.map(async (apt) => {
-    if (!apt.placeId) return;
-    try {
-      const place = new google.maps.places.Place({ id: apt.placeId, requestedLanguage: lang });
-      await place.fetchFields({ fields: ['rating', 'userRatingCount'] });
-      if (!place.rating || !place.userRatingCount) return;
-      const enReviews = (apt.translations.en.reviews) || [];
-      const siteCount = enReviews.length;
-      const siteAvg = siteCount ? (enReviews.reduce((s,r)=>s+(r.stars||5),0) / siteCount) : 0;
-      const googleCount = place.userRatingCount;
-      const totalCount = siteCount + googleCount;
-      const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
-      const el = document.getElementById('rt-' + apt.id);
-      if (el) el.innerHTML = `<span class="index-star">★</span>${combinedAvg.toFixed(2)} <span class="index-rating-count">(${totalCount})</span>`;    } catch (err) {
-      console.error('[GooglePlaces] failed for', apt.id, err);
-    }
-  }));
-};
-if (window.google && google.maps && google.maps.places && google.maps.places.Place) { window.initGooglePlaces(); }
+/* ---------- puanlar: sitedeki yorumlar + elle girilen Google puanı (e-tablo, ücretsiz) ---------- */
+function showRatings(liveData){
+  APARTMENTS.forEach(apt => {
+    const r = combinedRating(apt, googleStatsFor(liveData, apt.id));
+    const el = document.getElementById('rt-' + apt.id);
+    if (el && r) el.innerHTML = `<span class="index-star">★</span>${r.avg.toFixed(2)} <span class="index-rating-count">(${r.count})</span>`;
+  });
+}
   
 /* ---------- sliders ---------- */
 
@@ -714,8 +699,10 @@ APARTMENTS.forEach((_, i) => initSlider('is'+(i+1)));
 /* ---------- live pricing (PriceLabs via Apps Script) ---------- */
 const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst2NAVDhIlvQmLQ7wtsDv3hM73DleDzlmZtQm6FzfEHhoAx6WGGz_w/exec";
 
+withRatings(showRatings);
 fetchLiveData(LIVE_DATA_URL)
   .then(liveData => {
+    showRatings(liveData);
     APARTMENTS.forEach(apt => {
       const live = liveData[apt.id];
       if (!live || !live.priceFrom) return;

@@ -220,6 +220,7 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .detail-reviews{display:flex;flex-direction:column;gap:16px}
 .dreview-card{background:var(--bg);border-radius:16px;border:1.5px solid var(--border);padding:24px}
 .dreview-stars{color:#F5A623;font-size:14px;letter-spacing:2px;margin-bottom:10px}
+.dreview-text,.dreview-name{unicode-bidi:plaintext}
 .dreview-text{font-size:14px;line-height:1.8;color:var(--ink2);font-style:italic;margin-bottom:14px}
 .dreview-name{font-size:13px;font-weight:800;color:var(--ink)}
 .maps-guide-link{display:inline-block;margin-top:16px;font-size:14px;font-weight:700;color:var(--teal-d)}
@@ -553,7 +554,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="apartments-data.js?v=13"></script>
+<script src="apartments-data.js?v=14"></script>
 <script>
 /* ---------- read URL params ---------- */
 
@@ -826,29 +827,17 @@ window.initGooglePlaces = async function(){
     }
   }
 
-  /* alttaki "diğer evler" kartlarının puanları — hepsi paralel */
-  await Promise.all(APARTMENTS.filter(a => a.id !== apt.id).map(async (other) => {
-    if (!other.placeId) return;
-    try {
-      const place = new google.maps.places.Place({ id: other.placeId, requestedLanguage: lang });
-      await place.fetchFields({ fields: ['rating', 'userRatingCount'] });
-      if (!place.rating || !place.userRatingCount) return;
-
-      const otherEnReviews = (other.translations.en.reviews) || [];
-      const siteCount = otherEnReviews.length;
-      const siteAvg = siteCount ? (otherEnReviews.reduce((s,r)=>s+(r.stars||5),0) / siteCount) : 0;
-      const googleCount = place.userRatingCount;
-      const totalCount = siteCount + googleCount;
-      const combinedAvg = ((siteAvg * siteCount) + (place.rating * googleCount)) / totalCount;
-
-      const el = document.getElementById('op-rating-' + other.id);
-      if (el) el.innerHTML = `<span class="op-star">★</span>${combinedAvg.toFixed(2)} <span class="op-rating-count">(${totalCount})</span>`;
-    } catch (err) {
-      console.error('[GooglePlaces] failed for', other.id, err);
-    }
-  }));
 };
 if (window.google && google.maps && google.maps.places && google.maps.places.Place) { window.initGooglePlaces(); }
+
+/* "diğer evler" kartlarının puanları: sitedeki yorumlar + elle girilen Google puanı (e-tablo, Google'a istek yok) */
+function showOtherRatings(liveData){
+  APARTMENTS.filter(a => a.id !== apt.id).forEach(other => {
+    const r = combinedRating(other, googleStatsFor(liveData, other.id));
+    const el = document.getElementById('op-rating-' + other.id);
+    if (el && r) el.innerHTML = `<span class="op-star">★</span>${r.avg.toFixed(2)} <span class="op-rating-count">(${r.count})</span>`;
+  });
+}
 
 /* ---------- Availability section title + legend ---------- */
 document.getElementById('availabilityTitle').textContent = ui.availabilityTitle;
@@ -924,6 +913,7 @@ document.getElementById('otherPropsGrid').innerHTML = APARTMENTS.filter(a => a.i
       </div>
     </div>`;
 }).join('');
+withRatings(showOtherRatings);
 /* ---------- calendar: 3-month navigable window, interactive, shows real per-night prices ---------- */
 const BLOCKED_SET = new Set(apt.blockedDates || []);
 let PRICE_MAP = {}; // filled in once live PriceLabs data arrives (see below)
@@ -1150,6 +1140,7 @@ const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst
 
 fetchLiveData(LIVE_DATA_URL)
   .then(liveData => {
+    showOtherRatings(liveData);
     /* current apartment */
     const live = liveData[apt.id];
     if (live) {

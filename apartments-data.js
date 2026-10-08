@@ -746,3 +746,41 @@ async function fetchLiveData(url) {
   }
   throw lastError;
 }
+
+/* ==========================================================================
+   GOOGLE PUANI (elle girilir) — Google'a istek gitmez, ücretsiz.
+   Puan ve yorum sayısı "Hancı · Google puanları" e-tablosuna elle yazılır;
+   Apps Script canlı veriye `_ratings: { daireId: { googleRating, googleReviews } }` olarak ekler.
+   Tablo okunamazsa / boşsa sadece sitedeki misafir yorumları kullanılır.
+   ========================================================================== */
+function googleStatsFor(liveData, aptId) {
+  const r = liveData && liveData._ratings && liveData._ratings[aptId];
+  const rating = r && parseFloat(r.googleRating), count = r && parseInt(r.googleReviews, 10);
+  return rating > 0 && rating <= 5 && count > 0 ? { rating, count } : null;
+}
+/* sitedeki misafir yorumları (apartments-data) + elle girilen Google puanı → ağırlıklı ortalama */
+function siteReviewStats(apt) {
+  const rv = (apt.translations.en.reviews) || [];
+  return { count: rv.length, avg: rv.length ? rv.reduce((s, r) => s + (r.stars || 5), 0) / rv.length : 0 };
+}
+function combinedRating(apt, g) {
+  const s = siteReviewStats(apt);
+  const gc = g ? g.count : 0, total = s.count + gc;
+  if (!total) return null;
+  return { avg: (s.avg * s.count + (g ? g.rating * gc : 0)) / total, count: total };
+}
+/* sayfa açılır açılmaz son kayıtlı canlı veriyle göster, yeni veri gelince güncelle */
+function withRatings(callback) {
+  const cached = readCachedLiveData();
+  if (cached) callback(cached);
+  return cached;
+}
+
+/* daire listesindeki yorum özeti metinleri */
+const REVIEW_SUMMARY_TEXT = {
+  en: { basedOn: "Based on {n} reviews", onGoogle: "on Google", fromGuests: "from our guests", reviewsWord: "reviews", byApartment: "Rating by apartment", leaveReview: "✍️ Leave a review", seeApartment: "See reviews" },
+  tr: { basedOn: "{n} değerlendirmeye göre", onGoogle: "Google'da", fromGuests: "misafirlerimizden", reviewsWord: "yorum", byApartment: "Daire bazında puan", leaveReview: "✍️ Yorum bırakın", seeApartment: "Yorumları gör" },
+  ru: { basedOn: "На основе {n} отзывов", onGoogle: "в Google", fromGuests: "от наших гостей", reviewsWord: "отзывов", byApartment: "Рейтинг по апартаментам", leaveReview: "✍️ Оставить отзыв", seeApartment: "Отзывы" },
+  ar: { basedOn: "بناءً على {n} تقييم", onGoogle: "على Google", fromGuests: "من ضيوفنا", reviewsWord: "تقييم", byApartment: "التقييم حسب الشقة", leaveReview: "✍️ اكتب تقييمك", seeApartment: "عرض التقييمات" }
+};
+function getReviewSummaryText(lang) { return REVIEW_SUMMARY_TEXT[lang] || REVIEW_SUMMARY_TEXT.en; }
