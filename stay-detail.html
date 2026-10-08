@@ -224,6 +224,7 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .dreview-text{font-size:14px;line-height:1.8;color:var(--ink2);font-style:italic;margin-bottom:14px}
 .dreview-name{font-size:13px;font-weight:800;color:var(--ink)}
 .maps-guide-link{display:inline-block;margin-top:16px;font-size:14px;font-weight:700;color:var(--teal-d)}
+.guide-links{display:flex;flex-wrap:wrap;gap:0 24px}
 .maps-guide-link:hover{text-decoration:underline}
 .google-attribution{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-top:8px}
 .dreview-badge{display:inline-block;margin-left:8px;font-size:10px;font-weight:800;color:var(--blue);background:var(--blue-l);padding:2px 8px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle}
@@ -485,6 +486,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   <div class="maps-title" id="mapsTitle"></div>
   <iframe class="maps-embed" id="mapsEmbed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   <a class="maps-guide-link" href="guides/istanbul-airport-to-galata-taksim.html" data-guide="istanbul-airport-to-galata-taksim" data-i18n>✈️ How to get here from the airports →</a>
+  <div id="guideLinks" class="guide-links"></div>
 </section>
 
 <!-- FAQ -->
@@ -1218,6 +1220,7 @@ document.addEventListener('click', function(e) {
   if (nav && nav.href) document.getElementById('waFloat').href = nav.href;
 })();
 </script>
+<script src="guide-teaser.js?v=1"></script>
 <script src=site-i18n.js?v=3></script>
 </body>
 </html>
