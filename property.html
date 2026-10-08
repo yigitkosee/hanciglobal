@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlRoot">
+<html lang="en" id="htmlRoot" data-ar="1">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC31K6R3EQ"></script>
 <script>
@@ -24,6 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="tr_TR">
 <meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="ar_AR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -113,6 +114,7 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .dot.active{background:#fff;width:18px;border-radius:3px}
 .slide-count{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
 .for-sale-badge{position:absolute;top:12px;left:12px;background:var(--amber);color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;z-index:2}
+.for-sale-badge.for-rent{background:#1F4E79}
 
 /* LISTING BODY */
 .listing-body{padding:36px 40px;display:flex;flex-direction:column;justify-content:space-between}
@@ -419,7 +421,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="property-data.js?v=1"></script>
+<script src="property-data.js?v=3"></script>
 <script>
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
@@ -428,7 +430,8 @@ document.documentElement.lang = lang;
 /* ---------- sayfa başlığı ve açıklaması (dile göre) ---------- */
 const PAGE_META = {
   tr: { title: "Hancı Property · İstanbul Gayrimenkul", desc: "Beyoğlu, Taksim ve ötesinde gayrimenkul danışmanlığı ve satılık/kiralık ilanlar. Hancı Global, İstanbul'da mülk bulmanıza, satın almanıza ve yatırım yapmanıza yardımcı olur." },
-  ru: { title: "Hancı Property · Недвижимость в Стамбуле", desc: "Консалтинг и объекты недвижимости в Бейоглу, Таксиме и других районах. Hancı Global поможет найти, купить и инвестировать в недвижимость Стамбула." }
+  ru: { title: "Hancı Property · Недвижимость в Стамбуле", desc: "Консалтинг и объекты недвижимости в Бейоглу, Таксиме и других районах. Hancı Global поможет найти, купить и инвестировать в недвижимость Стамбула." },
+  ar: { title: "Hancı Property · عقارات في إسطنبول", desc: "استشارات عقارية وعقارات للبيع والإيجار في بيوغلو وتقسيم وغلطة. تساعدك Hancı Global على إيجاد عقارك في إسطنبول وشرائه والاستثمار فيه." }
 };
 if (PAGE_META[lang]) {
   document.title = PAGE_META[lang].title;
@@ -443,7 +446,8 @@ if (PAGE_META[lang]) {
   const variants = {
     en: base + (idParam ? `?id=${idParam}` : ''),
     tr: base + (idParam ? `?id=${idParam}&lang=tr` : '?lang=tr'),
-    ru: base + (idParam ? `?id=${idParam}&lang=ru` : '?lang=ru')
+    ru: base + (idParam ? `?id=${idParam}&lang=ru` : '?lang=ru'),
+    ar: base + (idParam ? `?id=${idParam}&lang=ar` : '?lang=ar')
   };
   Object.entries(variants).forEach(([hreflang, href]) => {
     const link = document.createElement('link');
@@ -467,7 +471,8 @@ if (lang !== 'en') {
 const NAV_LABELS = {
   en: { stay:"Stay", property:"Property", renovation:"Renovation", travel:"Travel", visa:"Visa", about:"About" },
   tr: { stay:"Konaklama", property:"Emlak", renovation:"Tadilat", travel:"Seyahat", visa:"Vize", about:"Hakkımızda" },
-  ru: { stay:"Апартаменты", property:"Недвижимость", renovation:"Ремонт", travel:"Путешествия", visa:"Виза", about:"О нас" }
+  ru: { stay:"Апартаменты", property:"Недвижимость", renovation:"Ремонт", travel:"Путешествия", visa:"Виза", about:"О нас" },
+  ar: { stay:"الإقامة", property:"العقارات", renovation:"التجديد", travel:"السفر", visa:"التأشيرات", about:"من نحن" }
 };
 const navLabels = NAV_LABELS[lang] || NAV_LABELS.en;
 document.querySelectorAll('nav a[href^="stay.html"], .mobile-nav a[href^="stay.html"]').forEach(a => a.textContent = navLabels.stay);
@@ -481,7 +486,7 @@ const specLabels = getSpecLabels(lang);
 document.getElementById('htmlRoot').lang = lang;
 
 /* ---------- lang switcher ---------- */
-const LANGS = [['en','EN'],['tr','TR'],['ru','RU']];
+const LANGS = [['en','EN'],['tr','TR'],['ru','RU'],['ar','AR']];
 const langSwitcherHTML = LANGS.map(([code,label]) =>
   `<button class="lang-btn${code===lang?' active':''}" onclick="window.location='property.html?lang=${code}'">${label}</button>`
 ).join('');
@@ -489,9 +494,10 @@ document.getElementById('langSwitcher').innerHTML = langSwitcherHTML;
 document.getElementById('langSwitcherMobile').innerHTML = langSwitcherHTML.replace(/font-size:13px/g,'font-size:20px');
 
 /* ---------- WhatsApp links ---------- */
-const waGeneral = encodeURIComponent("Hi, I'm interested in Hancı Property.");
-const waBuy = encodeURIComponent("Hi, I'm interested in buying property in Istanbul.");
-const waInvestor = encodeURIComponent("Hi, I'm an international buyer interested in Istanbul property.");
+/* mesajlar ziyaretçinin dilinde (property-data.js → PROPERTY_PAGE) */
+const waGeneral = encodeURIComponent(pp.waGeneral);
+const waBuy = encodeURIComponent(pp.waBuy);
+const waInvestor = encodeURIComponent(pp.waInvestor);
 document.getElementById('navWaBtn').href = `https://wa.me/905063335154?text=${waGeneral}`;
 document.getElementById('mobileWaBtn').href = `https://wa.me/905063335154?text=${waGeneral}`;
 document.getElementById('heroBtn2Link').href = `https://wa.me/905063335154?text=${waBuy}`;
@@ -513,12 +519,17 @@ document.getElementById('listingsH2').innerHTML = `${pp.listingsH2a} <em>${pp.li
 document.getElementById('listingsGrid').innerHTML = PROPERTY_LISTINGS.map((listing, i) => {
   const t = getPropertyText(listing, lang);
   const sliderId = 's' + (i + 1);
-  const waEnquire = encodeURIComponent(`Hi, I'm interested in the ${t.name} listing. Please share more details.`);
-  const waViewing = encodeURIComponent(`Hi, I'd like to arrange a viewing for the ${t.name}.`);
+  const waEnquire = encodeURIComponent(pp.waEnquire.replace('{name}', t.name));
+  const waViewing = encodeURIComponent(pp.waViewing.replace('{name}', t.name));
+  const isRent = listing.dealType === 'rent';
+  // m² kutularına dile göre "brüt/net" eki; kelime değerleri (Gas combi, Eligible) dile çevrilir
+  const specSuffix = { grossM2: specLabels.grossSfx || '', netM2: specLabels.netSfx || '' };
+  const specsHTML = Object.entries(listing.specs).map(([k, v]) =>
+    `<div class="spec"><div class="spec-label">${specLabels[k] || k}</div><div class="spec-val"><bdi>${getSpecValue(v, lang)}${specSuffix[k] || ''}</bdi></div></div>`).join('');
   return `
     <div class="listing-card">
       <div class="slider" id="${sliderId}">
-        <div class="for-sale-badge">${specLabels.forSale}</div>
+        <div class="for-sale-badge${isRent ? ' for-rent' : ''}">${isRent ? specLabels.forRent : specLabels.forSale}</div>
         <div class="slides" id="slides-${sliderId}">
           ${listing.images.map(img => `<div class="slide"><img loading="lazy" src="${img}" alt="${t.name}"></div>`).join('')}
         </div>
@@ -533,12 +544,7 @@ document.getElementById('listingsGrid').innerHTML = PROPERTY_LISTINGS.map((listi
           <div class="listing-name">${t.name}</div>
           <p class="listing-desc">${t.desc}</p>
           <div class="listing-specs">
-            <div class="spec"><div class="spec-label">${specLabels.grossM2}</div><div class="spec-val">${listing.specs.grossM2} gross</div></div>
-            <div class="spec"><div class="spec-label">${specLabels.netM2}</div><div class="spec-val">${listing.specs.netM2} net</div></div>
-            <div class="spec"><div class="spec-label">${specLabels.layout}</div><div class="spec-val">${listing.specs.layout}</div></div>
-            <div class="spec"><div class="spec-label">${specLabels.floor}</div><div class="spec-val">${listing.specs.floor}</div></div>
-            <div class="spec"><div class="spec-label">${specLabels.heating}</div><div class="spec-val">${listing.specs.heating}</div></div>
-            <div class="spec"><div class="spec-label">${specLabels.mortgage}</div><div class="spec-val">${listing.specs.mortgage}</div></div>
+            ${specsHTML}
           </div>
           <div class="listing-features">
             ${t.features.map(f => `<div class="listing-feature">${f}</div>`).join('')}

@@ -156,6 +156,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://hanciglobal.com/property.html?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://hanciglobal.com/renovation.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -167,6 +172,11 @@
   </url>
   <url>
     <loc>https://hanciglobal.com/renovation.html?lang=ru</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/renovation.html?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

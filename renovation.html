@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="en" id="htmlRoot">
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot" data-ar="1">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC31K6R3EQ"></script>
 <script>
@@ -24,6 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="tr_TR">
 <meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="ar_AR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -138,6 +139,7 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .portfolio-thumb:hover{border-color:var(--reno)}
 .portfolio-thumb img{height:100%}
 .portfolio-arrow{display:flex;align-items:center;justify-content:center;padding:0 16px;background:transparent}
+@media(min-width:901px){html[dir=rtl] .portfolio-arrow svg{transform:scaleX(-1)}}
 .portfolio-info{padding:32px}
 .portfolio-meta{display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
 .portfolio-status{display:inline-flex;align-items:center;gap:6px;background:var(--reno-l);color:var(--reno-d);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px}
@@ -418,7 +420,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="renovation-data.js?v=3"></script>
+<script src="renovation-data.js?v=4"></script>
 <script>
 /* ---------- read URL params ---------- */
 const params = new URLSearchParams(window.location.search);
@@ -427,7 +429,8 @@ document.documentElement.lang = lang;
 /* ---------- sayfa başlığı ve açıklaması (dile göre) ---------- */
 const PAGE_META = {
   tr: { title: "Hancı Renovation · İstanbul'da Tadilat ve Yenileme", desc: "İstanbul genelinde komple tadilat ve yenileme hizmetleri. Hancı Renovation projenizin tamamını yönetir — izinler, ustalar, takvim ve bütçe." },
-  ru: { title: "Hancı Renovation · Ремонт и отделка в Стамбуле", desc: "Полный ремонт и отделка по всему Стамбулу. Hancı Renovation ведёт весь проект — разрешения, подрядчики, сроки и бюджет." }
+  ru: { title: "Hancı Renovation · Ремонт и отделка в Стамбуле", desc: "Полный ремонт и отделка по всему Стамбулу. Hancı Renovation ведёт весь проект — разрешения, подрядчики, сроки и бюджет." },
+  ar: { title: "Hancı Renovation · تجديد الشقق في إسطنبول", desc: "تجديد شامل للشقق والمباني في إسطنبول. تدير Hancı Renovation مشروعك بالكامل: التصاريح والفِرق والجدول الزمني والميزانية." }
 };
 if (PAGE_META[lang]) {
   document.title = PAGE_META[lang].title;
@@ -442,7 +445,8 @@ if (PAGE_META[lang]) {
   const variants = {
     en: base + (idParam ? `?id=${idParam}` : ''),
     tr: base + (idParam ? `?id=${idParam}&lang=tr` : '?lang=tr'),
-    ru: base + (idParam ? `?id=${idParam}&lang=ru` : '?lang=ru')
+    ru: base + (idParam ? `?id=${idParam}&lang=ru` : '?lang=ru'),
+    ar: base + (idParam ? `?id=${idParam}&lang=ar` : '?lang=ar')
   };
   Object.entries(variants).forEach(([hreflang, href]) => {
     const link = document.createElement('link');
@@ -468,7 +472,8 @@ if (lang !== 'en') {
 const NAV_LABELS = {
   en: { stay:"Stay", property:"Property", renovation:"Renovation", travel:"Travel", visa:"Visa", about:"About" },
   tr: { stay:"Konaklama", property:"Emlak", renovation:"Tadilat", travel:"Seyahat", visa:"Vize", about:"Hakkımızda" },
-  ru: { stay:"Апартаменты", property:"Недвижимость", renovation:"Ремонт", travel:"Путешествия", visa:"Виза", about:"О нас" }
+  ru: { stay:"Апартаменты", property:"Недвижимость", renovation:"Ремонт", travel:"Путешествия", visa:"Виза", about:"О нас" },
+  ar: { stay:"الإقامة", property:"العقارات", renovation:"التجديد", travel:"السفر", visa:"التأشيرات", about:"من نحن" }
 };
 const navLabels = NAV_LABELS[lang] || NAV_LABELS.en;
 document.querySelectorAll('nav a[href^="stay.html"], .mobile-nav a[href^="stay.html"]').forEach(a => a.textContent = navLabels.stay);
@@ -481,7 +486,7 @@ const rp = getRenovationPage(lang);
 document.getElementById('htmlRoot').lang = lang;
 
 /* ---------- lang switcher ---------- */
-const LANGS = [['en','EN'],['tr','TR'],['ru','RU']];
+const LANGS = [['en','EN'],['tr','TR'],['ru','RU'],['ar','AR']];
 const langSwitcherHTML = LANGS.map(([code,label]) =>
   `<button class="lang-btn${code===lang?' active':''}" onclick="window.location='renovation.html?lang=${code}'">${label}</button>`
 ).join('');
