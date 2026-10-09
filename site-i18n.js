@@ -51,6 +51,11 @@
     'Contact':      { tr: 'İletişim',    ru: 'Контакты',         ar: 'التواصل' },
     'Company':      { tr: 'Şirket',      ru: 'Компания',         ar: 'الشركة' },
     'Istanbul Guide': { tr: 'İstanbul Rehberi', ru: 'Путеводитель по Стамбулу', ar: 'دليل إسطنبول' },
+    'Guide':        { tr: 'Rehber',      ru: 'Путеводитель',     ar: 'الدليل' },
+    /* menüdeki "Services" açılır listesinin açıklamaları */
+    'Buy, rent & invest in Istanbul': { tr: 'İstanbul\'da satılık ve kiralık', ru: 'Покупка и аренда в Стамбуле', ar: 'شراء واستئجار العقارات في إسطنبول' },
+    'Turnkey renovation projects':    { tr: 'Anahtar teslim tadilat', ru: 'Ремонт под ключ', ar: 'تجديد بنظام تسليم المفتاح' },
+    'Schengen, UK & US visa support': { tr: 'Schengen, İngiltere ve ABD vizesi', ru: 'Визы: Шенген, Великобритания, США', ar: 'تأشيرات شنغن وبريطانيا وأمريكا' },
     'Professionally managed · Istanbul-based team': {
       tr: 'Profesyonel yönetim · İstanbul merkezli ekip',
       ru: 'Профессиональное управление · команда в Стамбуле',

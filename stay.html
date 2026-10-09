@@ -186,16 +186,25 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .rv-leave:hover{background:var(--teal-d);border-color:var(--teal-d)}  
 
 /* OTHER SERVICES (compact cross-promo row — same component as index.html's service strip) */
-.other-services{padding:0 56px 96px;background:var(--bg)}
+.other-services{padding:64px 56px 96px;background:var(--bg)}
 .other-services-title{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:24px;text-align:center}
-.other-services-inner{background:#fff;border:1px solid var(--border);border-radius:16px;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
-.strip-card{padding:30px 22px;border-right:1px solid var(--border);cursor:pointer;transition:background .15s;display:block}
-.strip-card:last-child{border-right:none}
-.strip-card:hover{background:var(--bg)}
-.strip-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.strip-name{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:6px}
-.strip-desc{font-size:13px;color:var(--muted);line-height:1.55;font-weight:500}
-.strip-link{font-size:12px;font-weight:700;margin-top:14px;display:inline-flex;align-items:center;gap:4px}
+.other-services-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.strip-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.strip-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(13,30,53,.12);border-color:transparent}
+.strip-media{position:relative}
+.strip-photo{aspect-ratio:16/10;overflow:hidden;background:var(--border)}
+.strip-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.strip-card:hover .strip-photo img{transform:scale(1.06)}
+.strip-icon{position:absolute;left:20px;bottom:-23px;width:46px;height:46px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(13,30,53,.16)}
+.strip-body{padding:36px 22px 24px;display:flex;flex-direction:column;flex:1}
+.strip-name{font-size:17px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.strip-desc{font-size:13.5px;color:var(--muted);line-height:1.55;font-weight:500;flex:1}
+.strip-link{font-size:13px;font-weight:700;margin-top:16px;display:inline-flex;align-items:center;gap:6px}
+.strip-link svg{transition:transform .2s}
+.strip-card:hover .strip-link svg{transform:translateX(4px)}
+html[dir=rtl] .strip-icon{left:auto;right:20px}
+html[dir=rtl] .strip-link svg{transform:scaleX(-1)}
+html[dir=rtl] .strip-card:hover .strip-link svg{transform:scaleX(-1) translateX(4px)}
 
 /* CTA BAND */
 .cta-band{padding:96px 56px;background:var(--navy);text-align:center}
@@ -273,18 +282,77 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   .rv-sources,.rv-apts{padding:24px 20px;border-inline-start:0;border-top:1px solid rgba(255,255,255,.08)}
   .rv-apt{grid-template-columns:minmax(0,1fr) 60px 74px;gap:10px}
   .reviews-more-wrap{display:flex;flex-direction:column;gap:12px;align-items:center}.rv-leave{margin:0}
-  .other-services{padding:0 20px 56px}
-  .other-services-inner{grid-template-columns:repeat(2,1fr)}
-  .strip-card{padding:20px 16px;border-bottom:1px solid var(--border)}
-  .strip-card:nth-child(2){border-right:none}
-  .strip-card:nth-child(3),.strip-card:nth-child(4){border-bottom:none}
-  .strip-card:nth-child(4){border-right:none}
+  .other-services{padding:40px 16px 56px}
+  .other-services-inner{grid-template-columns:repeat(2,1fr);gap:12px}
+  .strip-card{border-radius:14px}
+  .strip-icon{width:38px;height:38px;border-radius:11px;left:12px;bottom:-19px}
+  html[dir=rtl] .strip-icon{right:12px}
+  .strip-icon svg{width:19px;height:19px}
+  .strip-body{padding:28px 14px 16px}
+  .strip-name{font-size:15px}
+  .strip-desc{font-size:12.5px}
+  .strip-link{margin-top:12px}
   .cta-band{padding:56px 20px}
   .cta-band h2{font-size:36px}
   footer{padding:40px 20px 24px}
   .footer-top{grid-template-columns:1fr;gap:28px}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
 }
+/* MENU (ortak — tüm sayfalarda aynı) */
+:root{--nav-accent:var(--teal)}
+.nav-link.active{color:var(--nav-accent);border-bottom-color:var(--nav-accent)}
+.nav-dd{position:relative;display:flex;align-items:stretch}
+.nav-dd-btn{font:inherit;font-size:15px;font-weight:600;background:none;border:0;border-bottom:2.5px solid transparent;cursor:pointer;gap:6px}
+.nav-dd-btn svg{transition:transform .2s;opacity:.7}
+.nav-dd:hover .nav-dd-btn,.nav-dd.open .nav-dd-btn{color:var(--nav-accent)}
+.nav-dd:hover .nav-dd-btn svg,.nav-dd.open .nav-dd-btn svg{transform:rotate(180deg)}
+.nav-dd-menu{position:absolute;top:100%;left:0;min-width:300px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 40px rgba(13,30,53,.14);padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .15s,transform .15s,visibility .15s;z-index:210}
+.nav-dd:hover .nav-dd-menu,.nav-dd.open .nav-dd-menu{opacity:1;visibility:visible;transform:none}
+.nav-dd-menu a{display:flex;flex-direction:column;gap:3px;padding:11px 14px;border-radius:10px;color:var(--ink)}
+.nav-dd-menu a b{font-size:15px;font-weight:700}
+.nav-dd-menu a small{font-size:12.5px;font-weight:500;color:var(--muted)}
+.nav-dd-menu a:hover,.nav-dd-menu a:focus-visible{background:var(--bg)}
+.nav-dd-menu a.active b{color:var(--nav-accent)}
+html[dir=rtl] .nav-dd-menu{left:auto;right:0}
+.mobile-nav{justify-content:safe center;overflow-y:auto;padding:64px 0 32px}
+.mobile-nav .mnav-group{font-size:13px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-top:10px}
+.mobile-nav a.mnav-sub{font-size:20px;font-weight:600;color:var(--ink2);padding:8px 28px}
+.mobile-nav a[aria-current]{color:var(--nav-accent)}
+@media (max-height:740px){
+  .mobile-nav{gap:2px}
+  .mobile-nav a{font-size:23px;padding:8px 28px}
+  .mobile-nav a.mnav-sub{font-size:18px;padding:6px 28px}
+  .mobile-nav-contact{margin-top:14px}
+}
+.nav-link,.logo-text,.btn-call,.btn-wa{white-space:nowrap}
+/* dar masaüstü: önce boşluklar, sonra logo yazısı ve "Ara" yazısı küçülür (Rusça etiketler en uzun) */
+@media (min-width:901px) and (max-width:1320px){
+  nav{padding:0 28px}
+  .nav-left{gap:24px}
+  .nav-link{padding:0 12px}
+  .lang-switcher{margin-right:0}
+}
+@media (min-width:901px) and (max-width:1520px){
+  html[lang=ru] .logo-text{display:none}
+  html[lang=ru] .nav-left{gap:20px}
+}
+@media (min-width:901px) and (max-width:1260px){
+  html[lang=tr] .logo-text{display:none}
+}
+@media (min-width:901px) and (max-width:1180px){
+  .logo-text{display:none}
+  .btn-call{font-size:0;gap:0;padding:9px 11px}
+  .nav-left{gap:16px}
+  .nav-link{padding:0 10px;font-size:14px}
+  .lang-btn{padding:4px 5px}
+  .lang-divider{margin:0 2px}
+  .btn-wa{padding:10px 14px}
+}
+@media (min-width:901px) and (max-width:1100px){
+  html[lang=ru] .nav-link{padding:0 7px;font-size:13.5px}
+  html[lang=ru] .btn-wa{font-size:0;gap:0;padding:10px 12px}
+}
+/* /MENU */
 </style>
 </head>
 <body>
@@ -298,10 +366,32 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
         <span class="logo-sub">Istanbul</span>
       </div>
     </a>
-    <div class="nav-links">
-      <a href="stay.html" class="nav-link active">Stay</a>
+    <div class="nav-links"><!-- MENU: tüm sayfalarda aynı; metinleri site-i18n.js çevirir -->
+      <a href="stay.html" class="nav-link active" aria-current="page">Stay</a>
+      <a href="travel.html" class="nav-link">Travel</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-link nav-dd-btn" aria-haspopup="true" aria-expanded="false"><span>Services</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-dd-menu">
+          <a href="property.html"><b>Property</b><small>Buy, rent &amp; invest in Istanbul</small></a>
+          <a href="renovation.html"><b>Renovation</b><small>Turnkey renovation projects</small></a>
+          <a href="visa.html"><b>Visa</b><small>Schengen, UK &amp; US visa support</small></a>
+        </div>
+      </div>
+      <a href="guides/index.html" data-guide="index" class="nav-link">Guide</a>
       <a href="index.html#about" class="nav-link">About</a>
-    </div>
+    </div><!-- /MENU -->
+    <script>
+    /* Hizmetler açılır menüsü: fareyle üzerine gelince (CSS) ya da tıklayınca/klavyeyle açılır */
+    document.querySelectorAll('.nav-dd').forEach(function (dd) {
+      var btn = dd.querySelector('.nav-dd-btn');
+      function set(open) { dd.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); set(!dd.classList.contains('open')); });
+      document.addEventListener('click', function (e) { if (!dd.contains(e.target)) set(false); });
+      dd.addEventListener('mouseleave', function () { set(false); });
+      dd.addEventListener('focusout', function (e) { if (!dd.contains(e.relatedTarget)) set(false); });
+      dd.addEventListener('keydown', function (e) { if (e.key === 'Escape') { set(false); btn.focus(); } });
+    });
+    </script>
   </div>
   <div class="nav-right">
     <div class="lang-switcher" id="langSwitcher"></div>
@@ -318,9 +408,17 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   <button onclick="closeMobileNav()" style="position:absolute;top:20px;right:20px;background:none;border:none;cursor:pointer;padding:8px">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111C26" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="stay.html" onclick="closeMobileNav()">Stay</a>
+        <!-- MENU-M -->
+  <div class="lang-switcher" id="langSwitcherMobile" style="margin-bottom:12px"></div>
+  <a href="stay.html" aria-current="page" onclick="closeMobileNav()">Stay</a>
+  <a href="travel.html" onclick="closeMobileNav()">Travel</a>
+  <span class="mnav-group">Services</span>
+  <a href="property.html" class="mnav-sub" onclick="closeMobileNav()">Property</a>
+  <a href="renovation.html" class="mnav-sub" onclick="closeMobileNav()">Renovation</a>
+  <a href="visa.html" class="mnav-sub" onclick="closeMobileNav()">Visa</a>
+  <a href="guides/index.html" data-guide="index" onclick="closeMobileNav()">Guide</a>
   <a href="index.html#about" onclick="closeMobileNav()">About</a>
-  <div class="lang-switcher" id="langSwitcherMobile" style="margin-top:16px"></div>
+  <!-- /MENU-M -->
   <div class="mobile-nav-contact">
     <a href="tel:+905063335154" class="mnc-call">Call</a>
     <a id="mobileWaBtn" target="_blank" class="mnc-wa">WhatsApp</a>
@@ -443,7 +541,7 @@ footer{background:var(--navy);padding:56px 56px 32px;border-top:1px solid rgba(2
   </div>
 </footer>
 
-<script src="apartments-data.js?v=14"></script>
+<script src="apartments-data.js?v=15"></script>
 <script>
 /* ---------- read URL params ---------- */
 
@@ -530,19 +628,7 @@ if (lang !== 'en') {
     a.href = 'index.html?lang=' + lang + '#about';
   });
 }
-const NAV_LABELS = {
-  en: { stay:"Stay", property:"Property", renovation:"Renovation", travel:"Travel", visa:"Visa", about:"About" },
-  tr: { stay:"Konaklama", property:"Emlak", renovation:"Tadilat", travel:"Seyahat", visa:"Vize", about:"Hakkımızda" },
-  ru: { stay:"Апартаменты", property:"Недвижимость", renovation:"Ремонт", travel:"Путешествия", visa:"Виза", about:"О нас" },
-  ar: { stay:"الإقامة", property:"العقارات", renovation:"التجديد", travel:"السفر", visa:"التأشيرات", about:"من نحن" }
-};
-const navLabels = NAV_LABELS[lang] || NAV_LABELS.en;
-document.querySelectorAll('nav a[href^="stay.html"], .mobile-nav a[href^="stay.html"]').forEach(a => a.textContent = navLabels.stay);
-document.querySelectorAll('nav a[href^="property.html"], .mobile-nav a[href^="property.html"]').forEach(a => a.textContent = navLabels.property);
-document.querySelectorAll('nav a[href^="renovation.html"], .mobile-nav a[href^="renovation.html"]').forEach(a => a.textContent = navLabels.renovation);
-document.querySelectorAll('nav a[href^="travel.html"], .mobile-nav a[href^="travel.html"]').forEach(a => a.textContent = navLabels.travel);
-document.querySelectorAll('nav a[href^="visa.html"], .mobile-nav a[href^="visa.html"]').forEach(a => a.textContent = navLabels.visa);
-document.querySelectorAll('nav a[href$="#about"], .mobile-nav a[href$="#about"]').forEach(a => a.textContent = navLabels.about);
+/* menü metinlerini site-i18n.js çevirir */
   
 const ui = getUIStrings(lang);
 
@@ -725,20 +811,8 @@ withRatings(showRatings);
 
   
 /* ---------- other services (compact cross-promo row, same component as index.html) ---------- */
-const ost = getOtherServicesText(lang);
-document.getElementById('otherServicesTitle').textContent = ost.sectionTitle;
-document.getElementById('otherServicesGrid').innerHTML = OTHER_SERVICES.map(svc => {
-  const text = ost[svc.key];
-  return `
-    <a href="${svc.link}" class="strip-card">
-      <div class="strip-icon-wrap" style="background:${svc.bg}">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="${svc.stroke}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${svc.icon}</svg>
-      </div>
-      <div class="strip-name">${text.name}</div>
-      <div class="strip-desc">${text.desc}</div>
-      <span class="strip-link" style="color:${svc.linkColor}">${text.cta}</span>
-    </a>`;
-}).join('');
+document.getElementById('otherServicesTitle').textContent = getOtherServicesText(lang).sectionTitle;
+document.getElementById('otherServicesGrid').innerHTML = renderOtherServices(lang);
 
 /* ---------- CTA ---------- */
 document.getElementById('ctaH2').textContent = sp.ctaH2;
@@ -844,6 +918,6 @@ document.addEventListener('click', function(e) {
 })();
 </script>
 <script src="guide-teaser.js?v=1"></script>
-<script src=site-i18n.js?v=3></script>
+<script src=site-i18n.js?v=4></script>
 </body>
 </html>

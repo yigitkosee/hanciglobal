@@ -32,16 +32,48 @@ body{font-family:"Plus Jakarta Sans","IBM Plex Sans Arabic",sans-serif;backgroun
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 .serif{font-family:"Cormorant Garamond","Amiri",serif}
-nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 56px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;gap:16px}
+nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 56px;height:72px;display:flex;align-items:stretch;justify-content:space-between;position:sticky;top:0;z-index:200;gap:16px}
 .nav-left{display:flex;align-items:center;gap:40px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo img{height:46px;width:auto}
-.logo-name{font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:600;color:var(--navy);letter-spacing:2px;line-height:1.1}
+.logo-name{font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:600;color:var(--navy);letter-spacing:2px;line-height:1.1;white-space:nowrap}
 .logo-sub{display:block;font-size:10px;font-weight:600;color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-family:"Plus Jakarta Sans",sans-serif}
-.nav-links{display:flex;gap:28px}
-.nav-links a{font-size:15px;font-weight:600;color:var(--ink2)}
-.nav-links a.active,.nav-links a:hover{color:var(--teal)}
+/* menü — ana sitedeki menüyle aynı */
+.nav-links{display:flex;align-self:stretch}
+.nav-link{font-size:15px;font-weight:600;color:var(--ink2);padding:0 16px;display:flex;align-items:center;border-bottom:2.5px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--teal);border-bottom-color:var(--teal)}
+.nav-dd{position:relative;display:flex;align-items:stretch}
+.nav-dd-btn{font:inherit;font-size:15px;font-weight:600;background:none;border:0;border-bottom:2.5px solid transparent;cursor:pointer;gap:6px}
+.nav-dd-btn svg{transition:transform .2s;opacity:.7}
+.nav-dd:hover .nav-dd-btn,.nav-dd.open .nav-dd-btn{color:var(--teal)}
+.nav-dd:hover .nav-dd-btn svg,.nav-dd.open .nav-dd-btn svg{transform:rotate(180deg)}
+.nav-dd-menu{position:absolute;top:100%;left:0;min-width:300px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 40px rgba(13,30,53,.14);padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .15s,transform .15s,visibility .15s;z-index:210;line-height:1.4}
+.nav-dd:hover .nav-dd-menu,.nav-dd.open .nav-dd-menu{opacity:1;visibility:visible;transform:none}
+.nav-dd-menu a{display:flex;flex-direction:column;gap:3px;padding:11px 14px;border-radius:10px;color:var(--ink)}
+.nav-dd-menu a b{font-size:15px;font-weight:700}
+.nav-dd-menu a small{font-size:12.5px;font-weight:500;color:var(--muted)}
+.nav-dd-menu a:hover,.nav-dd-menu a:focus-visible{background:var(--bg)}
+html[dir=rtl] .nav-dd-menu{left:auto;right:0}
 .nav-right{display:flex;align-items:center;gap:10px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px}
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);z-index:250;flex-direction:column;align-items:center;justify-content:safe center;gap:4px;overflow-y:auto;padding:64px 0 32px}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:26px;font-weight:700;color:var(--ink);padding:10px 32px;border-radius:12px}
+.mobile-nav a[aria-current]{color:var(--teal)}
+.mobile-nav .mnav-lang{margin-bottom:12px}
+.mobile-nav .mnav-lang a{font-size:14px;padding:6px 10px;border-radius:8px}
+.mobile-nav .mnav-group{font-size:13px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-top:10px}
+.mobile-nav a.mnav-sub{font-size:20px;font-weight:600;color:var(--ink2);padding:7px 28px}
+.mobile-nav a.mnav-wa{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:14px;color:#fff;background:var(--navy);padding:12px 26px;border-radius:10px}
+.mnav-close{position:absolute;top:16px;right:16px;background:none;border:0;cursor:pointer;padding:8px;color:var(--ink)}
+html[dir=rtl] .mnav-close{right:auto;left:16px}
+@media (max-height:740px){.mobile-nav a{font-size:22px;padding:8px 28px}.mobile-nav a.mnav-sub{font-size:18px;padding:6px 28px}}
+@media (min-width:901px) and (max-width:1320px){nav{padding:0 28px}.nav-left{gap:20px}.nav-link{padding:0 11px}}
+@media (min-width:901px) and (max-width:1520px){html[lang=ru] .logo-name{display:none}}
+@media (min-width:901px) and (max-width:1260px){html[lang=tr] .logo-name,html[lang=ar] .logo-name{display:none}}
+@media (min-width:901px) and (max-width:1180px){.logo-name{display:none}.nav-left{gap:14px}.nav-link{padding:0 9px;font-size:14px}.btn-wa{padding:10px 14px}}
+@media (min-width:901px) and (max-width:1100px){html[lang=ru] .nav-link{padding:0 7px;font-size:13.5px}html[lang=ru] .btn-wa span{display:none}}
 .lang-switcher{display:flex;gap:2px}
 .lang-switcher a{font-size:13px;font-weight:700;padding:4px 8px;border-radius:6px;opacity:.45}
 .lang-switcher a.active,.lang-switcher a:hover{opacity:1;background:var(--bg)}
@@ -236,6 +268,9 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
 @media (max-width:900px){
   nav{padding:0 16px;height:62px}
   .nav-links,.btn-wa span{display:none}
+  .hamburger{display:flex}
+  .nav-right .btn-wa{padding:9px 12px}
+  .nav-right .lang-switcher{display:none}
   .logo img{height:38px}.logo-name{font-size:16px}
   .crumbs{padding:14px 16px 0}
   .hero{margin:12px 16px 0;min-height:300px;border-radius:18px}
@@ -258,16 +293,58 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
   <div class="nav-left">
     <a href="../index.html?lang=ru" class="logo"><img src="../logo.jpg" alt="Hancı Global"><span class="logo-name">HANCI GLOBAL<span class="logo-sub">Istanbul</span></span></a>
     <div class="nav-links">
-      <a href="../stay.html?lang=ru">Апартаменты</a>
-      <a href="../travel.html?lang=ru">Путешествия</a>
-      <a href="index-ru.html" class="active">Гид</a>
+      <a href="../stay.html?lang=ru" class="nav-link">Апартаменты</a>
+      <a href="../travel.html?lang=ru" class="nav-link">Путешествия</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-link nav-dd-btn" aria-haspopup="true" aria-expanded="false"><span>Услуги</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-dd-menu">
+          <a href="../property.html?lang=ru"><b>Недвижимость</b><small>Покупка и аренда в Стамбуле</small></a>
+          <a href="../renovation.html?lang=ru"><b>Ремонт</b><small>Ремонт под ключ</small></a>
+          <a href="../visa.html?lang=ru"><b>Виза</b><small>Визы: Шенген, Великобритания, США</small></a>
+        </div>
+      </div>
+      <a href="index-ru.html" class="nav-link active" aria-current="page">Путеводитель</a>
+      <a href="../index.html?lang=ru#about" class="nav-link">О нас</a>
     </div>
   </div>
   <div class="nav-right">
     <div class="lang-switcher"><a href="where-to-eat-drink-galata.html" hreflang="en">EN</a><a href="where-to-eat-drink-galata-tr.html" hreflang="tr">TR</a><a href="where-to-eat-drink-galata-ru.html" hreflang="ru" class="active">RU</a><a href="where-to-eat-drink-galata-ar.html" hreflang="ar">AR</a></div>
     <a class="btn-wa" href="https://wa.me/905063335154?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D0%BB%20%D0%B2%D0%B0%D1%88%20%D0%B3%D0%B8%D0%B4%20%D0%BF%D0%BE%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB%D1%83%20%D0%B8%20%D1%85%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BF%D1%80%D0%BE%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8." target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg><span>WhatsApp</span></a>
+    <button type="button" class="hamburger" id="hamburger" aria-label="Меню" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <button type="button" class="mnav-close" aria-label="Закрыть"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <div class="lang-switcher mnav-lang"><a href="where-to-eat-drink-galata.html" hreflang="en">EN</a><a href="where-to-eat-drink-galata-tr.html" hreflang="tr">TR</a><a href="where-to-eat-drink-galata-ru.html" hreflang="ru" class="active">RU</a><a href="where-to-eat-drink-galata-ar.html" hreflang="ar">AR</a></div>
+  <a href="../stay.html?lang=ru">Апартаменты</a>
+  <a href="../travel.html?lang=ru">Путешествия</a>
+  <span class="mnav-group">Услуги</span>
+  <a href="../property.html?lang=ru" class="mnav-sub">Недвижимость</a>
+  <a href="../renovation.html?lang=ru" class="mnav-sub">Ремонт</a>
+  <a href="../visa.html?lang=ru" class="mnav-sub">Виза</a>
+  <a href="index-ru.html" aria-current="page">Путеводитель</a>
+  <a href="../index.html?lang=ru#about">О нас</a>
+  <a href="https://wa.me/905063335154?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D0%BF%D1%80%D0%BE%D1%87%D0%B8%D1%82%D0%B0%D0%BB%20%D0%B2%D0%B0%D1%88%20%D0%B3%D0%B8%D0%B4%20%D0%BF%D0%BE%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB%D1%83%20%D0%B8%20%D1%85%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BF%D1%80%D0%BE%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8." class="mnav-wa" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp</a>
+</div>
+<script>
+(function () {
+  /* Hizmetler açılır menüsü: fareyle üzerine gelince (CSS) ya da tıklayınca/klavyeyle açılır */
+  var dd = document.querySelector('.nav-dd'), btn = dd.querySelector('.nav-dd-btn');
+  function set(open) { dd.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); set(!dd.classList.contains('open')); });
+  document.addEventListener('click', function (e) { if (!dd.contains(e.target)) set(false); });
+  dd.addEventListener('mouseleave', function () { set(false); });
+  dd.addEventListener('focusout', function (e) { if (!dd.contains(e.relatedTarget)) set(false); });
+  dd.addEventListener('keydown', function (e) { if (e.key === 'Escape') { set(false); btn.focus(); } });
+  /* mobil menü */
+  var mn = document.getElementById('mobileNav'), hb = document.getElementById('hamburger');
+  function mset(open) { mn.classList.toggle('open', open); hb.setAttribute('aria-expanded', open ? 'true' : 'false'); document.body.style.overflow = open ? 'hidden' : ''; }
+  hb.addEventListener('click', function () { mset(true); });
+  mn.querySelector('.mnav-close').addEventListener('click', function () { mset(false); });
+  mn.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mset(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mn.classList.contains('open')) mset(false); });
+})();
+</script>
 <div class="crumbs"><a href="../index.html?lang=ru">Главная</a> › <a href="index-ru.html">Гид</a> › Где поесть и выпить в Галате и Бейоглу: наши местные советы</div>
 <header class="hero"><img src="../sunset2.jpg" alt="Где поесть и выпить в Галате и Бейоглу: наши местные советы"><div class="hero-inner"><h1>Где поесть и выпить в Галате и Бейоглу: наши местные советы</h1><div class="meta">Команда Hancı Stay — местные рекомендации из Галаты · Обновлено в октябре 2026</div><div class="stats"><span>Мест: 73</span><span>Рестораны</span><span>Кафе и кофе</span><span>Бары и ночная жизнь</span><span>Кондитерские и десерты</span><span>Завтраки</span><span>Местная классика по всему городу</span><span>Авторская и высокая кухня</span><span>Японская и азиатская кухня</span><span>Босфор и закат</span><span>Крыши и ночная жизнь</span></div></div></header>
 <main class="wide withmap">

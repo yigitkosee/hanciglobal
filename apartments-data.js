@@ -228,59 +228,84 @@ const STAY_PAGE = {
 function getStayPage(lang) { return STAY_PAGE[lang] || STAY_PAGE.en; }
 
 /* ==========================================================================
-   OTHER SERVICES — compact cross-promo row shown under Guest Reviews on
-   stay.html. This reuses the exact icon/color/copy pattern from index.html's
-   own "service strip" component, so it looks native to the site.
+   OTHER SERVICES — "More from Hancı Global" fotoğraflı kartları
+   (index.html ve stay.html; çizim renderOtherServices ile ortak).
+   img: svc-*.jpg (720x450) · icon: fotoğrafın köşesindeki rozet ikonu
    ========================================================================== */
 const OTHER_SERVICES = [
   {
-    key: "property", link: "property.html", bg: "#FAEEDA", stroke: "#BA7517", linkColor: "var(--amber)",
-    icon: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>'
+    key: "property", link: "property.html", img: "svc-property.jpg", stroke: "#BA7517", linkColor: "var(--amber)",
+    /* bina */
+    icon: '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>'
   },
   {
-    key: "renovation", link: "renovation.html", bg: "#E8F5E9", stroke: "#2C5F2E", linkColor: "#2C5F2E",
-    icon: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'
+    key: "renovation", link: "renovation.html", img: "svc-renovation.jpg", stroke: "#2C5F2E", linkColor: "#2C5F2E",
+    /* boya rulosu */
+    icon: '<rect width="16" height="6" x="2" y="2" rx="2"/><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect width="4" height="6" x="8" y="16" rx="1"/>'
   },
   {
-    key: "travel", link: "travel.html", bg: "#E6F1FB", stroke: "#185FA5", linkColor: "var(--blue)",
-    icon: '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'
+    key: "travel", link: "travel.html", img: "svc-travel.jpg", stroke: "#185FA5", linkColor: "var(--blue)",
+    /* yelkenli */
+    icon: '<path d="M22 18H2a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4Z"/><path d="M21 14 10 2 3 14h18Z"/><path d="M10 2v16"/>'
   },
   {
-    key: "visa", link: "visa.html", bg: "#FAECE7", stroke: "#993C1D", linkColor: "var(--coral)",
-    icon: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/><path d="M14 15h4"/>'
+    key: "visa", link: "visa.html", img: "svc-visa.jpg", stroke: "#993C1D", linkColor: "var(--coral)",
+    /* vize damgası */
+    icon: '<path d="M5 22h14"/><path d="M19.27 13.73A2.5 2.5 0 0 0 17.5 13h-11A2.5 2.5 0 0 0 4 15.5V17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1.5c0-.66-.26-1.3-.73-1.77Z"/><path d="M14 13V8.5C14 7 15 7 15 5a3 3 0 0 0-3-3c-1.69 0-3 1-3 3 0 2 1 2 1 3.5V13"/>'
   }
 ];
 const OTHER_SERVICES_TEXT = {
   en: {
     sectionTitle: "More from Hancı Global",
-    property:   { name:"Hancı Property",   desc:"Real estate & renovation across Istanbul", cta:"Explore →" },
-    renovation: { name:"Hancı Renovation", desc:"Full renovation & project management",     cta:"Explore →" },
-    travel:     { name:"Hancı Travel",     desc:"Transfers, boat tours & experiences",       cta:"Explore →" },
-    visa:       { name:"Hancı Visa",       desc:"Schengen & international consultancy",      cta:"Explore →" }
+    property:   { name:"Hancı Property",   desc:"Buy, rent & invest in Istanbul",                  cta:"Explore" },
+    renovation: { name:"Hancı Renovation", desc:"Turnkey renovation & project management",         cta:"Explore" },
+    travel:     { name:"Hancı Travel",     desc:"VIP transfers, Bosphorus tours & chauffeur hire", cta:"Explore" },
+    visa:       { name:"Hancı Visa",       desc:"Schengen, UK & US visa consultancy",              cta:"Explore" }
   },
   tr: {
     sectionTitle: "Hancı Global'den daha fazlası",
-    property:   { name:"Hancı Property",   desc:"İstanbul genelinde gayrimenkul & tadilat", cta:"Keşfet →" },
-    renovation: { name:"Hancı Renovation", desc:"Komple tadilat & proje yönetimi",           cta:"Keşfet →" },
-    travel:     { name:"Hancı Travel",     desc:"Transfer, tekne turu & deneyimler",         cta:"Keşfet →" },
-    visa:       { name:"Hancı Visa",       desc:"Schengen & uluslararası danışmanlık",       cta:"Keşfet →" }
+    property:   { name:"Hancı Property",   desc:"İstanbul'da satılık, kiralık ve yatırım",   cta:"Keşfet" },
+    renovation: { name:"Hancı Renovation", desc:"Anahtar teslim tadilat ve proje yönetimi",  cta:"Keşfet" },
+    travel:     { name:"Hancı Travel",     desc:"VIP transfer, Boğaz turu ve şoförlü araç",  cta:"Keşfet" },
+    visa:       { name:"Hancı Visa",       desc:"Schengen, İngiltere ve ABD vize danışmanlığı", cta:"Keşfet" }
   },
   ru: {
     sectionTitle: "Больше от Hancı Global",
-    property:   { name:"Hancı Property",   desc:"Недвижимость и ремонт по всему Стамбулу", cta:"Подробнее →" },
-    renovation: { name:"Hancı Renovation", desc:"Полный ремонт и управление проектами",     cta:"Подробнее →" },
-    travel:     { name:"Hancı Travel",     desc:"Трансферы, прогулки на яхте и экскурсии",  cta:"Подробнее →" },
-    visa:       { name:"Hancı Visa",       desc:"Шенгенское и международное консультирование", cta:"Подробнее →" }
+    property:   { name:"Hancı Property",   desc:"Покупка, аренда и инвестиции в Стамбуле",          cta:"Подробнее" },
+    renovation: { name:"Hancı Renovation", desc:"Ремонт под ключ и управление проектом",            cta:"Подробнее" },
+    travel:     { name:"Hancı Travel",     desc:"VIP-трансферы, прогулки по Босфору, авто с водителем", cta:"Подробнее" },
+    visa:       { name:"Hancı Visa",       desc:"Визы: Шенген, Великобритания, США",                cta:"Подробнее" }
   },
   ar: {
     sectionTitle: "المزيد من Hancı Global",
-    property:   { name:"Hancı Property",   desc:"العقارات والتجديد في جميع أنحاء إسطنبول", cta:"← اكتشف" },
-    renovation: { name:"Hancı Renovation", desc:"تجديد شامل وإدارة المشاريع",              cta:"← اكتشف" },
-    travel:     { name:"Hancı Travel",     desc:"خدمات النقل وجولات القوارب والتجارب",     cta:"← اكتشف" },
-    visa:       { name:"Hancı Visa",       desc:"استشارات شنغن والتأشيرات الدولية",         cta:"← اكتشف" }
+    property:   { name:"Hancı Property",   desc:"شراء العقارات واستئجارها والاستثمار في إسطنبول", cta:"اكتشف" },
+    renovation: { name:"Hancı Renovation", desc:"تجديد بنظام تسليم المفتاح وإدارة المشاريع",      cta:"اكتشف" },
+    travel:     { name:"Hancı Travel",     desc:"نقل VIP وجولات البوسفور وسيارات مع سائق",       cta:"اكتشف" },
+    visa:       { name:"Hancı Visa",       desc:"استشارات تأشيرات شنغن وبريطانيا وأمريكا",        cta:"اكتشف" }
   }
 };
 function getOtherServicesText(lang) { return OTHER_SERVICES_TEXT[lang] || OTHER_SERVICES_TEXT.en; }
+/* kartların HTML'i (index.html + stay.html ortak) */
+function renderOtherServices(lang) {
+  const ost = getOtherServicesText(lang);
+  const arrow = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>';
+  return OTHER_SERVICES.map(svc => {
+    const text = ost[svc.key];
+    const link = lang && lang !== 'en' ? `${svc.link}?lang=${lang}` : svc.link;
+    return `
+    <a href="${link}" class="strip-card">
+      <div class="strip-media">
+        <div class="strip-photo"><img loading="lazy" src="${svc.img}" alt="${text.name}" width="720" height="450"></div>
+        <span class="strip-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${svc.stroke}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svc.icon}</svg></span>
+      </div>
+      <div class="strip-body">
+        <div class="strip-name">${text.name}</div>
+        <div class="strip-desc">${text.desc}</div>
+        <span class="strip-link" style="color:${svc.linkColor}">${text.cta}${arrow}</span>
+      </div>
+    </a>`;
+  }).join('');
+}
 
 /* categories + which items belong to each (order = display order) */
 const AMENITY_CATEGORIES = [
