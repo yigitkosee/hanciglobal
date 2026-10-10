@@ -5,7 +5,7 @@
 const VISA_SERVICES = [
   { key:"schengen", img:"schengen.jpg", waMsg:"Hi, I'd like help with a Schengen visa application." },
   { key:"ukusa", img:"usvisa.jpg", waMsg:"Hi, I'd like help with a UK or USA visa application." },
-  { key:"documents", img:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=85", waMsg:"Hi, I'd like help preparing my visa documents." }
+  { key:"documents", img:"visa-1.jpg", waMsg:"Hi, I'd like help preparing my visa documents." }
 ];
 
 const VISA_REVIEWS = [

@@ -219,7 +219,11 @@ main.withmap{max-width:1480px}
 .vlayout .vact{flex-wrap:wrap}
 .pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;z-index:1}
 .pin i{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--pc);border:2.5px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.3);transition:transform .2s,background .2s;font-style:normal}
-.pin i span{transform:rotate(45deg);font-size:15px;line-height:1}
+.pin i span{transform:rotate(45deg);font-size:15px;line-height:1;color:#fff;display:flex}
+/* emoji yerine çizgi ikon (../site-icons.js) */
+.pin i .ico{width:16px;height:16px;vertical-align:0;stroke-width:2.2}
+.vph .ico{stroke-width:1.5}
+.guide-card h3 .ico,.varea .ico{color:var(--teal)}
 .pin b{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;color:var(--ink);font:700 13px "Plus Jakarta Sans","IBM Plex Sans Arabic",sans-serif;padding:6px 12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.22);display:none}
 .pin:hover,.pin.hl{z-index:5}
 .pin:hover i,.pin.hl i{transform:rotate(-45deg) scale(1.18)}
@@ -287,6 +291,7 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
   .wa-float{right:16px;bottom:16px}
   html[dir=rtl] .wa-float{left:16px}
 }</style>
+<script src="../site-icons.js?v=1"></script>
 </head>
 <body>
 <nav>

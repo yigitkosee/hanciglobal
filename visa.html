@@ -290,6 +290,7 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
 }
 /* /MENU */
 </style>
+<script src="site-icons.js?v=1"></script>
 </head>
 <body>
 
@@ -629,7 +630,7 @@ const reviewCards = VISA_REVIEWS.map(r => {
 }).join('');
 const reviewPlaceholder = `
   <div class="review-placeholder">
-    <div style="font-size:32px;margin-bottom:10px">⭐</div>
+    <div style="font-size:32px;margin-bottom:10px;color:var(--coral)">⭐</div>
     <div style="font-size:15px;font-weight:800;color:var(--ink2);margin-bottom:8px">${vp.reviewPlaceholderTitle}</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.6;max-width:200px;margin-bottom:16px">${vp.reviewPlaceholderDesc}</div>
     <a href="https://wa.me/905063335154?text=${waReview}" target="_blank"><button class="btn-coral-sm">${vp.reviewPlaceholderBtn}</button></a>
@@ -697,6 +698,6 @@ document.addEventListener('click', function(e) {
   if (nav && nav.href) document.getElementById('waFloat').href = nav.href;
 })();
 </script>
-<script src=site-i18n.js?v=4></script>
+<script src=site-i18n.js?v=5></script>
 </body>
 </html>

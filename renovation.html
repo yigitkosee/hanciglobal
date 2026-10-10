@@ -119,7 +119,7 @@ nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1
 .scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
 .scope-card{background:#fff;border-radius:18px;border:1.5px solid var(--border);padding:32px 26px;transition:border-color .2s}
 .scope-card:hover{border-color:var(--reno)}
-.scope-icon{width:48px;height:48px;border-radius:14px;background:var(--reno-l);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:22px}
+.scope-icon{width:48px;height:48px;border-radius:14px;background:var(--reno-l);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:22px;color:var(--reno)}
 .scope-title{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:10px}
 .scope-desc{font-size:13px;line-height:1.7;color:var(--muted)}
 
@@ -308,6 +308,7 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
 }
 /* /MENU */
 </style>
+<script src="site-icons.js?v=1"></script>
 </head>
 <body>
 
@@ -680,7 +681,7 @@ const projectsHTML = PORTFOLIO_PROJECTS.map((project, i) => {
 const placeholderHTML = `
   <div class="portfolio-card portfolio-placeholder">
     <div class="placeholder-inner">
-      <div style="font-size:48px;margin-bottom:16px">🏗️</div>
+      <div style="font-size:48px;margin-bottom:16px;color:var(--reno)">🏗️</div>
       <div style="font-size:18px;font-weight:800;color:var(--ink2);margin-bottom:10px">${rp.placeholderTitle}</div>
       <p style="font-size:14px;color:var(--muted);line-height:1.65;max-width:280px;margin:0 auto 24px">${rp.placeholderDesc}</p>
       <a href="https://wa.me/905063335154?text=${waGeneral}" target="_blank"><button class="btn-reno">${rp.placeholderBtn}</button></a>
@@ -778,6 +779,6 @@ document.addEventListener('click', function(e) {
   if (nav && nav.href) document.getElementById('waFloat').href = nav.href;
 })();
 </script>
-<script src=site-i18n.js?v=4></script>
+<script src=site-i18n.js?v=5></script>
 </body>
 </html>

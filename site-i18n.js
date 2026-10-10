@@ -60,10 +60,10 @@
       tr: 'Profesyonel yönetim · İstanbul merkezli ekip',
       ru: 'Профессиональное управление · команда в Стамбуле',
       ar: 'إدارة احترافية · فريق مقرّه إسطنبول' },
-    '✈️ How to get here from the airports →': {
-      tr: '✈️ Havalimanlarından buraya nasıl gelinir →',
-      ru: '✈️ Как добраться сюда из аэропортов →',
-      ar: '✈️ كيف تصل إلى هنا من المطارات ←' }
+    'How to get here from the airports →': {
+      tr: 'Havalimanlarından buraya nasıl gelinir →',
+      ru: 'Как добраться сюда из аэропортов →',
+      ar: 'كيف تصل إلى هنا من المطارات ←' }
   };
 
   /* sadece menü, footer ve data-i18n işaretli öğelerdeki metinlere dokunur; içerikteki aynı kelimeler etkilenmez */
