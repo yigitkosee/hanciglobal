@@ -389,6 +389,7 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
 /* /MENU */
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDewHZcNDnda5kuQdAuq6V2bE2cGFE_TYU&libraries=places&callback=initGooglePlaces&loading=async" async defer></script>
+<script src="site-track.js?v=1"></script>
 <script src="site-icons.js?v=1"></script>
 </head>
 <body>
@@ -1130,8 +1131,12 @@ function updateSelectionSummary(){
   const msg = missingPrice
     ? `Hi, I'm interested in ${t.name} from ${selStart} to ${selEnd} (${nights} nights). Please confirm availability and pricing.`
     : `Hi, I'm interested in ${t.name} from ${selStart} to ${selEnd} (${nights} nights). Total: ${apt.currency}${total}. Please confirm.`;
-  document.getElementById('selectionBookLink').href = `https://wa.me/${apt.waNumber}?text=${encodeURIComponent(msg)}`;
-  
+  const bookLink = document.getElementById('selectionBookLink');
+  bookLink.href = `https://wa.me/${apt.waNumber}?text=${encodeURIComponent(msg)}`;
+  /* booking_request olayı için (aşağıdaki tıklama dinleyicisi okur) */
+  bookLink.dataset.nights = nights;
+  bookLink.dataset.total = missingPrice ? '' : total;
+
 
   box.style.display = 'flex';
   box.style.display = 'flex';
@@ -1279,6 +1284,14 @@ document.addEventListener('click', function(e) {
       event_category: 'engagement',
       event_label: window.location.pathname + window.location.search
     });
+  }
+
+  /* tarih seçip "rezervasyon iste" — WhatsApp tıklamasından daha güçlü niyet */
+  const bookLink = e.target.closest('#selectionBookLink');
+  if (bookLink) {
+    const p = { event_category: 'booking', event_label: apt.id + ' ' + (t.name || ''), apartment: String(apt.id), nights: +bookLink.dataset.nights || 0 };
+    if (bookLink.dataset.total) { p.value = +bookLink.dataset.total; p.currency = apt.currency === '€' ? 'EUR' : apt.currency === '$' ? 'USD' : 'EUR'; }
+    gtag('event', 'booking_request', p);
   }
 
   const callLink = e.target.closest('a[href^="tel:"]');

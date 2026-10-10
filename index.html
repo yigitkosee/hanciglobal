@@ -359,6 +359,7 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
 </style>
 
 
+<script src="site-track.js?v=1"></script>
 <script src="site-icons.js?v=1"></script>
 </head>
 <body>
@@ -880,7 +881,10 @@ function sendWA(){
   const m=document.getElementById("fmsg").value.trim();
   if(!n){alert(ip.formAlertName);return;}
   const t="Hi, I am "+n+(e?" ("+e+")":"")+".\n\nService: "+s+(m?"\n\n"+m:"");
-  window.open("https://wa.me/905063335154?text="+encodeURIComponent(t),"_blank");
+  /* form WhatsApp'ı JS ile açıyor (link değil) — dönüşüm olayını burada gönder */
+  if (window.gtag) gtag('event', 'wa_click', { event_category: 'engagement', event_label: 'contact_form ' + window.location.pathname });
+  const url = "https://wa.me/905063335154?text="+encodeURIComponent(t);
+  window.open(window.hgWaUrl ? window.hgWaUrl(url) : url,"_blank");
 }
 
 /* ---------- mobile nav ---------- */
