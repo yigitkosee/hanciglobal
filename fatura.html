@@ -40,75 +40,119 @@
   }
   .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
 
-  /* ============ HANCI GLOBAL SİTE HEADER (orijinal site ile birebir) ============ */
-  #hg-header{
-    --hg-teal:#1D9E75; --hg-teal-l:#E1F5EE; --hg-teal-d:#0F6E56;
-    --hg-amber:#BA7517; --hg-amber-l:#FAEEDA; --hg-amber-d:#8A5510;
-    --hg-blue:#185FA5; --hg-blue-l:#E6F1FB; --hg-blue-d:#0C3E72;
-    --hg-coral:#993C1D; --hg-coral-l:#FAECE7; --hg-coral-d:#712B13;
-    --hg-gold:#B8953A; --hg-navy:#0D1E35;
+  /* ============ HANCI GLOBAL SİTE MENÜSÜ + FOOTER (ana sitedeki MENU ile aynı yapı, Türkçe sabit).
+     Sayfanın kendi stilleriyle çakışmasın diye #hg-header / #hgMobileNav / #hg-footer altında. ============ */
+  #hg-header, #hgMobileNav, #hg-footer{
+    --hg-teal:#1D9E75; --hg-gold:#B8953A; --hg-navy:#0D1E35;
     --hg-ink:#111C26; --hg-ink2:#2E4055; --hg-muted:#6A8099;
     --hg-border:#D3E4EF; --hg-bg:#F3F8FB;
+    --nav-accent:var(--hg-teal);
     font-family:"Plus Jakarta Sans", sans-serif;
   }
-  #hg-header a{text-decoration:none; color:inherit;}
-  #hg-header img{display:block; width:auto; object-fit:contain;}
+  #hg-header a, #hgMobileNav a, #hg-footer a{text-decoration:none; color:inherit;}
+  #hg-header img, #hg-footer img{display:block; width:auto; object-fit:contain;}
+  /* sayfadaki genel button stilini menüde sıfırla */
+  #hg-header button, #hgMobileNav button{font-family:inherit; min-height:0; flex:none; border-radius:0;}
+  #hg-header{position:sticky; top:0; z-index:200;}
   #hg-header nav{
     background:rgba(255,255,255,0.97); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border-bottom:1px solid var(--hg-border);
-    padding:0 56px; padding-top:env(safe-area-inset-top); display:flex; align-items:stretch; justify-content:space-between;
-    height:76px; position:sticky; top:0; z-index:200;
+    padding:0 56px; display:flex; align-items:stretch; justify-content:space-between; height:76px;
   }
   #hg-header .nav-left{display:flex; align-items:center; gap:48px;}
   #hg-header .logo{display:flex; align-items:center; gap:14px;}
-  #hg-header .logo img{height:50px; width:auto; object-fit:contain;}
+  #hg-header .logo img{height:50px;}
   #hg-header .logo-text{display:flex; flex-direction:column; line-height:1.1;}
   #hg-header .logo-name{font-family:"Cormorant Garamond", serif; font-size:22px; font-weight:600; color:var(--hg-navy); letter-spacing:2px;}
   #hg-header .logo-sub{font-size:10px; font-weight:600; color:var(--hg-gold); letter-spacing:3px; text-transform:uppercase;}
   #hg-header .nav-links{display:flex; align-items:stretch; height:100%;}
-  #hg-header .nav-link{font-size:15px; font-weight:600; color:var(--hg-ink2); padding:0 18px; display:flex; align-items:center; border-bottom:2.5px solid transparent; transition:color .15s,border-color .15s; letter-spacing:.3px;}
-  #hg-header .nav-link:hover{color:var(--hg-ink); border-bottom-color:var(--hg-gold);}
-  #hg-header .nav-link.current{color:var(--hg-ink); border-bottom-color:var(--hg-teal);}
+  #hg-header .nav-link{font-size:15px; font-weight:600; color:var(--hg-ink2); padding:0 18px; display:flex; align-items:center; border-bottom:2.5px solid transparent; transition:color .15s,border-color .15s;}
+  #hg-header .nav-link:hover{color:var(--nav-accent); border-bottom-color:var(--nav-accent);}
+  #hg-header .nav-dd{position:relative; display:flex; align-items:stretch;}
+  #hg-header .nav-dd-btn{font-size:15px; font-weight:600; background:none; border:0; border-bottom:2.5px solid transparent; color:var(--hg-ink2); cursor:pointer; gap:6px; padding:0 18px;}
+  #hg-header .nav-dd-btn svg{transition:transform .2s; opacity:.7;}
+  #hg-header .nav-dd:hover .nav-dd-btn, #hg-header .nav-dd.open .nav-dd-btn{color:var(--nav-accent);}
+  #hg-header .nav-dd:hover .nav-dd-btn svg, #hg-header .nav-dd.open .nav-dd-btn svg{transform:rotate(180deg);}
+  #hg-header .nav-dd-menu{position:absolute; top:100%; left:0; min-width:300px; background:#fff; border:1px solid var(--hg-border); border-radius:14px; box-shadow:0 18px 40px rgba(13,30,53,.14); padding:8px; opacity:0; visibility:hidden; transform:translateY(6px); transition:opacity .15s,transform .15s,visibility .15s; z-index:210;}
+  #hg-header .nav-dd:hover .nav-dd-menu, #hg-header .nav-dd.open .nav-dd-menu{opacity:1; visibility:visible; transform:none;}
+  #hg-header .nav-dd-menu a{display:flex; flex-direction:column; gap:3px; padding:11px 14px; border-radius:10px; color:var(--hg-ink);}
+  #hg-header .nav-dd-menu a b{font-size:15px; font-weight:700;}
+  #hg-header .nav-dd-menu a small{font-size:12.5px; font-weight:500; color:var(--hg-muted);}
+  #hg-header .nav-dd-menu a:hover, #hg-header .nav-dd-menu a:focus-visible{background:var(--hg-bg);}
   #hg-header .nav-right{display:flex; align-items:center; gap:10px;}
   #hg-header .btn-call{font-size:13px; font-weight:600; color:var(--hg-ink); border:1.5px solid var(--hg-border); background:none; padding:9px 16px; border-radius:8px; cursor:pointer; transition:border-color .15s; display:flex; align-items:center; gap:7px;}
   #hg-header .btn-call:hover{border-color:var(--hg-ink);}
   #hg-header .btn-wa{font-size:13px; font-weight:700; color:#fff; background:var(--hg-navy); border:none; padding:10px 22px; border-radius:8px; cursor:pointer; transition:background .15s; display:flex; align-items:center; gap:7px;}
   #hg-header .btn-wa:hover{background:#1a3050;}
+  #hg-header .nav-link, #hg-header .logo-text, #hg-header .btn-call, #hg-header .btn-wa{white-space:nowrap;}
 
-  #hg-header .hamburger{display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; z-index:300;}
-  #hg-header .hamburger span{display:block; width:24px; height:2px; background:var(--hg-ink); border-radius:2px; transition:all .3s;}
-  #hg-header .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-  #hg-header .hamburger.open span:nth-child(2){opacity:0;}
-  #hg-header .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  #hg-header .hamburger{display:none; flex-direction:column; justify-content:center; align-self:center; gap:5px; cursor:pointer; padding:6px; background:none; border:none;}
+  #hg-header .hamburger span{display:block; width:24px; height:2px; background:var(--hg-ink); border-radius:2px;}
 
   #hgMobileNav{
-    font-family:"Plus Jakarta Sans", sans-serif;
     display:none; position:fixed; inset:0; background:rgba(255,255,255,0.98); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
-    z-index:250; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    z-index:250; flex-direction:column; align-items:center; justify-content:safe center; gap:8px; overflow-y:auto; padding:64px 0 32px;
   }
   #hgMobileNav.open{display:flex;}
-  #hgMobileNav a{font-size:28px; font-weight:700; color:var(--hg-ink); padding:12px 32px; border-radius:12px; transition:background .15s,color .15s; letter-spacing:-.5px; text-decoration:none;}
+  #hgMobileNav a{font-size:28px; font-weight:700; color:var(--hg-ink); padding:12px 32px; border-radius:12px; transition:background .15s,color .15s; letter-spacing:-.5px;}
   #hgMobileNav a:hover{background:var(--hg-bg); color:var(--hg-gold);}
+  #hgMobileNav .mnav-group{font-size:13px; font-weight:700; letter-spacing:1px; color:var(--hg-muted); margin-top:10px;}
+  #hgMobileNav a.mnav-sub{font-size:20px; font-weight:600; color:var(--hg-ink2); padding:8px 28px;}
+  #hgMobileNav .mnav-close{position:absolute; top:20px; right:20px; background:none; border:none; cursor:pointer; padding:8px; display:flex;}
   #hgMobileNav .mobile-nav-contact{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; justify-content:center;}
-  #hgMobileNav .mobile-nav-contact a{font-size:14px; font-weight:700; padding:12px 24px; border-radius:10px; display:flex; align-items:center; gap:8px;}
+  #hgMobileNav .mobile-nav-contact a{font-size:14px; font-weight:700; padding:12px 24px; border-radius:10px; display:flex; align-items:center; gap:8px; letter-spacing:0;}
   #hgMobileNav .mnc-call{background:var(--hg-bg); color:var(--hg-ink); border:1.5px solid var(--hg-border);}
-  #hgMobileNav .mnc-wa,#hgMobileNav .mnc-wa *{background:var(--hg-navy); color:#fff !important; -webkit-text-fill-color:#fff !important; fill:#fff !important; display:flex; align-items:center; gap:8px;}
+  #hgMobileNav .mnc-wa, #hgMobileNav .mnc-wa:hover{background:var(--hg-navy); color:#fff;}
+  @media (max-height:740px){
+    #hgMobileNav{gap:2px;}
+    #hgMobileNav a{font-size:23px; padding:8px 28px;}
+    #hgMobileNav a.mnav-sub{font-size:18px; padding:6px 28px;}
+    #hgMobileNav .mobile-nav-contact{margin-top:14px;}
+  }
 
-  #hg-header .lang-switcher{display:flex; align-items:center; gap:4px; margin-right:8px;}
-  #hg-header .lang-btn{font-size:18px; background:none; border:none; cursor:pointer; padding:4px 6px; border-radius:6px; opacity:.45; transition:opacity .15s,background .15s; line-height:1;}
-  #hg-header .lang-btn:hover{opacity:1; background:var(--hg-bg);}
-  #hg-header .lang-btn.active{opacity:1;}
-  #hg-header .lang-divider{width:1px; height:20px; background:var(--hg-border); margin:0 4px;}
-
+  @media screen and (min-width:901px) and (max-width:1180px){
+    #hg-header nav{padding:0 28px;}
+    #hg-header .nav-left{gap:20px;}
+    #hg-header .logo-text{display:none;}
+    #hg-header .nav-link{padding:0 12px; font-size:14px;}
+  }
   @media screen and (max-width:900px){
     #hg-header nav{padding:0 20px; height:64px;}
-    #hg-header .nav-links{display:none;}
-    #hg-header .nav-right{display:none;}
+    #hg-header .nav-links, #hg-header .nav-right{display:none;}
     #hg-header .hamburger{display:flex;}
     #hg-header .logo img{height:40px;}
     #hg-header .logo-name{font-size:17px;}
     #hg-header .logo-sub{font-size:9px;}
   }
-  /* ============ /HANCI GLOBAL SİTE HEADER ============ */
+  @media screen and (max-width:480px){
+    #hg-header .logo-name{font-size:15px; letter-spacing:1px;}
+    #hg-header .logo-sub{font-size:8px;}
+  }
+
+  #hg-footer{background:var(--hg-navy); padding:56px 56px 32px; padding-bottom:max(32px, env(safe-area-inset-bottom)); line-height:1.6;}
+  #hg-footer .footer-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.08);}
+  #hg-footer .footer-logo{display:flex; align-items:center; gap:12px; margin-bottom:18px;}
+  #hg-footer .footer-logo img{height:46px;}
+  #hg-footer .footer-logo-name{font-family:"Cormorant Garamond", serif; font-size:20px; font-weight:600; color:#E8E0CC; letter-spacing:2px;}
+  #hg-footer .footer-addr{font-size:13px; color:#3A5068; line-height:1.75;}
+  #hg-footer .footer-col-title{font-size:11px; font-weight:800; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;}
+  #hg-footer .footer-col-links{display:flex; flex-direction:column; gap:10px;}
+  #hg-footer .footer-col-links a{font-size:13px; color:rgba(255,255,255,.65); font-weight:500; transition:color .15s;}
+  #hg-footer .footer-col-links a:hover{color:#E8C86A;}
+  #hg-footer .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px;}
+  #hg-footer .footer-copy{font-size:12px; color:rgba(255,255,255,.4);}
+  #hg-footer .footer-social{display:flex; gap:16px;}
+  #hg-footer .footer-social a{font-size:12px; color:rgba(255,255,255,.4); font-weight:600; transition:color .15s;}
+  #hg-footer .footer-social a:hover{color:#E8C86A;}
+  @media screen and (max-width:900px){
+    #hg-footer{padding:40px 20px 24px;}
+    #hg-footer .footer-top{grid-template-columns:1fr; gap:28px;}
+    #hg-footer .footer-bottom{flex-direction:column; gap:12px; text-align:center;}
+  }
+
+  .wa-float{position:fixed; right:24px; bottom:24px; z-index:240; width:58px; height:58px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,.22); transition:transform .15s;}
+  .wa-float:hover{transform:scale(1.07);}
+  @media (max-width:900px){ .wa-float{right:16px; bottom:16px; width:54px; height:54px;} }
+  /* ============ /HANCI GLOBAL SİTE MENÜSÜ + FOOTER ============ */
 
   .hero{padding:52px 0 36px;}
   .eyebrow{
@@ -277,8 +321,8 @@
     border-left:2px solid var(--stamp); padding:10px 14px; border-radius:0 4px 4px 0;
   }
 
-  footer{border-top:1px solid var(--line); padding:26px 0 40px; padding-bottom:max(40px, env(safe-area-inset-bottom));}
-  footer p{font-size:12px; color:var(--ink-soft); max-width:74ch; margin:0;}
+  .disclaimer{border-top:1px solid var(--line); padding-top:26px; padding-bottom:48px;}
+  .disclaimer p{font-size:12px; color:var(--ink-soft); max-width:74ch; margin:0;}
 
   @media (prefers-reduced-motion: reduce){ * {transition:none !important;} }
 
@@ -328,7 +372,7 @@
   /* ============ YAZDIRMA: sadece fatura + KDV2, iki ayrı sayfa ============ */
   @media print{
     body{background:#fff;}
-    #hg-header, #hgMobileNav, .hero, .panel-stack, footer{display:none !important;}
+    #hg-header, #hgMobileNav, #hg-footer, .wa-float, .disclaimer, .hero, .panel-stack{display:none !important;}
     .wrap{max-width:100%; padding:0;}
     .stage{display:block; padding-bottom:0;}
     .invoice-stack{display:block;}
@@ -341,13 +385,15 @@
     .kdv2-card .actions{display:none !important;}
   }
 </style>
+<script src="site-track.js?v=1"></script>
 </head>
 <body>
 
+<!-- Menü: ana sitedeki MENU ile aynı (Stay · Travel · Services ▾ · Guide · About), bu sayfa Türkçe olduğu için metinler Türkçe ve linkler ?lang=tr -->
 <div id="hg-header">
 <nav>
   <div class="nav-left">
-    <a href="index-tr.html" class="logo">
+    <a href="index.html?lang=tr" class="logo">
       <img src="logo.jpg" alt="Hancı Global">
       <div class="logo-text">
         <span class="logo-name">HANCI GLOBAL</span>
@@ -355,65 +401,46 @@
       </div>
     </a>
     <div class="nav-links">
-      <a href="stay-tr.html" class="nav-link">Konaklama</a>
-      <a href="property-tr.html" class="nav-link">Emlak</a>
-      <a href="travel-tr.html" class="nav-link">Seyahat</a>
-      <a href="visa-tr.html" class="nav-link">Vize</a>
-      <a href="index-tr.html#about" class="nav-link">Hakkımızda</a>
-      <a href="fatura.html" class="nav-link current">Hesaplayıcı</a>
+      <a href="stay.html?lang=tr" class="nav-link">Konaklama</a>
+      <a href="travel.html?lang=tr" class="nav-link">Seyahat</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-link nav-dd-btn" aria-haspopup="true" aria-expanded="false"><span>Hizmetler</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-dd-menu">
+          <a href="property.html?lang=tr"><b>Emlak</b><small>İstanbul'da satılık ve kiralık</small></a>
+          <a href="renovation.html?lang=tr"><b>Tadilat</b><small>Anahtar teslim tadilat</small></a>
+          <a href="visa.html?lang=tr"><b>Vize</b><small>Schengen, İngiltere ve ABD vizesi</small></a>
+        </div>
+      </div>
+      <a href="guides/index-tr.html" class="nav-link">Rehber</a>
+      <a href="index.html?lang=tr#about" class="nav-link">Hakkımızda</a>
     </div>
   </div>
   <div class="nav-right">
-    <div class="lang-switcher">
-      <button class="lang-btn" onclick="sessionStorage.setItem('langSelected','1');window.location='index.html'" title="English"> ENG </button>
-      <button class="lang-btn active" onclick="sessionStorage.setItem('langSelected','1');window.location='index-tr.html'" title="Türkçe"> TR </button>
-      <button class="lang-btn" onclick="sessionStorage.setItem('langSelected','1');window.location='index-ru.html'" title="Русский"> RU </button>
-    </div>
-    <div class="lang-divider"></div>
-    <a href="tel:+905063335154">
-      <button class="btn-call">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call
-      </button>
-    </a>
-    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20Hanc%C4%B1%20Global." target="_blank">
-      <button class="btn-wa">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        WhatsApp
-      </button>
-    </a>
+    <a href="tel:+905063335154"><button class="btn-call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Ara</button></a>
+    <a href="https://wa.me/905063335154?text=Merhaba%2C%20Hanc%C4%B1%20Global%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener"><button class="btn-wa"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp</button></a>
   </div>
-  <button class="hamburger" id="hgHamburger" onclick="hgToggleMobileNav()" aria-label="Menu">
+  <button class="hamburger" id="hgHamburger" type="button" onclick="hgOpenMobileNav()" aria-label="Menü">
     <span></span><span></span><span></span>
   </button>
 </nav>
+</div>
 
-<div class="mobile-nav" id="hgMobileNav">
-  <button onclick="hgCloseMobileNav()" style="position:absolute;top:20px;right:20px;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;display:flex;align-items:center;justify-content:center">
+<div id="hgMobileNav">
+  <button class="mnav-close" type="button" onclick="hgCloseMobileNav()" aria-label="Kapat">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111C26" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="stay-tr.html">Konaklama</a>
-  <a href="property-tr.html">Emlak</a>
-  <a href="travel-tr.html">Seyahat</a>
-  <a href="visa-tr.html">Vize</a>
-  <a href="index-tr.html#about">Hakkımızda</a>
-  <a href="fatura.html" style="color:var(--hg-teal)">Hesaplayıcı</a>
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-    <button style="font-size:28px;background:none;border:none;cursor:pointer;opacity:.45;transition:opacity .15s;padding:4px 8px;border-radius:8px" onclick="window.location='index.html'">🇬🇧</button>
-    <button style="font-size:28px;background:none;border:none;cursor:pointer;opacity:1;transition:opacity .15s;padding:4px 8px;border-radius:8px" onclick="window.location='index-tr.html'">🇹🇷</button>
-    <button style="font-size:28px;background:none;border:none;cursor:pointer;opacity:.45;transition:opacity .15s;padding:4px 8px;border-radius:8px" onclick="window.location='index-ru.html'">🇷🇺</button>
-  </div>
+  <a href="stay.html?lang=tr">Konaklama</a>
+  <a href="travel.html?lang=tr">Seyahat</a>
+  <span class="mnav-group">Hizmetler</span>
+  <a href="property.html?lang=tr" class="mnav-sub">Emlak</a>
+  <a href="renovation.html?lang=tr" class="mnav-sub">Tadilat</a>
+  <a href="visa.html?lang=tr" class="mnav-sub">Vize</a>
+  <a href="guides/index-tr.html">Rehber</a>
+  <a href="index.html?lang=tr#about">Hakkımızda</a>
   <div class="mobile-nav-contact">
-    <a href="tel:+905063335154" class="mnc-call">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      Call
-    </a>
-    <a href="https://wa.me/905063335154?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20Hanc%C4%B1%20Global." target="_blank" class="mnc-wa">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-      WhatsApp
-    </a>
+    <a href="tel:+905063335154" class="mnc-call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.18 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 3.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Ara</a>
+    <a href="https://wa.me/905063335154?text=Merhaba%2C%20Hanc%C4%B1%20Global%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="mnc-wa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>WhatsApp</a>
   </div>
-</div>
 </div>
 
 <div class="wrap">
@@ -660,24 +687,78 @@
   </div>
 </div>
 
-<footer>
-  <div class="wrap">
-    <p>Bu sayfa yalnızca bilgilendirme amaçlıdır ve gerçek bir fatura, e-Arşiv belgesi veya resmi beyanname değildir. Gerçek e-Arşiv faturalarında bulunan ETTN, doğrulama QR kodu ve resmi kaşe/amblem burada bilerek yer almaz. Vergi, KDV2 ve konaklama vergisi yükümlülükleriniz mülkünüzün durumuna, belge tipine ve güncel mevzuata göre değişebilir. Kesin rakamlar için muhasebecinize danışın.  Hancı Global</p>
+<div class="wrap disclaimer">
+  <p>Bu sayfa yalnızca bilgilendirme amaçlıdır ve gerçek bir fatura, e-Arşiv belgesi veya resmi beyanname değildir. Gerçek e-Arşiv faturalarında bulunan ETTN, doğrulama QR kodu ve resmi kaşe/amblem burada bilerek yer almaz. Vergi, KDV2 ve konaklama vergisi yükümlülükleriniz mülkünüzün durumuna, belge tipine ve güncel mevzuata göre değişebilir. Kesin rakamlar için muhasebecinize danışın.</p>
+</div>
+
+<!-- Footer: ana sitedeki footer ile aynı (Türkçe) -->
+<footer id="hg-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><img src="logo.jpg" alt="Hancı Global"><span class="footer-logo-name">HANCI GLOBAL</span></div>
+      <div class="footer-addr">Müeyyetzade Mah. Necatibey Cad.<br>Sait Demirbağ İşhanı No:5/45<br>Beyoğlu, İstanbul</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Hizmetler</div>
+      <div class="footer-col-links">
+        <a href="stay.html?lang=tr">Hancı Stay</a>
+        <a href="property.html?lang=tr">Hancı Property</a>
+        <a href="renovation.html?lang=tr">Hancı Renovation</a>
+        <a href="travel.html?lang=tr">Hancı Travel</a>
+        <a href="visa.html?lang=tr">Hancı Visa</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">İletişim</div>
+      <div class="footer-col-links">
+        <a href="tel:+905063335154">+90 506 333 51 54</a>
+        <a href="https://wa.me/905063335154" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:info@hanciglobal.com">info@hanciglobal.com</a>
+        <a href="https://instagram.com/hanciglobal" target="_blank" rel="noopener">@hanciglobal</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Şirket</div>
+      <div class="footer-col-links">
+        <a href="index.html?lang=tr#about">Hakkımızda</a>
+        <a href="index.html?lang=tr#contact">Bize ulaşın</a>
+        <a href="https://maps.app.goo.gl/oQ7cBEJbRQNwEXku8" target="_blank" rel="noopener">Bizi bulun</a>
+        <a href="guides/index-tr.html">İstanbul Rehberi</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Hancı Global · Istanbul<br>Assetto Gayrimenkul Yatırım A.Ş. · Ergazi Mah. 1803 Cad. 16 No: 13 A İç Kapı No: 12, Yenimahalle / Ankara</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/hanciglobal" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/905063335154" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
   </div>
 </footer>
 
+<a class="wa-float" href="https://wa.me/905063335154?text=Merhaba%2C%20Hanc%C4%B1%20Global%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+
 <script>
-function hgToggleMobileNav(){
-  document.getElementById('hgMobileNav').classList.toggle('open');
-  document.getElementById('hgHamburger').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('hgMobileNav').classList.contains('open') ? 'hidden' : '';
+/* mobil menü */
+function hgOpenMobileNav(){
+  document.getElementById('hgMobileNav').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 function hgCloseMobileNav(){
   document.getElementById('hgMobileNav').classList.remove('open');
-  document.getElementById('hgHamburger').classList.remove('open');
   document.body.style.overflow = '';
 }
 document.querySelectorAll('#hgMobileNav a[href]').forEach(a => a.addEventListener('click', hgCloseMobileNav));
+/* Hizmetler açılır menüsü: fareyle üzerine gelince (CSS) ya da tıklayınca/klavyeyle açılır */
+document.querySelectorAll('#hg-header .nav-dd').forEach(function (dd) {
+  var btn = dd.querySelector('.nav-dd-btn');
+  function set(open) { dd.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); set(!dd.classList.contains('open')); });
+  document.addEventListener('click', function (e) { if (!dd.contains(e.target)) set(false); });
+  dd.addEventListener('mouseleave', function () { set(false); });
+  dd.addEventListener('focusout', function (e) { if (!dd.contains(e.relatedTarget)) set(false); });
+  dd.addEventListener('keydown', function (e) { if (e.key === 'Escape') { set(false); btn.focus(); } });
+});
 </script>
 
 <script>
