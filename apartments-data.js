@@ -801,6 +801,28 @@ function withRatings(callback) {
   return cached;
 }
 
+/* ==========================================================================
+   MİSAFİR HARİTASI (index + stay) — guest-map.js → renderGuestMap
+   Asıl liste "Hancı · Google puanları" e-tablosunun "Misafir ülkeleri" sekmesinde;
+   Apps Script canlı veriye `_guests: [['US', 66], …]` olarak ekler (sıra = tablodaki sıra, sonuncusu "son eklenen").
+   Tablo okunamazsa aşağıdaki yedek liste (16.10.2026) gösterilir.
+   ========================================================================== */
+const GUEST_COUNTRIES = [["US",66],["CA",14],["CH",12],["MA",5],["ZA",4],["TR",4],["AR",3],["KZ",4],["GB",8],["GE",2],["CY",2],["SA",3],["AE",2],["LB",2],["VN",1],["PL",2],["NC",1],["JO",1],["CZ",2],["JP",1],["PK",1],["KG",1],["MY",1],["ES",10],["MK",1],["SI",1],["MN",1],["FR",4],["ME",1],["CN",4],["PT",2],["LV",1],["AT",2],["HR",1],["BY",1],["IT",2],["EE",2],["NO",1],["QA",1],["MT",1],["RU",4],["NL",2],["DE",3],["SG",1],["LT",1],["UZ",1],["RO",1],["AM",1],["UA",1],["KR",1],["IN",1]];
+function guestCountriesFrom(liveData) {
+  const g = liveData && liveData._guests;
+  return Array.isArray(g) && g.length ? g : GUEST_COUNTRIES;
+}
+/* son kayıtlı canlı veriyle hemen çiz; yeni veri farklıysa yeniden çiz */
+function mountGuestMap(el, lang, livePromise) {
+  if (!el || typeof renderGuestMap !== 'function') return;
+  let shown = JSON.stringify(guestCountriesFrom(readCachedLiveData()));
+  renderGuestMap(el, lang, JSON.parse(shown));
+  if (livePromise) livePromise.then(d => {
+    const next = JSON.stringify(guestCountriesFrom(d));
+    if (next !== shown) { shown = next; renderGuestMap(el, lang, JSON.parse(next)); }
+  }).catch(() => {});
+}
+
 /* daire listesindeki yorum özeti metinleri */
 const REVIEW_SUMMARY_TEXT = {
   en: { basedOn: "Based on {n} reviews", onGoogle: "on Google", fromGuests: "from our guests", reviewsWord: "reviews", byApartment: "Rating by apartment", leaveReview: "✍️ Leave a review", seeApartment: "See reviews" },

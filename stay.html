@@ -479,7 +479,10 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
     <a class="rv-leave" id="rvLeave" target="_blank" rel="noopener"></a>
   </div>
 </section>
-  
+
+<!-- GUEST MAP (guest-map.js) -->
+<section class="gmap-sec" id="guestMap"></section>
+
 <!-- OTHER SERVICES -->
 <section id="guideTeaser"></section>
 
@@ -543,7 +546,8 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
   </div>
 </footer>
 
-<script src="apartments-data.js?v=15"></script>
+<script src="apartments-data.js?v=16"></script>
+<script src="guest-map.js?v=1"></script>
 <script>
 /* ---------- read URL params ---------- */
 
@@ -859,7 +863,9 @@ APARTMENTS.forEach((_, i) => initSlider('s'+(i+1)));
 /* ---------- live pricing (PriceLabs via Apps Script) ---------- */
 const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst2NAVDhIlvQmLQ7wtsDv3hM73DleDzlmZtQm6FzfEHhoAx6WGGz_w/exec";
 
-fetchLiveData(LIVE_DATA_URL)
+const liveDataPromise = fetchLiveData(LIVE_DATA_URL);
+mountGuestMap(document.getElementById('guestMap'), lang, liveDataPromise);
+liveDataPromise
   .then(liveData => {
     showRatings(liveData);
     APARTMENTS.forEach(apt => {

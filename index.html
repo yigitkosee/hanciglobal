@@ -477,6 +477,9 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
   </div>
 </section>
 
+<!-- GUEST MAP (guest-map.js) -->
+<section class="gmap-sec" id="guestMap"></section>
+
 <!-- OTHER SERVICES -->
 <section id="guideTeaser"></section>
 
@@ -602,7 +605,8 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
   </div>
 </footer>
 
-<script src="apartments-data.js?v=15"></script>
+<script src="apartments-data.js?v=16"></script>
+<script src="guest-map.js?v=1"></script>
 <script src="index-data.js?v=5"></script>
 <script>
 /* ---------- read URL params ---------- */
@@ -800,7 +804,9 @@ APARTMENTS.forEach((_, i) => initSlider('is'+(i+1)));
 const LIVE_DATA_URL = "https://script.google.com/macros/s/AKfycbx_cQMIhCagDXHTst2NAVDhIlvQmLQ7wtsDv3hM73DleDzlmZtQm6FzfEHhoAx6WGGz_w/exec";
 
 withRatings(showRatings);
-fetchLiveData(LIVE_DATA_URL)
+const liveDataPromise = fetchLiveData(LIVE_DATA_URL);
+mountGuestMap(document.getElementById('guestMap'), lang, liveDataPromise);
+liveDataPromise
   .then(liveData => {
     showRatings(liveData);
     APARTMENTS.forEach(apt => {
