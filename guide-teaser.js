@@ -17,6 +17,10 @@
       eat: ['Where to eat & drink', '70+ places · breakfast, meyhanes, Bosphorus, rooftops'],
       see: ['Things to do', '50 places · Galata, the Old City, palaces and the Bosphorus'],
       air: ['From the airport', 'Taxi, shuttle or metro to Galata and Taksim'],
+      stay: ['Where to stay', 'Galata, Sultanahmet, Kadıköy… every neighbourhood, honestly compared'],
+      days: ['Istanbul in 3 days', 'A day-by-day plan from Galata, with sunsets'],
+      boat: ['Bosphorus cruises', 'Public ferry, tour boat or private yacht?'],
+      when: ['When to visit', 'Weather, crowds and prices month by month'],
       linkEat: '🍽️ Where to eat nearby →', linkSee: '🗼 What to see nearby →' },
     tr: { eyebrow: 'Hancı İstanbul Rehberi', h2a: 'İstanbul\'u', h2em: 'bir yerli gibi keşfedin',
       p: 'Nerede yiyoruz, neleri geziyoruz, buraya nasıl gelinir: şehrin dört bir yanından kendi seçtiğimiz yerler, hepsi tek haritada.',
@@ -24,6 +28,10 @@
       eat: ['Ne yenir, ne içilir', '70+ mekân · kahvaltı, meyhane, Boğaz, teraslar'],
       see: ['Gezilecek yerler', '50 yer · Galata, Tarihi Yarımada, saraylar ve Boğaz'],
       air: ['Havalimanından ulaşım', 'Galata ve Taksim\'e taksi, otobüs ya da metro'],
+      stay: ['Nerede kalınır?', 'Galata, Sultanahmet, Kadıköy… bütün semtlerin dürüst karşılaştırması'],
+      days: ['3 günde İstanbul', 'Galata’dan başlayan, gün batımlı günlük plan'],
+      boat: ['Boğaz turları', 'Şehir Hatları mı, tur teknesi mi, özel yat mı?'],
+      when: ['Ne zaman gidilir?', 'Aylara göre hava, kalabalık ve fiyatlar'],
       linkEat: '🍽️ Yakında ne yenir →', linkSee: '🗼 Yakında ne gezilir →' },
     ru: { eyebrow: 'Путеводитель Hancı', h2a: 'Стамбул', h2em: 'как местный',
       p: 'Где мы едим, что смотрим и как сюда добраться: наши любимые места по всему городу на одной карте.',
@@ -31,6 +39,10 @@
       eat: ['Где поесть и выпить', '70+ мест · завтраки, мейхане, Босфор, крыши'],
       see: ['Что посмотреть', '50 мест · Галата, Старый город, дворцы и Босфор'],
       air: ['Из аэропорта', 'Такси, автобус или метро до Галаты и Таксима'],
+      stay: ['Где остановиться', 'Галата, Султанахмет, Кадыкёй… честное сравнение районов'],
+      days: ['Стамбул за 3 дня', 'План по дням с началом в Галате и закатами'],
+      boat: ['Прогулки по Босфору', 'Городской паром, кораблик или частная яхта?'],
+      when: ['Когда ехать', 'Погода, толпы и цены по месяцам'],
       linkEat: '🍽️ Где поесть рядом →', linkSee: '🗼 Что посмотреть рядом →' },
     ar: { eyebrow: 'دليل Hancı لإسطنبول', h2a: 'إسطنبول', h2em: 'كأنك من أهلها',
       p: 'أين نأكل وماذا نزور وكيف تصل إلينا: اختياراتنا في أنحاء المدينة، كلها على خريطة واحدة.',
@@ -38,6 +50,10 @@
       eat: ['أين تأكل وتشرب', 'أكثر من 70 مكاناً · فطور، مطاعم تقليدية، البوسفور، أسطح'],
       see: ['ماذا تزور', '50 مكاناً · غلطة، المدينة القديمة، القصور والبوسفور'],
       air: ['من المطار', 'تاكسي أو حافلة أو مترو إلى غلطة وتقسيم'],
+      stay: ['أين تقيم', 'غلطة والسلطان أحمد وكاديكوي… مقارنة صادقة لكل الأحياء'],
+      days: ['إسطنبول في 3 أيام', 'خطة يوماً بيوم تبدأ من غلطة مع أجمل الغروب'],
+      boat: ['رحلات البوسفور', 'عبّارة حكومية أم قارب سياحي أم يخت خاص؟'],
+      when: ['متى تزور إسطنبول', 'الطقس والازدحام والأسعار شهراً بشهر'],
       linkEat: '🍽️ أين تأكل بالقرب ←', linkSee: '🗼 ماذا تزور بالقرب ←' }
   }[lang];
 
@@ -78,9 +94,18 @@
   var card = function (slug, img, t) {
     return '<a class="gt-card" href="' + url(slug) + '"><img loading="lazy" src="' + img + '" alt=""><div><b>' + t[0] + '</b><span>' + t[1] + '</span><i>' + T.more + '</i></div></a>';
   };
+  /* sayfaya göre kartlar: ana sayfa → kalış + plan + yemek; konaklama → kalış + ne zaman + yemek; seyahat → Boğaz + havalimanı + plan */
+  var C = {
+    stay: ['where-to-stay-in-istanbul', 'where-to-stay.jpg', T.stay], days: ['istanbul-3-day-itinerary', 'istanbul-3-days.jpg', T.days],
+    boat: ['bosphorus-cruise-guide', 'bosphorus-cruise.jpg', T.boat], when: ['best-time-to-visit-istanbul', 'best-time-istanbul.jpg', T.when],
+    eat: ['where-to-eat-drink-galata', 'sunset2.jpg', T.eat], see: ['things-to-do-galata-beyoglu', 'istanbul.jpg', T.see],
+    air: ['istanbul-airport-to-galata-taksim', 'transferana.jpg', T.air]
+  };
+  var page = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
+  var order = { index: ['stay', 'days', 'eat'], '': ['stay', 'days', 'eat'], stay: ['stay', 'when', 'eat'], travel: ['boat', 'air', 'days'] }[page] || ['eat', 'see', 'air'];
+  var cards = order.map(function (k) { return card(C[k][0], C[k][1], C[k][2]); }).join('');
   box.className = 'gt';
   box.innerHTML = '<div class="gt-in"><div><div class="gt-eye">' + T.eyebrow + '</div><h2>' + T.h2a + ' <em>' + T.h2em + '</em></h2>' +
     '<p class="gt-p">' + T.p + '</p><a class="gt-btn" href="' + url('index') + '">' + T.cta + '</a></div>' +
-    '<div class="gt-cards">' + card('where-to-eat-drink-galata', 'sunset2.jpg', T.eat) + card('things-to-do-galata-beyoglu', 'istanbul.jpg', T.see) +
-    card('istanbul-airport-to-galata-taksim', 'transferana.jpg', T.air) + '</div></div>';
+    '<div class="gt-cards">' + cards + '</div></div>';
 })();
