@@ -221,6 +221,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://hanciglobal.com/guides/where-to-stay-in-istanbul.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hanciglobal.com/guides/istanbul-airport-to-galata-taksim.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -239,6 +244,11 @@
     <loc>https://hanciglobal.com/guides/index-tr.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/guides/where-to-stay-in-istanbul-tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hanciglobal.com/guides/istanbul-airport-to-galata-taksim-tr.html</loc>
@@ -261,6 +271,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://hanciglobal.com/guides/where-to-stay-in-istanbul-ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hanciglobal.com/guides/istanbul-airport-to-galata-taksim-ru.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -281,6 +296,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://hanciglobal.com/guides/where-to-stay-in-istanbul-ar.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hanciglobal.com/guides/istanbul-airport-to-galata-taksim-ar.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -294,5 +314,35 @@
     <loc>https://hanciglobal.com/guides/things-to-do-galata-beyoglu-ar.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/legal/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/legal/privacy-tr.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/legal/cookies.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/legal/cookies-tr.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/legal/booking-terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/legal/booking-terms-tr.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

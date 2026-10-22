@@ -11,6 +11,21 @@
   var lang = new URLSearchParams(window.location.search).get('lang');
   var root = document.documentElement;
 
+  /* footer: yasal sayfa linkleri (Gizlilik/KVKK + Çerez + Rezervasyon şartları). Türkçe metin legal/*-tr.html, diğer diller İngilizce metne gider */
+  (function () {
+    var copy = document.querySelector('.footer-copy');
+    if (!copy || copy.querySelector('.footer-legal')) return;
+    var L = { en: ['Privacy Policy', 'Cookie Policy', 'Booking Terms'], tr: ['Gizlilik ve KVKK', 'Çerez Politikası', 'Rezervasyon Şartları'],
+              ru: ['Политика конфиденциальности', 'Политика cookie', 'Условия бронирования'], ar: ['سياسة الخصوصية', 'سياسة ملفات تعريف الارتباط', 'شروط الحجز'] };
+    var l = L[lang] ? lang : 'en', sfx = l === 'tr' ? '-tr' : '';
+    var span = document.createElement('span');
+    span.className = 'footer-legal';
+    span.innerHTML = '<br><a href="legal/privacy' + sfx + '.html" style="color:inherit;text-decoration:underline">' + L[l][0] + '</a> · ' +
+      '<a href="legal/cookies' + sfx + '.html" style="color:inherit;text-decoration:underline">' + L[l][1] + '</a> · ' +
+      '<a href="legal/booking-terms' + sfx + '.html" style="color:inherit;text-decoration:underline">' + L[l][2] + '</a>';
+    copy.appendChild(span);
+  })();
+
   if (lang === 'ar' && root.getAttribute('data-ar') !== '1') {
     /* bu sayfanın Arapçası yok: İngilizce göster, Google'a İngilizce sürümü işaret et */
     root.lang = 'en';

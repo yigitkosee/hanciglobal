@@ -722,7 +722,7 @@ document.getElementById('langSwitcherMobile').innerHTML = langSwitcherHTML.repla
 /* ---------- fill text ---------- */
 const ui = getUIStrings(lang);
 const sp = getStayPage(lang);
-document.getElementById('pageTitle').textContent = t.name + ' · Hancı Stay · Istanbul';
+document.getElementById('pageTitle').textContent = lang === 'ar' ? t.name + ' · شقة مفروشة للإيجار في إسطنبول | Hancı Stay' : t.name + ' · Hancı Stay · Istanbul';
 document.getElementById('metaDesc').setAttribute('content', t.shortDesc);
 document.getElementById('canonicalLink').setAttribute('href', 'https://hanciglobal.com/stay-detail.html?id=' + apt.id + (lang !== 'en' ? '&lang=' + lang : ''));
 document.getElementById('crumbName').textContent = t.name;
