@@ -376,6 +376,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hanciglobal.com/guides/galata-tower-guide.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/guides/galata-tower-guide-tr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/guides/galata-tower-guide-ru.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hanciglobal.com/guides/galata-tower-guide-ar.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hanciglobal.com/legal/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
