@@ -22,6 +22,7 @@
       boat: ['Bosphorus cruises', 'Public ferry, tour boat or private yacht?'],
       when: ['When to visit', 'Weather, crowds and prices month by month'],
       tower: ['Galata Tower', 'Tickets, queues and the best free views'],
+      nye: ['New Year’s Eve', 'Fireworks, rooftops, cruises and the all-night metro'],
       prev: 'Previous', next: 'Next',
       linkEat: '🍽️ Where to eat nearby →', linkSee: '🗼 What to see nearby →' },
     tr: { eyebrow: 'Hancı İstanbul Rehberi', h2a: 'İstanbul\'u', h2em: 'bir yerli gibi keşfedin',
@@ -35,6 +36,7 @@
       boat: ['Boğaz turları', 'Şehir Hatları mı, tur teknesi mi, özel yat mı?'],
       when: ['Ne zaman gidilir?', 'Aylara göre hava, kalabalık ve fiyatlar'],
       tower: ['Galata Kulesi', 'Bilet, kuyruk ve en güzel ücretsiz manzaralar'],
+      nye: ['İstanbul’da yılbaşı', 'Havai fişek, teraslar, tekneler ve bütün gece metro'],
       prev: 'Önceki', next: 'Sonraki',
       linkEat: '🍽️ Yakında ne yenir →', linkSee: '🗼 Yakında ne gezilir →' },
     ru: { eyebrow: 'Путеводитель Hancı', h2a: 'Стамбул', h2em: 'как местный',
@@ -48,6 +50,7 @@
       boat: ['Прогулки по Босфору', 'Городской паром, кораблик или частная яхта?'],
       when: ['Когда ехать', 'Погода, толпы и цены по месяцам'],
       tower: ['Галатская башня', 'Билеты, очереди и лучшие бесплатные виды'],
+      nye: ['Новый год в Стамбуле', 'Фейерверки, крыши, круизы и метро всю ночь'],
       prev: 'Назад', next: 'Вперёд',
       linkEat: '🍽️ Где поесть рядом →', linkSee: '🗼 Что посмотреть рядом →' },
     ar: { eyebrow: 'دليل Hancı لإسطنبول', h2a: 'إسطنبول', h2em: 'كأنك من أهلها',
@@ -61,6 +64,7 @@
       boat: ['رحلات البوسفور', 'عبّارة حكومية أم قارب سياحي أم يخت خاص؟'],
       when: ['متى تزور إسطنبول', 'الطقس والازدحام والأسعار شهراً بشهر'],
       tower: ['برج غلطة', 'التذاكر والطوابير وأجمل الإطلالات المجانية'],
+      nye: ['رأس السنة في إسطنبول', 'ألعاب نارية وأسطح ورحلات بحرية ومترو طوال الليل'],
       prev: 'السابق', next: 'التالي',
       linkEat: '🍽️ أين تأكل بالقرب ←', linkSee: '🗼 ماذا تزور بالقرب ←' }
   }[lang];
@@ -115,10 +119,12 @@
     stay: ['where-to-stay-in-istanbul', 'where-to-stay.jpg', T.stay], days: ['istanbul-3-day-itinerary', 'istanbul-3-days.jpg', T.days],
     boat: ['bosphorus-cruise-guide', 'bosphorus-cruise.jpg', T.boat], when: ['best-time-to-visit-istanbul', 'best-time-istanbul.jpg', T.when],
     eat: ['where-to-eat-drink-galata', 'sunset2.jpg', T.eat], see: ['things-to-do-galata-beyoglu', 'istanbul.jpg', T.see],
-    air: ['istanbul-airport-to-galata-taksim', 'transferana.jpg', T.air], tower: ['galata-tower-guide', 'galata-tower-guide.jpg', T.tower]
+    air: ['istanbul-airport-to-galata-taksim', 'transferana.jpg', T.air], tower: ['galata-tower-guide', 'galata-tower-guide.jpg', T.tower],
+    nye: ['new-years-eve-istanbul', 'new-years-eve-istanbul.jpg', T.nye]
   };
   var page = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
-  var order = { index: ['stay', 'days', 'eat'], '': ['stay', 'days', 'eat'], stay: ['stay', 'when', 'eat'], travel: ['boat', 'air', 'days'] }[page] || ['eat', 'see', 'air'];
+  /* yılbaşı sezonu (Kasım–5 Ocak): yılbaşı rehberi index ve stay'de 2. sırada; sonra eski sıraya dön */
+  var order = { index: ['stay', 'nye', 'days', 'eat'], '': ['stay', 'nye', 'days', 'eat'], stay: ['stay', 'nye', 'when', 'eat'], travel: ['boat', 'air', 'days'] }[page] || ['eat', 'see', 'air'];
   Object.keys(C).forEach(function (k) { if (order.indexOf(k) < 0) order.push(k); });
   var cards = order.map(function (k) { return card(C[k][0], C[k][1], C[k][2]); }).join('');
   box.className = 'gt';
