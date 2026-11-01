@@ -561,10 +561,12 @@ html[dir=rtl] .nav-dd-menu{left:auto;right:0}
   <div class="cal-legend">
     <span><span class="cal-legend-dot"></span><span id="legendAvailable"></span></span>
     <span><span class="cal-legend-dot booked"></span><span id="legendBooked"></span></span>
+    <span id="legendMinNights"></span>
   </div>
   <div class="selection-summary" id="selectionSummary" style="display:none">
     <div class="selection-dates" id="selectionDatesText"></div>
     <div class="selection-total" id="selectionTotalText"></div>
+    <div class="selection-rules" id="selectionRulesText" style="font-size:.8rem;opacity:.75;width:100%;order:3"></div>
     <a id="selectionBookLink" target="_blank"><button class="calendar-confirm-btn" id="selectionBookBtn"></button></a>
   </div>
 </section>
@@ -933,6 +935,7 @@ function showOtherRatings(liveData){
 document.getElementById('availabilityTitle').textContent = ui.availabilityTitle;
 document.getElementById('legendAvailable').textContent = ui.available;
 document.getElementById('legendBooked').textContent = ui.booked;
+document.getElementById('legendMinNights').textContent = '🌙 ' + ui.minNights;
 document.getElementById('dsfText').textContent = ui.selectDates;
 
 /* ---------- Map embed ---------- */
@@ -1083,13 +1086,20 @@ function hasBlockedBetween(start, end){
   return false;
 }
 
+/* doğrudan rezervasyon kuralı (kullanıcı kararı 2.11.2026): en az 2 gece */
+const MIN_NIGHTS = 2;
+let minNightsHint = false;
 function selectDay(iso){
+  minNightsHint = false;
   if (!selStart || (selStart && selEnd)) {
     selStart = iso; selEnd = null;
   } else if (iso > selStart) {
     if (hasBlockedBetween(selStart, iso)) {
       /* aralarında dolu gün var — üzerinden atlayamaz, buradan yeni bir seçim başlat */
       selStart = iso; selEnd = null;
+    } else if (Math.round((parseIso(iso) - parseIso(selStart)) / 86400000) < MIN_NIGHTS) {
+      /* tek gece seçilemez — giriş günü kalır, uyarı gösterilir */
+      minNightsHint = true;
     } else {
       selEnd = iso;
     }
@@ -1099,11 +1109,12 @@ function selectDay(iso){
   renderAvailability();
   updateDateFieldDisplay();
   updateSelectionSummary();
+  document.getElementById('legendMinNights').style.fontWeight = minNightsHint ? '700' : '';
 }
 function updateDateFieldDisplay(){
   const el = document.getElementById('dsfText');
   if (selStart && selEnd) el.textContent = `${selStart} → ${selEnd}`;
-  else if (selStart) el.textContent = `${selStart} → ?`;
+  else if (selStart) el.textContent = `${selStart} → ?` + (minNightsHint ? ` · ${ui.minNights}` : '');
   else el.textContent = ui.selectDates;
 }
 function updateSelectionSummary(){
@@ -1128,6 +1139,7 @@ function updateSelectionSummary(){
     : `<s class="airbnb-strike">${apt.currency}${airbnbPriceOf(total)}</s> ${apt.currency}${total} <span>${ui.totalForStay || 'total'}</span>` +
       `<div class="direct-save">${getDirectDiscountText(lang).save.replace('{amount}', apt.currency + (airbnbPriceOf(total) - total))}</div>`;
   document.getElementById('selectionBookBtn').textContent = ui.confirmDates;
+  document.getElementById('selectionRulesText').innerHTML = `${ui.directRules} · <a href="legal/${lang==='tr'?'booking-terms-tr':'booking-terms'}.html" target="_blank" style="color:inherit">${lang==='tr'?'Şartlar':'Terms'}</a>`;
 
   const msg = missingPrice
     ? `Hi, I'm interested in ${t.name} from ${selStart} to ${selEnd} (${nights} nights). Please confirm availability and pricing.`
