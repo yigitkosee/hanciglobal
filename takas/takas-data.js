@@ -4,7 +4,8 @@
    - Fiyat yazılmaz (kullanıcı kararı). Kapı numarası yazılmaz; harita yaklaşık konum.
    - Fotoğraflar Drive "Evler" klasöründeki profesyonel/yeni çekimlerden: img/<slug>/NN.jpg (1600 px), NN-s.jpg (800 px).
    ========================================================================== */
-const TAKAS_WA = "905336915154";
+/* - İletişim (WhatsApp vb.) YOK: linkler emlakçı üzerinden gidiyor (kullanıcı kararı 7.11.2026).
+   - income = aylık gelir (Airbnb evlerinde ortalama aylık gelir, Çınar'da kira). tapu: Cezayir hisse tapulu, diğerleri krediye uygun. */
 
 const TAKAS = {
   "cezayir-45e4": {
@@ -13,6 +14,8 @@ const TAKAS = {
     location: "Firuzağa Mah., Cezayir Sokağı · Beyoğlu",
     photos: 22,
     facts: ["4+1", "1,5 banyo", "Balkon", "Tarihi bina", "Tam eşyalı"],
+    income: "210.000 TL", incomeLabel: "Aylık gelir (Airbnb)",
+    tapu: "Hisse tapulu",
     intro: "İstanbul'un en bilinen sokaklarından Cezayir Sokağı'nda (Fransız Sokağı), restore edilmiş tarihi bir binada geniş 4+1 daire. Galatasaray, İstiklal Caddesi ve Cihangir birkaç dakika yürüme mesafesinde. Bugün Hancı Global tarafından 10 kişilik bir daire olarak Airbnb'de işletiliyor.",
     highlights: [
       "Sokağın ünlü renkli merdivenlerine bakan balkon",
@@ -30,11 +33,13 @@ const TAKAS = {
     location: "Evliya Çelebi Mah., Bedrettin Sokağı · Beyoğlu (Şişhane)",
     photos: 21,
     facts: ["2+1", "62,5 m² (tapu)", "Teras katı", "Haliç manzarası", "Kat mülkiyetli tapu"],
+    income: "100.000 TL", incomeLabel: "Aylık gelir (Airbnb)",
+    tapu: "Krediye uygun",
     intro: "Galata ile Şişhane arasında, binanın teras katında Haliç'e bakan 2+1 daire. Şişhane metro durağı ve Galata Kulesi yürüme mesafesinde. Bugün Hancı Global tarafından Airbnb'de işletiliyor.",
     highlights: [
       "Pencerelerden Haliç ve tarihi yarımada manzarası",
       "Şişhane metrosuna birkaç dakika: Taksim, Levent ve tarihi yarımadaya doğrudan ulaşım",
-      "Kat mülkiyetli tapu",
+      "Kat mülkiyetli tapu, krediye uygun",
       "Tam eşyalı ve kısa dönem kiralamada çalışan daire"
     ],
     airbnb: "https://www.airbnb.co.uk/rooms/1349242709634643218",
@@ -47,6 +52,8 @@ const TAKAS = {
     location: "Firuzağa Mah., Çukurcuma Caddesi · Beyoğlu",
     photos: 20,
     facts: ["2+1", "Yenilenmiş", "Tam eşyalı", "Turizm kiralaması için bina kararı"],
+    income: "100.000 TL", incomeLabel: "Aylık gelir (Airbnb)",
+    tapu: "Krediye uygun",
     intro: "Taksim Meydanı ile Galata Kulesi'nin tam ortasında, Çukurcuma'da baştan sona yenilenmiş 2+1 daire. Cihangir, Galatasaray ve Karaköy yürüme mesafesinde. Bugün Hancı Global tarafından Airbnb'de işletiliyor.",
     highlights: [
       "Binadaki tüm kat maliklerinin oy birliğiyle aldığı, noter onaylı turizm amaçlı kiralama kararı (Mayıs 2024)",
@@ -63,7 +70,9 @@ const TAKAS = {
     title: "Galata Manzaralı, Asansörlü 2+1",
     location: "Firuzağa Mah., Çukurcuma Caddesi · Beyoğlu",
     photos: 19,
-    facts: ["2+1", "Asansörlü bina", "Galata manzarası", "Tam eşyalı", "Kiracılı · 1.600 €/ay"],
+    facts: ["2+1", "Asansörlü bina", "Galata manzarası", "Tam eşyalı", "Kiracılı"],
+    income: "1.600 €", incomeLabel: "Aylık kira geliri",
+    tapu: "Krediye uygun",
     intro: "Çukurcuma Caddesi'nde, asansörlü binada Galata manzaralı, tam eşyalı 2+1 daire. Daire şu an aylık 1.600 € kira ile kiracılı — ilk günden düzenli gelir getiriyor.",
     highlights: [
       "Düzenli kira geliri: aylık 1.600 € (yıllık 19.200 €)",
@@ -71,7 +80,6 @@ const TAKAS = {
       "Asansörlü bina; geniş salon, açık yemek alanı, ankastre mutfak",
       "Tam eşyalı; görüntüleme kiracıyla önceden randevu ile"
     ],
-    rent: "1.600 € / ay",
     geo: [41.03125, 28.98010]
   },
   "glorya-e2bb": {
@@ -80,6 +88,8 @@ const TAKAS = {
     location: "Bereketzade Mah., Galata Kulesi Sokağı · Beyoğlu",
     photos: 21,
     facts: ["2+1", "1,5 banyo", "Balkon", "Haliç manzarası", "Tarihi bina"],
+    income: "130.000 TL", incomeLabel: "Aylık gelir (Airbnb)",
+    tapu: "Krediye uygun",
     intro: "Galata Kulesi'nin hemen yanında, tarihi bir binada yenilenmiş, gün ışığı alan 2+1 daire. Bir yanda Galata Kulesi, diğer yanda Haliç ve tarihi yarımada manzarası. Bugün Hancı Global tarafından Airbnb'de işletiliyor.",
     highlights: [
       "Pencerelerden Galata Kulesi, salondan Haliç ve tarihi yarımada manzarası",
