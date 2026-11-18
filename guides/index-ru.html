@@ -322,7 +322,44 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
   .wa-float{right:16px;bottom:16px}
   html[dir=rtl] .wa-float{left:16px}
-}</style>
+}
+.pl-form{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-top:28px;display:flex;flex-direction:column;gap:22px}
+.pl-form fieldset{border:0;min-width:0}
+.pl-form legend{font-weight:800;font-size:17px;color:var(--navy);margin-bottom:10px}
+.pl-form legend small{font-weight:500;font-size:13px;color:var(--muted);margin-inline-start:6px}
+.pl-row{display:flex;flex-wrap:wrap;gap:8px}
+.pl-two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pl-chip{cursor:pointer}
+.pl-chip input{position:absolute;opacity:0;pointer-events:none}
+.pl-chip span{display:inline-block;padding:9px 16px;border-radius:999px;border:1.5px solid var(--border);background:#fff;font-weight:600;font-size:14.5px;color:var(--ink2);transition:all .15s}
+.pl-chip input:checked+span{background:var(--teal);border-color:var(--teal);color:#fff}
+.pl-chip input:focus-visible+span{outline:2px solid var(--navy);outline-offset:2px}
+.pl-select{font:inherit;font-size:15px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);background:#fff;color:var(--ink);min-width:200px;max-width:100%}
+.pl-go{align-self:flex-start;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:16px;padding:14px 28px}
+.pl-out{margin-top:40px;scroll-margin-top:90px}
+.pl-season{background:var(--teal-l);border-radius:12px;padding:12px 16px;margin:10px 0 0;color:var(--teal-d);font-weight:600}
+.pl-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:22px}
+.pl-day{border:1px solid var(--border);border-radius:18px;padding:22px 22px 18px;background:#fff;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pl-dhead{display:flex;flex-direction:column;gap:2px}
+.pl-dnum{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+.pl-day h3{font-size:19px;color:var(--navy);margin:0}
+.pl-slots{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:4px 0 0}
+.pl-slots li{border-inline-start:3px solid var(--teal-l);padding-inline-start:12px}
+.pl-slots b{font-size:13px;color:var(--teal-d)}
+.pl-slots p{font-size:14.5px;line-height:1.55;margin:2px 0 0;color:var(--ink2)}
+.pl-extra{font-size:13.5px;color:var(--muted);margin:0}
+.pl-arr{font-style:italic}
+.pl-guide{margin-top:auto;font-weight:800;font-size:14px;color:var(--teal)}
+.pl-note{font-size:13px;color:var(--muted);margin-top:18px}
+.pl-share .box-btns{flex-wrap:wrap}
+.pl-share button.btn{cursor:pointer;font:inherit;font-weight:700;background:transparent}
+.pl-promo{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--navy),#16365a);color:#fff;border-radius:18px;padding:20px 24px;margin:28px 0 8px}
+.pl-promo-ic{font-size:34px}
+.pl-promo b{display:block;font-size:19px}
+.pl-promo small{display:block;font-size:14px;opacity:.85}
+.pl-promo-btn{margin-inline-start:auto;background:var(--gold);color:#fff;font-weight:800;font-size:14px;padding:11px 18px;border-radius:10px;white-space:nowrap}
+@media(max-width:700px){.pl-form{padding:20px 16px}.pl-two{grid-template-columns:1fr}.pl-promo{flex-wrap:wrap}.pl-promo-btn{margin-inline-start:0}}
+</style>
 <script defer src="../site-track.js?v=1"></script>
 <script defer src="../site-icons.js?v=1"></script>
 </head>
@@ -387,6 +424,7 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
 <header class="hero"><img src="../istanbul.jpg" alt="Путеводитель по районам Стамбула"><div class="hero-inner"><h1>Путеводитель по районам Стамбула</h1><div class="meta">Команда Hancı Stay — местные рекомендации из Галаты · Обновлено в октябре 2026</div></div></header>
 <main>
 <p class="intro">Мы живём и работаем в Галате и Бейоглу, и это те советы, которые мы даём нашим гостям. В каждом месте из этих гидов мы бываем сами.</p>
+<a class="pl-promo" href="istanbul-trip-planner-ru.html"><span class="pl-promo-ic">🗺️</span><span><b>Планировщик поездки</b><small>Составьте свой план Стамбула по дням за 30 секунд.</small></span><span class="pl-promo-btn">Спланировать дни →</span></a>
 <div class="hub-grid"><a class="guide-card" href="where-to-stay-in-istanbul-ru.html"><img loading="lazy" src="../where-to-stay.jpg" alt="Где остановиться в Стамбуле: честное сравнение лучших районов"><div><h3>🏠 Где остановиться в Стамбуле: честное сравнение лучших районов</h3><p>Галата, Каракёй, Таксим, Джихангир, Султанахмет, Бешикташ, Нишанташи или Кадыкёй? Кому подходит каждый район Стамбула, как там с транспортом и какие минусы — от местной команды хозяев.</p><span>Читать гид →</span></div></a><a class="guide-card" href="galata-tower-guide-ru.html"><img loading="lazy" src="../galata-tower-guide.jpg" alt="Галатская башня: билеты, часы работы, лучшие виды и где остановиться рядом"><div><h3>🗼 Галатская башня: билеты, часы работы, лучшие виды и где остановиться рядом</h3><p>Всё о посещении Галатской башни в 2026 году: цена билета, часы работы, как избежать очередей, 700-летняя история, лучшие бесплатные точки обзора и улицы вокруг — от хозяев, которые живут у её подножия.</p><span>Читать гид →</span></div></a><a class="guide-card" href="new-years-eve-istanbul-ru.html"><img loading="lazy" src="../new-years-eve-istanbul.jpg" alt="Новый год в Стамбуле: где встречать, фейерверки, круизы по Босфору и как добраться домой"><div><h3>🎉 Новый год в Стамбуле: где встречать, фейерверки, круизы по Босфору и как добраться домой</h3><p>Как встретить Новый год в Стамбуле: Таксим и Истикляль, крыши Галаты, фейерверк в Ортакёе, новогодние круизы по Босфору, турецкие традиции, метро всю ночь и как вернуться домой без такси — советы от хозяев, которые здесь живут.</p><span>Читать гид →</span></div></a><a class="guide-card" href="istanbul-3-day-itinerary-ru.html"><img loading="lazy" src="../istanbul-3-days.jpg" alt="Стамбул за 3 дня: маршрут от местных, с началом в Галате"><div><h3>🗺️ Стамбул за 3 дня: маршрут от местных, с началом в Галате</h3><p>Реалистичный маршрут по Стамбулу на 3 дня: старый город и базары, Галата и Босфор, затем азиатская сторона на пароме — с днями работы, ценами на билеты 2026 года и лучшими местами для заката.</p><span>Читать гид →</span></div></a><a class="guide-card" href="bosphorus-cruise-guide-ru.html"><img loading="lazy" src="../bosphorus-cruise.jpg" alt="Прогулка по Босфору: городской паром, экскурсионный кораблик или частная яхта?"><div><h3>🛥️ Прогулка по Босфору: городской паром, экскурсионный кораблик или частная яхта?</h3><p>Все способы прогуляться по Босфору честно сравнены: короткий и длинный туры Şehir Hatları, экскурсионные кораблики, закатные круизы, частные яхты и ужин на воде — с ценами 2026 года, расписанием и тем, что вы увидите.</p><span>Читать гид →</span></div></a><a class="guide-card" href="best-time-to-visit-istanbul-ru.html"><img loading="lazy" src="../best-time-istanbul.jpg" alt="Когда лучше ехать в Стамбул: погода, толпы и цены по месяцам"><div><h3>📅 Когда лучше ехать в Стамбул: погода, толпы и цены по месяцам</h3><p>Когда ехать в Стамбул: температура, дожди и море по сезонам, фестивали, даты Рамадана и праздников 2027 года и когда жильё дешевле всего — от местной команды хозяев.</p><span>Читать гид →</span></div></a><a class="guide-card" href="istanbul-airport-to-galata-taksim-ru.html"><img loading="lazy" src="../transferana.jpg" alt="Как добраться из аэропортов Стамбула в Галату и Таксим"><div><h3>✈️ Как добраться из аэропортов Стамбула в Галату и Таксим</h3><p>Такси, шаттлы Havaist/Havabus и метро из аэропорта Стамбула (IST) и Сабихи Гёкчен (SAW) в Галату, Таксим и Бейоглу — время в пути, цены и последний шаг до наших апартаментов.</p><span>Читать гид →</span></div></a><a class="guide-card" href="where-to-eat-drink-galata-ru.html"><img loading="lazy" src="../sunset2.jpg" alt="Где поесть и выпить в Галате и Бейоглу: наши местные советы"><div><h3>🍽️ Где поесть и выпить в Галате и Бейоглу: наши местные советы</h3><p>Рестораны, кафе, бары и кондитерские Галаты, Каракёя, Джихангира и Бейоглу, которые мы советуем нашим гостям.</p><span>Читать гид →</span></div></a><a class="guide-card" href="things-to-do-galata-beyoglu-ru.html"><img loading="lazy" src="../istanbul.jpg" alt="Что посмотреть в Галате и Бейоглу: гид от местных"><div><h3>🗼 Что посмотреть в Галате и Бейоглу: гид от местных</h3><p>Галатская башня, лестница Камондо, музей Пера, Istanbul Modern, Чукурджума и многое другое — а также поездки в Старый город — от команды, которая живёт в Галате.</p><span>Читать гид →</span></div></a></div>
 <h2>Наши любимые места</h2><p class="sec-intro">Места, куда мы в первую очередь отправляем наших гостей.</p>
 <div class="picks"><article class="vcard" id="v-fasuli-kurufasulye" data-name="Fasuli Kurufasulye" data-area="Karaköy" data-ll="41.02616,28.98153" data-icon="🍽️" data-color="#C8763C" data-sec="" data-photos="[{&quot;src&quot;:&quot;img/v/fasuli-kurufasulye-1.jpg&quot;,&quot;credit&quot;:&quot;📷 Hancı Global&quot;}]">

@@ -322,7 +322,44 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
   .wa-float{right:16px;bottom:16px}
   html[dir=rtl] .wa-float{left:16px}
-}</style>
+}
+.pl-form{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-top:28px;display:flex;flex-direction:column;gap:22px}
+.pl-form fieldset{border:0;min-width:0}
+.pl-form legend{font-weight:800;font-size:17px;color:var(--navy);margin-bottom:10px}
+.pl-form legend small{font-weight:500;font-size:13px;color:var(--muted);margin-inline-start:6px}
+.pl-row{display:flex;flex-wrap:wrap;gap:8px}
+.pl-two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pl-chip{cursor:pointer}
+.pl-chip input{position:absolute;opacity:0;pointer-events:none}
+.pl-chip span{display:inline-block;padding:9px 16px;border-radius:999px;border:1.5px solid var(--border);background:#fff;font-weight:600;font-size:14.5px;color:var(--ink2);transition:all .15s}
+.pl-chip input:checked+span{background:var(--teal);border-color:var(--teal);color:#fff}
+.pl-chip input:focus-visible+span{outline:2px solid var(--navy);outline-offset:2px}
+.pl-select{font:inherit;font-size:15px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);background:#fff;color:var(--ink);min-width:200px;max-width:100%}
+.pl-go{align-self:flex-start;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:16px;padding:14px 28px}
+.pl-out{margin-top:40px;scroll-margin-top:90px}
+.pl-season{background:var(--teal-l);border-radius:12px;padding:12px 16px;margin:10px 0 0;color:var(--teal-d);font-weight:600}
+.pl-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:22px}
+.pl-day{border:1px solid var(--border);border-radius:18px;padding:22px 22px 18px;background:#fff;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pl-dhead{display:flex;flex-direction:column;gap:2px}
+.pl-dnum{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+.pl-day h3{font-size:19px;color:var(--navy);margin:0}
+.pl-slots{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:4px 0 0}
+.pl-slots li{border-inline-start:3px solid var(--teal-l);padding-inline-start:12px}
+.pl-slots b{font-size:13px;color:var(--teal-d)}
+.pl-slots p{font-size:14.5px;line-height:1.55;margin:2px 0 0;color:var(--ink2)}
+.pl-extra{font-size:13.5px;color:var(--muted);margin:0}
+.pl-arr{font-style:italic}
+.pl-guide{margin-top:auto;font-weight:800;font-size:14px;color:var(--teal)}
+.pl-note{font-size:13px;color:var(--muted);margin-top:18px}
+.pl-share .box-btns{flex-wrap:wrap}
+.pl-share button.btn{cursor:pointer;font:inherit;font-weight:700;background:transparent}
+.pl-promo{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--navy),#16365a);color:#fff;border-radius:18px;padding:20px 24px;margin:28px 0 8px}
+.pl-promo-ic{font-size:34px}
+.pl-promo b{display:block;font-size:19px}
+.pl-promo small{display:block;font-size:14px;opacity:.85}
+.pl-promo-btn{margin-inline-start:auto;background:var(--gold);color:#fff;font-weight:800;font-size:14px;padding:11px 18px;border-radius:10px;white-space:nowrap}
+@media(max-width:700px){.pl-form{padding:20px 16px}.pl-two{grid-template-columns:1fr}.pl-promo{flex-wrap:wrap}.pl-promo-btn{margin-inline-start:0}}
+</style>
 <script defer src="../site-track.js?v=1"></script>
 <script defer src="../site-icons.js?v=1"></script>
 </head>
@@ -387,6 +424,7 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
 <header class="hero"><img src="../istanbul.jpg" alt="دليل إسطنبول السياحي: أحياء ومطاعم وأماكن سياحية"><div class="hero-inner"><h1>دليل إسطنبول السياحي: أحياء ومطاعم وأماكن سياحية</h1><div class="meta">فريق Hancı Stay — توصيات محلية من غلطة · آخر تحديث: أكتوبر 2026</div></div></header>
 <main>
 <p class="intro">نحن نعيش ونعمل في غلطة وبي أوغلو، وهذه هي النصائح التي نقدّمها لضيوفنا. كل مكان في هذه الأدلة نرتاده بأنفسنا.</p>
+<a class="pl-promo" href="istanbul-trip-planner-ar.html"><span class="pl-promo-ic">🗺️</span><span><b>مخطط الرحلة</b><small>أنشئ خطتك لإسطنبول يومًا بيوم في 30 ثانية.</small></span><span class="pl-promo-btn">خطط لأيامي ←</span></a>
 <div class="hub-grid"><a class="guide-card" href="where-to-stay-in-istanbul-ar.html"><img loading="lazy" src="../where-to-stay.jpg" alt="أفضل مناطق السكن في إسطنبول للسياح: أين تقيم؟ مقارنة صادقة"><div><h3>🏠 أفضل مناطق السكن في إسطنبول للسياح: أين تقيم؟ مقارنة صادقة</h3><p>غلطة أم كاراكوي أم تقسيم أم جيهانغير أم السلطان أحمد أم بشكتاش أم نيشان تاشي أم كاديكوي؟ لمن يناسب كل حي في إسطنبول، وكيف المواصلات فيه، وما عيوبه — من فريق مضيفين محليين.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="galata-tower-guide-ar.html"><img loading="lazy" src="../galata-tower-guide.jpg" alt="دليل برج غلطة: التذاكر والمواعيد وأجمل الإطلالات وأين تقيم بالقرب منه"><div><h3>🗼 دليل برج غلطة: التذاكر والمواعيد وأجمل الإطلالات وأين تقيم بالقرب منه</h3><p>كل ما تحتاجه لزيارة برج غلطة في 2026: سعر التذكرة، ومواعيد الفتح، وكيف تتجنب الطوابير، وتاريخه الممتد 700 عام، وأفضل الأماكن المجانية لمشاهدته، والشوارع المحيطة به — من مضيفين يعيشون عند سفحه.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="new-years-eve-istanbul-ar.html"><img loading="lazy" src="../new-years-eve-istanbul.jpg" alt="رأس السنة في إسطنبول: أين تحتفل، والألعاب النارية، ورحلات البوسفور، وكيف تعود إلى مقر إقامتك"><div><h3>🎉 رأس السنة في إسطنبول: أين تحتفل، والألعاب النارية، ورحلات البوسفور، وكيف تعود إلى مقر إقامتك</h3><p>كيف تقضي ليلة رأس السنة في إسطنبول: تقسيم وشارع الاستقلال، وأسطح غلطة، والألعاب النارية في أورتاكوي، ورحلات الاحتفال في البوسفور، وتقاليد رأس السنة التركية، والمترو الذي يعمل طوال الليل، والعودة دون تاكسي — من مضيفين يعيشون هنا.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="istanbul-3-day-itinerary-ar.html"><img loading="lazy" src="../istanbul-3-days.jpg" alt="برنامج سياحي في إسطنبول 3 أيام: خطة يوم بيوم تبدأ من غلطة"><div><h3>🗺️ برنامج سياحي في إسطنبول 3 أيام: خطة يوم بيوم تبدأ من غلطة</h3><p>برنامج واقعي لثلاثة أيام في إسطنبول: المدينة القديمة والأسواق، ثم غلطة والبوسفور، ثم الجانب الآسيوي بالعبّارة — مع أيام الإغلاق وأسعار التذاكر لعام 2026 وأفضل أماكن الغروب.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="bosphorus-cruise-guide-ar.html"><img loading="lazy" src="../bosphorus-cruise.jpg" alt="رحلة بحرية في البوسفور: العبّارة الحكومية أم قارب سياحي أم يخت خاص؟"><div><h3>🛥️ رحلة بحرية في البوسفور: العبّارة الحكومية أم قارب سياحي أم يخت خاص؟</h3><p>مقارنة صادقة لكل طرق التنزه في البوسفور: جولات Şehir Hatları القصيرة والطويلة، والقوارب السياحية، ورحلات الغروب، واليخوت الخاصة، ورحلات العشاء — مع أسعار 2026 والمواعيد وما ستراه على الطريق.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="best-time-to-visit-istanbul-ar.html"><img loading="lazy" src="../best-time-istanbul.jpg" alt="أفضل وقت لزيارة إسطنبول: الطقس والازدحام والأسعار شهراً بشهر"><div><h3>📅 أفضل وقت لزيارة إسطنبول: الطقس والازدحام والأسعار شهراً بشهر</h3><p>متى تسافر إلى إسطنبول: درجات الحرارة والأمطار وحرارة البحر حسب الموسم، والمهرجانات، ومواعيد رمضان والأعياد لعام 2027، ومتى تكون الشقق أرخص — من فريق مضيفين محليين.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="istanbul-airport-to-galata-taksim-ar.html"><img loading="lazy" src="../transferana.jpg" alt="من مطار إسطنبول إلى تقسيم وغلطة: التاكسي والمترو والحافلة بالأسعار والمدة"><div><h3>✈️ من مطار إسطنبول إلى تقسيم وغلطة: التاكسي والمترو والحافلة بالأسعار والمدة</h3><p>التاكسي وحافلات Havaist/Havabus والمترو من مطار إسطنبول (IST) ومطار صبيحة كوكجن (SAW) إلى غلطة وتقسيم وبي أوغلو — مع المدة والأسعار والخطوة الأخيرة إلى شققنا.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="where-to-eat-drink-galata-ar.html"><img loading="lazy" src="../sunset2.jpg" alt="أفضل المطاعم والمقاهي في غلطة وتقسيم بإسطنبول: اختياراتنا المحلية"><div><h3>🍽️ أفضل المطاعم والمقاهي في غلطة وتقسيم بإسطنبول: اختياراتنا المحلية</h3><p>المطاعم والمقاهي والحانات ومحلات الحلويات في غلطة وكاراكوي وجيهانغير وبي أوغلو التي نوصي بها ضيوفنا.</p><span>← اقرأ الدليل</span></div></a><a class="guide-card" href="things-to-do-galata-beyoglu-ar.html"><img loading="lazy" src="../istanbul.jpg" alt="أماكن سياحية في إسطنبول: ماذا تزور في غلطة وتقسيم وبي أوغلو"><div><h3>🗼 أماكن سياحية في إسطنبول: ماذا تزور في غلطة وتقسيم وبي أوغلو</h3><p>برج غلطة ودرج كاموندو ومتحف بيرا وإسطنبول مودرن وتشوكورجوما وغيرها — بالإضافة إلى رحلات سهلة إلى المدينة القديمة — من فريق يعيش في غلطة.</p><span>← اقرأ الدليل</span></div></a></div>
 <h2>أماكننا المفضّلة</h2><p class="sec-intro">الأماكن التي نرشّح ضيوفنا لزيارتها أولاً.</p>
 <div class="picks"><article class="vcard" id="v-fasuli-kurufasulye" data-name="Fasuli Kurufasulye" data-area="Karaköy" data-ll="41.02616,28.98153" data-icon="🍽️" data-color="#C8763C" data-sec="" data-photos="[{&quot;src&quot;:&quot;img/v/fasuli-kurufasulye-1.jpg&quot;,&quot;credit&quot;:&quot;📷 Hancı Global&quot;}]">

@@ -322,7 +322,44 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
   .wa-float{right:16px;bottom:16px}
   html[dir=rtl] .wa-float{left:16px}
-}</style>
+}
+.pl-form{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:28px 30px;margin-top:28px;display:flex;flex-direction:column;gap:22px}
+.pl-form fieldset{border:0;min-width:0}
+.pl-form legend{font-weight:800;font-size:17px;color:var(--navy);margin-bottom:10px}
+.pl-form legend small{font-weight:500;font-size:13px;color:var(--muted);margin-inline-start:6px}
+.pl-row{display:flex;flex-wrap:wrap;gap:8px}
+.pl-two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pl-chip{cursor:pointer}
+.pl-chip input{position:absolute;opacity:0;pointer-events:none}
+.pl-chip span{display:inline-block;padding:9px 16px;border-radius:999px;border:1.5px solid var(--border);background:#fff;font-weight:600;font-size:14.5px;color:var(--ink2);transition:all .15s}
+.pl-chip input:checked+span{background:var(--teal);border-color:var(--teal);color:#fff}
+.pl-chip input:focus-visible+span{outline:2px solid var(--navy);outline-offset:2px}
+.pl-select{font:inherit;font-size:15px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);background:#fff;color:var(--ink);min-width:200px;max-width:100%}
+.pl-go{align-self:flex-start;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:16px;padding:14px 28px}
+.pl-out{margin-top:40px;scroll-margin-top:90px}
+.pl-season{background:var(--teal-l);border-radius:12px;padding:12px 16px;margin:10px 0 0;color:var(--teal-d);font-weight:600}
+.pl-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:22px}
+.pl-day{border:1px solid var(--border);border-radius:18px;padding:22px 22px 18px;background:#fff;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pl-dhead{display:flex;flex-direction:column;gap:2px}
+.pl-dnum{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+.pl-day h3{font-size:19px;color:var(--navy);margin:0}
+.pl-slots{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:4px 0 0}
+.pl-slots li{border-inline-start:3px solid var(--teal-l);padding-inline-start:12px}
+.pl-slots b{font-size:13px;color:var(--teal-d)}
+.pl-slots p{font-size:14.5px;line-height:1.55;margin:2px 0 0;color:var(--ink2)}
+.pl-extra{font-size:13.5px;color:var(--muted);margin:0}
+.pl-arr{font-style:italic}
+.pl-guide{margin-top:auto;font-weight:800;font-size:14px;color:var(--teal)}
+.pl-note{font-size:13px;color:var(--muted);margin-top:18px}
+.pl-share .box-btns{flex-wrap:wrap}
+.pl-share button.btn{cursor:pointer;font:inherit;font-weight:700;background:transparent}
+.pl-promo{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--navy),#16365a);color:#fff;border-radius:18px;padding:20px 24px;margin:28px 0 8px}
+.pl-promo-ic{font-size:34px}
+.pl-promo b{display:block;font-size:19px}
+.pl-promo small{display:block;font-size:14px;opacity:.85}
+.pl-promo-btn{margin-inline-start:auto;background:var(--gold);color:#fff;font-weight:800;font-size:14px;padding:11px 18px;border-radius:10px;white-space:nowrap}
+@media(max-width:700px){.pl-form{padding:20px 16px}.pl-two{grid-template-columns:1fr}.pl-promo{flex-wrap:wrap}.pl-promo-btn{margin-inline-start:0}}
+</style>
 <script defer src="../site-track.js?v=1"></script>
 <script defer src="../site-icons.js?v=1"></script>
 </head>
@@ -387,6 +424,7 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
 <header class="hero"><img src="../istanbul.jpg" alt="Istanbul Neighbourhood Guide"><div class="hero-inner"><h1>Istanbul Neighbourhood Guide</h1><div class="meta">By the Hancı Stay team — local recommendations from Galata · Updated October 2026</div></div></header>
 <main>
 <p class="intro">We live and work in Galata and Beyoğlu, and these are the tips we give our own guests. Every place in these guides is one we personally go to.</p>
+<a class="pl-promo" href="istanbul-trip-planner.html"><span class="pl-promo-ic">🗺️</span><span><b>Trip planner</b><small>Build your own day-by-day Istanbul plan in 30 seconds.</small></span><span class="pl-promo-btn">Plan my days →</span></a>
 <div class="hub-grid"><a class="guide-card" href="where-to-stay-in-istanbul.html"><img loading="lazy" src="../where-to-stay.jpg" alt="Where to stay in Istanbul: the best neighbourhoods, honestly compared"><div><h3>🏠 Where to stay in Istanbul: the best neighbourhoods, honestly compared</h3><p>Galata, Karaköy, Taksim, Cihangir, Sultanahmet, Beşiktaş, Nişantaşı or Kadıköy? Who each Istanbul neighbourhood suits, how well it is connected and its downsides — from a local host team.</p><span>Read the guide →</span></div></a><a class="guide-card" href="galata-tower-guide.html"><img loading="lazy" src="../galata-tower-guide.jpg" alt="Galata Tower guide: tickets, hours, the best views and where to stay nearby"><div><h3>🗼 Galata Tower guide: tickets, hours, the best views and where to stay nearby</h3><p>Everything about visiting Galata Tower in 2026: ticket price, opening hours, how to skip the worst queues, its 700-year history, the best free viewpoints of the tower and the streets around it — from hosts who live at its foot.</p><span>Read the guide →</span></div></a><a class="guide-card" href="new-years-eve-istanbul.html"><img loading="lazy" src="../new-years-eve-istanbul.jpg" alt="New Year’s Eve in Istanbul: where to celebrate, fireworks, Bosphorus cruises and getting home"><div><h3>🎉 New Year’s Eve in Istanbul: where to celebrate, fireworks, Bosphorus cruises and getting home</h3><p>How to spend New Year’s Eve in Istanbul: Taksim and İstiklal, Galata rooftops, fireworks at Ortaköy, Bosphorus party cruises, Turkish New Year traditions, the all-night metro and how to get home without a taxi — from hosts who live there.</p><span>Read the guide →</span></div></a><a class="guide-card" href="istanbul-3-day-itinerary.html"><img loading="lazy" src="../istanbul-3-days.jpg" alt="Istanbul in 3 days: a local itinerary starting from Galata"><div><h3>🗺️ Istanbul in 3 days: a local itinerary starting from Galata</h3><p>A realistic 3-day Istanbul itinerary: the old city and bazaars, Galata and the Bosphorus, then the Asian side by ferry — with opening days, 2026 ticket prices and where to watch the sunset.</p><span>Read the guide →</span></div></a><a class="guide-card" href="bosphorus-cruise-guide.html"><img loading="lazy" src="../bosphorus-cruise.jpg" alt="Bosphorus cruise guide: public ferry, tour boat or private yacht?"><div><h3>🛥️ Bosphorus cruise guide: public ferry, tour boat or private yacht?</h3><p>Every way to cruise the Bosphorus in Istanbul compared honestly: Şehir Hatları short and long tours, hop-on boats, sunset cruises, private yachts and dinner cruises — with 2026 prices, times and what you will see.</p><span>Read the guide →</span></div></a><a class="guide-card" href="best-time-to-visit-istanbul.html"><img loading="lazy" src="../best-time-istanbul.jpg" alt="Best time to visit Istanbul: weather, crowds and prices month by month"><div><h3>📅 Best time to visit Istanbul: weather, crowds and prices month by month</h3><p>When to go to Istanbul: average temperatures, rain and sea temperature by season, festivals, Ramadan and Eid dates for 2027, and when apartments are cheapest — from a local host team.</p><span>Read the guide →</span></div></a><a class="guide-card" href="istanbul-airport-to-galata-taksim.html"><img loading="lazy" src="../transferana.jpg" alt="How to get from Istanbul airports to Galata &amp; Taksim"><div><h3>✈️ How to get from Istanbul airports to Galata &amp; Taksim</h3><p>Taxi, Havaist/Havabus shuttle and metro routes from Istanbul Airport (IST) and Sabiha Gökçen (SAW) to Galata, Taksim and Beyoğlu — with times, prices and the last steps to our apartments.</p><span>Read the guide →</span></div></a><a class="guide-card" href="where-to-eat-drink-galata.html"><img loading="lazy" src="../sunset2.jpg" alt="Where to eat and drink in Galata &amp; Beyoğlu: our local picks"><div><h3>🍽️ Where to eat and drink in Galata &amp; Beyoğlu: our local picks</h3><p>The restaurants, cafés, bars and dessert shops in Galata, Karaköy, Cihangir and Beyoğlu that we recommend to our own guests.</p><span>Read the guide →</span></div></a><a class="guide-card" href="things-to-do-galata-beyoglu.html"><img loading="lazy" src="../istanbul.jpg" alt="Things to do in Galata &amp; Beyoğlu: a local guide"><div><h3>🗼 Things to do in Galata &amp; Beyoğlu: a local guide</h3><p>Galata Tower, the Camondo Stairs, Pera Museum, Istanbul Modern, Çukurcuma and more — plus easy day trips to the Old City — from a team that lives in Galata.</p><span>Read the guide →</span></div></a></div>
 <h2>Our favourite places</h2><p class="sec-intro">The spots we send our own guests to first.</p>
 <div class="picks"><article class="vcard" id="v-fasuli-kurufasulye" data-name="Fasuli Kurufasulye" data-area="Karaköy" data-ll="41.02616,28.98153" data-icon="🍽️" data-color="#C8763C" data-sec="" data-photos="[{&quot;src&quot;:&quot;img/v/fasuli-kurufasulye-1.jpg&quot;,&quot;credit&quot;:&quot;📷 Hancı Global&quot;}]">
