@@ -240,6 +240,7 @@ main.withmap{max-width:1480px}
 @media (min-width:1101px){.vlayout .filters{flex-wrap:wrap;overflow:visible;row-gap:8px;position:static;background:none;backdrop-filter:none}.vlayout .filters .chip{padding:7px 14px;font-size:13px}}
 .vmap{position:sticky;top:88px;height:calc(100vh - 104px);margin-top:28px;border-radius:22px;overflow:hidden;border:1px solid var(--border);background:#E9EEF1}
 #gmap{width:100%;height:100%}
+.pinwrap{background:none;border:0}
 .vmap-close,.map-toggle{display:none}
 .vcard.hl{box-shadow:0 0 0 2px var(--teal)}
 .vcard.flash{animation:flash 1.6s ease}
@@ -1153,7 +1154,7 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
 <div class="lb" id="lb" aria-hidden="true"><div class="lbname" id="lbName"></div><img id="lbImg" alt=""><button class="lbx" type="button" aria-label="Закрыть">×</button><button class="lbp" type="button" aria-label="Предыдущее фото">‹</button><button class="lbn" type="button" aria-label="Следующее фото">›</button><div class="lbcap ltr" id="lbCap"></div></div>
 <script>
 (function(){
-  var KEY='AIzaSyDewHZcNDnda5kuQdAuq6V2bE2cGFE_TYU', LANG='ru', CUR='all';
+  var CUR='all';
   var cards=[].slice.call(document.querySelectorAll('.vcard'));
   /* kategori filtresi */
   var chips=[].slice.call(document.querySelectorAll('.chip'));
@@ -1165,18 +1166,19 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
   })});
   if(!cards.length) return;
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-  /* Google Maps JS: ilk ihtiyaçta bir kez yüklenir */
-  var gmP=null;
-  function gm(){
-    if(gmP) return gmP;
-    gmP=new Promise(function(res,rej){
-      window.__hgInit=function(){res(google.maps)};
+  /* Leaflet + OpenStreetMap (ücretsiz, Google Maps API yok): ilk ihtiyaçta bir kez yüklenir */
+  var lfP=null;
+  function lf(){
+    if(lfP) return lfP;
+    lfP=new Promise(function(res,rej){
+      if(window.L) return res(window.L);
+      var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'; document.head.appendChild(l);
       var s=document.createElement('script');
-      s.src='https://maps.googleapis.com/maps/api/js?key='+KEY+'&loading=async&callback=__hgInit&language='+LANG;
-      s.async=true; s.onerror=rej; document.head.appendChild(s);
+      s.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+      s.async=true; s.onload=function(){res(window.L)}; s.onerror=rej; document.head.appendChild(s);
       setTimeout(function(){rej(new Error('timeout'))},12000);
     });
-    return gmP;
+    return lfP;
   }
   var S=new Map();
   function st(card){
@@ -1232,45 +1234,39 @@ html[dir=rtl] .footer-col-links.ltr{align-items:flex-end}
   var mapEl=document.getElementById('gmap'); if(!mapEl) return;
   var aside=document.getElementById('vmap'), pins=[], map=null, mapP=null;
   function mob(){ return window.matchMedia('(max-width:1100px)').matches; }
-  var STYLES=[{featureType:'poi.business',stylers:[{visibility:'off'}]},{featureType:'poi',elementType:'labels.icon',stylers:[{visibility:'off'}]},
-    {featureType:'poi.park',elementType:'geometry',stylers:[{color:'#dcead8'}]},{featureType:'water',elementType:'geometry',stylers:[{color:'#bcd8e6'}]},
-    {featureType:'road',elementType:'geometry',stylers:[{lightness:25}]},{featureType:'transit',elementType:'labels.icon',stylers:[{saturation:-70}]}];
   function initMap(){
     if(mapP) return mapP;
-    mapP=gm().then(function(){ return google.maps.importLibrary('maps'); }).then(function(M){
-      map=new M.Map(mapEl,{center:{lat:41.0285,lng:28.9765},zoom:15,gestureHandling:'greedy',clickableIcons:false,mapTypeControl:false,streetViewControl:false,fullscreenControl:false,styles:STYLES});
-      function Layer(){ this.setMap(map); }
-      Layer.prototype=new google.maps.OverlayView();
-      Layer.prototype.onAdd=function(){ var pane=this.getPanes().overlayMouseTarget; pins.forEach(function(p){ pane.appendChild(p.el); }); };
-      Layer.prototype.draw=function(){ var pr=this.getProjection(); pins.forEach(function(p){ var pt=pr.fromLatLngToDivPixel(p.ll); p.el.style.left=pt.x+'px'; p.el.style.top=pt.y+'px'; }); };
-      Layer.prototype.onRemove=function(){};
+    mapP=lf().then(function(L){
+      map=L.map(mapEl,{center:[41.0285,28.9765],zoom:15,zoomControl:true,zoomSnap:0.25});
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
       cards.forEach(function(c){
         var ll=c.getAttribute('data-ll'); if(!ll) return; var a=ll.split(',');
         var el=document.createElement('div'); el.className='pin'; el.style.setProperty('--pc',c.getAttribute('data-color'));
         el.innerHTML='<i><span>'+c.getAttribute('data-icon')+'</span></i><b>'+esc(c.getAttribute('data-name'))+'</b>';
-        google.maps.OverlayView.preventMapHitsAndGesturesFrom(el);
-        var p={el:el,card:c,ll:new google.maps.LatLng(+a[0],+a[1]),lat:+a[0],lng:+a[1],sec:c.getAttribute('data-sec')};
+        var mk=L.marker([+a[0],+a[1]],{icon:L.divIcon({className:'pinwrap',html:el,iconSize:[0,0],iconAnchor:[0,0]}),keyboard:false}).addTo(map);
+        L.DomEvent.disableClickPropagation(el);
+        var p={el:el,mk:mk,card:c,ll:[+a[0],+a[1]],lat:+a[0],lng:+a[1],sec:c.getAttribute('data-sec')};
         if(CUR!=='all'&&p.sec!==CUR) el.classList.add('off');
         el.addEventListener('click',function(e){ e.stopPropagation();
           if(mob()){ if(el.classList.contains('on')&&e.target.closest('b')){ closeMap(); goCard(c); return; } activate(p,false); return; }
           activate(p,false); goCard(c); });
-        el.addEventListener('mouseenter',function(){ c.classList.add('hl'); });
-        el.addEventListener('mouseleave',function(){ c.classList.remove('hl'); });
+        el.addEventListener('mouseenter',function(){ c.classList.add('hl'); mk.setZIndexOffset(900); });
+        el.addEventListener('mouseleave',function(){ c.classList.remove('hl'); if(!el.classList.contains('on')) mk.setZIndexOffset(0); });
         pins.push(p); c.__pin=p;
       });
-      new Layer(); fit();
-      map.addListener('click',function(){ pins.forEach(function(p){ p.el.classList.remove('on'); }); });
+      fit();
+      map.on('click',function(){ pins.forEach(function(p){ p.el.classList.remove('on'); p.mk.setZIndexOffset(0); }); });
     }).catch(function(){ aside.style.display='none'; });
     return mapP;
   }
   /* görünür pinlere sığdır; şehir merkezinden uzak olanları (Sarıyer vb.) başlangıç görünümüne katma */
   function fit(){
-    if(!map) return; var b=new google.maps.LatLngBounds(), n=0, all=new google.maps.LatLngBounds(), m=0;
-    pins.forEach(function(p){ if(p.el.classList.contains('off')) return; all.extend(p.ll); m++;
-      if(Math.abs(p.lat-41.029)<0.03&&Math.abs(p.lng-28.976)<0.035){ b.extend(p.ll); n++; } });
-    if(n>1) map.fitBounds(b,48); else if(m) map.fitBounds(all,48);
+    if(!map) return; map.invalidateSize(); var b=[], all=[];
+    pins.forEach(function(p){ if(p.el.classList.contains('off')) return; all.push(p.ll);
+      if(Math.abs(p.lat-41.029)<0.03&&Math.abs(p.lng-28.976)<0.035) b.push(p.ll); });
+    var use=b.length>1?b:all; if(use.length) map.fitBounds(use,{padding:[48,48],maxZoom:17});
   }
-  function activate(p,pan){ pins.forEach(function(q){ q.el.classList.toggle('on',q===p); }); if(pan){ map.panTo(p.ll); if(map.getZoom()<16) map.setZoom(16); } }
+  function activate(p,pan){ pins.forEach(function(q){ var on=q===p; q.el.classList.toggle('on',on); q.mk.setZIndexOffset(on?1000:0); }); if(pan){ map.invalidateSize(); map.setView(p.ll,Math.max(map.getZoom(),16)); } }
   function goCard(c){ c.scrollIntoView({behavior:'smooth',block:'center'}); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); }
   function openMap(){ aside.classList.add('open'); document.body.classList.add('mapopen'); document.body.style.overflow='hidden'; return initMap(); }
   function closeMap(){ aside.classList.remove('open'); document.body.classList.remove('mapopen'); document.body.style.overflow=''; }
